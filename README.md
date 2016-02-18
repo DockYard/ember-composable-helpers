@@ -17,6 +17,15 @@ Composes two actions in the form of `(f ∘ g)(x)`. Each action must return a va
 </button>
 ```
 
+### Pipe
+Pipes the return values of actions in a sequence of actions. 
+
+```hbs
+<button {{action (pipe addToCart purchase redirectToThankYouPage) item}}>
+  1-Click Buy
+</button>
+```
+
 ## Installation
 
 * `git clone` this repository
