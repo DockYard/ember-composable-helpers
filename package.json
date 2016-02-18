@@ -1,7 +1,7 @@
 {
   "name": "ember-functional-helpers",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Functional helpers for Ember",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,16 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/DockYard/ember-functional-helpers",
+  "bugs": "https://github.com/DockYard/ember-functional-helpers/issues",
+  "homepage": "https://github.com/DockYard/ember-functional-helpers",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": [
+    "Lauren Tan <arr@sugarpirate.com>",
+    "Marten Schilstra <mail@martenschilstra.nl>"
+  ],
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -30,7 +35,6 @@
     "ember-cli-release": "0.2.8",
     "ember-cli-sri": "^2.0.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.3.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-disable-proxy-controllers": "^1.0.1",
     "ember-export-application-global": "^1.0.4",
@@ -40,7 +44,9 @@
     "loader.js": "^4.0.0"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "functional helpers",
+    "compose"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.5"

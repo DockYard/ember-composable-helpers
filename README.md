@@ -1,6 +1,21 @@
-# Ember-functional-helpers
+# ember-functional-helpers [![Build Status](https://travis-ci.org/DockYard/ember-functional-helpers.svg?branch=master)](https://travis-ci.org/DockYard/ember-functional-helpers) [![npm version](https://badge.fury.io/js/ember-functional-helpers.svg)](https://badge.fury.io/js/ember-functional-helpers)
 
-This README outlines the details of collaborating on this Ember addon.
+Functional helpers for Ember.
+
+```no-highlight
+ember install ember-functional-helpers
+```
+
+## Usage
+
+### Compose
+Composes two actions in the form of `(f ∘ g)(x)`. Each action must return a value.
+
+```hbs
+<button {{action (compose save createNewItem) "Foo"}}>
+  Create and save item
+</button>
+```
 
 ## Installation
 
@@ -24,3 +39,11 @@ This README outlines the details of collaborating on this Ember addon.
 * `ember build`
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+## Legal
+
+[DockYard](http://dockyard.com/ember-consulting), Inc &copy; 2016
+
+[@dockyard](http://twitter.com/dockyard)
+
+[Licensed under the MIT license](http://www.opensource.org/licenses/mit-license.php)
