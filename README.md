@@ -93,6 +93,23 @@ Calls an action as an template helper.
 The square of 4 is {{compute (action "square") 4}}
 ```
 
+### Repeat
+Repeats `n` times. This can be useful for making an n length arbitrary list for iterating upon (you can think of this form as a times helper, a la Ruby's `5.times { ... }`):
+
+```hbs
+{{#each (repeat 3) as |empty}}
+  I will be rendered 3 times
+{{/each}}
+```
+
+You can also give it a value to repeat:
+
+```hbs
+{{#each (repeat 3 "Adam") as |name}}
+  {{name}}
+{{/each}}
+```
+
 ## Installation
 
 * `git clone` this repository
