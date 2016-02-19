@@ -94,7 +94,7 @@ The square of 4 is {{compute (action "square") 4}}
 ```
 
 ### Repeat
-Repeats `n` times. This can be useful for making an n length arbitrary list for iterating upon (you can think of this form as a times helper, a la Ruby's `5.times { ... }`):
+Repeats `n` times. This can be useful for making an n-length arbitrary list for iterating upon (you can think of this form as a times helper, a la Ruby's `5.times { ... }`):
 
 ```hbs
 {{#each (repeat 3) as |empty|}}
@@ -107,6 +107,32 @@ You can also give it a value to repeat:
 ```hbs
 {{#each (repeat 3 "Adam") as |name}}
   {{name}}
+{{/each}}
+```
+
+## Range
+
+Generates a range of numbers between a `min` and `max` value.
+
+```hbs
+{{#each (range 10 20) as |number|}}
+  {{! `number` will go from 10 to 19}}
+{{/each}}
+```
+
+It can also be set to `inclusive`:
+
+```hbs
+{{#each (range 10 20 true) as |number|}}
+  {{! `number` will go from 10 to 20}}
+{{/each}}
+```
+
+It also works with a negative range:
+
+```hbs
+{{#each (range 20 10) as |number|}}
+  {{! `number` will go from 20 to 11}}
 {{/each}}
 ```
 
