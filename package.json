@@ -47,7 +47,14 @@
   "keywords": [
     "ember-addon",
     "functional helpers",
-    "compose"
+    "compose",
+    "group-by",
+    "map-by",
+    "filter-by",
+    "sort-by",
+    "take",
+    "drop",
+    "compute"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.5"

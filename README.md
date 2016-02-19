@@ -8,15 +8,6 @@ ember install ember-functional-helpers
 
 ## Usage
 
-### Compose
-Composes two actions in the form of `(f ∘ g)(x)`. Each action must return a value.
-
-```hbs
-<button {{action (compose save createNewItem) "Foo"}}>
-  Create and save item
-</button>
-```
-
 ### Pipe
 Pipes the return values of actions in a sequence of actions.
 
