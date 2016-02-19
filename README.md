@@ -18,12 +18,61 @@ Composes two actions in the form of `(f ∘ g)(x)`. Each action must return a va
 ```
 
 ### Pipe
-Pipes the return values of actions in a sequence of actions. 
+Pipes the return values of actions in a sequence of actions.
 
 ```hbs
 <button {{action (pipe addToCart purchase redirectToThankYouPage) item}}>
   1-Click Buy
 </button>
+```
+
+### Map By
+Maps an array on a property.
+
+```hbs
+{{#each (map-by users "fullName") as |name|}}
+  {{name}}
+{{/each}}
+```
+
+### Sort By
+Sort an array by given properties.
+
+```hbs
+{{#each (sort-by users "lastName" "firstName") as |user|}}
+  {{user.lastName}}, {{user.firstName}}
+{{/each}}
+```
+
+You can append `:desc` to properties to sort in reverse order.
+
+```hbs
+{{#each (sort-by users "age:desc") as |user|}}
+  {{user.firstName}} {{user.lastName}} ({{user.age}})
+{{/each}}
+```
+
+### Filter By
+Filters an array on a property.
+
+```hbs
+{{#each (filter-by users "isActive" true) as |user|}}
+  {{user.name}} is active!
+{{/each}}
+```
+
+If you omit the third argument it will test if the property is truthy.
+```hbs
+{{#each (filter-by users "address") as |user|}}
+  {{user.name}} has an address specified!
+{{/each}}
+```
+
+You can also pass an action as third argument:
+```hbs
+{{#each (filter-by users age (action "olderThan" 18)) as |user|}}
+  {{user.name}} is older than eighteen!
+{{/each}}
 ```
 
 ## Installation
