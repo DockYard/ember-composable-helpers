@@ -86,6 +86,13 @@ Returns an array with the first N entries omitted.
 {{/each}}
 ```
 
+### Compute
+Calls an action as an template helper.
+
+```hbs
+The square of 4 is {{compute (action "square") 4}}
+```
+
 ## Installation
 
 * `git clone` this repository
