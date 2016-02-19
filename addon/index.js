@@ -5,3 +5,4 @@ export { default as SortByHelper } from './helpers/sort-by';
 export { default as FilterByHelper } from './helpers/filter-by';
 export { default as DropHelper } from './helpers/drop';
 export { default as TakeHelper } from './helpers/take';
+export { default as RepeatHelper } from './helpers/repeat';
