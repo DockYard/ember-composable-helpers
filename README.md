@@ -97,7 +97,7 @@ The square of 4 is {{compute (action "square") 4}}
 Repeats `n` times. This can be useful for making an n length arbitrary list for iterating upon (you can think of this form as a times helper, a la Ruby's `5.times { ... }`):
 
 ```hbs
-{{#each (repeat 3) as |empty}}
+{{#each (repeat 3) as |empty|}}
   I will be rendered 3 times
 {{/each}}
 ```
@@ -108,6 +108,23 @@ You can also give it a value to repeat:
 {{#each (repeat 3 "Adam") as |name}}
   {{name}}
 {{/each}}
+```
+
+### Group By
+
+Returns an object where the keys are the unique values of the given property,
+the values are an array with all items of the array that have the same value of
+that property.
+
+```hbs
+{{#each-in (group-by artists "category") as |category artists|}}
+  <h3>{{category}}</h3>
+  <ul>
+    {{#each artists as |artist|}}
+      <li>{{artist.name}}</li>
+    {{/each}}
+  </ul>
+{{/each-in}}
 ```
 
 ## Installation
