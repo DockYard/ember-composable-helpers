@@ -105,7 +105,7 @@ Repeats `n` times. This can be useful for making an n length arbitrary list for 
 You can also give it a value to repeat:
 
 ```hbs
-{{#each (repeat 3 "Adam") as |name}}
+{{#each (repeat 3 "Adam") as |name|}}
   {{name}}
 {{/each}}
 ```
