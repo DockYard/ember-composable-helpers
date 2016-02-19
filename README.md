@@ -26,6 +26,26 @@ Pipes the return values of actions in a sequence of actions.
 </button>
 ```
 
+### Take
+Returns the first N entries of given array.
+
+```hbs
+<h3>Top 3:</h3>
+{{#each (take contestants 3) as |contestant|}}
+  {{contestant.rank}}. {{contestant.name}}
+{{/each}}
+```
+
+### Drop
+Returns an array with the first N entries omitted.
+
+```hbs
+<h3>Other contestants:</h3>
+{{#each (drop contestants 3) as |contestant|}}
+  {{contestant.rank}}. {{contestant.name}}
+{{/each}}
+```
+
 ## Installation
 
 * `git clone` this repository
