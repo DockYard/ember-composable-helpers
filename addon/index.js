@@ -7,3 +7,4 @@ export { default as GroupByHelper } from './helpers/group-by';
 export { default as DropHelper } from './helpers/drop';
 export { default as TakeHelper } from './helpers/take';
 export { default as RepeatHelper } from './helpers/repeat';
+export { default as RangeHelper } from './helpers/range';
