@@ -7,7 +7,7 @@ const {
 
 export function repeat([length, value]) {
   if (typeOf(length) !== 'number') {
-    return [];
+    return [value];
   }
 
   return Array.apply(null, { length }).map(() => value);

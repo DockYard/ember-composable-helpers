@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { gte, lte, gt, lt } from '../utils/comparison';
+import { gte, lte, lt } from '../utils/comparison';
 
 const {
   Helper: { helper },
