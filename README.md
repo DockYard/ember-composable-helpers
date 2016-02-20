@@ -22,6 +22,7 @@ ember install ember-functional-helpers
 * [Action](#action-helpers)
   + [`pipe`](#pipe)
   + [`compute`](#compute)
+  + [`toggle`](#toggle)
 * [Array](#array-helpers)
   + [`map-by`](#map-by)
   + [`sort-by`](#sort-by)
@@ -56,6 +57,17 @@ Calls an action as a template helper.
 
 ```hbs
 The square of 4 is {{compute (action "square") 4}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `toggle`
+Toggles a boolean value.
+
+```hbs
+<button {{action (toggle this "isExpanded")}}>
+  {{if isExpanded "I am expanded" "I am not"}}
+</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
