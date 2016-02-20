@@ -9,6 +9,7 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
+    "node-test": "mocha test --recursive --reporter spec",
     "test": "ember try:testall"
   },
   "repository": "https://github.com/DockYard/ember-composable-helpers",
@@ -24,6 +25,7 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
+    "chai": "^3.5.0",
     "ember-ajax": "0.7.1",
     "ember-cli": "2.3.0",
     "ember-cli-app-version": "^1.0.0",
@@ -43,7 +45,8 @@
     "ember-resolver": "^2.0.3",
     "ember-suave": "2.0.1",
     "ember-try": "^0.1.2",
-    "loader.js": "^4.0.0"
+    "loader.js": "^4.0.0",
+    "mocha": "^2.4.5"
   },
   "keywords": [
     "ember-addon",
@@ -58,6 +61,7 @@
     "compute"
   ],
   "dependencies": {
+    "broccoli-funnel": "^1.0.1",
     "ember-cli-babel": "^5.1.5"
   },
   "ember-addon": {
