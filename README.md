@@ -1,15 +1,44 @@
 # ember-functional-helpers [![Build Status](https://travis-ci.org/DockYard/ember-functional-helpers.svg?branch=master)](https://travis-ci.org/DockYard/ember-functional-helpers) [![npm version](https://badge.fury.io/js/ember-functional-helpers.svg)](https://badge.fury.io/js/ember-functional-helpers) [![Ember Observer Score](http://emberobserver.com/badges/ember-functional-helpers.svg)](http://emberobserver.com/addons/ember-functional-helpers)
 
-Functional helpers for Ember.
+Functional helpers for Ember that enables more declarative templating. These helpers can be _composed_ together to form powerful ideas:
+
+```hbs
+{{#each (map-by users "fullName") as |fullName|}}
+  <input type="text" value={{fullName}} onchange={{action (mut newName)}}>
+  <button {{action (pipe updateFullName saveUser) newName}}>
+    Update and save {{fullName}} to {{newName}}
+  </button>
+{{/each}}
+```
+
+To install:
 
 ```no-highlight
 ember install ember-functional-helpers
 ```
 
+## Available helpers
+
+* [Action](#action-helpers)
+  - [`pipe`](#pipe)
+  - [`compute`](#compute)
+* [Array](#array-helpers)
+  - [`map-by`](#map-by)
+  - [`sort-by`](#sort-by)
+  - [`filter-by`](#filter-by)
+  - [`take`](#take)
+  - [`drop`](#drop)
+  - [`repeat`](#repeat)
+  - [`range`](#range)
+* [Object](#object-helpers)
+  - [`group-by`](#group-by)
+
 ## Usage
 
-### Pipe
-Pipes the return values of actions in a sequence of actions.
+### Action helpers
+
+#### `pipe`
+Pipes the return values of actions in a sequence of actions. This is useful to compose a pipeline of actions, so each action can do only one thing.
 
 ```hbs
 <button {{action (pipe addToCart purchase redirectToThankYouPage) item}}>
@@ -17,16 +46,33 @@ Pipes the return values of actions in a sequence of actions.
 </button>
 ```
 
-### Map By
+**[⬆️️ back to top](#available-helpers)**
+
+#### `compute`
+Calls an action as a template helper.
+
+```hbs
+The square of 4 is {{compute (action "square") 4}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+---
+
+### Array helpers
+
+#### `map-by`
 Maps an array on a property.
 
 ```hbs
-{{#each (map-by users "fullName") as |name|}}
-  {{name}}
+{{#each (map-by users "fullName") as |fullName|}}
+  {{fullName}}
 {{/each}}
 ```
 
-### Sort By
+**[⬆️ back to top](#available-helpers)**
+
+#### `sort-by`
 Sort an array by given properties.
 
 ```hbs
@@ -43,8 +89,10 @@ You can append `:desc` to properties to sort in reverse order.
 {{/each}}
 ```
 
-### Filter By
-Filters an array on a property.
+**[⬆️ back to top](#available-helpers)**
+
+#### `filter-by`
+Filters an array by a property.
 
 ```hbs
 {{#each (filter-by users "isActive" true) as |user|}}
@@ -53,6 +101,7 @@ Filters an array on a property.
 ```
 
 If you omit the third argument it will test if the property is truthy.
+
 ```hbs
 {{#each (filter-by users "address") as |user|}}
   {{user.name}} has an address specified!
@@ -60,14 +109,17 @@ If you omit the third argument it will test if the property is truthy.
 ```
 
 You can also pass an action as third argument:
+
 ```hbs
 {{#each (filter-by users age (action "olderThan" 18)) as |user|}}
   {{user.name}} is older than eighteen!
 {{/each}}
 ```
 
-### Take
-Returns the first N entries of given array.
+**[⬆️ back to top](#available-helpers)**
+
+#### `take`
+Returns the first `n` entries of a given array.
 
 ```hbs
 <h3>Top 3:</h3>
@@ -76,8 +128,10 @@ Returns the first N entries of given array.
 {{/each}}
 ```
 
-### Drop
-Returns an array with the first N entries omitted.
+**[⬆️ back to top](#available-helpers)**
+
+#### `drop`
+Returns an array with the first `n` entries omitted.
 
 ```hbs
 <h3>Other contestants:</h3>
@@ -86,14 +140,9 @@ Returns an array with the first N entries omitted.
 {{/each}}
 ```
 
-### Compute
-Calls an action as an template helper.
+**[⬆️ back to top](#available-helpers)**
 
-```hbs
-The square of 4 is {{compute (action "square") 4}}
-```
-
-### Repeat
+#### `repeat`
 Repeats `n` times. This can be useful for making an n-length arbitrary list for iterating upon (you can think of this form as a times helper, a la Ruby's `5.times { ... }`):
 
 ```hbs
@@ -110,8 +159,9 @@ You can also give it a value to repeat:
 {{/each}}
 ```
 
-## Range
+**[⬆️ back to top](#available-helpers)**
 
+#### `range`
 Generates a range of numbers between a `min` and `max` value.
 
 ```hbs
@@ -128,7 +178,7 @@ It can also be set to `inclusive`:
 {{/each}}
 ```
 
-It also works with a negative range:
+And works with a negative range:
 
 ```hbs
 {{#each (range 20 10) as |number|}}
@@ -136,11 +186,14 @@ It also works with a negative range:
 {{/each}}
 ```
 
-### Group By
+**[⬆️ back to top](#available-helpers)**
 
-Returns an object where the keys are the unique values of the given property,
-the values are an array with all items of the array that have the same value of
-that property.
+--- 
+
+### Object helpers
+
+#### `group-by`
+Returns an object where the keys are the unique values of the given property, and the values are an array with all items of the array that have the same value of that property.
 
 ```hbs
 {{#each-in (group-by artists "category") as |category artists|}}
@@ -152,6 +205,8 @@ that property.
   </ul>
 {{/each-in}}
 ```
+
+**[⬆️ back to top](#available-helpers)**
 
 ## Installation
 
