@@ -8,3 +8,5 @@ export { default as DropHelper } from './helpers/drop';
 export { default as TakeHelper } from './helpers/take';
 export { default as RepeatHelper } from './helpers/repeat';
 export { default as RangeHelper } from './helpers/range';
+export { default as IncHelper } from './helpers/inc';
+export { default as DecHelper } from './helpers/dec';

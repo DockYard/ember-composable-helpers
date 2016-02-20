@@ -20,18 +20,21 @@ ember install ember-functional-helpers
 ## Available helpers
 
 * [Action](#action-helpers)
-  - [`pipe`](#pipe)
-  - [`compute`](#compute)
+  + [`pipe`](#pipe)
+  + [`compute`](#compute)
 * [Array](#array-helpers)
-  - [`map-by`](#map-by)
-  - [`sort-by`](#sort-by)
-  - [`filter-by`](#filter-by)
-  - [`take`](#take)
-  - [`drop`](#drop)
-  - [`repeat`](#repeat)
-  - [`range`](#range)
+  + [`map-by`](#map-by)
+  + [`sort-by`](#sort-by)
+  + [`filter-by`](#filter-by)
+  + [`take`](#take)
+  + [`drop`](#drop)
+  + [`repeat`](#repeat)
+  + [`range`](#range)
 * [Object](#object-helpers)
-  - [`group-by`](#group-by)
+  + [`group-by`](#group-by)
+* [Math](#math-helpers)
+  + [`inc`](#inc)
+  + [`dec`](#dec)
 
 ## Usage
 
@@ -207,6 +210,28 @@ Returns an object where the keys are the unique values of the given property, an
 ```
 
 **[⬆️ back to top](#available-helpers)**
+
+---
+
+## Math helpers
+
+### `inc`
+Increments by `1` or `step`.
+
+```hbs
+{{inc numberOfPeople}}
+{{inc numberOfPeople 2}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+### dec
+Decrements by `1` or `step`.
+
+```hbs
+{{dec numberOfPeople}}
+{{dec numberOfPeople 2}}
+```
 
 ## Installation
 
