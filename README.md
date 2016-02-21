@@ -41,6 +41,10 @@ ember install ember-functional-helpers
 * [Math](#math-helpers)
   + [`inc`](#inc)
   + [`dec`](#dec)
+  + [`lt`](#lt)
+  + [`lte`](#lte)
+  + [`gt`](#gt)
+  + [`gte`](#gte)
 
 ## Usage
 
@@ -307,6 +311,44 @@ Decrements by `1` or `step`.
 {{dec numberOfPeople}}
 {{dec numberOfPeople 2}}
 ```
+
+**[⬆️ back to top](#available-helpers)**
+
+### lt
+Checks if the first argument is less than the second argument.
+
+```hbs
+{{lt 4 5}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+### lte
+Checks if the first argument is less than or equal to the second argument.
+
+```hbs
+{{lte 4 5}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+### gt
+Checks if the first argument is greater than the second argument.
+
+```hbs
+{{gt 4 5}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+### gte
+Checks if the first argument is greater than or equal to the second argument.
+
+```hbs
+{{gte 4 5}}
+```
+
+**[⬆️ back to top](#available-helpers)**
 
 ## Installation
 
