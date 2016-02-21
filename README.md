@@ -31,6 +31,7 @@ ember install ember-functional-helpers
   + [`drop`](#drop)
   + [`repeat`](#repeat)
   + [`range`](#range)
+  + [`join`](#join)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -199,6 +200,15 @@ And works with a negative range:
 {{#each (range 20 10) as |number|}}
   {{! `number` will go from 20 to 11}}
 {{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `join`
+Joins the given array with an optional separator into a string.
+
+```hbs
+{{join categories ', '}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
