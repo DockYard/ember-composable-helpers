@@ -11,4 +11,5 @@ export { default as RangeHelper } from './helpers/range';
 export { default as IncHelper } from './helpers/inc';
 export { default as DecHelper } from './helpers/dec';
 export { default as ToggleHelper } from './helpers/toggle';
+export { default as JoinHelper } from './helpers/join';
 export { default as WHelper } from './helpers/w';
