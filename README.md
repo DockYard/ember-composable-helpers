@@ -23,6 +23,8 @@ ember install ember-functional-helpers
   + [`pipe`](#pipe)
   + [`compute`](#compute)
   + [`toggle`](#toggle)
+* [String](#string-helpers)
+  + [`w`](#w)
 * [Array](#array-helpers)
   + [`map-by`](#map-by)
   + [`sort-by`](#sort-by)
@@ -70,6 +72,32 @@ Toggles a boolean value.
   {{if isExpanded "I am expanded" "I am not"}}
 </button>
 ```
+
+**[⬆️ back to top](#available-helpers)**
+
+---
+
+### String helpers
+
+#### `w`
+Splits a string on whitespace and/or turns multiple words into an array
+
+```hbs
+{{#each (words "First" "Second" "Last") as |rank|}}
+  Our {{rank}} place winner is ...
+{{/each}}
+```
+
+or:
+
+```hbs
+{{#each (words "First Second Last") as |rank|}}
+  Our {{rank}} place winner is ...
+{{/each}}
+```
+
+See also: [Ember `w` documentation](http://emberjs.com/api/classes/Ember.String.html#method_w)
+
 
 **[⬆️ back to top](#available-helpers)**
 
