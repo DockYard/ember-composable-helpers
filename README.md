@@ -173,7 +173,7 @@ Creates an array of unique values that are included in all given arrays.
 
 ```hbs
 <h1>Matching skills</h1>
-{{#each (intersection desiredSkills currentSkills) as |skill|}}
+{{#each (intersect desiredSkills currentSkills) as |skill|}}
   {{skill.name}}
 {{/each}}
 ```
