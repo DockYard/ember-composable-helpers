@@ -1,6 +1,6 @@
 {
   "name": "ember-functional-helpers",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Functional helpers for Ember",
   "directories": {
     "doc": "doc",
