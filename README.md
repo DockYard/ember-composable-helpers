@@ -29,6 +29,8 @@ ember install ember-functional-helpers
   + [`map-by`](#map-by)
   + [`sort-by`](#sort-by)
   + [`filter-by`](#filter-by)
+  + [`intersect`](#intersect)
+  + [`union`](#union)
   + [`take`](#take)
   + [`drop`](#drop)
   + [`repeat`](#repeat)
@@ -157,6 +159,29 @@ You can also pass an action as third argument:
 ```hbs
 {{#each (filter-by users age (action "olderThan" 18)) as |user|}}
   {{user.name}} is older than eighteen!
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `intersect`
+Creates an array of unique values that are included in all given arrays.
+
+```hbs
+<h1>Matching skills</h1>
+{{#each (intersection desiredSkills currentSkills) as |skill|}}
+  {{skill.name}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `union`
+Joins arrays to create an array of unique values.
+
+```hbs
+{{#each (union cartA cartB cartC) as |cartItem|}}
+  {{cartItem.price}} x {{cartItem.quantity}} for {{cartItem.name}}
 {{/each}}
 ```
 
