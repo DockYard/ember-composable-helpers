@@ -1,4 +1,4 @@
-# Contributing to ember-functional-helpers
+# Contributing to ember-composable-helpers
 
 ## Installation
 
