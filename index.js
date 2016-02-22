@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-functional-helpers'
+  name: 'ember-composable-helpers'
 };

@@ -1,1 +1,1 @@
-export { default, intersect } from 'ember-functional-helpers/helpers/intersect';
+export { default, intersect } from 'ember-composable-helpers/helpers/intersect';

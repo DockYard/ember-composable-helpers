@@ -1,1 +1,1 @@
-export { default, toggle } from 'ember-functional-helpers/helpers/toggle';
+export { default, toggle } from 'ember-composable-helpers/helpers/toggle';

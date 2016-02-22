@@ -1,1 +1,1 @@
-export { default, take } from 'ember-functional-helpers/helpers/take';
+export { default, take } from 'ember-composable-helpers/helpers/take';

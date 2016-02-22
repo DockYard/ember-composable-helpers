@@ -1,1 +1,1 @@
-export { default, range } from 'ember-functional-helpers/helpers/range';
+export { default, range } from 'ember-composable-helpers/helpers/range';

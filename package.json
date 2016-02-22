@@ -1,7 +1,7 @@
 {
-  "name": "ember-functional-helpers",
+  "name": "ember-composable-helpers",
   "version": "0.7.0",
-  "description": "Functional helpers for Ember",
+  "description": "Composable helpers for Ember",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,9 +11,9 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "https://github.com/DockYard/ember-functional-helpers",
-  "bugs": "https://github.com/DockYard/ember-functional-helpers/issues",
-  "homepage": "https://github.com/DockYard/ember-functional-helpers",
+  "repository": "https://github.com/DockYard/ember-composable-helpers",
+  "bugs": "https://github.com/DockYard/ember-composable-helpers/issues",
+  "homepage": "https://github.com/DockYard/ember-composable-helpers",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -47,7 +47,7 @@
   },
   "keywords": [
     "ember-addon",
-    "functional helpers",
+    "helpers",
     "compose",
     "group-by",
     "map-by",

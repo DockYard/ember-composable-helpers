@@ -1,1 +1,1 @@
-export { default, drop } from 'ember-functional-helpers/helpers/drop';
+export { default, drop } from 'ember-composable-helpers/helpers/drop';
