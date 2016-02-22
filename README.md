@@ -17,6 +17,10 @@ To install:
 ember install ember-composable-helpers
 ```
 
+### See also:
+
+* [ember-truth-helpers](https://github.com/jmurphyau/ember-truth-helpers)
+
 ## Available helpers
 
 * [Action](#action-helpers)
