@@ -41,6 +41,17 @@ describe('index', function() {
       expect(result).to.be.false;
     });
 
+    it('should return `true` if a file is not in the whitelist', function() {
+      var name = 'range';
+      var dummyRegex = new RegExp('.*');
+      var lists = {
+        whitelist: ['inc']
+      };
+      var result = addonIndex.exclusionFilter(name, dummyRegex, lists);
+
+      expect(result).to.be.true;
+    });
+
     it('should return `false` if a file is in both the whitelist and blacklist', function() {
       var name = 'range';
       var dummyRegex = new RegExp('.*');
