@@ -308,9 +308,9 @@ Returns an object where the keys are the unique values of the given property, an
 
 ---
 
-## Math helpers
+### Math helpers
 
-### `inc`
+#### `inc`
 Increments by `1` or `step`.
 
 ```hbs
@@ -320,13 +320,15 @@ Increments by `1` or `step`.
 
 **[⬆️ back to top](#available-helpers)**
 
-### dec
+#### `dec`
 Decrements by `1` or `step`.
 
 ```hbs
 {{dec numberOfPeople}}
 {{dec numberOfPeople 2}}
 ```
+
+**[⬆️ back to top](#available-helpers)**
 
 ### See also:
 
