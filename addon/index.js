@@ -15,7 +15,3 @@ export { default as DecHelper } from './helpers/dec';
 export { default as ToggleHelper } from './helpers/toggle';
 export { default as JoinHelper } from './helpers/join';
 export { default as WHelper } from './helpers/w';
-export { default as LtHelper } from './helpers/lt';
-export { default as LteHelper } from './helpers/lte';
-export { default as GtHelper } from './helpers/Gt';
-export { default as GteHelper } from './helpers/Gte';
