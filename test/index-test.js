@@ -3,7 +3,7 @@
 /* jscs: disable */
 'use strict';
 
-var emberFunctionalHelpersIndex = require('../index');
+var addonIndex = require('../index');
 var expect = require('chai').expect;
 
 describe('index', function() {
@@ -14,7 +14,7 @@ describe('index', function() {
       var lists = {
         blacklist: ['range', 'inc']
       };
-      var result = emberFunctionalHelpersIndex.exclusionFilter(name, dummyRegex, lists);
+      var result = addonIndex.exclusionFilter(name, dummyRegex, lists);
 
       expect(result).to.be.true;
     });
@@ -25,7 +25,7 @@ describe('index', function() {
       var lists = {
         blacklist: ['range', 'inc']
       };
-      var result = emberFunctionalHelpersIndex.exclusionFilter(name, dummyRegex, lists);
+      var result = addonIndex.exclusionFilter(name, dummyRegex, lists);
 
       expect(result).to.be.false;
     });
@@ -36,7 +36,7 @@ describe('index', function() {
       var lists = {
         whitelist: ['range', 'inc']
       };
-      var result = emberFunctionalHelpersIndex.exclusionFilter(name, dummyRegex, lists);
+      var result = addonIndex.exclusionFilter(name, dummyRegex, lists);
 
       expect(result).to.be.false;
     });
@@ -48,7 +48,7 @@ describe('index', function() {
         blacklist: ['range'],
         whitelist: ['range', 'inc']
       };
-      var result = emberFunctionalHelpersIndex.exclusionFilter(name, dummyRegex, lists);
+      var result = addonIndex.exclusionFilter(name, dummyRegex, lists);
 
       expect(result).to.be.false;
     });
@@ -57,7 +57,7 @@ describe('index', function() {
       var name = 'range';
       var dummyRegex = new RegExp('.*');
       var lists = {};
-      var result = emberFunctionalHelpersIndex.exclusionFilter(name, dummyRegex, lists);
+      var result = addonIndex.exclusionFilter(name, dummyRegex, lists);
 
       expect(result).to.be.false;
     });
@@ -70,7 +70,7 @@ describe('index', function() {
         except: ['inc']
       };
       var expectedResult = ['range', 'pipe', 'dec'];
-      var result = emberFunctionalHelpersIndex.generateWhitelist(dummyConfig);
+      var result = addonIndex.generateWhitelist(dummyConfig);
 
       expect(result).to.eql(expectedResult);
     });
@@ -80,7 +80,7 @@ describe('index', function() {
         only: ['range', 'pipe', 'inc', 'dec']
       };
       var expectedResult = ['range', 'pipe', 'inc', 'dec'];
-      var result = emberFunctionalHelpersIndex.generateWhitelist(dummyConfig);
+      var result = addonIndex.generateWhitelist(dummyConfig);
 
       expect(result).to.eql(expectedResult);
     });
@@ -93,7 +93,7 @@ describe('index', function() {
         except: ['inc']
       };
       var expectedResult = ['inc'];
-      var result = emberFunctionalHelpersIndex.generateBlacklist(dummyConfig);
+      var result = addonIndex.generateBlacklist(dummyConfig);
 
       expect(result).to.eql(expectedResult);
     });
@@ -103,7 +103,7 @@ describe('index', function() {
         except: ['range', 'pipe', 'inc', 'dec']
       };
       var expectedResult = ['range', 'pipe', 'inc', 'dec'];
-      var result = emberFunctionalHelpersIndex.generateBlacklist(dummyConfig);
+      var result = addonIndex.generateBlacklist(dummyConfig);
 
       expect(result).to.eql(expectedResult);
     });
