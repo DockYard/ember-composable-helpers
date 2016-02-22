@@ -23,7 +23,7 @@ This addon performs optional tree-shaking – you can specify which helpers to w
 ```js
 module.exports = function(environment) {
   var ENV = {
-    'ember-functional-helpers': {
+    'ember-composable-helpers': {
       only: ['inc', 'dec', 'pipe'],
       except: ['pipe', 'filter-by']
     }
