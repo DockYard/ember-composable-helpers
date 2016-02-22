@@ -17,9 +17,25 @@ To install:
 ember install ember-composable-helpers
 ```
 
-### See also:
+## Configuration
+This addon performs optional tree-shaking – you can specify which helpers to whitelist or blacklist using `only` or `except` within your `config/environment.js`:
 
-* [ember-truth-helpers](https://github.com/jmurphyau/ember-truth-helpers)
+```js
+module.exports = function(environment) {
+  var ENV = {
+    'ember-functional-helpers': {
+      only: ['inc', 'dec', 'pipe'],
+      except: ['pipe', 'filter-by']
+    }
+  };
+```
+
+Both `only` and `except` can be safely used together (the addon computes the diff), although it's best if you only use one for your own sanity.
+
+```js
+except: ['pipe'] // imports all helpers except `pipe`
+only: ['pipe'] // imports only `pipe`
+```
 
 ## Available helpers
 
@@ -311,6 +327,10 @@ Decrements by `1` or `step`.
 {{dec numberOfPeople}}
 {{dec numberOfPeople 2}}
 ```
+
+### See also:
+
+* [ember-truth-helpers](https://github.com/jmurphyau/ember-truth-helpers)
 
 ## Legal
 
