@@ -56,6 +56,7 @@ only: ['pipe'] // imports only `pipe`
   + [`repeat`](#repeat)
   + [`range`](#range)
   + [`join`](#join)
+  + [`compact`](#compact)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -282,6 +283,17 @@ Joins the given array with an optional separator into a string.
 
 ```hbs
 {{join categories ', '}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `compact`
+Removes blank items from an array. 
+
+```hbs
+{{#each (compact arrayWithBlanks) as |notBlank|}}
+  {{notBlank}} is most definitely not blank!
+{{/each}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
