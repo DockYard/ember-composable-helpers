@@ -1,1 +1,1 @@
-export { default, groupBy } from 'ember-functional-helpers/helpers/group-by';
+export { default, groupBy } from 'ember-composable-helpers/helpers/group-by';

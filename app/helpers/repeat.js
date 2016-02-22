@@ -1,1 +1,1 @@
-export { default, repeat } from 'ember-functional-helpers/helpers/repeat';
+export { default, repeat } from 'ember-composable-helpers/helpers/repeat';

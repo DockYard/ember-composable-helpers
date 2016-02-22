@@ -1,1 +1,1 @@
-export { default, mapBy } from 'ember-functional-helpers/helpers/map-by';
+export { default, mapBy } from 'ember-composable-helpers/helpers/map-by';

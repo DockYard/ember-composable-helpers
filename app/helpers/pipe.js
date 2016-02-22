@@ -1,1 +1,1 @@
-export { default, pipe } from 'ember-functional-helpers/helpers/pipe';
+export { default, pipe } from 'ember-composable-helpers/helpers/pipe';

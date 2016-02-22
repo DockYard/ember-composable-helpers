@@ -1,1 +1,1 @@
-export { default, compute } from 'ember-functional-helpers/helpers/compute';
+export { default, compute } from 'ember-composable-helpers/helpers/compute';

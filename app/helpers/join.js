@@ -1,1 +1,1 @@
-export { default, join } from 'ember-functional-helpers/helpers/join';
+export { default, join } from 'ember-composable-helpers/helpers/join';

@@ -1,6 +1,6 @@
-# ember-functional-helpers [![Build Status](https://travis-ci.org/DockYard/ember-functional-helpers.svg?branch=master)](https://travis-ci.org/DockYard/ember-functional-helpers) [![npm version](https://badge.fury.io/js/ember-functional-helpers.svg)](https://badge.fury.io/js/ember-functional-helpers) [![Ember Observer Score](http://emberobserver.com/badges/ember-functional-helpers.svg)](http://emberobserver.com/addons/ember-functional-helpers)
+# ember-composable-helpers [![Build Status](https://travis-ci.org/DockYard/ember-composable-helpers.svg?branch=master)](https://travis-ci.org/DockYard/ember-composable-helpers) [![npm version](https://badge.fury.io/js/ember-composable-helpers.svg)](https://badge.fury.io/js/ember-composable-helpers) [![Ember Observer Score](http://emberobserver.com/badges/ember-composable-helpers.svg)](http://emberobserver.com/addons/ember-composable-helpers)
 
-Functional helpers for Ember that enables more declarative templating. These helpers can be _composed_ together to form powerful ideas:
+composable helpers for Ember that enables more declarative templating. These helpers can be _composed_ together to form powerful ideas:
 
 ```hbs
 {{#each (map-by users "fullName") as |fullName|}}
@@ -14,7 +14,7 @@ Functional helpers for Ember that enables more declarative templating. These hel
 To install:
 
 ```no-highlight
-ember install ember-functional-helpers
+ember install ember-composable-helpers
 ```
 
 ## Available helpers

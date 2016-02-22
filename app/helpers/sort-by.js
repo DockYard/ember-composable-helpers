@@ -1,1 +1,1 @@
-export { default, sortBy } from 'ember-functional-helpers/helpers/sort-by';
+export { default, sortBy } from 'ember-composable-helpers/helpers/sort-by';
