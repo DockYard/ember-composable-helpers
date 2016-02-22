@@ -105,7 +105,7 @@ Toggles a boolean value.
 Splits a string on whitespace and/or turns multiple words into an array
 
 ```hbs
-{{#each (words "First" "Second" "Last") as |rank|}}
+{{#each (w "First" "Second" "Last") as |rank|}}
   Our {{rank}} place winner is ...
 {{/each}}
 ```
@@ -113,7 +113,7 @@ Splits a string on whitespace and/or turns multiple words into an array
 or:
 
 ```hbs
-{{#each (words "First Second Last") as |rank|}}
+{{#each (w "First Second Last") as |rank|}}
   Our {{rank}} place winner is ...
 {{/each}}
 ```
