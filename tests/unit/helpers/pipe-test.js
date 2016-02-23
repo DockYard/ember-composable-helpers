@@ -11,11 +11,12 @@ function square(x) {
   return x * x;
 }
 
-function subtract(x, y) {
-  if (typeof y === 'undefined') {
-    throw new Error('2nd argument is undefined');
-  }
-  return x - y;
+function thinger() {
+  return undefined;
+}
+
+function countArgs(...args) {
+  return args.length;
 }
 
 test('it pipes functions together', function(assert) {
@@ -26,7 +27,8 @@ test('it pipes functions together', function(assert) {
 });
 
 test('first function is variadic, rest are unary', function(assert) {
-  let piped = pipe([add, square, Math.sqrt, subtract]);
+  let piped = pipe([add, square, Math.sqrt, thinger, countArgs]);
+  let result = piped(2, 4);
 
-  assert.throws(() => piped(2, 4), 'should throw an error');
+  assert.equal(result, 1, 'should receive 1 arg for last function');
 });
