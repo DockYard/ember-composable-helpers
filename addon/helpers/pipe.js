@@ -12,7 +12,7 @@ export function pipe(actions = []) {
         return curr(...args);
       }
 
-      return curr(acc, ...args);
+      return curr(acc);
     }, undefined);
   };
 }
