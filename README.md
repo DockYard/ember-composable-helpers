@@ -57,6 +57,7 @@ only: ['pipe'] // imports only `pipe`
   + [`range`](#range)
   + [`join`](#join)
   + [`compact`](#compact)
+  + [`contains`](#contains)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -294,6 +295,18 @@ Removes blank items from an array.
 {{#each (compact arrayWithBlanks) as |notBlank|}}
   {{notBlank}} is most definitely not blank!
 {{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `contains`
+Checks if a given value or sub-array is contained within an array.
+
+```hbs
+{{contains selectedItem items}}
+{{contains 1234 items}}
+{{contains "First" (w "First Second Third") }}
+{{contains (w "First Second") (w "First Second Third")}}
 ```
 
 **[⬆️ back to top](#available-helpers)**

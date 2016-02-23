@@ -15,4 +15,5 @@ export { default as DecHelper } from './helpers/dec';
 export { default as ToggleHelper } from './helpers/toggle';
 export { default as JoinHelper } from './helpers/join';
 export { default as WHelper } from './helpers/w';
-export { default as CompactHelper } from './helpers/compacy';
+export { default as CompactHelper } from './helpers/compact';
+export { default as ContainsHelper } from './helpers/contains';
