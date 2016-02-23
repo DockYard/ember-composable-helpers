@@ -21,11 +21,6 @@ export default Helper.extend({
     return get(this, 'content');
   },
 
-  array: null,
-  byPath: null,
-  value: null,
-  content: null,
-
   byPathDidChange: observer('byPath', 'value', function() {
     let byPath = get(this, 'byPath');
     let value = get(this, 'value');

@@ -20,9 +20,6 @@ export default Helper.extend({
     return get(this, 'content');
   },
 
-  array: null,
-  sortProps: null,
-
   sortPropsDidChange: observer('sortProps', function() {
     let sortProps = get(this, 'sortProps');
 
