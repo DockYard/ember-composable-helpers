@@ -12,8 +12,6 @@ const {
 } = Ember;
 
 export default Helper.extend({
-  array: null,
-
   compute([array]) {
     if (!isArray(array)) {
       return emberArray([array]);

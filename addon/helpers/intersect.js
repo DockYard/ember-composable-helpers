@@ -21,9 +21,6 @@ export default Helper.extend({
     return get(this, 'content');
   },
 
-  arrays: null,
-  content: null,
-
   arraysDidChange: observer('arrays.[]', function() {
     let arrays = get(this, 'arrays');
 

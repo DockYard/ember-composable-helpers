@@ -27,9 +27,6 @@ export function contains(needle, haystack) {
 }
 
 export default Helper.extend({
-  needle: null,
-  haystack: null,
-
   content: computed('needle.[]', 'haystack.[]', function() {
     let needle = get(this, 'needle');
     let haystack = get(this, 'haystack');
