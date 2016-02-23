@@ -13,7 +13,9 @@ const {
 } = Ember;
 
 export default Helper.extend({
-  compute([array, ...sortProps]) {
+  compute(sortProps) {
+    let array = sortProps.pop();
+
     set(this, 'array', array);
     set(this, 'sortProps', sortProps);
 

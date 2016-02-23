@@ -12,7 +12,7 @@ test('it decrements a value', function(assert) {
 });
 
 test('it decrements a value', function(assert) {
-  this.render(hbs`{{dec 5 2}}`);
+  this.render(hbs`{{dec 2 5}}`);
 
   assert.equal(this.$().text().trim(), '3', 'should decrement by 2');
 });

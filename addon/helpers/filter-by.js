@@ -13,7 +13,13 @@ const {
 } = Ember;
 
 export default Helper.extend({
-  compute([array, byPath, value]) {
+  compute([byPath, value, array]) {
+
+    if (!isArray(array) && isArray(value)) {
+      array = value;
+      value = undefined;
+    }
+
     set(this, 'array', array);
     set(this, 'byPath', byPath);
     set(this, 'value', value);

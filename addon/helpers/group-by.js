@@ -32,7 +32,7 @@ const groupFunction = function() {
 };
 
 export default Helper.extend({
-  compute([array, byPath]) {
+  compute([byPath, array]) {
     set(this, 'array', array);
     set(this, 'byPath', byPath);
 

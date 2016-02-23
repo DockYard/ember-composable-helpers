@@ -1,8 +1,13 @@
 import Ember from 'ember';
 
-const { Helper: { helper } } = Ember;
+const { Helper: { helper }, isEmpty } = Ember;
 
-export function dec([val, step]) {
+export function dec([step, val]) {
+  if (isEmpty(val)) {
+    val = step;
+    step = undefined;
+  }
+
   step = step || 1;
   return val - step;
 }

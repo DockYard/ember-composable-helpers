@@ -10,7 +10,7 @@ test('it decrements a value', function(assert) {
 });
 
 test('it decrements a value by step', function(assert) {
-  let result = dec([3, 2]);
+  let result = dec([2, 3]);
 
   assert.equal(result, 1, 'should equal 1');
 });
