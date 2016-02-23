@@ -1,14 +1,11 @@
 import Ember from 'ember';
 
-const {
-  Helper: { helper },
-  typeOf
-} = Ember;
+const { Helper: { helper } } = Ember;
 
 export function pipe(actions = []) {
   return function(...args) {
-    return actions.reduce((acc, curr) => {
-      if (typeOf(acc) === 'undefined') {
+    return actions.reduce((acc, curr, idx) => {
+      if (idx === 0) {
         return curr(...args);
       }
 
