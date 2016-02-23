@@ -12,7 +12,7 @@ test('It takes the first N entries of array', function(assert) {
   this.set('array', emberArray([1, 2, 3, 4, 5]));
 
   this.render(hbs`
-    {{~#each (take array 2) as |n|~}}
+    {{~#each (take 2 array) as |n|~}}
       {{n}}
     {{~/each~}}
   `);
@@ -25,7 +25,7 @@ test('It watches for changes', function(assert) {
   this.set('array', array);
 
   this.render(hbs`
-    {{~#each (take array 2) as |n|~}}
+    {{~#each (take 2 array) as |n|~}}
       {{n}}
     {{~/each~}}
   `);

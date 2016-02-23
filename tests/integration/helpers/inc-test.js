@@ -12,7 +12,7 @@ test('it increments a value', function(assert) {
 });
 
 test('it increments a value', function(assert) {
-  this.render(hbs`{{inc 1 2}}`);
+  this.render(hbs`{{inc 2 1}}`);
 
   assert.equal(this.$().text().trim(), '3', 'should increment by 2');
 });

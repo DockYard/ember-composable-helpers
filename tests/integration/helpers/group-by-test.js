@@ -17,7 +17,7 @@ test('It groups by given property', function(assert) {
   ]));
 
   this.render(hbs`
-    {{~#each-in (group-by array 'category') as |category entries|~}}
+    {{~#each-in (group-by 'category' array) as |category entries|~}}
       {{~category~}}
       {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
     {{~/each-in~}}
@@ -37,7 +37,7 @@ test('It watches for changes', function(assert) {
   this.set('array', array);
 
   this.render(hbs`
-    {{~#each-in (group-by array 'category') as |category entries|~}}
+    {{~#each-in (group-by 'category' array) as |category entries|~}}
       {{~category~}}
       {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
     {{~/each-in~}}

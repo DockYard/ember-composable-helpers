@@ -7,7 +7,7 @@ const {
 } = Ember;
 
 export default Helper.extend({
-  compute([array, dropAmount]) {
+  compute([dropAmount, array]) {
     set(this, 'array', array);
     return array.slice(dropAmount);
   },

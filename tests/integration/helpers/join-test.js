@@ -11,7 +11,7 @@ moduleForComponent('join', 'Integration | Helper | {{join}}', {
 test('It joins the words with given separator', function(assert) {
   this.set('array', emberArray(['foo', 'bar', 'baz']));
 
-  this.render(hbs`{{join array ', '}}`);
+  this.render(hbs`{{join ', ' array}}`);
 
   assert.equal(this.$().text().trim(), 'foo, bar, baz', 'words are joined with a comma and a space');
 });
@@ -28,7 +28,7 @@ test('It watches for changes', function(assert) {
   let array = emberArray(['foo', 'bar', 'baz']);
   this.set('array', array);
 
-  this.render(hbs`{{join array ', '}}`);
+  this.render(hbs`{{join ', ' array}}`);
 
   run(() => array.pushObject('quux'));
 

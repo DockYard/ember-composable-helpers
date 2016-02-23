@@ -37,6 +37,26 @@ except: ['pipe'] // imports all helpers except `pipe`
 only: ['pipe'] // imports only `pipe`
 ```
 
+## Argument ordering
+
+This addon is built with _composability_ in mind, and in order to faciliate that,
+the ordering of arguments is somewhat different then you might be used to.
+
+For all non-unary helpers, the subject of the helper function will always be the last argument.
+This way the arguments are better readable if you compose together multiple helpers:
+
+```hbs
+{{take 5 (sort "lastName" "firstName" (filter-by "active" array))}}
+```
+
+For action helpers, this will mean better currying semantics:
+
+```hbs
+<button {{action (pipe (action "closePopover") (toggle "isExpanded")) this}}>
+  {{if isExpanded "I am expanded" "I am not"}}
+</button>
+```
+
 ## Available helpers
 
 * [Action](#action-helpers)
@@ -92,7 +112,7 @@ The square of 4 is {{compute (action "square") 4}}
 Toggles a boolean value.
 
 ```hbs
-<button {{action (toggle this "isExpanded")}}>
+<button {{action (toggle "isExpanded" this)}}>
   {{if isExpanded "I am expanded" "I am not"}}
 </button>
 ```
@@ -133,7 +153,7 @@ See also: [Ember `w` documentation](http://emberjs.com/api/classes/Ember.String.
 Maps an array on a property.
 
 ```hbs
-{{#each (map-by users "fullName") as |fullName|}}
+{{#each (map-by "fullName" users) as |fullName|}}
   {{fullName}}
 {{/each}}
 ```
@@ -144,7 +164,7 @@ Maps an array on a property.
 Sort an array by given properties.
 
 ```hbs
-{{#each (sort-by users "lastName" "firstName") as |user|}}
+{{#each (sort-by "lastName" "firstName" users) as |user|}}
   {{user.lastName}}, {{user.firstName}}
 {{/each}}
 ```
@@ -152,7 +172,7 @@ Sort an array by given properties.
 You can append `:desc` to properties to sort in reverse order.
 
 ```hbs
-{{#each (sort-by users "age:desc") as |user|}}
+{{#each (sort-by "age:desc" users) as |user|}}
   {{user.firstName}} {{user.lastName}} ({{user.age}})
 {{/each}}
 ```
@@ -163,7 +183,7 @@ You can append `:desc` to properties to sort in reverse order.
 Filters an array by a property.
 
 ```hbs
-{{#each (filter-by users "isActive" true) as |user|}}
+{{#each (filter-by "isActive" true users) as |user|}}
   {{user.name}} is active!
 {{/each}}
 ```
@@ -171,7 +191,7 @@ Filters an array by a property.
 If you omit the third argument it will test if the property is truthy.
 
 ```hbs
-{{#each (filter-by users "address") as |user|}}
+{{#each (filter-by "address" users) as |user|}}
   {{user.name}} has an address specified!
 {{/each}}
 ```
@@ -179,7 +199,7 @@ If you omit the third argument it will test if the property is truthy.
 You can also pass an action as third argument:
 
 ```hbs
-{{#each (filter-by users age (action "olderThan" 18)) as |user|}}
+{{#each (filter-by "age" (action "olderThan" 18) users) as |user|}}
   {{user.name}} is older than eighteen!
 {{/each}}
 ```
@@ -214,7 +234,7 @@ Returns the first `n` entries of a given array.
 
 ```hbs
 <h3>Top 3:</h3>
-{{#each (take contestants 3) as |contestant|}}
+{{#each (take 3 contestants) as |contestant|}}
   {{contestant.rank}}. {{contestant.name}}
 {{/each}}
 ```
@@ -226,7 +246,7 @@ Returns an array with the first `n` entries omitted.
 
 ```hbs
 <h3>Other contestants:</h3>
-{{#each (drop contestants 3) as |contestant|}}
+{{#each (drop 3 contestants) as |contestant|}}
   {{contestant.rank}}. {{contestant.name}}
 {{/each}}
 ```
@@ -283,13 +303,13 @@ And works with a negative range:
 Joins the given array with an optional separator into a string.
 
 ```hbs
-{{join categories ', '}}
+{{join ', ' categories}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
 
 #### `compact`
-Removes blank items from an array. 
+Removes blank items from an array.
 
 ```hbs
 {{#each (compact arrayWithBlanks) as |notBlank|}}
@@ -311,7 +331,7 @@ Checks if a given value or sub-array is contained within an array.
 
 **[⬆️ back to top](#available-helpers)**
 
---- 
+---
 
 ### Object helpers
 
@@ -319,7 +339,7 @@ Checks if a given value or sub-array is contained within an array.
 Returns an object where the keys are the unique values of the given property, and the values are an array with all items of the array that have the same value of that property.
 
 ```hbs
-{{#each-in (group-by artists "category") as |category artists|}}
+{{#each-in (group-by "category" artists) as |category artists|}}
   <h3>{{category}}</h3>
   <ul>
     {{#each artists as |artist|}}
@@ -340,7 +360,7 @@ Increments by `1` or `step`.
 
 ```hbs
 {{inc numberOfPeople}}
-{{inc numberOfPeople 2}}
+{{inc 2 numberOfPeople}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
@@ -350,7 +370,7 @@ Decrements by `1` or `step`.
 
 ```hbs
 {{dec numberOfPeople}}
-{{dec numberOfPeople 2}}
+{{dec 2 numberOfPeople}}
 ```
 
 **[⬆️ back to top](#available-helpers)**

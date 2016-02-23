@@ -8,7 +8,7 @@ moduleForComponent('toggle', 'Integration | Helper | {{toggle}}', {
 test('it toggles the property', function(assert) {
   this.set('isExpanded', false);
   this.render(hbs`
-    <button {{action (toggle this "isExpanded")}}>
+    <button {{action (toggle "isExpanded" this)}}>
       {{if isExpanded "I am expanded" "I am not"}}
     </button>
   `);

@@ -16,7 +16,7 @@ test('It sorts by a value', function(assert) {
   ]));
 
   this.render(hbs`
-    {{~#each (sort-by array 'name') as |user|~}}
+    {{~#each (sort-by 'name' array) as |user|~}}
       {{~user.name~}}
     {{~/each~}}
   `);
@@ -34,7 +34,7 @@ test('It watches for changes', function(assert) {
   this.set('array', array);
 
   this.render(hbs`
-    {{~#each (sort-by array 'name') as |user|~}}
+    {{~#each (sort-by 'name' array) as |user|~}}
       {{~user.name~}}
     {{~/each~}}
   `);
