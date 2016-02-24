@@ -1,12 +1,10 @@
 import Ember from 'ember';
 
 const {
-  A: emberArray,
   Helper,
   computed,
   defineProperty,
   get,
-  getProperties,
   guidFor,
   isArray,
   isEmpty,
@@ -29,7 +27,7 @@ export function append(...dependentKeys) {
 
     return [].concat(...array);
   });
-};
+}
 
 export default Helper.extend({
   compute([...arrays]) {
