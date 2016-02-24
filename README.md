@@ -124,6 +124,16 @@ Toggles a boolean value.
 
 ### String helpers
 
+#### `capitalize`
+Capitalizes a string using `Ember.String.capitalize`.
+
+```hbs
+{{capitalize "hello jim bob"}}
+{{capitalize fullName}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
 #### `w`
 Splits a string on whitespace and/or turns multiple words into an array
 
