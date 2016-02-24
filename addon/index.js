@@ -3,6 +3,7 @@ export { default as CapitalizeHelper } from './helpers/capitalize';
 export { default as CompactHelper } from './helpers/compact';
 export { default as ComputeHelper } from './helpers/compute';
 export { default as ContainsHelper } from './helpers/contains';
+export { default as DasherizeHelper } from './helpers/dasherize';
 export { default as DecHelper } from './helpers/dec';
 export { default as DropHelper } from './helpers/drop';
 export { default as FilterByHelper } from './helpers/filter-by';
