@@ -17,3 +17,4 @@ export { default as JoinHelper } from './helpers/join';
 export { default as WHelper } from './helpers/w';
 export { default as CompactHelper } from './helpers/compact';
 export { default as ContainsHelper } from './helpers/contains';
+export { default as AppendHelper } from './helpers/append';

@@ -78,6 +78,7 @@ For action helpers, this will mean better currying semantics:
   + [`join`](#join)
   + [`compact`](#compact)
   + [`contains`](#contains)
+  + [`append`](#append)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -331,6 +332,16 @@ Checks if a given value or sub-array is contained within an array.
 
 **[⬆️ back to top](#available-helpers)**
 
+#### `append`
+Appends the given arrays and/or values into a single flat array.
+
+```hbs
+{{#each (append catNames dogName) as |petName|}}
+  {{petName}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
 ---
 
 ### Object helpers
