@@ -3,7 +3,7 @@
 composable helpers for Ember that enables more declarative templating. These helpers can be _composed_ together to form powerful ideas:
 
 ```hbs
-{{#each (map-by users "fullName") as |fullName|}}
+{{#each (map-by "fullName" users) as |fullName|}}
   <input type="text" value={{fullName}} onchange={{action (mut newName)}}>
   <button {{action (pipe updateFullName saveUser) newName}}>
     Update and save {{fullName}} to {{newName}}
