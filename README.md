@@ -64,6 +64,7 @@ For action helpers, this will mean better currying semantics:
   + [`compute`](#compute)
   + [`toggle`](#toggle)
 * [String](#string-helpers)
+  + [`capitalize`](#capitalize)
   + [`w`](#w)
 * [Array](#array-helpers)
   + [`map-by`](#map-by)
