@@ -19,7 +19,7 @@ test('Removes empty values in standard arrays', function(assert) {
   assert.equal(this.$().text().trim(), '123false', 'null is removed');
 });
 
-test('It graceully handles non-array values', function(assert) {
+test('It gracefully handles non-array values', function(assert) {
   this.set('notArray', 1);
   this.render(hbs`
     {{~#each (compact notArray) as |value|~}}
