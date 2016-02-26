@@ -7,6 +7,7 @@ export { default as DasherizeHelper } from './helpers/dasherize';
 export { default as DecHelper } from './helpers/dec';
 export { default as DropHelper } from './helpers/drop';
 export { default as FilterByHelper } from './helpers/filter-by';
+export { default as FindByHelper } from './helpers/find-by';
 export { default as GroupByHelper } from './helpers/group-by';
 export { default as IncHelper } from './helpers/inc';
 export { default as IntersectHelper } from './helpers/intersect';
