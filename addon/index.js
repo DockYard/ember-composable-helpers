@@ -15,6 +15,7 @@ export { default as JoinHelper } from './helpers/join';
 export { default as MapByHelper } from './helpers/map-by';
 export { default as PipeHelper } from './helpers/pipe';
 export { default as RangeHelper } from './helpers/range';
+export { default as RejectByHelper } from './helpers/reject-by';
 export { default as RepeatHelper } from './helpers/repeat';
 export { default as SortByHelper } from './helpers/sort-by';
 export { default as TakeHelper } from './helpers/take';
