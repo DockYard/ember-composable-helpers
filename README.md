@@ -66,6 +66,7 @@ For action helpers, this will mean better currying semantics:
 * [String](#string-helpers)
   + [`camelize`](#camelize)
   + [`capitalize`](#capitalize)
+  + [`classify`](#classify)
   + [`dasherize`](#dasherize)
   + [`underscore`](#underscore)
   + [`w`](#w)
@@ -146,6 +147,16 @@ Capitalizes a string using `Ember.String.capitalize`.
 ```hbs
 {{capitalize "hello jim bob"}}
 {{capitalize fullName}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `classify`
+Classifies a string using `Ember.String.classify`.
+
+```hbs
+{{classify "hello jim bob"}}
+{{classify stringWithDashes}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
