@@ -72,6 +72,7 @@ For action helpers, this will mean better currying semantics:
   + [`map-by`](#map-by)
   + [`sort-by`](#sort-by)
   + [`filter-by`](#filter-by)
+  + [`find-by`](#find-by)
   + [`intersect`](#intersect)
   + [`union`](#union)
   + [`take`](#take)
@@ -236,6 +237,21 @@ You can also pass an action as third argument:
 {{#each (filter-by "age" (action "olderThan" 18) users) as |user|}}
   {{user.name}} is older than eighteen!
 {{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `find-by`
+Returns the first entry matching the given value.
+
+```hbs
+{{#with (find-by 'name' lookupName people) as |person|}}
+  {{#if person}}
+    {{#link-to 'person' person}}
+      Click here to see {{person.name}}'s details
+    {{/link-to}}
+  {{/if}}
+{{/with}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
