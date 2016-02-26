@@ -64,6 +64,7 @@ For action helpers, this will mean better currying semantics:
   + [`compute`](#compute)
   + [`toggle`](#toggle)
 * [String](#string-helpers)
+  + [`camelize`](#camelize)
   + [`capitalize`](#capitalize)
   + [`dasherize`](#dasherize)
   + [`underscore`](#underscore)
@@ -128,6 +129,16 @@ Toggles a boolean value.
 ---
 
 ### String helpers
+
+#### `camelize`
+Camelizes a string using `Ember.String.camelize`.
+
+```hbs
+{{camelize "hello jim bob"}}
+{{camelize stringWithDashes}}
+```
+
+**[⬆️ back to top](#available-helpers)**
 
 #### `capitalize`
 Capitalizes a string using `Ember.String.capitalize`.
