@@ -72,6 +72,7 @@ For action helpers, this will mean better currying semantics:
   + [`map-by`](#map-by)
   + [`sort-by`](#sort-by)
   + [`filter-by`](#filter-by)
+  + [`reject-by`](#reject-by)
   + [`find-by`](#find-by)
   + [`intersect`](#intersect)
   + [`union`](#union)
@@ -235,6 +236,33 @@ You can also pass an action as third argument:
 
 ```hbs
 {{#each (filter-by "age" (action "olderThan" 18) users) as |user|}}
+  {{user.name}} is older than eighteen!
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `reject-by`
+The inverse of filter by.
+
+```hbs
+{{#each (reject-by "isActive" true users) as |user|}}
+  {{user.name}} is not active!
+{{/each}}
+```
+
+If you omit the third argument it will test if the property is falsey.
+
+```hbs
+{{#each (reject-by "address" users) as |user|}}
+  {{user.name}} does not have an address specified!
+{{/each}}
+```
+
+You can also pass an action as third argument:
+
+```hbs
+{{#each (reject-by "age" (action "youngerThan" 18) users) as |user|}}
   {{user.name}} is older than eighteen!
 {{/each}}
 ```
