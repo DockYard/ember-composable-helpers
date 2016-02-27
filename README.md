@@ -81,6 +81,7 @@ For action helpers, this will mean better currying semantics:
   + [`take`](#take)
   + [`drop`](#drop)
   + [`repeat`](#repeat)
+  + [`reverse`](#reverse)
   + [`range`](#range)
   + [`join`](#join)
   + [`compact`](#compact)
@@ -369,6 +370,17 @@ You can also give it a value to repeat:
 ```hbs
 {{#each (repeat 3 "Adam") as |name|}}
   {{name}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `repeat`
+Reverses the order of the array.
+
+```hbs
+{{#each (reverse friends) as |friend|}}
+  If {{friend}} was first, they are now last.
 {{/each}}
 ```
 
