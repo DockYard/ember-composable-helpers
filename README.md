@@ -89,6 +89,7 @@ For action helpers, this will mean better currying semantics:
   + [`append`](#append)
   + [`chunk`](#chunk)
   + [`without`](#without)
+  + [`flatten`](#flatten)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -478,6 +479,17 @@ Returns the given array without the given item(s).
 ```hbs
 {{#each (without selectedItem items) as |remainingItem|}}
   {{remainingItem.name}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `flatten`
+Flattens an array to a single dimension.
+
+```hbs
+{{#each (flatten anArrayOfNamesWithMultipleDimensions) as |name|}}
+  Name: {{name}}
 {{/each}}
 ```
 
