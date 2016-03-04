@@ -1,5 +1,8 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+
+const { A: emberArray, run } = Ember;
 
 moduleForComponent('chunk', 'Integration | Helper | {{chunk}}', {
   integration: true
@@ -95,14 +98,14 @@ test('It recomputes if the array changes', function(assert) {
 });
 
 test('It recomputes if an item in the array changes', function(assert) {
-  this.set('array', [1, 2, 3, 4]);
+  this.set('array', emberArray([1, 2, 3, 4]));
   this.set('size', 2);
 
   this.render(hbs`{{#each (chunk array size) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`);
 
   assert.equal(this.$().text().trim(), '12 34', 'chunked arrays are displayed');
 
-  this.set('array', [1, 100, 3, 4]);
+  run(() => this.get('array').pushObjects(['some', 'new', 'items']));
 
-  assert.equal(this.$().text().trim(), '1100 34', 'updated chunked arrays are displayed');
+  assert.equal(this.$().text().trim(), '12 34 somenew items', 'updated chunked arrays are displayed');
 });
