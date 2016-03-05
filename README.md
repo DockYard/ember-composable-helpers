@@ -105,6 +105,8 @@ Pipes the return values of actions in a sequence of actions. This is useful to c
 </button>
 ```
 
+The `pipe` helper is also Promise-aware, meaning that if any action in the pipeline returns a Promise, its return value will be piped into the next action.
+
 **[⬆️️ back to top](#available-helpers)**
 
 #### `compute`
