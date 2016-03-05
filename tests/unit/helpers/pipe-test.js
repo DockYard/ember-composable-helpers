@@ -1,5 +1,8 @@
+import Ember from 'ember';
 import { pipe } from 'dummy/helpers/pipe';
 import { module, test } from 'qunit';
+
+const { RSVP: { resolve } } = Ember;
 
 module('Unit | Helper | pipe');
 
@@ -31,4 +34,15 @@ test('first function is variadic, rest are unary', function(assert) {
   let result = piped(2, 4);
 
   assert.equal(result, 1, 'should receive 1 arg for last function');
+});
+
+test('it is promise aware', function(assert) {
+  let done = assert.async();
+  let piped = pipe([add, square, resolve, Math.sqrt]);
+  let result = piped(2, 4);
+
+  result.then((resolved) => {
+    assert.equal(resolved, 6, 'it is promise aware');
+    done();
+  });
 });

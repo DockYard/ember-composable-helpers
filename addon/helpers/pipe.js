@@ -1,6 +1,15 @@
 import Ember from 'ember';
+import isPromise from '../utils/is-promise';
 
 const { Helper: { helper } } = Ember;
+
+export function invokeFunction(acc, curr) {
+  if (isPromise(acc)) {
+    return acc.then(curr);
+  }
+
+  return curr(acc);
+}
 
 export function pipe(actions = []) {
   return function(...args) {
@@ -9,7 +18,7 @@ export function pipe(actions = []) {
         return curr(...args);
       }
 
-      return curr(acc);
+      return invokeFunction(acc, curr);
     }, undefined);
   };
 }
