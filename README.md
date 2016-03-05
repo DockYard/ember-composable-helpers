@@ -449,7 +449,7 @@ Appends the given arrays and/or values into a single flat array.
 Returns the given array split into sub-arrays the length of the given value.
 
 ```hbs
-{{#each (chunk daysInMonth 7) as |week|}}
+{{#each (chunk 7 daysInMonth) as |week|}}
   {{#each week as |day|}}
     {{day}}
   {{/each}}

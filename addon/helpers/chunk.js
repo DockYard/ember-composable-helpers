@@ -10,7 +10,7 @@ const {
   get
 } = Ember;
 
-export function chunk(array, num) {
+export function chunk(num, array) {
   let integer = parseInt(num, 10);
   let size = Math.max(integer, 0);
   let length = isArray(array) ? array.length : 0;
@@ -31,14 +31,14 @@ export function chunk(array, num) {
 }
 
 export default Helper.extend({
-  content: computed('array.[]', 'num', function() {
+  content: computed('num', 'array.[]', function() {
     let array = get(this, 'array');
     let num = get(this, 'num');
 
-    return chunk(array, num);
+    return chunk(num, array);
   }),
 
-  compute([array, num]) {
+  compute([num, array]) {
     set(this, 'array', array);
     set(this, 'num', num);
 
