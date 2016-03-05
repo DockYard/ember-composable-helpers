@@ -1,10 +1,20 @@
 import Ember from 'ember';
 import { pipe } from 'dummy/helpers/pipe';
 import { module, test } from 'qunit';
+import sinon from 'sinon';
 
-const { RSVP: { resolve } } = Ember;
+const { RSVP: { resolve, reject }, K } = Ember;
+let sandbox;
 
-module('Unit | Helper | pipe');
+module('Unit | Helper | pipe', {
+  beforeEach() {
+    sandbox = sinon.sandbox.create();
+  },
+
+  afterEach() {
+    sandbox.restore();
+  }
+});
 
 function add(x, y) {
   return x + y;
@@ -45,4 +55,17 @@ test('it is promise aware', function(assert) {
     assert.equal(resolved, 6, 'it is promise aware');
     done();
   });
+});
+
+test('it aborts the chain if a promise in the pipeline rejects', function(assert) {
+  let done = assert.async();
+  let spy = sandbox.spy(square);
+  let piped = pipe([add, reject, spy]);
+
+  piped(2, 4)
+    .catch(K)
+    .finally(() => {
+      assert.equal(spy.callCount, 0, 'should abort the chain');
+      done();
+    });
 });
