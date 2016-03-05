@@ -19,6 +19,10 @@ let testData = [
     expected: true
   },
   {
+    value: { then: K, catch: K, finally: K },
+    expected: true
+  },
+  {
     value: { then: K },
     expected: false
   },
@@ -32,6 +36,10 @@ let testData = [
   },
   {
     value: ['meow'],
+    expected: false
+  },
+  {
+    value: null,
     expected: false
   }
 ];
