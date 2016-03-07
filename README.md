@@ -87,6 +87,7 @@ For action helpers, this will mean better currying semantics:
   + [`compact`](#compact)
   + [`contains`](#contains)
   + [`append`](#append)
+  + [`chunk`](#chunk)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -451,6 +452,19 @@ Appends the given arrays and/or values into a single flat array.
 ```hbs
 {{#each (append catNames dogName) as |petName|}}
   {{petName}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `chunk`
+Returns the given array split into sub-arrays the length of the given value.
+
+```hbs
+{{#each (chunk 7 daysInMonth) as |week|}}
+  {{#each week as |day|}}
+    {{day}}
+  {{/each}}
 {{/each}}
 ```
 
