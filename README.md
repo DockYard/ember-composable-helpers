@@ -323,7 +323,8 @@ Creates an array of unique values that are included in all given arrays.
 **[⬆️ back to top](#available-helpers)**
 
 #### `union`
-Joins arrays to create an array of unique values.
+
+Joins arrays to create an array of unique values. When applied to a single array, has the same behavior as `uniq`.
 
 ```hbs
 {{#each (union cartA cartB cartC) as |cartItem|}}
