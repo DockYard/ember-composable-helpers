@@ -88,6 +88,7 @@ For action helpers, this will mean better currying semantics:
   + [`contains`](#contains)
   + [`append`](#append)
   + [`chunk`](#chunk)
+  + [`without`](#without)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -469,6 +470,18 @@ Returns the given array split into sub-arrays the length of the given value.
 ```
 
 **[⬆️ back to top](#available-helpers)**
+
+#### `without`
+Returns the given array without the given item(s).
+
+```hbs
+{{#each (without selectedItem items) as |remainingItem|}}
+  {{remainingItem.name}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
 ---
 
 ### Object helpers

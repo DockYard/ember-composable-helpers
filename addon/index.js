@@ -26,3 +26,4 @@ export { default as ToggleHelper } from './helpers/toggle';
 export { default as UnderscoreHelper } from './helpers/underscore';
 export { default as UnionHelper } from './helpers/union';
 export { default as WHelper } from './helpers/w';
+export { default as WithoutHelper } from './helpers/without';

@@ -6,20 +6,20 @@ const {
   typeOf
 } = Ember;
 
-function _contains(needle, haystack) {
+function contains(needle, haystack) {
   return emberArray(haystack).contains(needle);
 }
 
-export function contains(needle, haystack) {
+export function without(needle, haystack) {
   if (typeOf(haystack) !== 'array') {
     return false;
   }
 
   if (typeOf(needle) === 'array' && needle.length) {
-    return needle.reduce((acc, val) => acc && _contains(val, haystack), true);
+    return haystack.reduce((acc, val) => contains(val, needle) ? acc : acc.concat(val), []);
   }
 
-  return _contains(needle, haystack);
+  return emberArray(haystack).without(needle);
 }
 
-export default createNeedleHaystackHelper(contains);
+export default createNeedleHaystackHelper(without);
