@@ -376,7 +376,7 @@ You can also give it a value to repeat:
 
 **[⬆️ back to top](#available-helpers)**
 
-#### `repeat`
+#### `reverse`
 Reverses the order of the array.
 
 ```hbs
