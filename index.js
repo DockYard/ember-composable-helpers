@@ -13,7 +13,12 @@ module.exports = {
   included: function(app) {
     this._super.included.apply(this, arguments);
 
-    var config = this.app.project.config(app.env) || {};
+    // see: https://github.com/ember-cli/ember-cli/issues/3718
+    if (typeof app.import !== 'function' && app.app) {
+      app = app.app;
+    }
+
+    var config = app.project.config(app.env) || {};
     var addonConfig = config[this.name] || {};
     this.whitelist = this.generateWhitelist(addonConfig);
     this.blacklist = this.generateBlacklist(addonConfig);
