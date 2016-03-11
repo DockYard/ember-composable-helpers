@@ -82,6 +82,46 @@ test('It recomputes the filter if a value under given path changes', function(as
   assert.equal(this.$().text().trim(), 'abc', 'b is shown');
 });
 
+test('It recomputes the filter with a falsy value', function(assert) {
+  let array = emberArray([
+    { foo: true, name: 'a' },
+    { foo: false, name: 'b' },
+    { foo: true, name: 'c' }
+  ]);
+
+  this.set('array', array);
+
+  this.render(hbs`
+    {{~#each (filter-by 'foo' false array) as |item|~}}
+      {{~item.name~}}
+    {{~/each~}}
+  `);
+
+  run(() => set(array.objectAt(0), 'foo', false));
+
+  assert.equal(this.$().text().trim(), 'ab', 'a and b are shown');
+});
+
+test('It recomputes the filter with no value', function(assert) {
+  let array = emberArray([
+    { foo: true, name: 'a' },
+    { foo: false, name: 'b' },
+    { foo: true, name: 'c' }
+  ]);
+
+  this.set('array', array);
+
+  this.render(hbs`
+    {{~#each (filter-by 'foo' array) as |item|~}}
+      {{~item.name~}}
+    {{~/each~}}
+  `);
+
+  run(() => set(array.objectAt(1), 'foo', true));
+
+  assert.equal(this.$().text().trim(), 'abc', 'abc is shown');
+});
+
 test('It can be passed an action', function(assert) {
   this.set('array', emberArray([
     { foo: 1, name: 'a' },
