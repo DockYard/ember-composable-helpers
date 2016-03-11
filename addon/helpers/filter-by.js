@@ -38,7 +38,7 @@ export default Helper.extend({
 
     let filterFn;
 
-    if (value) {
+    if (isPresent(value)) {
       if (typeof value === 'function') {
         filterFn = (item) => value(get(item, byPath));
       } else {
