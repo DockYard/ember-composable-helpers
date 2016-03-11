@@ -43,3 +43,21 @@ test('It watches for changes', function(assert) {
 
   assert.equal(this.$().text().trim(), 'abcd', 'list is still sorted after addition');
 });
+
+test('It also accepts an array of sort properties', function(assert) {
+  this.set('array', emberArray([
+    { name: 'c' },
+    { name: 'a' },
+    { name: 'b' }
+  ]));
+
+  this.set('sortBy', ['name']);
+
+  this.render(hbs`
+    {{~#each (sort-by sortBy array) as |user|~}}
+      {{~user.name~}}
+    {{~/each~}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'abc', 'cab is sorted to abc');
+});
