@@ -9,12 +9,18 @@ const {
   isEmpty,
   isPresent,
   observer,
-  set
+  set,
+  typeOf
 } = Ember;
 
 export default Helper.extend({
   compute(sortProps) {
     let array = sortProps.pop();
+    let firstSortProp = sortProps[0];
+
+    if (typeOf(firstSortProp) === 'function' || isArray(firstSortProp)) {
+      sortProps = firstSortProp;
+    }
 
     set(this, 'array', array);
     set(this, 'sortProps', sortProps);
