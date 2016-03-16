@@ -1,14 +1,15 @@
 import Ember from 'ember';
 
 const {
-  Helper: { helper }
+  Helper: { helper },
+  typeOf
 } = Ember;
 
 export function flatten(array) {
   array = array || [];
 
   return array.reduce((flat, toFlatten) => {
-    return flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten);
+    return flat.concat(typeOf(toFlatten) === 'array' ? flatten(toFlatten) : toFlatten);
   }, []);
 }
 
