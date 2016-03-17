@@ -7,7 +7,6 @@ const {
   get,
   isArray,
   isEmpty,
-  isPresent,
   observer,
   set,
   typeOf
@@ -16,7 +15,7 @@ const {
 export default Helper.extend({
   compute(sortProps) {
     let array = sortProps.pop();
-    let firstSortProp = sortProps[0];
+    let [firstSortProp] = sortProps;
 
     if (typeOf(firstSortProp) === 'function' || isArray(firstSortProp)) {
       sortProps = firstSortProp;
@@ -30,7 +29,6 @@ export default Helper.extend({
 
   sortPropsDidChange: observer('sortProps', function() {
     let sortProps = get(this, 'sortProps');
-
 
     if (isEmpty(sortProps)) {
       defineProperty(this, 'content', []);
