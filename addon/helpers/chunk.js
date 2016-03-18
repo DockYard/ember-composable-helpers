@@ -1,7 +1,6 @@
 import Ember from 'ember';
 
 const {
-  A: slice,
   Helper,
   isArray,
   computed,
@@ -9,10 +8,11 @@ const {
   set,
   get
 } = Ember;
+const { max, ceil } = Math;
 
 export function chunk(num, array) {
   let integer = parseInt(num, 10);
-  let size = Math.max(integer, 0);
+  let size = max(integer, 0);
   let length = isArray(array) ? array.length : 0;
 
   if (!length || size < 1) {
@@ -20,7 +20,7 @@ export function chunk(num, array) {
   } else {
     let index = 0;
     let resultIndex = -1;
-    let result = Array(Math.ceil(length / size));
+    let result = new Array(ceil(length / size));
 
     while (index < length) {
       result[++resultIndex] = array.slice(index, (index += size));

@@ -5,7 +5,6 @@ const {
   computed: { mapBy },
   defineProperty,
   get,
-  isArray,
   isEmpty,
   observer,
   set

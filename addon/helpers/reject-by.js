@@ -2,7 +2,7 @@ import Ember from 'ember';
 
 const {
   Helper,
-  computed: { filter, filterBy },
+  computed: { filter },
   defineProperty,
   get,
   isArray,
