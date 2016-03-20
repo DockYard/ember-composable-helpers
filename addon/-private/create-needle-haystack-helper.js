@@ -1,13 +1,11 @@
 import Ember from 'ember';
+import computed from 'ember-computed';
+import Helper from 'ember-helper';
+import get from 'ember-metal/get';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
 
-const {
-  Helper,
-  K,
-  computed,
-  observer,
-  set,
-  get
-} = Ember;
+const { K } = Ember;
 
 /**
  * Creates a generic Helper class implementation that expects a `needle` and

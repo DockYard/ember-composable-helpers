@@ -1,8 +1,5 @@
-import Ember from 'ember';
-const {
-  Helper: { helper },
-  String: { dasherize: _dasherize }
-} = Ember;
+import { helper } from 'ember-helper';
+import { dasherize as _dasherize } from 'ember-string';
 
 export function dasherize([string]) {
   string = string || '';

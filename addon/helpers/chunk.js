@@ -1,13 +1,13 @@
-import Ember from 'ember';
+import {
+  A as slice,
+  isEmberArray as isArray
+} from 'ember-array/utils';
+import computed from 'ember-computed';
+import Helper from 'ember-helper';
+import get from 'ember-metal/get';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
 
-const {
-  Helper,
-  isArray,
-  computed,
-  observer,
-  set,
-  get
-} = Ember;
 const { max, ceil } = Math;
 
 export function chunk(num, array) {

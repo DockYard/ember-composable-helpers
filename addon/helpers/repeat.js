@@ -1,9 +1,5 @@
-import Ember from 'ember';
-
-const {
-  Helper: { helper },
-  typeOf
-} = Ember;
+import { helper } from 'ember-helper';
+import { typeOf } from 'ember-utils';
 
 export function repeat([length, value]) {
   if (typeOf(length) !== 'number') {

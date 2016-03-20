@@ -1,9 +1,5 @@
-import Ember from 'ember';
-
-const {
-  Helper: { helper },
-  String: { w: toWords }
-} = Ember;
+import { helper } from 'ember-helper';
+import { w as toWords } from 'ember-string';
 
 export function w([...wordStrings]) {
   return wordStrings

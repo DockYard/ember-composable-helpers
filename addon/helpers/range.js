@@ -1,10 +1,6 @@
-import Ember from 'ember';
+import { helper } from 'ember-helper';
+import { typeOf } from 'ember-utils';
 import { gte, lte, gt, lt } from '../utils/comparison';
-
-const {
-  Helper: { helper },
-  typeOf
-} = Ember;
 
 export function range([min, max, isInclusive]) {
   isInclusive = typeOf(isInclusive) === 'boolean' ? isInclusive : false;

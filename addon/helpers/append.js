@@ -1,16 +1,14 @@
 import Ember from 'ember';
+import { isEmberArray as isArray } from 'ember-array/utils';
+import computed from 'ember-computed';
+import Helper from 'ember-helper';
+import get from 'ember-metal/get';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
+import { guidFor } from 'ember-metal/utils';
+import { isEmpty } from 'ember-utils';
 
-const {
-  Helper,
-  computed,
-  defineProperty,
-  get,
-  guidFor,
-  isArray,
-  isEmpty,
-  observer,
-  set
-} = Ember;
+const { defineProperty } = Ember;
 
 const idForArray = (array) => `__array-${guidFor(array)}`;
 

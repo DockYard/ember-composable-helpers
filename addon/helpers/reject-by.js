@@ -1,16 +1,13 @@
 import Ember from 'ember';
+import { isEmberArray as isArray } from 'ember-array/utils';
+import { filter } from 'ember-computed';
+import Helper from 'ember-helper';
+import get from 'ember-metal/get';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
+import { isEmpty, isPresent } from 'ember-utils';
 
-const {
-  Helper,
-  computed: { filter },
-  defineProperty,
-  get,
-  isArray,
-  isEmpty,
-  isPresent,
-  observer,
-  set
-} = Ember;
+const { defineProperty } = Ember;
 
 export default Helper.extend({
   compute([byPath, value, array]) {

@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import { helper } from 'ember-helper';
 import isPromise from '../utils/is-promise';
-
-const { Helper: { helper } } = Ember;
 
 export function invokeFunction(acc, curr) {
   if (isPromise(acc)) {

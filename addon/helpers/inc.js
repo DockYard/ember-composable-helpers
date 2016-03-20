@@ -1,6 +1,5 @@
-import Ember from 'ember';
-
-const { Helper: { helper }, isEmpty } = Ember;
+import { helper } from 'ember-helper';
+import { isEmpty } from 'ember-utils';
 
 export function inc([step, val]) {
   if (isEmpty(val)) {
