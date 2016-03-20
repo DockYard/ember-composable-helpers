@@ -1,9 +1,6 @@
 import { helper } from 'ember-helper';
 import { capitalize as _capitalize } from 'ember-string';
+import createStringHelperFunction from '../-private/create-string-helper';
 
-export function capitalize([string]) {
-  string = string || '';
-  return _capitalize(string);
-}
-
+export const capitalize = createStringHelperFunction(_capitalize);
 export default helper(capitalize);

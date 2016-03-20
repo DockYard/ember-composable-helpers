@@ -1,9 +1,6 @@
 import { helper } from 'ember-helper';
 import { dasherize as _dasherize } from 'ember-string';
+import createStringHelperFunction from '../-private/create-string-helper';
 
-export function dasherize([string]) {
-  string = string || '';
-  return _dasherize(string);
-}
-
+export const dasherize = createStringHelperFunction(_dasherize);
 export default helper(dasherize);
