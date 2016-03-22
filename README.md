@@ -77,6 +77,7 @@ For action helpers, this will mean better currying semantics:
   + [`reject-by`](#reject-by)
   + [`find-by`](#find-by)
   + [`intersect`](#intersect)
+  + [`invoke`](#invoke)
   + [`union`](#union)
   + [`take`](#take)
   + [`drop`](#drop)
@@ -319,6 +320,20 @@ Creates an array of unique values that are included in all given arrays.
 {{#each (intersect desiredSkills currentSkills) as |skill|}}
   {{skill.name}}
 {{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `invoke`
+Invokes a method on an object or on each object of an array.
+
+```hbs
+<div id="popup">
+  {{#each people as |person|}}
+    {{input value=person.name}} <a {{action (invoke "rollbackAttributes")}}>Undo</a>
+  {{/each}}
+  <a {{action (invoke "save" people)}}>Save</a>
+</div>
 ```
 
 **[⬆️ back to top](#available-helpers)**
