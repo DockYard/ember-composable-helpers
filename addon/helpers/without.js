@@ -1,10 +1,6 @@
-import Ember from 'ember';
+import { A as emberArray } from 'ember-array/utils';
+import { typeOf } from 'ember-utils';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
-
-const {
-  A: emberArray,
-  typeOf
-} = Ember;
 
 function contains(needle, haystack) {
   return emberArray(haystack).contains(needle);

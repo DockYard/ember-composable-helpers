@@ -1,7 +1,5 @@
-import Ember from 'ember';
+import { typeOf } from 'ember-utils';
 import isObject from './is-object';
-
-const { typeOf } = Ember;
 
 function isPromiseLike(obj = {}) {
   return typeOf(obj.then) === 'function' &&

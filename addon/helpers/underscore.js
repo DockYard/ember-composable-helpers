@@ -1,8 +1,5 @@
-import Ember from 'ember';
-const {
-  Helper: { helper },
-  String: { underscore: _underscore }
-} = Ember;
+import { helper } from 'ember-helper';
+import { underscore as _underscore } from 'ember-string';
 
 export function underscore([string]) {
   string = string || '';

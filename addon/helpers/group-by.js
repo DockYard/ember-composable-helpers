@@ -1,15 +1,15 @@
 import Ember from 'ember';
+import {
+  A as emberArray,
+  isEmberArray as isArray
+} from 'ember-array/utils';
+import computed from 'ember-computed';
+import Helper from 'ember-helper';
+import get from 'ember-metal/get';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
 
-const {
-  A: emberArray,
-  Helper,
-  computed,
-  defineProperty,
-  get,
-  isArray,
-  observer,
-  set
-} = Ember;
+const { defineProperty } = Ember;
 
 const groupFunction = function() {
   let array = get(this, 'array');

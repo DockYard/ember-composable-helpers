@@ -1,8 +1,5 @@
-import Ember from 'ember';
-const {
-  Helper: { helper },
-  String: { camelize: _camelize }
-} = Ember;
+import { helper } from 'ember-helper';
+import { camelize as _camelize } from 'ember-string';
 
 export function camelize([string]) {
   string = string || '';

@@ -1,16 +1,14 @@
 import Ember from 'ember';
+import { A as emberArray } from 'ember-array/utils';
+import { intersect } from 'ember-computed';
+import Helper from 'ember-helper';
+import get from 'ember-metal/get';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
+import { guidFor } from 'ember-metal/utils';
+import { isEmpty } from 'ember-utils';
 
-const {
-  A: emberArray,
-  Helper,
-  computed: { intersect },
-  defineProperty,
-  get,
-  guidFor,
-  isEmpty,
-  observer,
-  set
-} = Ember;
+const { defineProperty } = Ember;
 
 const idForArray = (array) => `__array-${guidFor(array)}`;
 

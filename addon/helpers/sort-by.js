@@ -1,16 +1,13 @@
 import Ember from 'ember';
+import { isEmberArray as isArray } from 'ember-array/utils';
+import { sort } from 'ember-computed';
+import Helper from 'ember-helper';
+import get from 'ember-metal/get';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
+import { isEmpty, typeOf } from 'ember-utils';
 
-const {
-  Helper,
-  computed: { sort },
-  defineProperty,
-  get,
-  isArray,
-  isEmpty,
-  observer,
-  set,
-  typeOf
-} = Ember;
+const { defineProperty } = Ember;
 
 export default Helper.extend({
   compute(sortProps) {

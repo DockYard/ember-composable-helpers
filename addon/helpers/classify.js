@@ -1,8 +1,5 @@
-import Ember from 'ember';
-const {
-  Helper: { helper },
-  String: { classify: _classify }
-} = Ember;
+import { helper } from 'ember-helper';
+import { classify as _classify } from 'ember-string';
 
 export function classify([string]) {
   string = string || '';
