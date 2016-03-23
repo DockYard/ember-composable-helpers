@@ -14,6 +14,7 @@ export { default as FindByHelper } from './helpers/find-by';
 export { default as GroupByHelper } from './helpers/group-by';
 export { default as IncHelper } from './helpers/inc';
 export { default as IntersectHelper } from './helpers/intersect';
+export { default as InvokeHelper } from './helpers/invoke';
 export { default as JoinHelper } from './helpers/join';
 export { default as MapByHelper } from './helpers/map-by';
 export { default as PipeHelper } from './helpers/pipe';
