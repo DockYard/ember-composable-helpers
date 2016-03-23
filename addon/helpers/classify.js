@@ -1,9 +1,6 @@
 import { helper } from 'ember-helper';
 import { classify as _classify } from 'ember-string';
+import createStringHelperFunction from '../-private/create-string-helper';
 
-export function classify([string]) {
-  string = string || '';
-  return _classify(string);
-}
-
+export const classify = createStringHelperFunction(_classify);
 export default helper(classify);
