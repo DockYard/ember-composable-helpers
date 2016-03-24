@@ -1,7 +1,4 @@
-import {
-  A as slice,
-  isEmberArray as isArray
-} from 'ember-array/utils';
+import { isEmberArray as isArray } from 'ember-array/utils';
 import computed from 'ember-computed';
 import Helper from 'ember-helper';
 import get from 'ember-metal/get';
