@@ -8,7 +8,6 @@ import { isEmpty } from 'ember-utils';
 
 const { defineProperty } = Ember;
 
-
 export default Helper.extend({
   compute([byPath, value, array]) {
     set(this, 'array', array);

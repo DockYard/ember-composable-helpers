@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const {
-  RSVP: {all},
+  RSVP: { all },
   Helper: { helper },
   isArray,
   tryInvoke
@@ -23,4 +23,3 @@ export function invoke([methodName, ...args]) {
 }
 
 export default helper(invoke);
-
