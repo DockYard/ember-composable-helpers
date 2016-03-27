@@ -1,6 +1,6 @@
 # ember-composable-helpers [![Build Status](https://travis-ci.org/DockYard/ember-composable-helpers.svg?branch=master)](https://travis-ci.org/DockYard/ember-composable-helpers) [![npm version](https://badge.fury.io/js/ember-composable-helpers.svg)](https://badge.fury.io/js/ember-composable-helpers) [![Ember Observer Score](http://emberobserver.com/badges/ember-composable-helpers.svg)](http://emberobserver.com/addons/ember-composable-helpers)
 
-composable helpers for Ember that enables more declarative templating. These helpers can be _composed_ together to form powerful ideas:
+Composable helpers for Ember that enables more declarative templating. These helpers can be _composed_ together to form powerful ideas:
 
 ```hbs
 {{#each (map-by "fullName" users) as |fullName|}}
@@ -325,12 +325,14 @@ Creates an array of unique values that are included in all given arrays.
 **[⬆️ back to top](#available-helpers)**
 
 #### `invoke`
-Invokes a method on an object or on each object of an array.
+Invokes a method on an object, or on each object of an array.
 
 ```hbs
 <div id="popup">
   {{#each people as |person|}}
-    {{input value=person.name}} <a {{action (invoke "rollbackAttributes")}}>Undo</a>
+    <button {{action (invoke "rollbackAttributes")}}>
+      Undo
+    </button>
   {{/each}}
   <a {{action (invoke "save" people)}}>Save</a>
 </div>
