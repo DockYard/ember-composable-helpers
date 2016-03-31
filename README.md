@@ -109,7 +109,22 @@ Pipes the return values of actions in a sequence of actions. This is useful to c
 </button>
 ```
 
-The `pipe` helper is also Promise-aware, meaning that if any action in the pipeline returns a Promise, its return value will be piped into the next action.
+The `pipe` helper is Promise-aware, meaning that if any action in the pipeline returns a Promise, its return value will be piped into the next action. If the Promise rejects, the rest of the pipeline will be aborted.
+
+The `pipe` helper can also be used directly as a closure action (using `pipe-action`) when being passed into a Component, which provides an elegant syntax for composing actions:
+
+```hbs
+{{foo-bar
+    addAndSquare=(pipe-action (action "add") (action "square")
+    multiplyAndSquare=(pipe-action (action "multiply") (action "square")
+}}
+```
+
+```hbs
+{{! foo-bar/template.hbs }}
+<button {{action addAndSquare 2 4}}>Add and Square</button>
+<button {{action multiplyAndSquare 2 4}}>Multiply and Square</button>
+```
 
 **[⬆️️ back to top](#available-helpers)**
 
@@ -129,6 +144,21 @@ Toggles a boolean value.
 <button {{action (toggle "isExpanded" this)}}>
   {{if isExpanded "I am expanded" "I am not"}}
 </button>
+```
+
+`toggle` can also be used directly as a closure action using `toggle-action`:
+
+```hbs
+{{foo-bar
+    toggleIsExpanded=(toggle-action "isExpanded" this)
+    toggleIsSelected=(toggle-action "isSelected" this)
+}}
+```
+
+```hbs
+{{! foo-bar/template.hbs }}
+<button {{action toggleIsExpanded}}>Open / Close</button>
+<button {{action toggleIsSelected}}>Select / Deselect</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
