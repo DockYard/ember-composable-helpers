@@ -115,8 +115,8 @@ The `pipe` helper can also be used directly as a closure action (using `pipe-act
 
 ```hbs
 {{foo-bar
-    addAndSquare=(pipe-action (action "add") (action "square")
-    multiplyAndSquare=(pipe-action (action "multiply") (action "square")
+    addAndSquare=(pipe-action (action "add") (action "square"))
+    multiplyAndSquare=(pipe-action (action "multiply") (action "square"))
 }}
 ```
 
