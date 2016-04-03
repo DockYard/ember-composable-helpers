@@ -15,7 +15,7 @@ test('It shuffles array', function(assert) {
       {{value}}
     {{~/each~}}
   `);
-  
+
   let shuffled = this.$().text().trim();
   assert.ok(shuffled === '12' || shuffled === '21', 'array is shuffled');
 });
