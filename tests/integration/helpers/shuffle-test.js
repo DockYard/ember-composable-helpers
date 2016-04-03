@@ -9,6 +9,18 @@ moduleForComponent('shuffle', 'Integration | Helper | {{shuffle}}', {
 });
 
 test('It shuffles array', function(assert) {
+  this.set('array', emberArray([1, 2]));
+  this.render(hbs`
+    {{~#each (shuffle array) as |value|~}}
+      {{value}}
+    {{~/each~}}
+  `);
+  
+  let shuffled = this.$().text().trim();
+  assert.ok(shuffled === '12' || shuffled === '21', 'array is shuffled');
+});
+
+test('It shuffles array using passed in randomizer', function(assert) {
   this.set('array', emberArray([1, 2, 3, 4]));
   this.on('fake', () => 0);
   this.render(hbs`
