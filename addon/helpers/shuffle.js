@@ -8,6 +8,7 @@ import set from 'ember-metal/set';
 import { typeOf } from 'ember-utils';
 
 export function shuffle(array, randomizer) {
+  array = array.slice(0);
   let count = array.length;
   let rand, temp;
   randomizer = (typeOf(randomizer) === 'function' && randomizer) || Math.random;
@@ -19,8 +20,7 @@ export function shuffle(array, randomizer) {
     array[count] = array[rand];
     array[rand] = temp;
   }
-  
-  return emberArray(array);
+  return array;
 }
 
 export default Helper.extend({
@@ -30,7 +30,7 @@ export default Helper.extend({
     }
     
     set(this, 'array', array);
-    return shuffle(array.slice(0), random);
+    return shuffle(array, random);
   },
   
   arrayContentDidChange: observer('array.[]', function() {
