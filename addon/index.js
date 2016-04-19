@@ -26,6 +26,7 @@ export { default as SortByHelper } from './helpers/sort-by';
 export { default as TakeHelper } from './helpers/take';
 export { default as ToggleHelper } from './helpers/toggle';
 export { default as ToggleActionHelper } from './helpers/toggle-action';
+export { default as TruncateHelper } from './helpers/truncate';
 export { default as UnderscoreHelper } from './helpers/underscore';
 export { default as UnionHelper } from './helpers/union';
 export { default as WHelper } from './helpers/w';
