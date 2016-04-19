@@ -8,7 +8,7 @@ moduleForComponent('dasherize', 'Integration | Helper | {{truncate}}', {
 test('It truncates to 140 characters if no characterLimit is provided', function(assert) {
   this.render(hbs`{{truncate "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas hendrerit quam enim, in suscipit est rutrum id. Etiam vitae blandit purus, sed semper sem."}}`);
 
-  let expected = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas hendrerit quam enim, in suscipit est rutrum id. Etiam vitae blandit purus,...';
+  let expected = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas hendrerit quam enim, in suscipit est rutrum id. Etiam vitae blandit pur...';
 
   assert.equal(this.$().text().trim(), expected, 'truncates to 140 characters');
 });
@@ -16,7 +16,7 @@ test('It truncates to 140 characters if no characterLimit is provided', function
 test('It truncates to characterLimit provided', function(assert) {
   this.render(hbs`{{truncate "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas hendrerit quam enim, in suscipit est rutrum id. Etiam vitae blandit purus, sed semper sem." 20}}`);
 
-  let expected = 'Lorem ipsum dolor si...';
+  let expected = 'Lorem ipsum dolor...';
 
   assert.equal(this.$().text().trim(), expected, 'truncates to characterLimit');
 });
