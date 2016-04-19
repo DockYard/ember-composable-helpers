@@ -282,7 +282,7 @@ Filters an array by a property.
 {{/each}}
 ```
 
-If you omit the third argument it will test if the property is truthy.
+If you omit the second argument it will test if the property is truthy.
 
 ```hbs
 {{#each (filter-by "address" users) as |user|}}
@@ -290,7 +290,7 @@ If you omit the third argument it will test if the property is truthy.
 {{/each}}
 ```
 
-You can also pass an action as third argument:
+You can also pass an action as second argument:
 
 ```hbs
 {{#each (filter-by "age" (action "olderThan" 18) users) as |user|}}
