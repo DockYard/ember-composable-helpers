@@ -68,6 +68,7 @@ For action helpers, this will mean better currying semantics:
   + [`capitalize`](#capitalize)
   + [`classify`](#classify)
   + [`dasherize`](#dasherize)
+  + [`truncate`](#truncate)
   + [`underscore`](#underscore)
   + [`w`](#w)
 * [Array](#array-helpers)
@@ -203,6 +204,16 @@ Capitalizes a string using `Ember.String.dasherize`.
 ```hbs
 {{dasherize "whatsThat"}}
 {{dasherize phrase}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `truncate`
+Truncates a string with a characterLimit.
+
+```hbs
+{{truncate "Lorem ipsum dolor sit amet, consectetur adipiscing elit." 20}}
+{{truncate phrase}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
