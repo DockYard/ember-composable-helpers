@@ -107,6 +107,10 @@ For action helpers, this will mean better currying semantics:
   + [`flatten`](#flatten)
   + [`object-at`](#object-at)
   + [`slice`](#slice)
+  + [`next`](#next)
+  + [`has-next`](#has-next)
+  + [`previous`](#previous)
+  + [`has-previous`](#has-previous)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -339,7 +343,7 @@ You can append `:desc` to properties to sort in reverse order.
 
 ```hbs
 {{#each (sort-by "age:desc" users) as |user|}}
-  {{user.firstName}} {{user.lastName}} ({{user.age}})
+    {{user.firstName}} {{user.lastName}} ({{user.age}})
 {{/each}}
 ```
 
@@ -673,6 +677,50 @@ Slices an array
 {{#each (slice 1 3 array) as |value|}}
   {{value}}
 {{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `next`
+Returns the next element in the array given the current element. **Note:** Accepts an optional boolean
+parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed.
+
+```hbs
+<button onclick={{action (mut selectedItem) (next selectedItem useDeepEqual items)}}>Next</button>
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `has-next`
+Checks if the array has an element after the given element. **Note:** Accepts an optional boolean
+parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed.
+
+```hbs
+{{#if (has-next page useDeepEqual pages)}}
+  <button>Next</button>
+{{/if}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `previous`
+Returns the previous element in the array given the current element. **Note:** Accepts an optional boolean
+parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed.
+
+```hbs
+<button onclick={{action (mut selectedItem) (previous selectedItem useDeepEqual items)}}>Previous</button>
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `has-previous`
+Checks if the array has an element before the given element. **Note:** Accepts an optional boolean
+parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed
+
+```hbs
+{{#if (has-previous page useDeepEqual pages)}}
+  <button>Previous</button>
+{{/if}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
