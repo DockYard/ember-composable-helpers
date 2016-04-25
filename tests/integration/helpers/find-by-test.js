@@ -67,3 +67,26 @@ test('It recomputes the filter if a value under given path changes', function(as
 
   assert.equal(this.$().text().trim(), 'd', 'd is shown');
 });
+
+test('It recomputes the value changes', function(assert) {
+  let array = emberArray([
+    { foo: true, name: 'a' },
+    { foo: false, name: 'b' },
+    { foo: true, name: 'c' }
+  ]);
+
+  this.set('array', array);
+  this.set('value', 'd');
+
+  this.render(hbs`
+    {{~#with (find-by 'name' value array) as |item|~}}
+      {{~item.name~}}
+    {{~/with~}}
+  `);
+
+  assert.equal(this.$().text().trim(), '', 'd is not found');
+
+  run(() => set(this, 'value', 'b'));
+
+  assert.equal(this.$().text().trim(), 'b', 'b is shown');
+});
