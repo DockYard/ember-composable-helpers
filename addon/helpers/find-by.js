@@ -25,7 +25,7 @@ export default Helper.extend({
       return;
     }
 
-    defineProperty(this, 'content', computed(`array.@each.${byPath}`, function() {
+    defineProperty(this, 'content', computed(`array.@each.${byPath}`, 'value', function() {
       let array = get(this, 'array');
       let value = get(this, 'value');
 
