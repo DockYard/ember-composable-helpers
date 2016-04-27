@@ -91,6 +91,7 @@ For action helpers, this will mean better currying semantics:
   + [`append`](#append)
   + [`chunk`](#chunk)
   + [`without`](#without)
+  + [`array`](#array)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -536,6 +537,17 @@ Returns the given array without the given item(s).
 ```hbs
 {{#each (without selectedItem items) as |remainingItem|}}
   {{remainingItem.name}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `array`
+Similar to the `hash` helper, this lets you compose arrays directly in the template:
+
+```hbs
+{{#each (array 1 2 3) as |numbers|}}
+  {{numbers}}
 {{/each}}
 ```
 
