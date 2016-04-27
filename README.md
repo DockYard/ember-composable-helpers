@@ -92,6 +92,7 @@ For action helpers, this will mean better currying semantics:
   + [`chunk`](#chunk)
   + [`without`](#without)
   + [`array`](#array)
+  + [`shuffle`](#shuffle)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -548,6 +549,23 @@ Similar to the `hash` helper, this lets you compose arrays directly in the templ
 ```hbs
 {{#each (array 1 2 3) as |numbers|}}
   {{numbers}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `shuffle`
+Shuffles an array with a randomizer function, or with `Math.random` as a default. Your randomizer function should return a number between 0 and 1.
+
+```hbs
+{{#each (shuffle array) as |value|}}
+  {{value}}
+{{/each}}
+```
+
+```hbs
+{{#each (shuffle array (action "myRandomizer")) as |value|}}
+  {{value}}
 {{/each}}
 ```
 
