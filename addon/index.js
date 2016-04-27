@@ -1,4 +1,5 @@
 export { default as AppendHelper } from './helpers/append';
+export { default as ArrayHelper } from './helpers/array';
 export { default as CamelizeHelper } from './helpers/camelize';
 export { default as CapitalizeHelper } from './helpers/capitalize';
 export { default as ChunkHelper } from './helpers/chunk';
