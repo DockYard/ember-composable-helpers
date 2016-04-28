@@ -31,7 +31,11 @@ export default Helper.extend({
       defineProperty(this, 'content', []);
     }
 
-    defineProperty(this, 'content', sort('array', 'sortProps'));
+    if (typeof sortProps === 'function') {
+      defineProperty(this, 'content', sort('array', sortProps));
+    } else {
+      defineProperty(this, 'content', sort('array', 'sortProps'));
+    }
   }),
 
   contentDidChange: observer('content', function() {
