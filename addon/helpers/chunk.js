@@ -10,7 +10,11 @@ const { max, ceil } = Math;
 export function chunk(num, array) {
   let integer = parseInt(num, 10);
   let size = max(integer, 0);
-  let length = isArray(array) ? array.length : 0;
+
+  let length = 0;
+  if (isArray(array)) {
+    length = get(array, 'length');
+  }
 
   if (!length || size < 1) {
     return [];

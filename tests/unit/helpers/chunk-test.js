@@ -1,3 +1,6 @@
+import Ember from 'ember';
+import { A as emberArray } from 'ember-array/utils';
+import computed from 'ember-computed';
 import { chunk } from 'dummy/helpers/chunk';
 import { module, test } from 'qunit';
 
@@ -53,4 +56,17 @@ test('it chunks an array into parts of less than current array length', function
 
   assert.deepEqual(result1, expectedResult1, 'should return array of chunked arrays');
   assert.deepEqual(result2, expectedResult2, 'should return array of chunked arrays');
+});
+
+test('it handles arrays with computed property lengths', function(assert) {
+  let ap = Ember.ArrayProxy.extend({
+    content: emberArray([1, 2, 3]),
+    length:  computed('content.[]', function() {
+      return this.get('content.length');
+    })
+  }).create();
+
+  let expectedResult = [[1], [2], [3]];
+  let result = chunk(1, ap);
+  assert.deepEqual(result, expectedResult, 'should return array of chunked arrays');
 });
