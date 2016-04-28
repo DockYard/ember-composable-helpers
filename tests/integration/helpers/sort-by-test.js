@@ -70,9 +70,9 @@ test('It accepts a function sort property', function(assert) {
   ]));
 
   this.set('sortBy', (a, b) => {
-    if (a > b) {
+    if (a.name > b.name) {
       return 1;
-    } else if (a < b) {
+    } else if (a.name < b.name) {
       return -1;
     }
 
