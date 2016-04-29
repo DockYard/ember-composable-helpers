@@ -43,3 +43,24 @@ test('It watches for changes', function(assert) {
 
   assert.equal(this.$().text().trim(), 'abcd', 'd is added');
 });
+
+test('It watches for changes to byPath', function(assert) {
+  let array = emberArray([
+    { name: 'a', x: 1 },
+    { name: 'b', x: 2 },
+    { name: 'c', x: 3 }
+  ]);
+
+  this.set('array', array);
+  this.set('property', 'name');
+
+  this.render(hbs`
+    {{~#each (map-by property array) as |name|~}}
+      {{~name~}}
+    {{~/each~}}
+  `);
+
+  this.set('property', 'x');
+
+  assert.equal(this.$().text().trim(), '123', '123 is displayed');
+});
