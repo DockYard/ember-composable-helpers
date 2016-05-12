@@ -7,7 +7,10 @@ export function dec([step, val]) {
     step = undefined;
   }
 
-  step = step || 1;
+  if (step === undefined) {
+    step = 1;
+  }
+
   return val - step;
 }
 
