@@ -69,7 +69,7 @@ test('It accepts a function sort property', function(assert) {
     { name: 'b' }
   ]));
 
-  this.set('sortBy', (a, b) => {
+  this.on('sortBy', (a, b) => {
     if (a.name > b.name) {
       return 1;
     } else if (a.name < b.name) {
@@ -80,7 +80,7 @@ test('It accepts a function sort property', function(assert) {
   });
 
   this.render(hbs`
-    {{~#each (sort-by sortBy array) as |user|~}}
+    {{~#each (sort-by (action "sortBy") array) as |user|~}}
       {{~user.name~}}
     {{~/each~}}
   `);
