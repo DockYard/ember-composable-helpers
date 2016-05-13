@@ -4,12 +4,13 @@ import {
 } from 'ember-array/utils';
 import Helper from 'ember-helper';
 import observer from 'ember-metal/observer';
+import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { typeOf } from 'ember-utils';
 
 export function shuffle(array, randomizer) {
   array = array.slice(0);
-  let count = array.length;
+  let count = get(array, 'length');
   let rand, temp;
   randomizer = (typeOf(randomizer) === 'function' && randomizer) || Math.random;
 
