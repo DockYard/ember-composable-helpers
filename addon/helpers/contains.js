@@ -1,4 +1,5 @@
 import { A as emberArray } from 'ember-array/utils';
+import get from 'ember-metal/get';
 import { typeOf } from 'ember-utils';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
 
@@ -11,7 +12,7 @@ export function contains(needle, haystack) {
     return false;
   }
 
-  if (typeOf(needle) === 'array' && needle.length) {
+  if (typeOf(needle) === 'array' && get(needle, 'length')) {
     return needle.reduce((acc, val) => acc && _contains(val, haystack), true);
   }
 
