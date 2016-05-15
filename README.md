@@ -93,6 +93,7 @@ For action helpers, this will mean better currying semantics:
   + [`without`](#without)
   + [`array`](#array)
   + [`shuffle`](#shuffle)
+  + [`flatten`](#flatten)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -566,6 +567,17 @@ Shuffles an array with a randomizer function, or with `Math.random` as a default
 ```hbs
 {{#each (shuffle array (action "myRandomizer")) as |value|}}
   {{value}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `flatten`
+Flattens an array to a single dimension.
+
+```hbs
+{{#each (flatten anArrayOfNamesWithMultipleDimensions) as |name|}}
+  Name: {{name}}
 {{/each}}
 ```
 
