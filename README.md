@@ -93,6 +93,7 @@ For action helpers, this will mean better currying semantics:
   + [`without`](#without)
   + [`array`](#array)
   + [`shuffle`](#shuffle)
+  + [`length`](#length)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -567,6 +568,15 @@ Shuffles an array with a randomizer function, or with `Math.random` as a default
 {{#each (shuffle array (action "myRandomizer")) as |value|}}
   {{value}}
 {{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `length`
+Returns the length of an array
+
+```hbs
+{{length (array 1 2 3)}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
