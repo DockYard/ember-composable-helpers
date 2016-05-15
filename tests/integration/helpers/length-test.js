@@ -4,7 +4,7 @@ import hbs from 'htmlbars-inline-precompile';
 
 const { A: emberArray } = Ember;
 
-moduleForComponent('append', 'Integration | Helper | {{length}}', {
+moduleForComponent('length', 'Integration | Helper | {{length}}', {
   integration: true
 });
 
