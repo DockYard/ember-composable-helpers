@@ -105,6 +105,7 @@ For action helpers, this will mean better currying semantics:
   + [`shuffle`](#shuffle)
   + [`flatten`](#flatten)
   + [`object-at`](#object-at)
+  + [`slice`](#slice)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -643,6 +644,23 @@ Returns the object at the given index of an array.
 
 ```hbs
 {{object-at index array}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `slice`
+Slices an array
+
+```hbs
+{{#each (slice 1 3 array) as |value|}}
+  {{value}}
+{{/each}}
+```
+
+```hbs
+{{#each (slice array=array start=1 end=3) as |value|}}
+  {{value}}
+{{/each}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
