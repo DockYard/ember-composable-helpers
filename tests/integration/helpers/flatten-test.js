@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('append', 'Integration | Helper | {{append}}', {
+moduleForComponent('flatten', 'Integration | Helper | {{flatten}}', {
   integration: true
 });
 
