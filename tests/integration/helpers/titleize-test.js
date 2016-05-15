@@ -1,0 +1,16 @@
+import { moduleForComponent, test } from 'ember-qunit';
+import hbs from 'htmlbars-inline-precompile';
+
+moduleForComponent('titleize', 'Integration | Helper | {{titleize}}', {
+  integration: true
+});
+
+test('It titleizes a string', function(assert) {
+  this.render(hbs`
+    {{titleize 'my big fat greek wedding'}}
+  `);
+
+  let expected = 'My Big Fat Greek Wedding';
+
+  assert.equal(this.$().text().trim(), expected, 'titleized value');
+});
