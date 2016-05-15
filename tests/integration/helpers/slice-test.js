@@ -17,7 +17,7 @@ test('It slices an array with positional params', function(assert) {
 
   let expected = '4,6';
 
-  assert.equal(this.$().text().trim(), expected, 'appends values');
+  assert.equal(this.$().text().trim(), expected, 'sliced values');
 });
 
 test('It slices an array with named params', function(assert) {
@@ -29,5 +29,5 @@ test('It slices an array with named params', function(assert) {
 
   let expected = '4,6';
 
-  assert.equal(this.$().text().trim(), expected, 'appends values');
+  assert.equal(this.$().text().trim(), expected, 'sliced values');
 });
