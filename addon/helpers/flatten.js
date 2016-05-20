@@ -1,13 +1,9 @@
 import Ember from 'ember';
+import Helper from 'ember-helper'
+import { isEmberArray as isArray } from 'ember-array/utils';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
 
-const {
-  Helper,
-  observer,
-  set,
-  isArray
-} = Ember;
-
-// lodash's flatten method doesn't work on Ember arrays
 export function flatten(array) {
   if (!isArray(array)) {
     return array;
