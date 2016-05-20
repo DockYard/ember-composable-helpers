@@ -1,11 +1,23 @@
-import Ember from 'ember';
+import {
+  A as emberArray,
+  isEmberArray as isArray
+} from 'ember-array/utils';
+import Helper from 'ember-helper';
+import observer from 'ember-metal/observer';
+import set from 'ember-metal/set';
 
-export function slice(params = [], hash = {}) {
-  const start = isNaN(params[0]) ? hash.start : params[0];
-  const end =   isNaN(params[1]) ? hash.end : params[1];
-  const array = params[2] || hash.array;
+export default Helper.extend({
+  compute([start, end, array]) {
+    if (!isArray(array)) {
+      return emberArray([array]);
+    }
 
-  return array.slice(start, end);
-}
+    set(this, 'array', array);
 
-export default Ember.Helper.helper(slice);
+    return array.slice(start, end);
+  },
+
+  arrayContentDidChange: observer('array.[]', function() {
+    this.recompute();
+  })
+});
