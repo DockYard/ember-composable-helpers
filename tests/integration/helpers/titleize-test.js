@@ -14,3 +14,11 @@ test('It titleizes a string', function(assert) {
 
   assert.equal(this.$().text().trim(), expected, 'titleized value');
 });
+
+test('It handles undefined', function(assert) {
+  this.render(hbs`
+    {{titleize nostring}}
+  `);
+
+  assert.equal(this.$().text().trim(), '', 'No value');
+});
