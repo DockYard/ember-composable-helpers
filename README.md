@@ -657,12 +657,6 @@ Slices an array
 {{/each}}
 ```
 
-```hbs
-{{#each (slice array=array start=1 end=3) as |value|}}
-  {{value}}
-{{/each}}
-```
-
 **[⬆️ back to top](#available-helpers)**
 
 ---

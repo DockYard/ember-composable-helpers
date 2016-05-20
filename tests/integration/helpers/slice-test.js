@@ -15,9 +15,7 @@ test('It slices an array with positional params', function(assert) {
     {{slice 1 3 array}}
   `);
 
-  let expected = '4,6';
-
-  assert.equal(this.$().text().trim(), expected, 'sliced values');
+  assert.equal(this.$().text().trim(), '4,6', 'sliced values');
 });
 
 test('It recomputes the slice if an item in the array changes', function(assert) {
