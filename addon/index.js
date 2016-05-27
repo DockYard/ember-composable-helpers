@@ -18,6 +18,7 @@ export { default as IntersectHelper } from './helpers/intersect';
 export { default as InvokeHelper } from './helpers/invoke';
 export { default as JoinHelper } from './helpers/join';
 export { default as MapByHelper } from './helpers/map-by';
+export { default as OptionalHelper } from './helpers/optional';
 export { default as PipeHelper } from './helpers/pipe';
 export { default as PipeActionHelper } from './helpers/pipe-action';
 export { default as RangeHelper } from './helpers/range';
