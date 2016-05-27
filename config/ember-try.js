@@ -51,6 +51,24 @@ module.exports = {
       }
     },
     {
+      name: 'ember-2.4',
+      dependencies: {
+        'ember': '~2.4.0'
+      },
+      resolutions: {
+        'ember': '~2.4.0'
+      }
+    },
+    {
+      name: 'ember-2.5',
+      dependencies: {
+        'ember': '~2.5.0'
+      },
+      resolutions: {
+        'ember': '~2.5.0'
+      }
+    },
+    {
       name: 'ember-release',
       dependencies: {
         'ember': 'components/ember#release'
