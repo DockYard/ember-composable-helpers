@@ -10,11 +10,7 @@ export function flatten(array) {
   }
 
   return array.reduce((flattened, el) => {
-    if (isArray(el)) {
-      return flattened.concat(flatten(el));
-    }
-
-    return flattened.concat(el);
+    return flattened.concat(flatten(el));
   }, []);
 }
 
