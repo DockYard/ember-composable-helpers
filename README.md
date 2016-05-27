@@ -565,7 +565,7 @@ Shuffles an array with a randomizer function, or with `Math.random` as a default
 ```
 
 ```hbs
-{{#each (shuffle array (action "myRandomizer")) as |value|}}
+{{#each (shuffle (action "myRandomizer") array) as |value|}}
   {{value}}
 {{/each}}
 ```

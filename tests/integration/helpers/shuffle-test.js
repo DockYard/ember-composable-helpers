@@ -24,7 +24,7 @@ test('It shuffles array using passed in randomizer', function(assert) {
   this.set('array', emberArray([1, 2, 3, 4]));
   this.on('fake', () => 0);
   this.render(hbs`
-    {{~#each (shuffle array (action "fake")) as |value|~}}
+    {{~#each (shuffle (action "fake") array) as |value|~}}
       {{value}}
     {{~/each~}}
   `);
@@ -36,7 +36,7 @@ test('It handles a non-ember array', function(assert) {
   this.set('array', [1, 2, 3, 4]);
   this.on('fake', () => 0);
   this.render(hbs`
-    {{~#each (shuffle array (action "fake")) as |value|~}}
+    {{~#each (shuffle (action "fake") array) as |value|~}}
       {{value}}
     {{~/each~}}
   `);
@@ -48,7 +48,7 @@ test('It does not mutate the original array', function(assert) {
   this.set('array', emberArray([1, 2, 3, 4]));
   this.on('fake', () => 0);
   this.render(hbs`
-    {{~#each (shuffle array (action "fake")) as |value|~}}
+    {{~#each (shuffle (action "fake") array) as |value|~}}
       {{value}}
     {{~/each~}}
   `);
@@ -72,7 +72,7 @@ test('It recomputes the shuffle if the array changes', function(assert) {
   this.set('array', emberArray([1, 2, 3, 4]));
   this.on('fake', () => 0);
   this.render(hbs`
-    {{~#each (shuffle array (action "fake")) as |value|~}}
+    {{~#each (shuffle (action "fake") array) as |value|~}}
       {{value}}
     {{~/each~}}
   `);
@@ -89,7 +89,7 @@ test('It recomputes the shuffle if an item in the array changes', function(asser
   this.set('array', array);
   this.on('fake', () => 0);
   this.render(hbs`
-    {{~#each (shuffle array (action "fake")) as |value|~}}
+    {{~#each (shuffle (action "fake") array) as |value|~}}
       {{value}}
     {{~/each~}}
   `);
