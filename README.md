@@ -63,6 +63,7 @@ For action helpers, this will mean better currying semantics:
   + [`pipe`](#pipe)
   + [`compute`](#compute)
   + [`toggle`](#toggle)
+  + [`optional`](#optional)
 * [String](#string-helpers)
   + [`camelize`](#camelize)
   + [`capitalize`](#capitalize)
@@ -163,6 +164,16 @@ Toggles a boolean value.
 {{! foo-bar/template.hbs }}
 <button {{action toggleIsExpanded}}>Open / Close</button>
 <button {{action toggleIsSelected}}>Select / Deselect</button>
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `optional`
+
+Allows for the passed in action to not exist.
+
+```hbs
+<button {{action (optional handleClick)}}>Click Me</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
