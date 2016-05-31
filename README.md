@@ -166,6 +166,14 @@ Toggles a boolean value.
 <button {{action toggleIsSelected}}>Select / Deselect</button>
 ```
 
+`toggle` also accepts optional values to rotate through:
+
+```hbs
+<button {{action (toggle "currentName" this "foo" "bar" "baz")}}>
+  {{currentName}}
+</button>
+```
+
 **[⬆️ back to top](#available-helpers)**
 
 #### `optional`
