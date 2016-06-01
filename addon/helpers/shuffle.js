@@ -25,7 +25,12 @@ export function shuffle(array, randomizer) {
 }
 
 export default Helper.extend({
-  compute([array, random]) {
+  compute([random, array]) {
+    if (array === undefined) {
+      array = random;
+      random = undefined;
+    }
+
     if (!isArray(array)) {
       return emberArray([array]);
     }
