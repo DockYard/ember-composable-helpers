@@ -63,6 +63,7 @@ For action helpers, this will mean better currying semantics:
   + [`pipe`](#pipe)
   + [`compute`](#compute)
   + [`toggle`](#toggle)
+  + [`optional`](#optional)
 * [String](#string-helpers)
   + [`camelize`](#camelize)
   + [`capitalize`](#capitalize)
@@ -94,6 +95,7 @@ For action helpers, this will mean better currying semantics:
   + [`array`](#array)
   + [`shuffle`](#shuffle)
   + [`slice`](#slice)
+  + [`flatten`](#flatten)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -163,6 +165,24 @@ Toggles a boolean value.
 {{! foo-bar/template.hbs }}
 <button {{action toggleIsExpanded}}>Open / Close</button>
 <button {{action toggleIsSelected}}>Select / Deselect</button>
+```
+
+`toggle` also accepts optional values to rotate through:
+
+```hbs
+<button {{action (toggle "currentName" this "foo" "bar" "baz")}}>
+  {{currentName}}
+</button>
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `optional`
+
+Allows for the passed in action to not exist.
+
+```hbs
+<button {{action (optional handleClick)}}>Click Me</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
@@ -565,7 +585,7 @@ Shuffles an array with a randomizer function, or with `Math.random` as a default
 ```
 
 ```hbs
-{{#each (shuffle array (action "myRandomizer")) as |value|}}
+{{#each (shuffle (action "myRandomizer") array) as |value|}}
   {{value}}
 {{/each}}
 ```
@@ -578,6 +598,15 @@ Slices an array
 ```hbs
 {{#each (slice 1 3 array) as |value|}}
   {{value}}
+{{/each}}
+```
+
+#### `flatten`
+Flattens an array to a single dimension.
+
+```hbs
+{{#each (flatten anArrayOfNamesWithMultipleDimensions) as |name|}}
+  Name: {{name}}
 {{/each}}
 ```
 
