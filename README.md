@@ -95,6 +95,7 @@ For action helpers, this will mean better currying semantics:
   + [`array`](#array)
   + [`shuffle`](#shuffle)
   + [`flatten`](#flatten)
+  + [`object-at`](#object-at)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -598,6 +599,15 @@ Flattens an array to a single dimension.
 {{#each (flatten anArrayOfNamesWithMultipleDimensions) as |name|}}
   Name: {{name}}
 {{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `object-at`
+Returns the object at the given index of an array.
+
+```hbs
+{{object-at index array}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
