@@ -16,3 +16,15 @@ test('it increments a value', function(assert) {
 
   assert.equal(this.$().text().trim(), '3', 'should increment by 2');
 });
+
+test('It can increment a string', function(assert) {
+  this.render(hbs`{{inc "1"}}`);
+
+  assert.equal(this.$().text().trim(), '2', 'should increment by 1');
+});
+
+test('It handles when undefined is passed', function(assert) {
+  this.render(hbs`{{inc}}`);
+
+  assert.equal(this.$().text().trim(), '', 'should not return a value');
+});

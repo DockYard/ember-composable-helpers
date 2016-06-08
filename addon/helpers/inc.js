@@ -7,6 +7,12 @@ export function inc([step, val]) {
     step = undefined;
   }
 
+  val = parseInt(val);
+
+  if (isNaN(val)) {
+    return;
+  }
+
   if (step === undefined) {
     step = 1;
   }
