@@ -16,3 +16,21 @@ test('it decrements a value', function(assert) {
 
   assert.equal(this.$().text().trim(), '3', 'should decrement by 2');
 });
+
+test('it decrements below 0', function(assert) {
+  this.render(hbs`{{dec 2 0}}`);
+
+  assert.equal(this.$().text().trim(), '-2', 'should be -2');
+});
+
+test('It can decrement a string', function(assert) {
+  this.render(hbs`{{dec "2"}}`);
+
+  assert.equal(this.$().text().trim(), '1', 'should decrement by 1');
+});
+
+test('It handles when undefined is passed', function(assert) {
+  this.render(hbs`{{dec}}`);
+
+  assert.equal(this.$().text().trim(), '', 'should not return a value');
+});
