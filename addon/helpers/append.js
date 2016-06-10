@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import computed from 'ember-computed';
 import get from 'ember-metal/get';
 import { isEmberArray as isArray } from 'ember-array/utils';
