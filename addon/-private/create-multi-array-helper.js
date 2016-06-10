@@ -5,7 +5,6 @@ import {
 } from 'ember-array/utils';
 import Helper from 'ember-helper';
 import { guidFor } from 'ember-metal/utils';
-import computed from 'ember-computed';
 import observer from 'ember-metal/observer';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
@@ -19,7 +18,7 @@ export default function(multiArrayComputed) {
     compute([...arrays]) {
       set(this, 'arrays', arrays.map((obj) => {
         if (isArray(obj)) {
-          return emberArray(obj)
+          return emberArray(obj);
         }
 
         return obj;

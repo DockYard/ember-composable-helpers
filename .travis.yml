@@ -26,6 +26,7 @@ env:
   - EMBER_TRY_SCENARIO=ember-2.3
   - EMBER_TRY_SCENARIO=ember-2.4
   - EMBER_TRY_SCENARIO=ember-2.5
+  - EMBER_TRY_SCENARIO=ember-2.6
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
@@ -39,13 +40,13 @@ matrix:
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-  - "npm install -g npm@^3"
+  - npm config set spin false
+  - npm install -g bower
+  - npm install -g npm@^3
 
 install:
-  - npm install -g bower
   - npm install
   - bower install
 
 script:
-  - npm run-script node-test
-  - ember try $EMBER_TRY_SCENARIO test
+  - ember try $EMBER_TRY_SCENARIO test --skip-cleanup

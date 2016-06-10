@@ -1,5 +1,4 @@
-import Ember from 'ember';
-import Helper from 'ember-helper'
+import Helper from 'ember-helper';
 import { isEmberArray as isArray } from 'ember-array/utils';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
