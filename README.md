@@ -17,6 +17,12 @@ To install:
 ember install ember-composable-helpers
 ```
 
+Watch a free video overview presented by EmberMap:
+
+<a href='https://embermap.com/topics/refactorings/ember-composable-helpers'>
+  <img height="20" src="https://frontend.embermap.com/assets/images/logo-7333e9d5f48c9cd4a0ee6476a5af1083.png">
+</a>
+
 ## Configuration
 This addon performs optional tree-shaking – you can specify which helpers to whitelist or blacklist using `only` or `except` within your `config/environment.js`:
 
