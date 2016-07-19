@@ -11,9 +11,9 @@ moduleForComponent('filter', 'Integration | Helper | {{reduce}}', {
 test('It accepts a callback', function(assert) {
   this.set('array', emberArray([ 1, 2, 3 ]));
 
-  this.set('callback', (previousValue, currentValue) => previousValue + currentValue);
+  this.on('callback', (previousValue, currentValue) => previousValue + currentValue);
 
-  this.render(hbs`{{reduce callback array 0}}`);
+  this.render(hbs`{{reduce (action "callback") 0 array}}`);
 
   assert.equal(this.$().text(), 6);
 });
@@ -23,9 +23,9 @@ test('It re-evaluates when array content changes', function(assert) {
 
   this.set('array', array);
 
-  this.set('callback', (previousValue, currentValue) => previousValue + currentValue);
+  this.on('callback', (previousValue, currentValue) => previousValue + currentValue);
 
-  this.render(hbs`{{reduce callback array 0}}`);
+  this.render(hbs`{{reduce (action "callback") 0 array}}`);
 
   assert.equal(this.$().text(), 6);
 
@@ -38,9 +38,9 @@ test('It re-evaluates when initial value changes', function(assert) {
   this.set('array', emberArray([ 1, 2, 3 ]));
   this.set('initialValue', 0);
 
-  this.set('callback', (previousValue, currentValue) => previousValue + currentValue);
+  this.on('callback', (previousValue, currentValue) => previousValue + currentValue);
 
-  this.render(hbs`{{reduce callback array initialValue}}`);
+  this.render(hbs`{{reduce (action "callback") initialValue array}}`);
 
   assert.equal(this.$().text(), 6);
 
@@ -52,13 +52,14 @@ test('It re-evaluates when initial value changes', function(assert) {
 test('It re-evaluates when callback changes', function(assert) {
   this.set('array', emberArray([ 1, 2, 3 ]));
 
-  this.set('callback', (previousValue, currentValue) => previousValue + currentValue);
+  this.on('positive', (previousValue, currentValue) => previousValue + currentValue);
+  this.on('negative', (previousValue, currentValue) => previousValue - currentValue);
 
-  this.render(hbs`{{reduce callback array 0}}`);
+  this.render(hbs`{{reduce (action (if isNegative "negative" "positive")) 0 array}}`);
 
   assert.equal(this.$().text(), 6);
 
-  this.set('callback', (previousValue, currentValue) => previousValue - currentValue);
+  this.set('isNegative', true);
 
   assert.equal(this.$().text(), -6);
 });

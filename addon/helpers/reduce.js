@@ -9,7 +9,7 @@ import computed from 'ember-computed';
 const { defineProperty } = Ember;
 
 export default Helper.extend({
-  compute([callback, array, initialValue]) {
+  compute([callback, initialValue, array]) {
 
     set(this, 'callback', callback);
     set(this, 'array', array);
