@@ -1,31 +1,36 @@
 import Ember from 'ember';
-import { filter } from 'ember-computed';
 import Helper from 'ember-helper';
 import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
+import computed from 'ember-computed';
 
 const { defineProperty } = Ember;
 
 export default Helper.extend({
-  compute([callback, array]) {
+  compute([callback, array, initialValue]) {
 
-    set(this, 'array', array);
     set(this, 'callback', callback);
+    set(this, 'array', array);
+    set(this, 'initialValue', initialValue);
 
     return get(this, 'content');
   },
 
-  callbackDidChange: observer('callback', function() {
+  callbackDidChange: observer('callback', 'initialValue', function() {
     let callback = get(this, 'callback');
+    let initialValue = get(this, 'initialValue');
 
     if (isEmpty(callback)) {
       defineProperty(this, 'content', []);
       return;
     }
 
-    let cp = filter('array', callback);
+    let cp = computed('array.[]', () => {
+      let array = this.get('array');
+      return array.reduce(callback, initialValue);
+    });
 
     defineProperty(this, 'content', cp);
   }),
