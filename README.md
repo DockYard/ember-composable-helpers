@@ -481,7 +481,7 @@ Returns an array with the first `n` entries omitted.
 Reduce an array to a value.
 
 ```hbs
-{{reduce (action "sum") (array 1 2 3) 0}}
+{{reduce (action "sum") 0 (array 1 2 3)}}
 ```
 
 The last argument is initial value. If you omit it, undefined will be used.
