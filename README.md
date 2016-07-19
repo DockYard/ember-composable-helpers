@@ -286,14 +286,25 @@ See also: [Ember `w` documentation](http://emberjs.com/api/classes/Ember.String.
 
 ### Array helpers
 
+#### `array`
+Similar to the `hash` helper, this lets you compose arrays directly in the template:
+
+```hbs
+{{#each (array 1 2 3) as |numbers|}}
+  {{numbers}}
+{{/each}}
+```
+
 #### `map`
 Maps a callback on an array.
 
 ```hbs
-{{#each (map (action 'getName') users) as |fullName|}}
+{{#each (map (action "getName") users) as |fullName|}}
   {{fullName}}
 {{/each}}
 ```
+
+**[⬆️ back to top](#available-helpers)**
 
 #### `map-by`
 Maps an array on a property.
@@ -303,8 +314,6 @@ Maps an array on a property.
   {{fullName}}
 {{/each}}
 ```
-
-**[⬆️ back to top](#available-helpers)**
 
 #### `sort-by`
 Sort an array by given properties.
@@ -472,7 +481,7 @@ Returns an array with the first `n` entries omitted.
 Reduce an array to a value.
 
 ```hbs
-{{reduce (action 'sum') (array 1 2 3) 0}}
+{{reduce (action "sum") (array 1 2 3) 0}}
 ```
 
 The last argument is initial value. If you omit it, undefined will be used.
@@ -596,17 +605,6 @@ Returns the given array without the given item(s).
 ```hbs
 {{#each (without selectedItem items) as |remainingItem|}}
   {{remainingItem.name}}
-{{/each}}
-```
-
-**[⬆️ back to top](#available-helpers)**
-
-#### `array`
-Similar to the `hash` helper, this lets you compose arrays directly in the template:
-
-```hbs
-{{#each (array 1 2 3) as |numbers|}}
-  {{numbers}}
 {{/each}}
 ```
 
