@@ -47,6 +47,8 @@ test('It watches for changes', function(assert) {
     {{~/each~}}
   `);
 
+  assert.equal(this.$().text().trim(), 'abc', 'precondition');
+
   run(() => array.pushObject({ name: 'd' }));
 
   assert.equal(this.$().text().trim(), 'abcd', 'd is added');
