@@ -9,7 +9,7 @@ moduleForComponent('filter', 'Integration | Helper | {{reduce}}', {
 });
 
 test('It accepts a callback', function(assert) {
-  this.set('array', emberArray([ 1, 2, 3 ]));
+  this.set('array', emberArray([1, 2, 3]));
 
   this.on('callback', (previousValue, currentValue) => previousValue + currentValue);
 
@@ -19,7 +19,7 @@ test('It accepts a callback', function(assert) {
 });
 
 test('It re-evaluates when array content changes', function(assert) {
-  let array = emberArray([ 1, 2, 3 ]);
+  let array = emberArray([1, 2, 3]);
 
   this.set('array', array);
 
@@ -35,7 +35,7 @@ test('It re-evaluates when array content changes', function(assert) {
 });
 
 test('It re-evaluates when initial value changes', function(assert) {
-  this.set('array', emberArray([ 1, 2, 3 ]));
+  this.set('array', emberArray([1, 2, 3]));
   this.set('initialValue', 0);
 
   this.on('callback', (previousValue, currentValue) => previousValue + currentValue);
