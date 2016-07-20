@@ -28,7 +28,7 @@ export default Helper.extend({
     }
 
     let cp = computed('array.[]', () => {
-      let array = this.get('array');
+      let array = get(this, 'array');
       return array.reduce(callback, initialValue);
     });
 
