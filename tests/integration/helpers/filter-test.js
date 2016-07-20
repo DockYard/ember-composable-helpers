@@ -61,7 +61,7 @@ test('It can be passed an action', function(assert) {
     { foo: 3, name: 'c' }
   ]));
 
-  this.on('isOdd', ({ foo }) => foo % 2 === 1);
+  this.on('isOdd', ({ foo }) => foo % 2 !== 0);
 
   this.render(hbs`
     {{~#each (filter (action 'isOdd') array) as |item|~}}
