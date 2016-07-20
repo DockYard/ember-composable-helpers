@@ -15,12 +15,12 @@ test('It maps by value', function(assert) {
     { name: 'c' }
   ]));
 
-  this.set('getName', function({ name }) {
+  this.on('getName', function({ name }) {
     return name;
   });
 
   this.render(hbs`
-    {{~#each (map getName array) as |name|~}}
+    {{~#each (map (action 'getName') array) as |name|~}}
       {{~name~}}
     {{~/each~}}
   `);
@@ -37,12 +37,12 @@ test('It watches for changes', function(assert) {
 
   this.set('array', array);
 
-  this.set('getName', function({ name }) {
+  this.on('getName', function({ name }) {
     return name;
   });
 
   this.render(hbs`
-    {{~#each (map getName array) as |name|~}}
+    {{~#each (map (action 'getName') array) as |name|~}}
       {{~name~}}
     {{~/each~}}
   `);
@@ -52,7 +52,7 @@ test('It watches for changes', function(assert) {
   assert.equal(this.$().text().trim(), 'abcd', 'd is added');
 });
 
-test('It watches for changes to byPath', function(assert) {
+test('It watches for changes to action', function(assert) {
   let array = emberArray([
     { name: 'a', x: 1 },
     { name: 'b', x: 2 },
@@ -60,19 +60,19 @@ test('It watches for changes to byPath', function(assert) {
   ]);
 
   this.set('array', array);
-  this.set('callback', function({ name }) {
-    return name;
-  });
+
+  this.on('getName', ({ name }) => name);
+  this.on('getX', ({ x }) => x);
 
   this.render(hbs`
-    {{~#each (map callback array) as |name|~}}
-      {{~name~}}
+    {{~#each (map (action (if showValues "getX" "getName")) array) as |text|~}}
+      {{~text~}}
     {{~/each~}}
   `);
 
-  this.set('callback', function({ x }) {
-    return x;
-  });
+  assert.equal(this.$().text().trim(), 'abc', 'abc is displayed');
+
+  this.set('showValues', true);
 
   assert.equal(this.$().text().trim(), '123', '123 is displayed');
 });
