@@ -50,7 +50,7 @@ test('It re-evaluates when initial value changes', function(assert) {
 });
 
 test('It re-evaluates when callback changes', function(assert) {
-  this.set('array', emberArray([ 1, 2, 3 ]));
+  this.set('array', emberArray([1, 2, 3]));
 
   this.on('positive', (previousValue, currentValue) => previousValue + currentValue);
   this.on('negative', (previousValue, currentValue) => previousValue - currentValue);
