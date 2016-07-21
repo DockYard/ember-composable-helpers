@@ -20,7 +20,7 @@ test('It maps by value', function(assert) {
   });
 
   this.render(hbs`
-    {{~#each (map (action 'getName') array) as |name|~}}
+    {{~#each (map (action "getName") array) as |name|~}}
       {{~name~}}
     {{~/each~}}
   `);
@@ -42,7 +42,7 @@ test('It watches for changes', function(assert) {
   });
 
   this.render(hbs`
-    {{~#each (map (action 'getName') array) as |name|~}}
+    {{~#each (map (action "getName") array) as |name|~}}
       {{~name~}}
     {{~/each~}}
   `);

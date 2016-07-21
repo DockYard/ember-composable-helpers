@@ -22,7 +22,7 @@ test('It filters by truthiness', function(assert) {
   });
 
   this.render(hbs`
-    {{~#each (filter (action 'truthyFoo') array) as |item|~}}
+    {{~#each (filter (action "truthyFoo") array) as |item|~}}
       {{~item.name~}}
     {{~/each~}}
   `);
@@ -44,7 +44,7 @@ test('It recomputes the filter if array changes', function(assert) {
   });
 
   this.render(hbs`
-    {{~#each (filter (action 'getFoo') array) as |item|~}}
+    {{~#each (filter (action "getFoo") array) as |item|~}}
       {{~item.name~}}
     {{~/each~}}
   `);
@@ -64,7 +64,7 @@ test('It can be passed an action', function(assert) {
   this.on('isOdd', ({ foo }) => foo % 2 !== 0);
 
   this.render(hbs`
-    {{~#each (filter (action 'isOdd') array) as |item|~}}
+    {{~#each (filter (action "isOdd") array) as |item|~}}
       {{~item.name~}}
     {{~/each~}}
   `);
