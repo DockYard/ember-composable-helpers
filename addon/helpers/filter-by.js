@@ -11,7 +11,6 @@ const { defineProperty } = Ember;
 
 export default Helper.extend({
   compute([byPath, value, array]) {
-
     if (!isArray(array) && isArray(value)) {
       array = value;
       value = undefined;

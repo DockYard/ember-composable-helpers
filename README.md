@@ -79,8 +79,11 @@ For action helpers, this will mean better currying semantics:
   + [`underscore`](#underscore)
   + [`w`](#w)
 * [Array](#array-helpers)
+  + [`array`](#array)
+  + [`map`](#map)
   + [`map-by`](#map-by)
   + [`sort-by`](#sort-by)
+  + [`filter`](#filter)
   + [`filter-by`](#filter-by)
   + [`reject-by`](#reject-by)
   + [`find-by`](#find-by)
@@ -89,6 +92,7 @@ For action helpers, this will mean better currying semantics:
   + [`union`](#union)
   + [`take`](#take)
   + [`drop`](#drop)
+  + [`reduce`](#reduce)
   + [`repeat`](#repeat)
   + [`reverse`](#reverse)
   + [`range`](#range)
@@ -98,7 +102,6 @@ For action helpers, this will mean better currying semantics:
   + [`append`](#append)
   + [`chunk`](#chunk)
   + [`without`](#without)
-  + [`array`](#array)
   + [`shuffle`](#shuffle)
   + [`flatten`](#flatten)
   + [`object-at`](#object-at)
@@ -283,6 +286,26 @@ See also: [Ember `w` documentation](http://emberjs.com/api/classes/Ember.String.
 
 ### Array helpers
 
+#### `array`
+Similar to the `hash` helper, this lets you compose arrays directly in the template:
+
+```hbs
+{{#each (array 1 2 3) as |numbers|}}
+  {{numbers}}
+{{/each}}
+```
+
+#### `map`
+Maps a callback on an array.
+
+```hbs
+{{#each (map (action "getName") users) as |fullName|}}
+  {{fullName}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
 #### `map-by`
 Maps an array on a property.
 
@@ -291,8 +314,6 @@ Maps an array on a property.
   {{fullName}}
 {{/each}}
 ```
-
-**[⬆️ back to top](#available-helpers)**
 
 #### `sort-by`
 Sort an array by given properties.
@@ -312,6 +333,16 @@ You can append `:desc` to properties to sort in reverse order.
 ```
 
 **[⬆️ back to top](#available-helpers)**
+
+
+#### `filter`
+Filters an array by a callback.
+
+```hbs
+{{#each (filter (action "isActive") users) as |user|}}
+  {{user.name}} is active!
+{{/each}}
+```
 
 #### `filter-by`
 Filters an array by a property.
@@ -446,6 +477,15 @@ Returns an array with the first `n` entries omitted.
 
 **[⬆️ back to top](#available-helpers)**
 
+#### `reduce`
+Reduce an array to a value.
+
+```hbs
+{{reduce (action "sum") 0 (array 1 2 3)}}
+```
+
+The last argument is initial value. If you omit it, undefined will be used.
+
 #### `repeat`
 Repeats `n` times. This can be useful for making an n-length arbitrary list for iterating upon (you can think of this form as a times helper, a la Ruby's `5.times { ... }`):
 
@@ -565,17 +605,6 @@ Returns the given array without the given item(s).
 ```hbs
 {{#each (without selectedItem items) as |remainingItem|}}
   {{remainingItem.name}}
-{{/each}}
-```
-
-**[⬆️ back to top](#available-helpers)**
-
-#### `array`
-Similar to the `hash` helper, this lets you compose arrays directly in the template:
-
-```hbs
-{{#each (array 1 2 3) as |numbers|}}
-  {{numbers}}
 {{/each}}
 ```
 
