@@ -52,7 +52,7 @@ For all non-unary helpers, the subject of the helper function will always be the
 This way the arguments are better readable if you compose together multiple helpers:
 
 ```hbs
-{{take 5 (sort "lastName" "firstName" (filter-by "active" array))}}
+{{take 5 (sort-by "lastName" "firstName" (filter-by "active" array))}}
 ```
 
 For action helpers, this will mean better currying semantics:
