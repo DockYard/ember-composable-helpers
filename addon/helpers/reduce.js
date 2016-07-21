@@ -10,7 +10,6 @@ const { defineProperty } = Ember;
 
 export default Helper.extend({
   compute([callback, initialValue, array]) {
-
     set(this, 'callback', callback);
     set(this, 'array', array);
     set(this, 'initialValue', initialValue);

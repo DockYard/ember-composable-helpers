@@ -17,12 +17,12 @@ test('It filters by truthiness', function(assert) {
     { foo: [1, 2, 3],  name: 'e' }
   ]));
 
-  this.set('callback', function({ foo }) {
+  this.on('truthyFoo', function({ foo }) {
     return !!foo;
   });
 
   this.render(hbs`
-    {{~#each (filter callback array) as |item|~}}
+    {{~#each (filter (action 'truthyFoo') array) as |item|~}}
       {{~item.name~}}
     {{~/each~}}
   `);
@@ -39,12 +39,12 @@ test('It recomputes the filter if array changes', function(assert) {
 
   this.set('array', array);
 
-  this.set('callback', function({ foo }) {
+  this.on('getFoo', function({ foo }) {
     return foo;
   });
 
   this.render(hbs`
-    {{~#each (filter callback array) as |item|~}}
+    {{~#each (filter (action 'getFoo') array) as |item|~}}
       {{~item.name~}}
     {{~/each~}}
   `);

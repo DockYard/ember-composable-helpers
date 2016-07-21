@@ -11,9 +11,9 @@ moduleForComponent('filter', 'Integration | Helper | {{reduce}}', {
 test('It accepts a callback', function(assert) {
   this.set('array', emberArray([1, 2, 3]));
 
-  this.on('callback', (previousValue, currentValue) => previousValue + currentValue);
+  this.on('sum', (previousValue, currentValue) => previousValue + currentValue);
 
-  this.render(hbs`{{reduce (action "callback") 0 array}}`);
+  this.render(hbs`{{reduce (action "sum") 0 array}}`);
 
   assert.equal(this.$().text(), 6);
 });
@@ -23,9 +23,9 @@ test('It re-evaluates when array content changes', function(assert) {
 
   this.set('array', array);
 
-  this.on('callback', (previousValue, currentValue) => previousValue + currentValue);
+  this.on('sum', (previousValue, currentValue) => previousValue + currentValue);
 
-  this.render(hbs`{{reduce (action "callback") 0 array}}`);
+  this.render(hbs`{{reduce (action "sum") 0 array}}`);
 
   assert.equal(this.$().text(), 6);
 
@@ -38,9 +38,9 @@ test('It re-evaluates when initial value changes', function(assert) {
   this.set('array', emberArray([1, 2, 3]));
   this.set('initialValue', 0);
 
-  this.on('callback', (previousValue, currentValue) => previousValue + currentValue);
+  this.on('sum', (previousValue, currentValue) => previousValue + currentValue);
 
-  this.render(hbs`{{reduce (action "callback") initialValue array}}`);
+  this.render(hbs`{{reduce (action "sum") initialValue array}}`);
 
   assert.equal(this.$().text(), 6);
 
