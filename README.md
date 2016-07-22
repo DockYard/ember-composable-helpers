@@ -28,7 +28,7 @@ This addon performs optional tree-shaking – you can specify which helpers to w
 
 ```js
 module.exports = function(defaults) {
-  var app = new EmberAddon(defaults, {
+  var app = new EmberApp(defaults, {
     'ember-composable-helpers': {
       only: ['inc', 'dec', 'pipe'],
       except: ['pipe', 'filter-by']
