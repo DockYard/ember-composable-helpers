@@ -4,6 +4,7 @@ import Helper from 'ember-helper';
 import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
+import { A as emberArray } from 'ember-array/utils';
 import { isEmpty } from 'ember-utils';
 
 const { defineProperty } = Ember;
@@ -29,7 +30,7 @@ export default Helper.extend({
       let array = get(this, 'array');
       let value = get(this, 'value');
 
-      return array.findBy(byPath, value);
+      return emberArray(array).findBy(byPath, value);
     }));
   }),
 
