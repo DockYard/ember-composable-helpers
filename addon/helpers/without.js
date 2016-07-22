@@ -1,4 +1,7 @@
-import { A as emberArray } from 'ember-array/utils';
+import {
+  A as emberArray,
+  isEmberArray as isArray
+} from 'ember-array/utils';
 import get from 'ember-metal/get';
 import { typeOf } from 'ember-utils';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
@@ -8,7 +11,7 @@ function contains(needle, haystack) {
 }
 
 export function without(needle, haystack) {
-  if (typeOf(haystack) !== 'array') {
+  if (!isArray(haystack)) {
     return false;
   }
 

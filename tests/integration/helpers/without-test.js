@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-const { A: emberArray, run } = Ember;
+const { ArrayProxy, A: emberArray, run } = Ember;
 
 moduleForComponent('without', 'Integration | Helper | {{without}}', {
   integration: true
@@ -58,4 +58,16 @@ test('it responds to changes', function(assert) {
 
   run(() => this.get('items').pushObject('quux'));
   assert.equal(this.$().text().trim(), 'foobarbaz', 'should not render quux');
+});
+
+test('it accepts array-like arrays', function(assert) {
+  this.set('items', ArrayProxy.create({ content: emberArray(['foo', 'bar', 'baz']) }));
+
+  this.render(hbs`
+    {{~#each (without "foo" items) as |remaining|~}}
+      {{remaining}}
+    {{~/each~}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'barbaz', 'should render remaining values');
 });
