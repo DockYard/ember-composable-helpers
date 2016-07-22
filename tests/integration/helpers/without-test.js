@@ -1,5 +1,8 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+
+const { A: emberArray, run } = Ember;
 
 moduleForComponent('without', 'Integration | Helper | {{without}}', {
   integration: true
@@ -40,4 +43,19 @@ test('it returns the same array when no values are ommitted', function(assert) {
   `);
 
   assert.equal(this.$().text().trim(), 'foobarbaz', 'should render remaining values');
+});
+
+test('it responds to changes', function(assert) {
+  this.set('items', emberArray(['foo', 'bar', 'baz']));
+
+  this.render(hbs`
+    {{~#each (without "quux" items) as |remaining|~}}
+      {{remaining}}
+    {{~/each~}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'foobarbaz', 'should render all values');
+
+  run(() => this.get('items').pushObject('quux'));
+  assert.equal(this.$().text().trim(), 'foobarbaz', 'should not render quux');
 });
