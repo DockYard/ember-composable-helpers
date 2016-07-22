@@ -24,16 +24,16 @@ Watch a free video overview presented by EmberMap:
 </a>
 
 ## Configuration
-This addon performs optional tree-shaking – you can specify which helpers to whitelist or blacklist using `only` or `except` within your `config/environment.js`:
+This addon performs optional tree-shaking – you can specify which helpers to whitelist or blacklist using `only` or `except` within your `ember-cli-build.js`:
 
 ```js
-module.exports = function(environment) {
-  var ENV = {
+module.exports = function(defaults) {
+  var app = new EmberAddon(defaults, {
     'ember-composable-helpers': {
       only: ['inc', 'dec', 'pipe'],
       except: ['pipe', 'filter-by']
     }
-  };
+  });
 ```
 
 Both `only` and `except` can be safely used together (the addon computes the diff), although it's best if you only use one for your own sanity.
