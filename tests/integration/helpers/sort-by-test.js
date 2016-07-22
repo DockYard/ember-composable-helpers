@@ -61,3 +61,29 @@ test('It also accepts an array of sort properties', function(assert) {
 
   assert.equal(this.$().text().trim(), 'abc', 'cab is sorted to abc');
 });
+
+test('It accepts a function sort property', function(assert) {
+  this.set('array', emberArray([
+    { name: 'c' },
+    { name: 'a' },
+    { name: 'b' }
+  ]));
+
+  this.on('sortBy', (a, b) => {
+    if (a.name > b.name) {
+      return 1;
+    } else if (a.name < b.name) {
+      return -1;
+    }
+
+    return 0;
+  });
+
+  this.render(hbs`
+    {{~#each (sort-by (action "sortBy") array) as |user|~}}
+      {{~user.name~}}
+    {{~/each~}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'abc', 'cab is sorted to abc');
+});

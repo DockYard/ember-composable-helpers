@@ -333,6 +333,14 @@ You can append `:desc` to properties to sort in reverse order.
 {{/each}}
 ```
 
+You can also pass a method as the first argument:
+
+```hbs
+{{#each (sort-by (action "mySortAction") users) as |user|}}
+  {{user.firstName}} {{user.lastName}} ({{user.age}})
+{{/each}}
+```
+
 **[⬆️ back to top](#available-helpers)**
 
 
