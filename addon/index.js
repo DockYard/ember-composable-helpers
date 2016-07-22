@@ -40,3 +40,4 @@ export { default as WithoutHelper } from './helpers/without';
 export { default as FlattenHelper } from './helpers/flatten';
 export { default as ObjectAtHelper } from './helpers/object-at';
 export { default as SliceHelper } from './helpers/slice';
+export { default as TitleizeHelper } from './helpers/titleize';
