@@ -113,6 +113,7 @@ For action helpers, this will mean better currying semantics:
   + [`has-previous`](#has-previous)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
+  + [`compact`](#compact)
 * [Math](#math-helpers)
   + [`inc`](#inc)
   + [`dec`](#dec)
@@ -576,12 +577,20 @@ Joins the given array with an optional separator into a string.
 **[⬆️ back to top](#available-helpers)**
 
 #### `compact`
-Removes blank items from an array.
+Removes blank items from an array or blank values from an object.
 
 ```hbs
 {{#each (compact arrayWithBlanks) as |notBlank|}}
   {{notBlank}} is most definitely not blank!
 {{/each}}
+```
+
+Or:
+
+```hbs
+{{#each-in (compacy objectWithBlanks) as |notBlankKey notBlankValue|}}
+  {{notBlankValue}} is also definitely not blank.
+{{/each-in}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
