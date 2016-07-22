@@ -77,6 +77,7 @@ For action helpers, this will mean better currying semantics:
   + [`dasherize`](#dasherize)
   + [`truncate`](#truncate)
   + [`underscore`](#underscore)
+  + [`titleize`](#titleize)
   + [`w`](#w)
 * [Array](#array-helpers)
   + [`array`](#array)
@@ -257,6 +258,15 @@ Capitalizes a string using `Ember.String.underscore`.
 ```hbs
 {{underscore "whatsThat"}}
 {{underscore phrase}}
+```
+**[⬆️ back to top](#available-helpers)**
+
+#### `titleize`
+Titleizes a string
+
+```hbs
+{{titleize "my big fat greek wedding"}}
+{{titleize phrase}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
