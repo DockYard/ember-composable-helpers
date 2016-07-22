@@ -103,6 +103,7 @@ For action helpers, this will mean better currying semantics:
   + [`chunk`](#chunk)
   + [`without`](#without)
   + [`shuffle`](#shuffle)
+  + [`slice`](#slice)
   + [`flatten`](#flatten)
   + [`object-at`](#object-at)
 * [Object](#object-helpers)
@@ -626,6 +627,15 @@ Shuffles an array with a randomizer function, or with `Math.random` as a default
 ```
 
 **[⬆️ back to top](#available-helpers)**
+
+#### `slice`
+Slices an array
+
+```hbs
+{{#each (slice 1 3 array) as |value|}}
+  {{value}}
+{{/each}}
+```
 
 #### `flatten`
 Flattens an array to a single dimension.
