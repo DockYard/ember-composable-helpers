@@ -5,7 +5,7 @@ import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
 
-const { K } = Ember;
+const { K, isEmpty } = Ember;
 
 /**
  * Creates a generic Helper class implementation that expects a `needle` and
@@ -18,16 +18,23 @@ const { K } = Ember;
  */
 export default function createNeedleHaystackHelper(fn = K) {
   return Helper.extend({
-    content: computed('needle.[]', 'haystack.[]', function() {
+    content: computed('needle.[]', 'haystack.[]', 'option', function() {
       let needle = get(this, 'needle');
       let haystack = get(this, 'haystack');
+      let option = get(this, 'option');
 
-      return fn(needle, haystack);
+      return fn(needle, haystack, option);
     }).readOnly(),
 
-    compute([needle, haystack]) {
+    compute([needle, option, haystack]) {
+      if (isEmpty(haystack)) {
+        haystack = option;
+        option = null;
+      }
+
       set(this, 'needle', needle);
       set(this, 'haystack', haystack);
+      set(this, 'option', option);
 
       return get(this, 'content');
     },
