@@ -18,16 +18,17 @@ module.exports = {
       app = app.app;
     }
 
-    var config = app.project.config(app.env) || {};
-    var addonConfig = config[this.name] || {};
-    this.whitelist = this.generateWhitelist(addonConfig);
-    this.blacklist = this.generateBlacklist(addonConfig);
+    this.app = app;
+    this.app.options = this.app.options || {};
+
+    var config = this.app.options[this.name] || {};
+    this.whitelist = this.generateWhitelist(config);
+    this.blacklist = this.generateBlacklist(config);
   },
 
   treeForAddon: function() {
     // see: https://github.com/ember-cli/ember-cli/issues/4463
     var tree = this._super.treeForAddon.apply(this, arguments);
-
     return this.filterHelpers(tree, new RegExp('^modules\/' + this.name + '\/helpers\/', 'i'));
   },
 
