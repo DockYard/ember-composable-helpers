@@ -1,6 +1,6 @@
 import {
   A as emberArray,
-  isEmberArray as isArray
+  isEmberArray
 } from 'ember-array/utils';
 import { filter } from 'ember-computed';
 import Helper from 'ember-helper';
@@ -11,7 +11,7 @@ import { isPresent } from 'ember-utils';
 
 export default Helper.extend({
   compute([array]) {
-    if (!isArray(array)) {
+    if (!isEmberArray(array)) {
       return emberArray([array]);
     }
 

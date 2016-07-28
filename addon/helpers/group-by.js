@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import {
   A as emberArray,
-  isEmberArray as isArray
+  isEmberArray
 } from 'ember-array/utils';
 import computed from 'ember-computed';
 import Helper from 'ember-helper';
@@ -20,7 +20,7 @@ const groupFunction = function() {
     let groupName = get(item, byPath);
     let group = get(groups, groupName);
 
-    if (!isArray(group)) {
+    if (!isEmberArray(group)) {
       group = emberArray();
       set(groups, groupName, group);
     }

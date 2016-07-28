@@ -1,12 +1,12 @@
 import Helper from 'ember-helper';
-import { A as emberArray, isEmberArray as isArray } from 'ember-array/utils';
+import { A as emberArray, isEmberArray } from 'ember-array/utils';
 import computed from 'ember-computed';
 import observer from 'ember-metal/observer';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 
 export function objectAt(index, array) {
-  if (!isArray(array)) {
+  if (!isEmberArray(array)) {
     return undefined;
   }
 

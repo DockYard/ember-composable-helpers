@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { isEmberArray as isArray } from 'ember-array/utils';
+import { isEmberArray } from 'ember-array/utils';
 import { sort } from 'ember-computed';
 import Helper from 'ember-helper';
 import get from 'ember-metal/get';
@@ -14,7 +14,7 @@ export default Helper.extend({
     let array = sortProps.pop();
     let [firstSortProp] = sortProps;
 
-    if (typeOf(firstSortProp) === 'function' || isArray(firstSortProp)) {
+    if (typeOf(firstSortProp) === 'function' || isEmberArray(firstSortProp)) {
       sortProps = firstSortProp;
     }
 
