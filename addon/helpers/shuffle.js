@@ -1,6 +1,6 @@
 import {
   A as emberArray,
-  isEmberArray as isArray
+  isEmberArray
 } from 'ember-array/utils';
 import Helper from 'ember-helper';
 import observer from 'ember-metal/observer';
@@ -31,7 +31,7 @@ export default Helper.extend({
       random = undefined;
     }
 
-    if (!isArray(array)) {
+    if (!isEmberArray(array)) {
       return emberArray([array]);
     }
 

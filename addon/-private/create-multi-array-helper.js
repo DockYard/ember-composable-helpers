@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import {
   A as emberArray,
-  isEmberArray as isArray
+  isEmberArray
 } from 'ember-array/utils';
 import Helper from 'ember-helper';
 import { guidFor } from 'ember-metal/utils';
@@ -17,7 +17,7 @@ export default function(multiArrayComputed) {
   return Helper.extend({
     compute([...arrays]) {
       set(this, 'arrays', arrays.map((obj) => {
-        if (isArray(obj)) {
+        if (isEmberArray(obj)) {
           return emberArray(obj);
         }
 

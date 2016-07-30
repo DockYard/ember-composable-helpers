@@ -1,4 +1,4 @@
-import { isEmberArray as isArray } from 'ember-array/utils';
+import { isEmberArray } from 'ember-array/utils';
 import computed from 'ember-computed';
 import Helper from 'ember-helper';
 import get from 'ember-metal/get';
@@ -12,7 +12,7 @@ export function chunk(num, array) {
   let size = max(integer, 0);
 
   let length = 0;
-  if (isArray(array)) {
+  if (isEmberArray(array)) {
     length = get(array, 'length');
   }
 

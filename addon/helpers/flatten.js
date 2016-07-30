@@ -1,10 +1,10 @@
 import Helper from 'ember-helper';
-import { isEmberArray as isArray } from 'ember-array/utils';
+import { isEmberArray } from 'ember-array/utils';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
 
 export function flatten(array) {
-  if (!isArray(array)) {
+  if (!isEmberArray(array)) {
     return array;
   }
 

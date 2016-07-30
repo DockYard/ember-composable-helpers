@@ -1,6 +1,6 @@
 import {
   A as emberArray,
-  isEmberArray as isArray
+  isEmberArray
 } from 'ember-array/utils';
 import get from 'ember-metal/get';
 import { typeOf } from 'ember-utils';
@@ -11,7 +11,7 @@ function contains(needle, haystack) {
 }
 
 export function without(needle, haystack) {
-  if (!isArray(haystack)) {
+  if (!isEmberArray(haystack)) {
     return false;
   }
 

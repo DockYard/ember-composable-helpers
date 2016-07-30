@@ -1,6 +1,6 @@
 import {
   A as emberArray,
-  isEmberArray as isArray
+  isEmberArray
 } from 'ember-array/utils';
 import Helper from 'ember-helper';
 import observer from 'ember-metal/observer';
@@ -8,7 +8,7 @@ import set from 'ember-metal/set';
 
 export default Helper.extend({
   compute([array]) {
-    if (!isArray(array)) {
+    if (!isEmberArray(array)) {
       return [array];
     }
 
