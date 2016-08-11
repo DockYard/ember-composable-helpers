@@ -238,7 +238,7 @@ Classifies a string using `Ember.String.classify`.
 **[⬆️ back to top](#available-helpers)**
 
 #### `dasherize`
-Capitalizes a string using `Ember.String.dasherize`.
+Dasherizes a string using `Ember.String.dasherize`.
 
 ```hbs
 {{dasherize "whatsThat"}}
