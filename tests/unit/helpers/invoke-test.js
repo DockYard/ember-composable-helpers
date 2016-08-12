@@ -2,7 +2,7 @@ import Ember from 'ember';
 import { invoke } from 'dummy/helpers/invoke';
 import { module, test } from 'qunit';
 
-const { RSVP: { resolve } } = Ember;
+const { A, RSVP: { resolve } } = Ember;
 
 module('Unit | Helper | invoke');
 
@@ -36,7 +36,7 @@ test('it is promise aware', function(assert) {
 
 test('it wraps array of promises in another promise', function(assert) {
   let done = assert.async();
-  let array = Ember.A();
+  let array = A();
 
   array.pushObject({
     func() {

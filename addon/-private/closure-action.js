@@ -1,11 +1,13 @@
 import Ember from 'ember';
 
+const { __loader } = Ember;
+
 let ClosureActionModule;
 
-if ('ember-htmlbars/keywords/closure-action' in Ember.__loader.registry) {
-  ClosureActionModule = Ember.__loader.require('ember-htmlbars/keywords/closure-action');
+if ('ember-htmlbars/keywords/closure-action' in __loader.registry) {
+  ClosureActionModule = __loader.require('ember-htmlbars/keywords/closure-action');
 } else {
-  ClosureActionModule = Ember.__loader.require('ember-routing-htmlbars/keywords/closure-action');
+  ClosureActionModule = __loader.require('ember-routing-htmlbars/keywords/closure-action');
 }
 
 export default ClosureActionModule.ACTION;
