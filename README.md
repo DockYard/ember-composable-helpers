@@ -78,6 +78,7 @@ For action helpers, this will mean better currying semantics:
   + [`dasherize`](#dasherize)
   + [`truncate`](#truncate)
   + [`underscore`](#underscore)
+  + [`html-safe`](#html-safe)
   + [`titleize`](#titleize)
   + [`w`](#w)
 * [Array](#array-helpers)
@@ -263,6 +264,15 @@ Capitalizes a string using `Ember.String.underscore`.
 ```hbs
 {{underscore "whatsThat"}}
 {{underscore phrase}}
+```
+**[⬆️ back to top](#available-helpers)**
+
+#### `html-safe`
+Mark a string as safe for unescaped output with Ember templates using `Ember.String.htmlSafe`
+
+```hbs
+{{html-safe "<div>someString</div>"}}
+{{html-safe unsafeString}}
 ```
 **[⬆️ back to top](#available-helpers)**
 
