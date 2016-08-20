@@ -268,7 +268,7 @@ Capitalizes a string using `Ember.String.underscore`.
 **[⬆️ back to top](#available-helpers)**
 
 #### `html-safe`
-Mark a string as safe for unescaped output with Ember templates using `Ember.String.htmlSafe`
+Mark a string as safe for unescaped output with Ember templates using `Ember.String.htmlSafe`.
 
 ```hbs
 {{html-safe "<div>someString</div>"}}
