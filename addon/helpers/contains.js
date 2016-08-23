@@ -2,9 +2,10 @@ import { A as emberArray } from 'ember-array/utils';
 import get from 'ember-metal/get';
 import { isEmberArray } from 'ember-array/utils';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
+import includes from '../utils/includes';
 
 function _contains(needle, haystack) {
-  return emberArray(haystack).contains(needle);
+  return includes(emberArray(haystack), needle);
 }
 
 export function contains(needle, haystack) {

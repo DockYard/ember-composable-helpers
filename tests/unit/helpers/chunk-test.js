@@ -4,6 +4,8 @@ import computed from 'ember-computed';
 import { chunk } from 'dummy/helpers/chunk';
 import { module, test } from 'qunit';
 
+const { ArrayProxy: emberArrayProxy } = Ember;
+
 module('Unit | Helper | chunk');
 
 test('it chunks an empty array', function(assert) {
@@ -59,7 +61,7 @@ test('it chunks an array into parts of less than current array length', function
 });
 
 test('it handles arrays with computed property lengths', function(assert) {
-  let ap = Ember.ArrayProxy.extend({
+  let ap = emberArrayProxy.extend({
     content: emberArray([1, 2, 3]),
     length:  computed('content.[]', function() {
       return this.get('content.length');

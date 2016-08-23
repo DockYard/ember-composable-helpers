@@ -9,12 +9,12 @@ import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
 
-const { defineProperty } = Ember;
+const { defineProperty, Object: emberObject } = Ember;
 
 const groupFunction = function() {
   let array = get(this, 'array');
   let byPath = get(this, 'byPath');
-  let groups = Ember.Object.create();
+  let groups = emberObject.create();
 
   array.forEach((item) => {
     let groupName = get(item, byPath);

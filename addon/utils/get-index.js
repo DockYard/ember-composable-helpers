@@ -1,14 +1,16 @@
+import { A as emberArray } from 'ember-array/utils';
 import isEqual from '../utils/is-equal';
 
 export default function getIndex(array, currentValue, useDeepEqual) {
-  let index;
-  if (useDeepEqual) {
-    index = array.findIndex((object) => {
-      return isEqual(object, currentValue, useDeepEqual);
-    });
-  } else {
-    index = array.indexOf(currentValue);
-  }
+  let needle = currentValue;
 
-  return index >= 0 ? index : null;
+  if (useDeepEqual) {
+    needle = emberArray(array).find((object) => {
+      return isEqual(object, currentValue, useDeepEqual);
+    });
+  }
+
+  let index = emberArray(array).indexOf(needle);
+
+  return index >= 0 ? index : null;
 }

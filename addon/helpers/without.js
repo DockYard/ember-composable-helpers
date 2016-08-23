@@ -5,9 +5,10 @@ import {
 import get from 'ember-metal/get';
 import { typeOf } from 'ember-utils';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
+import includes from '../utils/includes';
 
 function contains(needle, haystack) {
-  return emberArray(haystack).contains(needle);
+  return includes(emberArray(haystack), needle);
 }
 
 export function without(needle, haystack) {
