@@ -465,7 +465,7 @@ Invokes a method on an object, or on each object of an array.
 ```hbs
 <div id="popup">
   {{#each people as |person|}}
-    <button {{action (invoke "rollbackAttributes")}}>
+    <button {{action (invoke "rollbackAttributes" person)}}>
       Undo
     </button>
   {{/each}}
