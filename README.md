@@ -71,6 +71,7 @@ For action helpers, this will mean better currying semantics:
   + [`compute`](#compute)
   + [`toggle`](#toggle)
   + [`optional`](#optional)
+  + [`queue`](#queue)
 * [String](#string-helpers)
   + [`camelize`](#camelize)
   + [`capitalize`](#capitalize)
@@ -200,6 +201,23 @@ Allows for the passed in action to not exist.
 
 ```hbs
 <button {{action (optional handleClick)}}>Click Me</button>
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `queue`
+
+Like `pipe`, this helper runs actions in a sequence (from left-to-right). The
+difference is that this helper passes the original arguments to each action, not
+the result of the previous action in the sequence.
+
+If one of the actions in the sequence returns a promise, then it will wait for
+that promise to resolve before calling the next action in the sequence. If a
+promise is rejected it will stop the sequence and no further actions will be
+called.
+
+```hbs
+<button {{action (queue (action "backupData") (action "unsafeOperation") (action "restoreBackup"))}} />
 ```
 
 **[⬆️ back to top](#available-helpers)**
