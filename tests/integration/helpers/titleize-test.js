@@ -22,3 +22,10 @@ test('It handles undefined', function(assert) {
 
   assert.equal(this.$().text().trim(), '', 'No value');
 });
+
+test('It handles null', function(assert) {
+  this.set('value', null);
+  this.render(hbs`{{titleize value}}`);
+
+  assert.equal(this.$().text().trim(), '', 'No value');
+});
