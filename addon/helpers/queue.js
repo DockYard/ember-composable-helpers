@@ -3,7 +3,7 @@ import isPromise from '../utils/is-promise';
 
 export function queue(actions = []) {
   return function(...args) {
-    const invokeWithArgs = function(acc, curr) {
+    let invokeWithArgs = function(acc, curr) {
       if (isPromise(acc)) {
         return acc.then(() => curr(...args));
       }
