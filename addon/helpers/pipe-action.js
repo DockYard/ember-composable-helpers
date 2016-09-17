@@ -3,6 +3,8 @@ import { pipe } from './pipe';
 import ACTION from '../-private/closure-action';
 
 const closurePipe = pipe;
-closurePipe[ACTION] = true;
+if (ACTION) {
+  closurePipe[ACTION] = true;
+}
 
 export default helper(closurePipe);
