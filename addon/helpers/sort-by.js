@@ -10,7 +10,9 @@ import { isEmpty, typeOf } from 'ember-utils';
 const { defineProperty } = Ember;
 
 export default Helper.extend({
-  compute(sortProps) {
+  compute(params) {
+    // slice params to avoid mutating the provided params
+    let sortProps = params.slice();
     let array = sortProps.pop();
     let [firstSortProp] = sortProps;
 
