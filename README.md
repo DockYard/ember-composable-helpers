@@ -801,6 +801,7 @@ Decrements by `1` or `step`.
 ### See also:
 
 * [ember-truth-helpers](https://github.com/jmurphyau/ember-truth-helpers)
+* [ember-math-helpers](https://github.com/shipshapecode/ember-math-helpers)
 
 ## Legal
 
