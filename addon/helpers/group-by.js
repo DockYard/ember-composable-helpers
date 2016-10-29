@@ -22,7 +22,7 @@ const groupFunction = function() {
 
     if (!isEmberArray(group)) {
       group = emberArray();
-      set(groups, groupName, group);
+      groups[`${groupName}`] = group;
     }
 
     group.push(item);
