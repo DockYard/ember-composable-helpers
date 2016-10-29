@@ -47,3 +47,22 @@ test('It watches for changes', function(assert) {
 
   assert.equal(this.$().text().trim(), 'aabbccd', 'aabbccd is the right order');
 });
+
+test('It groups by properties that contain punctuation', function(assert) {
+  this.set('array', emberArray([
+    { category: 'a, inc.', name: 'a' },
+    { category: 'b, co.', name: 'b' },
+    { category: 'c. l.l.p.', name: 'c' },
+    { category: 'd & co.', name: 'd' }
+  ]));
+
+  this.render(hbs`
+    {{~#each-in (group-by 'category' array) as |category entries|~}}
+      {{~category~}}
+      {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
+    {{~/each-in~}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'a, inc.ab, co.bc. l.l.p.cd & co.d', 'a, inc.ab, co.bc. l.l.p.cd & co.d is the right output');
+});
+
