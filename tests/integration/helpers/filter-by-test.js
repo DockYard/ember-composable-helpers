@@ -139,3 +139,25 @@ test('It can be passed an action', function(assert) {
 
   assert.equal(this.$().text().trim(), 'ac', 'b is filtered out');
 });
+
+test('It respects objects that implement isEqual interface', function(assert) {
+  this.set('firstTarget', {
+    isEqual(value) {
+      return value === 1;
+    }
+  });
+
+  this.set('array', emberArray([
+    { foo: 1, name: 'a' },
+    { foo: 2, name: 'b' },
+    { foo: 3, name: 'c' }
+  ]));
+
+  this.render(hbs`
+    {{~#each (filter-by 'foo' firstTarget array) as |item|~}}
+      {{~item.name~}}
+    {{~/each~}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'a', 'b and c are filtered out');
+});
