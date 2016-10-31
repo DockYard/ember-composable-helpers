@@ -41,6 +41,17 @@ let testData = [
     secondValue: 'a',
     useDeepEqual: false,
     expected: true
+  },
+  {
+    label: 'Ember.isEqual Support',
+    firstValue: EmberObject.extend({
+      isEqual(value) {
+        return this.get('value') === value;
+      }
+    }).create({ 'value': 10 }),
+    secondValue: 10,
+    useDeepEqual: false,
+    expected: true
   }
 ];
 
