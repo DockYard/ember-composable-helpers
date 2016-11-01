@@ -6,6 +6,7 @@ import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
 import { isEmpty, isPresent } from 'ember-utils';
+import isEqual from '../utils/is-equal';
 
 const { defineProperty } = Ember;
 
@@ -39,7 +40,7 @@ export default Helper.extend({
       if (typeof value === 'function') {
         filterFn = (item) => !value(get(item, byPath));
       } else {
-        filterFn = (item) => get(item, byPath) !== value;
+        filterFn = (item) => !isEqual(get(item, byPath), value);
       }
     } else {
       filterFn = (item) => isEmpty(get(item, byPath));
