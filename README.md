@@ -109,6 +109,7 @@ For action helpers, this will mean better currying semantics:
 * [Math](#math-helpers)
   + [`inc`](#inc)
   + [`dec`](#dec)
+* [String](#string-helpers)
 
 ## Usage
 
@@ -683,6 +684,12 @@ Decrements by `1` or `step`.
 ```
 
 **[⬆️ back to top](#available-helpers)**
+
+---
+
+### String helpers
+
+String helpers were extracted to the [ember-cli-string-helpers](https://github.com/romulomachado/ember-cli-string-helpers) addon.
 
 ### See also:
 
