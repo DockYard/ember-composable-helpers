@@ -128,7 +128,8 @@ For action helpers, this will mean better currying semantics:
 Pipes the return values of actions in a sequence of actions. This is useful to compose a pipeline of actions, so each action can do only one thing.
 
 ```hbs
-<button {{action (pipe addToCart purchase redirectToThankYouPage) item}}>
+
+<button {{ action ( pipe ( action 'addToCart') (action 'purchase') ( action 'redirectToThankYouPage' )) item}}>
   1-Click Buy
 </button>
 ```
