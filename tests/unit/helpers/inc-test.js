@@ -14,3 +14,9 @@ test('it increments a value by step', function(assert) {
 
   assert.equal(result, 3, 'should equal 3');
 });
+
+test('it increments a value by step float', function(assert) {
+  let result = inc([1.5, 2]);
+
+  assert.equal(result, 3.5, 'should equal 3.5');
+});
