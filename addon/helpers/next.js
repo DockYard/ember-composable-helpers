@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { A as emberArray } from 'ember-array/utils';
 import getIndex from '../utils/get-index';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
 
@@ -12,7 +13,7 @@ export function next(currentValue, array, useDeepEqual = false) {
     return;
   }
 
-  return currentIndex === lastIndex ? currentValue : array[currentIndex + 1];
+  return currentIndex === lastIndex ? currentValue : emberArray(array).objectAt(currentIndex + 1);
 }
 
 export default createNeedleHaystackHelper(next);

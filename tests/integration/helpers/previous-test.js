@@ -56,3 +56,29 @@ test('It recomputes if array changes', function(assert) {
 
   assert.equal(this.$().text().trim(), 1, '1 is added and shown');
 });
+
+test('It returns the previous value in an array of related models', function(assert) {
+  this.inject.service('store');
+
+  run(() => {
+    let person = this.get('store').createRecord('person', {
+      name: 'Adam'
+    });
+
+    person.get('pets').pushObjects([
+      this.get('store').createRecord('pet', { name: 'Kirby' }),
+      this.get('store').createRecord('pet', { name: 'Jake' })
+    ]);
+
+    this.set('model', person);
+    this.set('currentPet', person.get('pets.lastObject'));
+  });
+
+  this.render(hbs`
+    {{~#with (previous currentPet model.pets) as |pet|~}}
+      {{~pet.name~}}
+    {{~/with~}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'Kirby', 'the previous pet name is shown');
+});
