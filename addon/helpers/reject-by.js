@@ -43,7 +43,7 @@ export default Helper.extend({
         filterFn = (item) => !isEqual(get(item, byPath), value);
       }
     } else {
-      filterFn = (item) => isEmpty(get(item, byPath));
+      filterFn = (item) => !get(item, byPath);
     }
 
     let cp = filter(`array.@each.${byPath}`, filterFn);
