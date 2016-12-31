@@ -3,7 +3,9 @@ import { queue } from 'dummy/helpers/queue';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
-const { RSVP: { resolve, reject }, K } = Ember;
+const {
+  RSVP: { resolve, reject }
+} = Ember;
 let sandbox;
 
 const step0 = sinon.spy(() => resolve());
@@ -59,7 +61,7 @@ test('it aborts the chain if a promise in the queue rejects', function(assert) {
   let queued = queue([step0, fail, step1]);
 
   queued(2, 4)
-    .catch(K)
+    .catch(function() {})
     .finally(() => {
       assert.equal(step1.callCount, 0, 'should abort the chain');
       done();
