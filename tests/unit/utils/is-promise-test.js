@@ -3,8 +3,7 @@ import isPromise from 'ember-composable-helpers/utils/is-promise';
 import { module, test } from 'qunit';
 
 const {
-  RSVP: { Promise, resolve },
-  K
+  RSVP: { Promise, resolve }
 } = Ember;
 
 module('Unit | Utility | is promise');
@@ -19,11 +18,11 @@ let testData = [
     expected: true
   },
   {
-    value: { then: K, catch: K, finally: K },
+    value: { then() {}, catch() {}, finally() {} },
     expected: true
   },
   {
-    value: { then: K },
+    value: { then() {} },
     expected: false
   },
   {

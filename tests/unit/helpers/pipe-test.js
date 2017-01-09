@@ -3,7 +3,9 @@ import { pipe } from 'dummy/helpers/pipe';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
-const { RSVP: { resolve, reject }, K } = Ember;
+const {
+  RSVP: { resolve, reject }
+} = Ember;
 let sandbox;
 
 module('Unit | Helper | pipe', {
@@ -63,7 +65,7 @@ test('it aborts the chain if a promise in the pipeline rejects', function(assert
   let piped = pipe([add, reject, spy]);
 
   piped(2, 4)
-    .catch(K)
+    .catch(function() {})
     .finally(() => {
       assert.equal(spy.callCount, 0, 'should abort the chain');
       done();
