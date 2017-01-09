@@ -3,8 +3,7 @@ import isObject from './is-object';
 
 function isPromiseLike(obj = {}) {
   return typeOf(obj.then) === 'function' &&
-    typeOf(obj.catch) === 'function' &&
-    typeOf(obj.finally) === 'function';
+    typeOf(obj.catch) === 'function';
 }
 
 export default function isPromise(obj) {
