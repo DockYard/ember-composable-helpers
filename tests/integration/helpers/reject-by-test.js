@@ -26,11 +26,16 @@ test('It reject by value', function(assert) {
 
 test('It rejects by truthiness', function(assert) {
   this.set('array', emberArray([
-    { foo: 'x',  name: 'a' },
+    { foo: 'x', name: 'a' },
     { foo: undefined, name: 'b' },
-    { foo: 1,  name: 'c' },
-    { foo: null,  name: 'd' },
-    { foo: [1, 2, 3],  name: 'e' }
+    { foo: 1, name: 'c' },
+    { foo: null, name: 'd' },
+    { foo: [1, 2, 3], name: 'e' },
+    { foo: false, name: 'f' },
+    { foo: 0, name: 'g' },
+    { foo: '', name: 'h' },
+    { foo: NaN, name: 'i' },
+    { foo: [], name: 'j' }
   ]));
 
   this.render(hbs`
@@ -39,7 +44,7 @@ test('It rejects by truthiness', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'bd', 'a, c and e are filtered out');
+  assert.equal(this.$().text().trim(), 'bdfghi', 'a, c, e and j are filtered out');
 });
 
 test('It recomputes the filter if array changes', function(assert) {
@@ -72,14 +77,16 @@ test('It recomputes the filter if a value under given path changes', function(as
   this.set('array', array);
 
   this.render(hbs`
-    {{~#each (reject-by 'foo' true array) as |item|~}}
+    {{~#each (reject-by 'foo' array) as |item|~}}
       {{~item.name~}}
     {{~/each~}}
   `);
 
+  assert.equal(this.$().text().trim(), 'ac', 'ac is shown');
+
   run(() => set(array.objectAt(1), 'foo', false));
 
-  assert.equal(this.$().text().trim(), 'abc', 'b is shown');
+  assert.equal(this.$().text().trim(), 'abc', 'b is added');
 });
 
 test('It can be passed an action', function(assert) {
@@ -98,4 +105,26 @@ test('It can be passed an action', function(assert) {
   `);
 
   assert.equal(this.$().text().trim(), 'ac', 'b is filtered out');
+});
+
+test('It respects objects that implement isEqual interface', function(assert) {
+  this.set('firstTarget', {
+    isEqual(value) {
+      return value === 1;
+    }
+  });
+
+  this.set('array', emberArray([
+    { foo: 1, name: 'a' },
+    { foo: 2, name: 'b' },
+    { foo: 3, name: 'c' }
+  ]));
+
+  this.render(hbs`
+    {{~#each (reject-by 'foo' firstTarget array) as |item|~}}
+      {{~item.name~}}
+    {{~/each~}}
+  `);
+
+  assert.equal(this.$().text().trim(), 'bc', 'a is filtered out');
 });

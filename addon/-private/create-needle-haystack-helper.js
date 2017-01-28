@@ -5,7 +5,10 @@ import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
 
-const { K, isEmpty } = Ember;
+const {
+  isEmpty
+} = Ember;
+const K = () => { };
 
 /**
  * Creates a generic Helper class implementation that expects a `needle` and

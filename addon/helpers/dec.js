@@ -7,7 +7,7 @@ export function dec([step, val]) {
     step = undefined;
   }
 
-  val = parseInt(val);
+  val = Number(val);
 
   if (isNaN(val)) {
     return;
