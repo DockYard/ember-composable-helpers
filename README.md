@@ -695,6 +695,7 @@ String helpers were extracted to the [ember-cli-string-helpers](https://github.c
 
 * [ember-truth-helpers](https://github.com/jmurphyau/ember-truth-helpers)
 * [ember-math-helpers](https://github.com/shipshapecode/ember-math-helpers)
+* [ember-cli-string-helpers](https://github.com/romulomachado/ember-cli-string-helpers)
 
 ## Legal
 
