@@ -8,6 +8,7 @@ import set from 'ember-metal/set';
 const {
   isEmpty
 } = Ember;
+const K = () => { };
 
 /**
  * Creates a generic Helper class implementation that expects a `needle` and
