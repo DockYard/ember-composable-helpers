@@ -72,16 +72,6 @@ For action helpers, this will mean better currying semantics:
   + [`toggle`](#toggle)
   + [`optional`](#optional)
   + [`queue`](#queue)
-* [String](#string-helpers)
-  + [`camelize`](#camelize)
-  + [`capitalize`](#capitalize)
-  + [`classify`](#classify)
-  + [`dasherize`](#dasherize)
-  + [`truncate`](#truncate)
-  + [`underscore`](#underscore)
-  + [`html-safe`](#html-safe)
-  + [`titleize`](#titleize)
-  + [`w`](#w)
 * [Array](#array-helpers)
   + [`array`](#array)
   + [`map`](#map)
@@ -119,6 +109,7 @@ For action helpers, this will mean better currying semantics:
 * [Math](#math-helpers)
   + [`inc`](#inc)
   + [`dec`](#dec)
+* [String](#string-helpers)
 
 ## Usage
 
@@ -219,110 +210,6 @@ called.
 ```hbs
 <button {{action (queue (action "backupData") (action "unsafeOperation") (action "restoreBackup"))}} />
 ```
-
-**[⬆️ back to top](#available-helpers)**
-
----
-
-### String helpers
-
-#### `camelize`
-Camelizes a string using `Ember.String.camelize`.
-
-```hbs
-{{camelize "hello jim bob"}}
-{{camelize stringWithDashes}}
-```
-
-**[⬆️ back to top](#available-helpers)**
-
-#### `capitalize`
-Capitalizes a string using `Ember.String.capitalize`.
-
-```hbs
-{{capitalize "hello jim bob"}}
-{{capitalize fullName}}
-```
-
-**[⬆️ back to top](#available-helpers)**
-
-#### `classify`
-Classifies a string using `Ember.String.classify`.
-
-```hbs
-{{classify "hello jim bob"}}
-{{classify stringWithDashes}}
-```
-
-**[⬆️ back to top](#available-helpers)**
-
-#### `dasherize`
-Dasherizes a string using `Ember.String.dasherize`.
-
-```hbs
-{{dasherize "whatsThat"}}
-{{dasherize phrase}}
-```
-
-**[⬆️ back to top](#available-helpers)**
-
-#### `truncate`
-Truncates a string with a characterLimit.
-
-```hbs
-{{truncate "Lorem ipsum dolor sit amet, consectetur adipiscing elit." 20}}
-{{truncate phrase}}
-```
-
-**[⬆️ back to top](#available-helpers)**
-
-#### `underscore`
-Capitalizes a string using `Ember.String.underscore`.
-
-```hbs
-{{underscore "whatsThat"}}
-{{underscore phrase}}
-```
-**[⬆️ back to top](#available-helpers)**
-
-#### `html-safe`
-Mark a string as safe for unescaped output with Ember templates using `Ember.String.htmlSafe`.
-
-```hbs
-{{html-safe "<div>someString</div>"}}
-{{html-safe unsafeString}}
-```
-**[⬆️ back to top](#available-helpers)**
-
-#### `titleize`
-Titleizes a string
-
-```hbs
-{{titleize "my big fat greek wedding"}}
-{{titleize phrase}}
-```
-
-**[⬆️ back to top](#available-helpers)**
-
-#### `w`
-Splits a string on whitespace and/or turns multiple words into an array
-
-```hbs
-{{#each (w "First" "Second" "Last") as |rank|}}
-  Our {{rank}} place winner is ...
-{{/each}}
-```
-
-or:
-
-```hbs
-{{#each (w "First Second Last") as |rank|}}
-  Our {{rank}} place winner is ...
-{{/each}}
-```
-
-See also: [Ember `w` documentation](http://emberjs.com/api/classes/Ember.String.html#method_w)
-
 
 **[⬆️ back to top](#available-helpers)**
 
@@ -797,6 +684,12 @@ Decrements by `1` or `step`.
 ```
 
 **[⬆️ back to top](#available-helpers)**
+
+---
+
+### String helpers
+
+String helpers were extracted to the [ember-cli-string-helpers](https://github.com/romulomachado/ember-cli-string-helpers) addon.
 
 ### See also:
 
