@@ -16,9 +16,10 @@ test('it queues actions', function(assert) {
   this.on('process', (x) => this.set('value', x * x));
   this.on('undoAThing', () => null);
   this.set('value', 2);
+  this.set('doNotExecute', false);
   this.render(hbs`
     <p>{{value}}</p>
-    <button {{action (queue (action "doAThing") (action "process") (action "undoAThing")) value}}>
+    <button {{action (queue (action "doAThing") (action "process") (if doNotExecute (action "undoAThing"))) value}}>
       Calculate
     </button>
   `);
