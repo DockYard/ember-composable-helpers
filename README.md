@@ -64,6 +64,9 @@ For action helpers, this will mean better currying semantics:
 </button>
 ```
 
+## Upgrade Guide
+For help upgrading between major versions, check out the [upgrading documentation](https://github.com/DockYard/ember-composable-helpers/blob/master/UPGRADING.md).
+
 ## Available helpers
 
 * [Action](#action-helpers)
