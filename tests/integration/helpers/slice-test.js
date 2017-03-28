@@ -32,3 +32,19 @@ test('It recomputes the slice if an item in the array changes', function(assert)
 
   assert.equal(this.$().text().trim(), '4,5', 'sliced values');
 });
+
+test('It slices an array with only two params (start, array) passed to the helper', function(assert) {
+  this.set('array', emberArray([2, 4, 6]));
+
+  this.render(hbs`
+    {{slice 1 array}}
+  `);
+
+  assert.equal(this.$().text().trim(), '4,6', 'sliced values');
+
+  this.render(hbs`
+    {{slice -1 array}}
+  `);
+
+  assert.equal(this.$().text().trim(), '6', 'sliced values');
+});
