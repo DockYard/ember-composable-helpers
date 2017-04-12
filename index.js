@@ -38,7 +38,7 @@ module.exports = {
     var _this = this;
 
     // exit early if no opts defined
-    if (whitelist.length === 0 && blacklist.length === 0) {
+    if ((!whitelist || whitelist.length === 0) && (!blacklist || blacklist.length === 0)) {
       return new Funnel(tree);
     }
 
