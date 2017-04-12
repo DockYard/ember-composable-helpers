@@ -1,6 +1,6 @@
 {
   "name": "ember-composable-helpers",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Composable helpers for Ember",
   "directories": {
     "doc": "doc",
