@@ -605,7 +605,7 @@ Returns the next element in the array given the current element. **Note:** Accep
 parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed.
 
 ```hbs
-<button onclick={{action (mut selectedItem) (next selectedItem useDeepEqual items)}}>Next</button>
+<button onclick={{action (mut selectedItem) (next selectedItem items useDeepEqual)}}>Next</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
@@ -615,7 +615,7 @@ Checks if the array has an element after the given element. **Note:** Accepts an
 parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed.
 
 ```hbs
-{{#if (has-next page useDeepEqual pages)}}
+{{#if (has-next page pages useDeepEqual)}}
   <button>Next</button>
 {{/if}}
 ```
@@ -627,7 +627,7 @@ Returns the previous element in the array given the current element. **Note:** A
 parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed.
 
 ```hbs
-<button onclick={{action (mut selectedItem) (previous selectedItem useDeepEqual items)}}>Previous</button>
+<button onclick={{action (mut selectedItem) (previous selectedItem items useDeepEqual)}}>Previous</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
@@ -637,7 +637,7 @@ Checks if the array has an element before the given element. **Note:** Accepts a
 parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed
 
 ```hbs
-{{#if (has-previous page useDeepEqual pages)}}
+{{#if (has-previous page pages useDeepEqual)}}
   <button>Previous</button>
 {{/if}}
 ```
