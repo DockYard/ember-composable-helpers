@@ -107,6 +107,7 @@ For help upgrading between major versions, check out the [upgrading documentatio
   + [`has-next`](#has-next)
   + [`previous`](#previous)
   + [`has-previous`](#has-previous)
+  + [`cycle`](#cycle)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -640,6 +641,16 @@ parameter, `useDeepEqual`, to flag whether a deep equal comparison should be per
 {{#if (has-previous page useDeepEqual pages)}}
   <button>Previous</button>
 {{/if}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `cycle`
+Returns the next element in the array given the current element and starts again with the first once the last is reached. **Note:** Accepts an optional boolean
+parameter, `useDeepEqual`, to flag whether a deep equal comparison should be performed.
+
+```hbs
+<button onclick={{action (mut selectedItem) (cycle selectedItem useDeepEqual items)}}>Cycle</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
