@@ -194,7 +194,7 @@ Toggles a boolean value.
 Allows for the passed in action to not exist.
 
 ```hbs
-<button {{action (optional handleClick)}}>Click Me</button>
+<button {{action (optional handleClick "foo")}}>Click Me</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**

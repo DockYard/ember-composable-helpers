@@ -1,8 +1,8 @@
 import { helper } from 'ember-helper';
 
-export function optional([action]) {
+export function optional([action, ...args]) {
   if (typeof action === 'function') {
-    return action;
+    return action.bind(this, ...args);
   }
 
   return (i) => i;

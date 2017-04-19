@@ -28,3 +28,14 @@ test('Works in a pipe', function(assert) {
     <button onclick={{action (pipe (action (optional handler)) (action "check")) 42}}></button> `);
   run(() => this.$('button').click());
 });
+
+test('Passes parameters', function(assert) {
+  assert.expect(2);
+  this.set('handler', (value1, value2) => {
+    assert.equal(value1, 42);
+    assert.equal(value2, 'foo');
+  });
+  this.render(hbs`
+    <button onclick={{action (action (optional handler 42 'foo'))}}></button> `);
+  run(() => this.$('button').click());
+});
