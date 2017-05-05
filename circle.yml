@@ -1,13 +1,15 @@
 machine:
   node:
     version: "stable"
+  environment:
+    PATH: "${PATH}:${HOME}/${CIRCLE_PROJECT_REPONAME}/node_modules/.bin"
+
 dependencies:
-  pre:
-    - npm install -g bower
-  post:
-    - npm install
-    - bower install
+  override:
+    - yarn
+  cache_directories:
+    - ~/.cache/yarn
+
 test:
   override:
-    - npm run-script node-test
-    - npm test
+    - yarn test
