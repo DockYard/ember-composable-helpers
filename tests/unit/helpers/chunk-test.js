@@ -63,7 +63,7 @@ test('it chunks an array into parts of less than current array length', function
 test('it handles arrays with computed property lengths', function(assert) {
   let ap = emberArrayProxy.extend({
     content: emberArray([1, 2, 3]),
-    length:  computed('content.[]', function() {
+    length: computed('content.[]', function() {
       return this.get('content.length');
     })
   }).create();
