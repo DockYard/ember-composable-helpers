@@ -6,7 +6,7 @@ export function repeat([length, value]) {
     return [value];
   }
 
-  return Array.apply(null, { length }).map(() => value);
+  return Array.apply(null, { length }).map(() => value); // eslint-disable-line prefer-spread
 }
 
 export default helper(repeat);
