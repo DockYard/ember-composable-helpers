@@ -25,7 +25,7 @@ Watch a free video overview presented by EmberMap:
 </a>
 
 ## Configuration
-This addon performs optional tree-shaking – you can specify which helpers to whitelist or blacklist using `only` or `except` within your `ember-cli-build.js`:
+If you don't need all the helpers, you can specify which to whitelist or blacklist using `only` or `except` within your `ember-cli-build.js`:
 
 ```js
 module.exports = function(defaults) {
