@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -15,7 +16,7 @@ test('It accepts a callback', function(assert) {
 
   this.render(hbs`{{reduce (action "sum") 0 array}}`);
 
-  assert.equal(this.$().text(), 6);
+  assert.equal(find('*').textContent, 6);
 });
 
 test('It re-evaluates when array content changes', function(assert) {
@@ -27,11 +28,11 @@ test('It re-evaluates when array content changes', function(assert) {
 
   this.render(hbs`{{reduce (action "sum") 0 array}}`);
 
-  assert.equal(this.$().text(), 6);
+  assert.equal(find('*').textContent, 6);
 
   run(() => array.pushObject(4));
 
-  assert.equal(this.$().text(), 10);
+  assert.equal(find('*').textContent, 10);
 });
 
 test('It re-evaluates when initial value changes', function(assert) {
@@ -42,11 +43,11 @@ test('It re-evaluates when initial value changes', function(assert) {
 
   this.render(hbs`{{reduce (action "sum") initialValue array}}`);
 
-  assert.equal(this.$().text(), 6);
+  assert.equal(find('*').textContent, 6);
 
   this.set('initialValue', 4);
 
-  assert.equal(this.$().text(), 10);
+  assert.equal(find('*').textContent, 10);
 });
 
 test('It re-evaluates when callback changes', function(assert) {
@@ -57,9 +58,9 @@ test('It re-evaluates when callback changes', function(assert) {
 
   this.render(hbs`{{reduce (action (if isNegative "negative" "positive")) 0 array}}`);
 
-  assert.equal(this.$().text(), 6);
+  assert.equal(find('*').textContent, 6);
 
   this.set('isNegative', true);
 
-  assert.equal(this.$().text(), -6);
+  assert.equal(find('*').textContent, -6);
 });

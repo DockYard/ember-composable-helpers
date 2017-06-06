@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -17,7 +18,7 @@ test('it returns a new array with given value ommitted', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'barbaz', 'should render remaining values');
+  assert.equal(find('*').textContent.trim(), 'barbaz', 'should render remaining values');
 });
 
 test('it returns a new array with given values ommitted', function(assert) {
@@ -30,7 +31,7 @@ test('it returns a new array with given values ommitted', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'baz', 'should render remaining values');
+  assert.equal(find('*').textContent.trim(), 'baz', 'should render remaining values');
 });
 
 test('it returns the same array when no values are ommitted', function(assert) {
@@ -42,7 +43,7 @@ test('it returns the same array when no values are ommitted', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'foobarbaz', 'should render remaining values');
+  assert.equal(find('*').textContent.trim(), 'foobarbaz', 'should render remaining values');
 });
 
 test('it responds to changes', function(assert) {
@@ -54,10 +55,10 @@ test('it responds to changes', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'foobarbaz', 'should render all values');
+  assert.equal(find('*').textContent.trim(), 'foobarbaz', 'should render all values');
 
   run(() => this.get('items').pushObject('quux'));
-  assert.equal(this.$().text().trim(), 'foobarbaz', 'should not render quux');
+  assert.equal(find('*').textContent.trim(), 'foobarbaz', 'should not render quux');
 });
 
 test('it accepts array-like arrays', function(assert) {
@@ -69,5 +70,5 @@ test('it accepts array-like arrays', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'barbaz', 'should render remaining values');
+  assert.equal(find('*').textContent.trim(), 'barbaz', 'should render remaining values');
 });

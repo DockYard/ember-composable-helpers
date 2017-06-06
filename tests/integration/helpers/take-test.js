@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -17,7 +18,7 @@ test('It takes the first N entries of array', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), '12', 'first two values are kept');
+  assert.equal(find('*').textContent.trim(), '12', 'first two values are kept');
 });
 
 test('It watches for changes', function(assert) {
@@ -32,5 +33,5 @@ test('It watches for changes', function(assert) {
 
   run(() => array.unshiftObject(0));
 
-  assert.equal(this.$().text().trim(), '01', '0 and 1 are kept');
+  assert.equal(find('*').textContent.trim(), '01', '0 and 1 are kept');
 });

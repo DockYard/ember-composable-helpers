@@ -1,3 +1,4 @@
+import { click, find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -8,7 +9,7 @@ moduleForComponent('invoke', 'Integration | Helper | {{invoke}}', {
   integration: true
 });
 
-test('it invokes methods and handles promises', function(assert) {
+test('it invokes methods and handles promises', async function(assert) {
   this.set('value', 2);
   this.set('serverSideComputation', function(x) {
     return resolve(x * x);
@@ -22,12 +23,12 @@ test('it invokes methods and handles promises', function(assert) {
     </button>
   `);
 
-  assert.equal(this.$('p').text().trim(), '2', 'precond - should render 2');
-  this.$('button').click();
-  assert.equal(this.$('p').text().trim(), '4', 'should render 4');
+  assert.equal(find('p').textContent.trim(), '2', 'precond - should render 2');
+  await click('button');
+  assert.equal(find('p').textContent.trim(), '4', 'should render 4');
 });
 
-test('it invokes methods and handles promise arrays', function(assert) {
+test('it invokes methods and handles promise arrays', async function(assert) {
   class Square {
     constructor(side) {
       this.side = side;
@@ -49,6 +50,6 @@ test('it invokes methods and handles promise arrays', function(assert) {
     </button>
   `);
 
-  this.$('button').click();
-  assert.equal(this.$('p').text().trim(), '14', 'should render 14');
+  await click('button');
+  assert.equal(find('p').textContent.trim(), '14', 'should render 14');
 });

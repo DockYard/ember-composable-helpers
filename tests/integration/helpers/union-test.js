@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -19,7 +20,7 @@ test('It takes the union of the given arrays', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'foobarbazqux', 'union leaves no repeated words');
+  assert.equal(find('*').textContent.trim(), 'foobarbazqux', 'union leaves no repeated words');
 });
 
 test('It watches for changes', function(assert) {
@@ -35,5 +36,5 @@ test('It watches for changes', function(assert) {
 
   run(() => this.get('array1').pushObject('leet'));
 
-  assert.equal(this.$().text().trim(), 'foobarleetbazqux', 'leet is added');
+  assert.equal(find('*').textContent.trim(), 'foobarleetbazqux', 'leet is added');
 });

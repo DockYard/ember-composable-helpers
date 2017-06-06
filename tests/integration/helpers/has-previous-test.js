@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -20,7 +21,7 @@ test('it checks if an array has a previous value', function(assert) {
 
   this.render(hbs`{{has-previous value useDeepEqual array}}`);
 
-  assert.equal(this.$().text().trim(), 'true', 'should render true');
+  assert.equal(find('*').textContent.trim(), 'true', 'should render true');
 });
 
 test('It recomputes if array changes', function(assert) {
@@ -29,9 +30,9 @@ test('It recomputes if array changes', function(assert) {
 
   this.render(hbs`{{has-previous value array}}`);
 
-  assert.equal(this.$().text().trim(), 'false', 'true is shown');
+  assert.equal(find('*').textContent.trim(), 'false', 'true is shown');
 
   run(() => this.set('array', [3, 2, 1]));
 
-  assert.equal(this.$().text().trim(), 'true', 'false is shown');
+  assert.equal(find('*').textContent.trim(), 'true', 'false is shown');
 });

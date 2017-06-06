@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -21,7 +22,7 @@ test('It sorts by a value', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'abc', 'cab is sorted to abc');
+  assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
 });
 
 test('It watches for changes', function(assert) {
@@ -41,7 +42,7 @@ test('It watches for changes', function(assert) {
 
   run(() => array.pushObject({ name: 'c' }));
 
-  assert.equal(this.$().text().trim(), 'abcd', 'list is still sorted after addition');
+  assert.equal(find('*').textContent.trim(), 'abcd', 'list is still sorted after addition');
 });
 
 test('It also accepts an array of sort properties', function(assert) {
@@ -59,7 +60,7 @@ test('It also accepts an array of sort properties', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'abc', 'cab is sorted to abc');
+  assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
 });
 
 test('It accepts a function sort property', function(assert) {
@@ -85,5 +86,5 @@ test('It accepts a function sort property', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'abc', 'cab is sorted to abc');
+  assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
 });

@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -27,7 +28,7 @@ test('It filters by truthiness', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'ace', 'b and d are filtered out');
+  assert.equal(find('*').textContent.trim(), 'ace', 'b and d are filtered out');
 });
 
 test('It recomputes the filter if array changes', function(assert) {
@@ -51,7 +52,7 @@ test('It recomputes the filter if array changes', function(assert) {
 
   run(() => array.pushObject({ foo: true, name: 'd' }));
 
-  assert.equal(this.$().text().trim(), 'acd', 'd is added');
+  assert.equal(find('*').textContent.trim(), 'acd', 'd is added');
 });
 
 test('It can be passed an action', function(assert) {
@@ -69,5 +70,5 @@ test('It can be passed an action', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'ac', 'b is filtered out');
+  assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
 });

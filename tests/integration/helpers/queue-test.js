@@ -1,3 +1,4 @@
+import { click, find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -11,7 +12,7 @@ moduleForComponent('queue', 'Integration | Helper | {{queue}}', {
   integration: true
 });
 
-test('it queues actions', function(assert) {
+test('it queues actions', async function(assert) {
   this.on('doAThing', () => null);
   this.on('process', (x) => this.set('value', x * x));
   this.on('undoAThing', () => null);
@@ -23,9 +24,9 @@ test('it queues actions', function(assert) {
     </button>
   `);
 
-  assert.equal(this.$('p').text().trim(), '2', 'precond - should render 2');
-  this.$('button').click();
-  assert.equal(this.$('p').text().trim(), '4', 'should render 4');
+  assert.equal(find('p').textContent.trim(), '2', 'precond - should render 2');
+  await click('button');
+  assert.equal(find('p').textContent.trim(), '4', 'should render 4');
 });
 
 test('it handles promises', function(assert) {
@@ -39,7 +40,7 @@ test('it handles promises', function(assert) {
     </button>
   `);
 
-  assert.equal(this.$('p').text().trim(), '3', 'precond - should render 3');
-  run(() => this.$('button').click());
-  assert.equal(this.$('p').text().trim(), '9', 'should render 9');
+  assert.equal(find('p').textContent.trim(), '3', 'precond - should render 3');
+  run(async () => await click('button'));
+  assert.equal(find('p').textContent.trim(), '9', 'should render 9');
 });

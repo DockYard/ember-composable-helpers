@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -13,7 +14,7 @@ test('it checks if an array contains a primitive value', function(assert) {
 
   this.render(hbs`{{contains 'foo' items}}`);
 
-  assert.equal(this.$().text().trim(), 'true', 'should render true');
+  assert.equal(find('*').textContent.trim(), 'true', 'should render true');
 });
 
 test('it checks if an array contains a non-primitive value', function(assert) {
@@ -27,7 +28,7 @@ test('it checks if an array contains a non-primitive value', function(assert) {
 
   this.render(hbs`{{contains selectedGame wishlist}}`);
 
-  assert.equal(this.$().text().trim(), 'true', 'should render true');
+  assert.equal(find('*').textContent.trim(), 'true', 'should render true');
 });
 
 test('it checks if an array contains an array of primitive values', function(assert) {
@@ -36,7 +37,7 @@ test('it checks if an array contains an array of primitive values', function(ass
 
   this.render(hbs`{{contains selectedItems items}}`);
 
-  assert.equal(this.$().text().trim(), 'true', 'should render true');
+  assert.equal(find('*').textContent.trim(), 'true', 'should render true');
 });
 
 test('it watches for changes', function(assert) {
@@ -50,13 +51,13 @@ test('it watches for changes', function(assert) {
 
   this.render(hbs`{{contains selectedGame wishlist}}`);
 
-  assert.equal(this.$().text().trim(), 'true', 'should render true');
+  assert.equal(find('*').textContent.trim(), 'true', 'should render true');
 
   run(() => this.get('wishlist').removeObject(games[0]));
 
-  assert.equal(this.$().text().trim(), 'false', 'should render false');
+  assert.equal(find('*').textContent.trim(), 'false', 'should render false');
 
   run(() => this.set('selectedGame', games[1]));
 
-  assert.equal(this.$().text().trim(), 'true', 'should render true');
+  assert.equal(find('*').textContent.trim(), 'true', 'should render true');
 });

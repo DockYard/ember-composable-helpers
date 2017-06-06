@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -12,7 +13,7 @@ test('it repeats `n` times', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), '111', 'should repeat 3 times');
+  assert.equal(find('*').textContent.trim(), '111', 'should repeat 3 times');
 });
 
 test('it repeats `n` times with a value', function(assert) {
@@ -23,5 +24,5 @@ test('it repeats `n` times with a value', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'AdamAdamAdam', 'should repeat 3 times with a value');
+  assert.equal(find('*').textContent.trim(), 'AdamAdamAdam', 'should repeat 3 times with a value');
 });

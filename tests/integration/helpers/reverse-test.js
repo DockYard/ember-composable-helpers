@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -16,7 +17,7 @@ test('it reverses an array', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'bazbarfoo', 'array is reversed');
+  assert.equal(find('*').textContent.trim(), 'bazbarfoo', 'array is reversed');
 });
 
 test('It handles a non-ember array', function(assert) {
@@ -27,7 +28,7 @@ test('It handles a non-ember array', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'bazbarfoo', 'array is reversed');
+  assert.equal(find('*').textContent.trim(), 'bazbarfoo', 'array is reversed');
 });
 
 test('It does not mutate the original array', function(assert) {
@@ -39,7 +40,7 @@ test('It does not mutate the original array', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'bazbarfoo', 'array is reversed');
+  assert.equal(find('*').textContent.trim(), 'bazbarfoo', 'array is reversed');
   assert.deepEqual(this.get('array'), ['foo', 'bar', 'baz'], 'the original array is not reversed');
 });
 
@@ -51,7 +52,7 @@ test('It safely handles non-array values', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'foo', 'foo is rendered');
+  assert.equal(find('*').textContent.trim(), 'foo', 'foo is rendered');
 });
 
 test('It recomputes when an item in the array changes', function(assert) {
@@ -63,9 +64,9 @@ test('It recomputes when an item in the array changes', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'bazbarfoo', 'array is reversed');
+  assert.equal(find('*').textContent.trim(), 'bazbarfoo', 'array is reversed');
 
   run(() => array.removeAt(1));
 
-  assert.equal(this.$().text().trim(), 'bazfoo', 'array is reversed');
+  assert.equal(find('*').textContent.trim(), 'bazfoo', 'array is reversed');
 });
