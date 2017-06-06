@@ -43,5 +43,5 @@ testData.forEach(({ label, array, item, expected, useDeepEqual }) => {
 
 test('it returns null if the given value is not in the array', function(assert) {
   let result = getIndex([1, 2, 3], 4);
-  assert.equal(result, null, `should be null`);
+  assert.equal(result, null, 'should be null');
 });
