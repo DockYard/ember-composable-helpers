@@ -18,7 +18,8 @@
   "engines": {
     "node": ">= 4"
   },
-  "authors": [
+  "author": "Dockyard <oss@dockyard.com>",
+  "contributors": [
     "Lauren Tan <arr@sugarpirate.com>",
     "Marten Schilstra <mail@martenschilstra.nl>"
   ],
