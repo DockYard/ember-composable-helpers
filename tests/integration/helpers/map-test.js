@@ -54,28 +54,3 @@ test('It watches for changes', function(assert) {
 
   assert.equal(find('*').textContent.trim(), 'abcd', 'd is added');
 });
-
-test('It watches for changes to action', function(assert) {
-  let array = emberArray([
-    { name: 'a', x: 1 },
-    { name: 'b', x: 2 },
-    { name: 'c', x: 3 }
-  ]);
-
-  this.set('array', array);
-
-  this.on('getName', ({ name }) => name);
-  this.on('getX', ({ x }) => x);
-
-  this.render(hbs`
-    {{~#each (map (action (if showValues "getX" "getName")) array) as |text|~}}
-      {{~text~}}
-    {{~/each~}}
-  `);
-
-  assert.equal(find('*').textContent.trim(), 'abc', 'abc is displayed');
-
-  this.set('showValues', true);
-
-  assert.equal(find('*').textContent.trim(), '123', '123 is displayed');
-});

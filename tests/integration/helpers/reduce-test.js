@@ -49,18 +49,3 @@ test('It re-evaluates when initial value changes', function(assert) {
 
   assert.equal(find('*').textContent, 10);
 });
-
-test('It re-evaluates when callback changes', function(assert) {
-  this.set('array', emberArray([1, 2, 3]));
-
-  this.on('positive', (previousValue, currentValue) => previousValue + currentValue);
-  this.on('negative', (previousValue, currentValue) => previousValue - currentValue);
-
-  this.render(hbs`{{reduce (action (if isNegative "negative" "positive")) 0 array}}`);
-
-  assert.equal(find('*').textContent, 6);
-
-  this.set('isNegative', true);
-
-  assert.equal(find('*').textContent, -6);
-});
