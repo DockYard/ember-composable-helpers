@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -24,7 +25,7 @@ test('It returns the previous value in an array non-primitive values', function(
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'a', 'a is shown');
+  assert.equal(find('*').textContent.trim(), 'a', 'a is shown');
 });
 
 test('It returns the previous value in an array of primitive values', function(assert) {
@@ -38,7 +39,7 @@ test('It returns the previous value in an array of primitive values', function(a
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'kiwi', 'kiwi is shown');
+  assert.equal(find('*').textContent.trim(), 'kiwi', 'kiwi is shown');
 });
 
 test('It recomputes if array changes', function(assert) {
@@ -50,11 +51,11 @@ test('It recomputes if array changes', function(assert) {
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), 2, '2 is shown');
+  assert.equal(find('*').textContent.trim(), 2, '2 is shown');
 
   run(() => this.set('array', [2, 1, 3]));
 
-  assert.equal(this.$().text().trim(), 1, '1 is added and shown');
+  assert.equal(find('*').textContent.trim(), 1, '1 is added and shown');
 });
 
 test('It returns the previous value in an array of related models', function(assert) {
@@ -80,5 +81,5 @@ test('It returns the previous value in an array of related models', function(ass
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'Kirby', 'the previous pet name is shown');
+  assert.equal(find('*').textContent.trim(), 'Kirby', 'the previous pet name is shown');
 });

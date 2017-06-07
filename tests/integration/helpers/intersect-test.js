@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -19,7 +20,7 @@ test('It takes the intersection of the given arrays', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'foo', 'intersect shows words common to all arrays');
+  assert.equal(find('*').textContent.trim(), 'foo', 'intersect shows words common to all arrays');
 });
 
 test('It watches for changes', function(assert) {
@@ -36,5 +37,5 @@ test('It watches for changes', function(assert) {
   run(() => this.get('array2').pushObject('bar'));
   run(() => this.get('array3').pushObject('bar'));
 
-  assert.equal(this.$().text().trim(), 'foobar', 'bar is added');
+  assert.equal(find('*').textContent.trim(), 'foobar', 'bar is added');
 });

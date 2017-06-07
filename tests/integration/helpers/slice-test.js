@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -15,7 +16,7 @@ test('It slices an array with positional params', function(assert) {
     {{slice 1 3 array}}
   `);
 
-  assert.equal(this.$().text().trim(), '4,6', 'sliced values');
+  assert.equal(find('*').textContent.trim(), '4,6', 'sliced values');
 });
 
 test('It recomputes the slice if an item in the array changes', function(assert) {
@@ -26,9 +27,9 @@ test('It recomputes the slice if an item in the array changes', function(assert)
     {{slice 1 3 array}}
   `);
 
-  assert.equal(this.$().text().trim(), '4,6', 'sliced values');
+  assert.equal(find('*').textContent.trim(), '4,6', 'sliced values');
 
   run(() => array.replace(2, 1, [5]));
 
-  assert.equal(this.$().text().trim(), '4,5', 'sliced values');
+  assert.equal(find('*').textContent.trim(), '4,5', 'sliced values');
 });

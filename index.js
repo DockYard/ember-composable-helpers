@@ -1,5 +1,4 @@
-/* jshint node: true, esnext: false */
-/* jscs: disable */
+/* eslint-env node */
 'use strict';
 
 var Funnel = require('broccoli-funnel');
@@ -110,4 +109,3 @@ module.exports = {
     return except;
   }
 };
-/* jscs: enable */

@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -20,7 +21,7 @@ test('It concats two arrays', function(assert) {
 
   let expected = '246135';
 
-  assert.equal(this.$().text().trim(), expected, 'appends values');
+  assert.equal(find('*').textContent.trim(), expected, 'appends values');
 });
 
 test('It concats two arrays and a value', function(assert) {
@@ -36,7 +37,7 @@ test('It concats two arrays and a value', function(assert) {
 
   let expected = '461352';
 
-  assert.equal(this.$().text().trim(), expected, 'appends values');
+  assert.equal(find('*').textContent.trim(), expected, 'appends values');
 });
 
 test('It watches for changes', function(assert) {
@@ -50,5 +51,5 @@ test('It watches for changes', function(assert) {
   `);
 
   run(() => this.get('odds').pushObject(7));
-  assert.equal(this.$().text().trim(), '13572', 'new value is added');
+  assert.equal(find('*').textContent.trim(), '13572', 'new value is added');
 });

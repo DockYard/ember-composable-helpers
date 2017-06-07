@@ -1,4 +1,4 @@
-/*jshint node:true*/
+/* eslint-env node */
 var command = [ 'ember', 'exam', '--split', '3', '--random' ];
 
 module.exports = {

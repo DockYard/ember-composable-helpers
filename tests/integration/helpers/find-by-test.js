@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -21,7 +22,7 @@ test('It finds a value by a property', function(assert) {
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'b', 'b is shown');
+  assert.equal(find('*').textContent.trim(), 'b', 'b is shown');
 });
 
 test('It finds a value by a property in arrays without prototype extensions', function(assert) {
@@ -37,7 +38,7 @@ test('It finds a value by a property in arrays without prototype extensions', fu
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'b', 'b is shown');
+  assert.equal(find('*').textContent.trim(), 'b', 'b is shown');
 });
 
 test('It recomputes the filter if array changes', function(assert) {
@@ -55,11 +56,11 @@ test('It recomputes the filter if array changes', function(assert) {
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), '', 'd is not found');
+  assert.equal(find('*').textContent.trim(), '', 'd is not found');
 
   run(() => array.pushObject({ foo: true, name: 'd' }));
 
-  assert.equal(this.$().text().trim(), 'd', 'd is added and shown');
+  assert.equal(find('*').textContent.trim(), 'd', 'd is added and shown');
 });
 
 test('It recomputes the filter if a value under given path changes', function(assert) {
@@ -77,11 +78,11 @@ test('It recomputes the filter if a value under given path changes', function(as
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), '', 'd is not found');
+  assert.equal(find('*').textContent.trim(), '', 'd is not found');
 
   run(() => set(array.objectAt(1), 'name', 'd'));
 
-  assert.equal(this.$().text().trim(), 'd', 'd is shown');
+  assert.equal(find('*').textContent.trim(), 'd', 'd is shown');
 });
 
 test('It recomputes the value changes', function(assert) {
@@ -100,9 +101,9 @@ test('It recomputes the value changes', function(assert) {
     {{~/with~}}
   `);
 
-  assert.equal(this.$().text().trim(), '', 'd is not found');
+  assert.equal(find('*').textContent.trim(), '', 'd is not found');
 
   run(() => set(this, 'value', 'b'));
 
-  assert.equal(this.$().text().trim(), 'b', 'b is shown');
+  assert.equal(find('*').textContent.trim(), 'b', 'b is shown');
 });

@@ -1,3 +1,4 @@
+import { click, find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -11,7 +12,7 @@ moduleForComponent('pipe', 'Integration | Helper | {{pipe}}', {
   integration: true
 });
 
-test('it pipes actions', function(assert) {
+test('it pipes actions', async function(assert) {
   this.set('value', 0);
   this.on('add', (x, y) => x + y);
   this.on('square', (x) => x * x);
@@ -23,9 +24,9 @@ test('it pipes actions', function(assert) {
     </button>
   `);
 
-  assert.equal(this.$('p').text().trim(), '0', 'precond - should render 0');
-  this.$('button').click();
-  assert.equal(this.$('p').text().trim(), '6', 'should render 6');
+  assert.equal(find('p').textContent.trim(), '0', 'precond - should render 0');
+  await click('button');
+  assert.equal(find('p').textContent.trim(), '6', 'should render 6');
 });
 
 test('it handles promises', function(assert) {
@@ -41,7 +42,7 @@ test('it handles promises', function(assert) {
     </button>
   `);
 
-  assert.equal(this.$('p').text().trim(), '0', 'precond - should render 0');
-  run(() => this.$('button').click());
-  assert.equal(this.$('p').text().trim(), '6', 'should render 6');
+  assert.equal(find('p').textContent.trim(), '0', 'precond - should render 0');
+  run(async () => await click('button'));
+  assert.equal(find('p').textContent.trim(), '6', 'should render 6');
 });

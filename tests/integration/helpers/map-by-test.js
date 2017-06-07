@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -21,7 +22,7 @@ test('It maps by value', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'abc', 'name property is mapped');
+  assert.equal(find('*').textContent.trim(), 'abc', 'name property is mapped');
 });
 
 test('It watches for changes', function(assert) {
@@ -41,7 +42,7 @@ test('It watches for changes', function(assert) {
 
   run(() => array.pushObject({ name: 'd' }));
 
-  assert.equal(this.$().text().trim(), 'abcd', 'd is added');
+  assert.equal(find('*').textContent.trim(), 'abcd', 'd is added');
 });
 
 test('It watches for changes to byPath', function(assert) {
@@ -62,5 +63,5 @@ test('It watches for changes to byPath', function(assert) {
 
   this.set('property', 'x');
 
-  assert.equal(this.$().text().trim(), '123', '123 is displayed');
+  assert.equal(find('*').textContent.trim(), '123', '123 is displayed');
 });

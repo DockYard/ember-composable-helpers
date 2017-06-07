@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -21,7 +22,7 @@ test('It filters by value', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'ac', 'b is filtered out');
+  assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
 });
 
 test('It filters by truthiness', function(assert) {
@@ -44,7 +45,7 @@ test('It filters by truthiness', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'acej', 'b, d, f, g, h and i are filtered out');
+  assert.equal(find('*').textContent.trim(), 'acej', 'b, d, f, g, h and i are filtered out');
 });
 
 test('It recomputes the filter if array changes', function(assert) {
@@ -64,7 +65,7 @@ test('It recomputes the filter if array changes', function(assert) {
 
   run(() => array.pushObject({ foo: true, name: 'd' }));
 
-  assert.equal(this.$().text().trim(), 'acd', 'd is added');
+  assert.equal(find('*').textContent.trim(), 'acd', 'd is added');
 });
 
 test('It recomputes the filter if a value under given path changes', function(assert) {
@@ -84,7 +85,7 @@ test('It recomputes the filter if a value under given path changes', function(as
 
   run(() => set(array.objectAt(1), 'foo', true));
 
-  assert.equal(this.$().text().trim(), 'abc', 'b is shown');
+  assert.equal(find('*').textContent.trim(), 'abc', 'b is shown');
 });
 
 test('It recomputes the filter with a falsy value', function(assert) {
@@ -104,7 +105,7 @@ test('It recomputes the filter with a falsy value', function(assert) {
 
   run(() => set(array.objectAt(0), 'foo', false));
 
-  assert.equal(this.$().text().trim(), 'ab', 'a and b are shown');
+  assert.equal(find('*').textContent.trim(), 'ab', 'a and b are shown');
 });
 
 test('It recomputes the filter with no value', function(assert) {
@@ -122,11 +123,11 @@ test('It recomputes the filter with no value', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'ac', 'ac is shown');
+  assert.equal(find('*').textContent.trim(), 'ac', 'ac is shown');
 
   run(() => set(array.objectAt(1), 'foo', true));
 
-  assert.equal(this.$().text().trim(), 'abc', 'b is added');
+  assert.equal(find('*').textContent.trim(), 'abc', 'b is added');
 });
 
 test('It can be passed an action', function(assert) {
@@ -144,7 +145,7 @@ test('It can be passed an action', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'ac', 'b is filtered out');
+  assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
 });
 
 test('It respects objects that implement isEqual interface', function(assert) {
@@ -166,5 +167,5 @@ test('It respects objects that implement isEqual interface', function(assert) {
     {{~/each~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'a', 'b and c are filtered out');
+  assert.equal(find('*').textContent.trim(), 'a', 'b and c are filtered out');
 });

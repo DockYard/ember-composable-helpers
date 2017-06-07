@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -13,7 +14,7 @@ test('It joins the words with given separator', function(assert) {
 
   this.render(hbs`{{join ', ' array}}`);
 
-  assert.equal(this.$().text().trim(), 'foo, bar, baz', 'words are joined with a comma and a space');
+  assert.equal(find('*').textContent.trim(), 'foo, bar, baz', 'words are joined with a comma and a space');
 });
 
 test('The default separator is a comma', function(assert) {
@@ -21,7 +22,7 @@ test('The default separator is a comma', function(assert) {
 
   this.render(hbs`{{join array}}`);
 
-  assert.equal(this.$().text().trim(), 'foo,bar,baz', 'words are joined with a comma');
+  assert.equal(find('*').textContent.trim(), 'foo,bar,baz', 'words are joined with a comma');
 });
 
 test('It watches for changes', function(assert) {
@@ -32,5 +33,5 @@ test('It watches for changes', function(assert) {
 
   run(() => array.pushObject('quux'));
 
-  assert.equal(this.$().text().trim(), 'foo, bar, baz, quux', 'quux was added');
+  assert.equal(find('*').textContent.trim(), 'foo, bar, baz, quux', 'quux was added');
 });

@@ -1,3 +1,4 @@
+import { find } from 'ember-native-dom-helpers';
 import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
@@ -23,7 +24,7 @@ test('It groups by given property', function(assert) {
     {{~/each-in~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'aabbcd', 'aabbcd is the right order');
+  assert.equal(find('*').textContent.trim(), 'aabbcd', 'aabbcd is the right order');
 });
 
 test('It watches for changes', function(assert) {
@@ -45,5 +46,5 @@ test('It watches for changes', function(assert) {
 
   run(() => set(array.objectAt(3), 'category', 'c'));
 
-  assert.equal(this.$().text().trim(), 'aabbccd', 'aabbccd is the right order');
+  assert.equal(find('*').textContent.trim(), 'aabbccd', 'aabbccd is the right order');
 });
