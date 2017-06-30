@@ -10,27 +10,27 @@ moduleForComponent('group-by', 'Integration | Helper | {{group-by}}', {
 
 test('It groups by given property', function(assert) {
   this.set('array', emberArray([
-    { category: 'a', name: 'a' },
+    { category: 'Company A, Inc.', name: 'Product Alpha & Beta' },
     { category: 'b', name: 'c' },
-    { category: 'a', name: 'b' },
+    { category: 'Company A, Inc.', name: 'Product Gamma.Delta' },
     { category: 'b', name: 'd' }
   ]));
 
   this.render(hbs`
     {{~#each-in (group-by 'category' array) as |category entries|~}}
-      {{~category~}}
-      {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
+      {{~category~}}/
+      {{~#each entries as |entry|~}}{{~entry.name~}}|{{~/each~}}
     {{~/each-in~}}
   `);
 
-  assert.equal(this.$().text().trim(), 'aabbcd', 'aabbcd is the right order');
+  assert.equal(this.$().text().trim(), 'Company A, Inc./Product Alpha & Beta|Product Gamma.Delta|b/c|d|', 'Company A, Inc.|Contract Alpha & Beta|Product Gamma.Delta|b|c|d| is the right order');
 });
 
 test('It watches for changes', function(assert) {
   let array = emberArray([
-    { category: 'a', name: 'a' },
+    { category: 'Company A, Inc.', name: 'Product Alpha & Beta' },
     { category: 'b', name: 'c' },
-    { category: 'a', name: 'b' },
+    { category: 'Company A, Inc.', name: 'Product Gamma.Delta' },
     { category: 'b', name: 'd' }
   ]);
 
@@ -38,12 +38,12 @@ test('It watches for changes', function(assert) {
 
   this.render(hbs`
     {{~#each-in (group-by 'category' array) as |category entries|~}}
-      {{~category~}}
-      {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
+      {{~category~}}/
+      {{~#each entries as |entry|~}}{{~entry.name~}}|{{~/each~}}
     {{~/each-in~}}
   `);
 
   run(() => set(array.objectAt(3), 'category', 'c'));
 
-  assert.equal(this.$().text().trim(), 'aabbccd', 'aabbccd is the right order');
+  assert.equal(this.$().text().trim(), 'Company A, Inc./Product Alpha & Beta|Product Gamma.Delta|b/c|c/d|', 'Company A, Inc.|Contract Alpha & Beta|Product Gamma.Delta|b|c|c/d| is the right order');
 });
