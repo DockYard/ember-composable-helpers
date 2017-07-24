@@ -1,6 +1,8 @@
 # ember-composable-helpers
 ![Download count all time](https://img.shields.io/npm/dt/ember-composable-helpers.svg) [![CircleCI](https://circleci.com/gh/DockYard/ember-composable-helpers.svg?style=shield)](https://circleci.com/gh/DockYard/ember-composable-helpers) [![npm version](https://badge.fury.io/js/ember-composable-helpers.svg)](https://badge.fury.io/js/ember-composable-helpers) [![Ember Observer Score](http://emberobserver.com/badges/ember-composable-helpers.svg)](http://emberobserver.com/addons/ember-composable-helpers)
 
+**[ember-composable-helpers is built and maintained by DockYard, contact us for expert Ember.js consulting](https://dockyard.com/ember-consulting)**.
+
 Composable helpers for Ember that enables more declarative templating. These helpers can be _composed_ together to form powerful ideas:
 
 ```hbs
