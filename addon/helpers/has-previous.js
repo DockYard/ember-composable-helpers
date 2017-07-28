@@ -1,9 +1,7 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
 import { previous } from './previous';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
 import isEqual from '../utils/is-equal';
-
-const { isPresent } = Ember;
 
 export function hasPrevious(currentValue, array, useDeepEqual = false) {
   let previousValue = previous(currentValue, array, useDeepEqual);

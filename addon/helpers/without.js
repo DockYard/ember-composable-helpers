@@ -1,9 +1,6 @@
-import {
-  A as emberArray,
-  isEmberArray
-} from 'ember-array/utils';
-import get from 'ember-metal/get';
-import { typeOf } from 'ember-utils';
+import { A as emberArray, isArray as isEmberArray } from '@ember/array';
+import { get } from '@ember/object';
+import { typeOf } from '@ember/utils';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
 import includes from '../utils/includes';
 

@@ -1,13 +1,10 @@
-import {
-  A as emberArray,
-  isEmberArray
-} from 'ember-array/utils';
-import { filter } from 'ember-computed';
-import Helper from 'ember-helper';
-import get from 'ember-metal/get';
-import observer from 'ember-metal/observer';
-import set from 'ember-metal/set';
-import { isPresent } from 'ember-utils';
+import { A as emberArray, isArray as isEmberArray } from '@ember/array';
+import { filter } from '@ember/object/computed';
+import Helper from '@ember/component/helper';
+import { get } from '@ember/object';
+import { observer } from '@ember/object';
+import { set } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
 export default Helper.extend({
   compute([array]) {

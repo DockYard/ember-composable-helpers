@@ -1,11 +1,8 @@
-import Ember from 'ember';
+import { reject, resolve } from 'rsvp';
 import { pipe } from 'dummy/helpers/pipe';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
-const {
-  RSVP: { resolve, reject }
-} = Ember;
 let sandbox;
 
 module('Unit | Helper | pipe', {

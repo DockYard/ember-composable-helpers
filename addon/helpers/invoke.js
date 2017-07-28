@@ -1,6 +1,6 @@
-import { isEmberArray } from 'ember-array/utils';
-import { helper } from 'ember-helper';
-import { tryInvoke } from 'ember-utils';
+import { isArray as isEmberArray } from '@ember/array';
+import { helper } from '@ember/component/helper';
+import { tryInvoke } from '@ember/utils';
 import RSVP from 'rsvp';
 
 const { all } = RSVP;

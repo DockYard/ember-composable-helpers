@@ -1,9 +1,8 @@
+import { A as emberArray } from '@ember/array';
+import { run } from '@ember/runloop';
 import { find } from 'ember-native-dom-helpers';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import Ember from 'ember';
-
-const { A: emberArray, run } = Ember;
 
 moduleForComponent('shuffle', 'Integration | Helper | {{shuffle}}', {
   integration: true

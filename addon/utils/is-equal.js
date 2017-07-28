@@ -1,5 +1,4 @@
-import Ember from 'ember';
-const { isEqual: emberIsEqual } = Ember;
+import { isEqual as emberIsEqual } from '@ember/utils';
 
 export default function isEqual(firstValue, secondValue, useDeepEqual = false) {
   if (useDeepEqual) {

@@ -1,8 +1,7 @@
-import Ember from 'ember';
+import { A } from '@ember/array';
+import { resolve } from 'rsvp';
 import { invoke } from 'dummy/helpers/invoke';
 import { module, test } from 'qunit';
-
-const { A, RSVP: { resolve } } = Ember;
 
 module('Unit | Helper | invoke');
 

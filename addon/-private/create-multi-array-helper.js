@@ -1,16 +1,12 @@
-import Ember from 'ember';
-import {
-  A as emberArray,
-  isEmberArray
-} from 'ember-array/utils';
-import Helper from 'ember-helper';
-import { guidFor } from 'ember-metal/utils';
-import observer from 'ember-metal/observer';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { isEmpty } from 'ember-utils';
+import { defineProperty } from '@ember/object';
+import { A as emberArray, isArray as isEmberArray } from '@ember/array';
+import Helper from '@ember/component/helper';
+import { guidFor } from '@ember/object/internals';
+import { observer } from '@ember/object';
+import { get } from '@ember/object';
+import { set } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 
-const { defineProperty } = Ember;
 const idForArray = (array) => `__array-${guidFor(array)}`;
 
 export default function(multiArrayComputed) {

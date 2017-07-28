@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import getIndex from 'ember-composable-helpers/utils/get-index';
 import { module, test } from 'qunit';
-
-const { Object: EmberObject } = Ember;
 
 module('Unit | Utility | get index');
 

@@ -1,4 +1,4 @@
-import { typeOf } from 'ember-utils';
+import { typeOf } from '@ember/utils';
 import isObject from './is-object';
 
 function isPromiseLike(obj = {}) {

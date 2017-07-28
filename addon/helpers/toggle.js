@@ -1,7 +1,7 @@
-import { helper } from 'ember-helper';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { isPresent } from 'ember-utils';
+import { helper } from '@ember/component/helper';
+import { get } from '@ember/object';
+import { set } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
 function nextIndex(length, currentIdx) {
   if (currentIdx === -1 || currentIdx + 1 === length) {

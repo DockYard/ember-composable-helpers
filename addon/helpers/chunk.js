@@ -1,9 +1,9 @@
-import { isEmberArray } from 'ember-array/utils';
-import computed from 'ember-computed';
-import Helper from 'ember-helper';
-import get from 'ember-metal/get';
-import observer from 'ember-metal/observer';
-import set from 'ember-metal/set';
+import { isArray as isEmberArray } from '@ember/array';
+import { computed } from '@ember/object';
+import Helper from '@ember/component/helper';
+import { get } from '@ember/object';
+import { observer } from '@ember/object';
+import { set } from '@ember/object';
 
 const { max, ceil } = Math;
 

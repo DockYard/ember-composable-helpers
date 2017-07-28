@@ -1,5 +1,5 @@
-import { helper } from 'ember-helper';
-import { typeOf } from 'ember-utils';
+import { helper } from '@ember/component/helper';
+import { typeOf } from '@ember/utils';
 
 export function repeat([length, value]) {
   if (typeOf(length) !== 'number') {

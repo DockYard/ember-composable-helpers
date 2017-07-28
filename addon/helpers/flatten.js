@@ -1,7 +1,7 @@
-import Helper from 'ember-helper';
-import { isEmberArray } from 'ember-array/utils';
-import observer from 'ember-metal/observer';
-import set from 'ember-metal/set';
+import Helper from '@ember/component/helper';
+import { isArray as isEmberArray } from '@ember/array';
+import { observer } from '@ember/object';
+import { set } from '@ember/object';
 
 export function flatten(array) {
   if (!isEmberArray(array)) {

@@ -1,12 +1,10 @@
-import Ember from 'ember';
+import {
+  merge as emberMerge,
+  assign as emberAssign
+} from '@ember/polyfills';
+import { run } from '@ember/runloop';
 import Application from '../../app';
 import config from '../../config/environment';
-
-const {
-  assign: emberAssign,
-  merge: emberMerge,
-  run
-} = Ember;
 
 const assign = emberAssign || emberMerge;
 

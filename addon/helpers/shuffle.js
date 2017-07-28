@@ -1,12 +1,9 @@
-import {
-  A as emberArray,
-  isEmberArray
-} from 'ember-array/utils';
-import Helper from 'ember-helper';
-import observer from 'ember-metal/observer';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
-import { typeOf } from 'ember-utils';
+import { A as emberArray, isArray as isEmberArray } from '@ember/array';
+import Helper from '@ember/component/helper';
+import { observer } from '@ember/object';
+import { get } from '@ember/object';
+import { set } from '@ember/object';
+import { typeOf } from '@ember/utils';
 
 export function shuffle(array, randomizer) {
   array = array.slice(0);

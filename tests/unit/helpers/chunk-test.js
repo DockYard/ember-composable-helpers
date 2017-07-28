@@ -1,10 +1,8 @@
-import Ember from 'ember';
-import { A as emberArray } from 'ember-array/utils';
-import computed from 'ember-computed';
+import emberArrayProxy from '@ember/array/proxy';
+import { A as emberArray } from '@ember/array';
+import { computed } from '@ember/object';
 import { chunk } from 'dummy/helpers/chunk';
 import { module, test } from 'qunit';
-
-const { ArrayProxy: emberArrayProxy } = Ember;
 
 module('Unit | Helper | chunk');
 

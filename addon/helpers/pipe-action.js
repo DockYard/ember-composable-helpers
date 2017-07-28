@@ -1,4 +1,4 @@
-import { helper } from 'ember-helper';
+import { helper } from '@ember/component/helper';
 import { pipe } from './pipe';
 import ACTION from '../-private/closure-action';
 

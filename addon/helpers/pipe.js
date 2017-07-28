@@ -1,4 +1,4 @@
-import { helper } from 'ember-helper';
+import { helper } from '@ember/component/helper';
 import isPromise from '../utils/is-promise';
 
 export function invokeFunction(acc, curr) {
