@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
 import { toggle } from 'dummy/helpers/toggle';
 import { module, test } from 'qunit';
-
-const { get } = Ember;
 
 module('Unit | Helper | toggle');
 

@@ -1,9 +1,9 @@
+import ArrayProxy from '@ember/array/proxy';
+import { A as emberArray } from '@ember/array';
+import { run } from '@ember/runloop';
 import { find } from 'ember-native-dom-helpers';
-import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
-const { ArrayProxy, A: emberArray, run } = Ember;
 
 moduleForComponent('without', 'Integration | Helper | {{without}}', {
   integration: true

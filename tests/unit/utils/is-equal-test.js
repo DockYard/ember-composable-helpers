@@ -1,8 +1,6 @@
-import Ember from 'ember';
+import EmberObject from '@ember/object';
 import isEqual from 'ember-composable-helpers/utils/is-equal';
 import { module, test } from 'qunit';
-
-const { Object: EmberObject } = Ember;
 
 module('Unit | Utility | is equal');
 

@@ -1,9 +1,7 @@
+import { resolve } from 'rsvp';
 import { click, find } from 'ember-native-dom-helpers';
-import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
-const { RSVP: { resolve } } = Ember;
 
 moduleForComponent('invoke', 'Integration | Helper | {{invoke}}', {
   integration: true

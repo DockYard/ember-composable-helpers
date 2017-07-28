@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import { defineProperty } from '@ember/object';
 import {
   A as emberArray,
   isEmberArray
@@ -10,7 +10,6 @@ import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 import { isEmpty } from 'ember-utils';
 
-const { defineProperty } = Ember;
 const idForArray = (array) => `__array-${guidFor(array)}`;
 
 export default function(multiArrayComputed) {

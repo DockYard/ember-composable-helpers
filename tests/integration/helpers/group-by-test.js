@@ -1,9 +1,9 @@
+import { A as emberArray } from '@ember/array';
+import { run } from '@ember/runloop';
+import { set } from '@ember/object';
 import { find } from 'ember-native-dom-helpers';
-import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
-const { A: emberArray, run, set } = Ember;
 
 moduleForComponent('group-by', 'Integration | Helper | {{group-by}}', {
   integration: true

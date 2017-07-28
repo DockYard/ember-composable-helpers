@@ -1,9 +1,8 @@
+import { A as emberArray } from '@ember/array';
+import { run } from '@ember/runloop';
 import { find } from 'ember-native-dom-helpers';
-import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
-const { A: emberArray, run } = Ember;
 
 moduleForComponent('chunk', 'Integration | Helper | {{chunk}}', {
   integration: true

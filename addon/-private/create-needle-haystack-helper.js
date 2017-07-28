@@ -1,13 +1,10 @@
-import Ember from 'ember';
+import { isEmpty } from '@ember/utils';
 import computed from 'ember-computed';
 import Helper from 'ember-helper';
 import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
 
-const {
-  isEmpty
-} = Ember;
 const K = () => { };
 
 /**

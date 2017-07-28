@@ -1,9 +1,7 @@
+import { run } from '@ember/runloop';
 import { click } from 'ember-native-dom-helpers';
-import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-
-const { run } = Ember;
 
 moduleForComponent('optional', 'Integration | Helper | {{optional}}', {
   integration: true

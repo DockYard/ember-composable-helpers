@@ -1,4 +1,4 @@
-import Ember from 'ember';
+import emberObject, { defineProperty } from '@ember/object';
 import {
   A as emberArray,
   isEmberArray
@@ -8,8 +8,6 @@ import Helper from 'ember-helper';
 import get from 'ember-metal/get';
 import observer from 'ember-metal/observer';
 import set from 'ember-metal/set';
-
-const { defineProperty, Object: emberObject } = Ember;
 
 const groupFunction = function() {
   let array = get(this, 'array');

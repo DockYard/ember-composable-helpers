@@ -1,10 +1,6 @@
-import Ember from 'ember';
+import { resolve, Promise } from 'rsvp';
 import isPromise from 'ember-composable-helpers/utils/is-promise';
 import { module, test } from 'qunit';
-
-const {
-  RSVP: { Promise, resolve }
-} = Ember;
 
 module('Unit | Utility | is promise');
 

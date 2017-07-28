@@ -1,11 +1,8 @@
-import Ember from 'ember';
+import { reject, resolve } from 'rsvp';
 import { queue } from 'dummy/helpers/queue';
 import { module, test } from 'qunit';
 import sinon from 'sinon';
 
-const {
-  RSVP: { resolve, reject }
-} = Ember;
 let sandbox;
 
 const step0 = sinon.spy(() => resolve());

@@ -1,9 +1,8 @@
-import Ember from 'ember';
+import { get } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 import { A as emberArray } from 'ember-array/utils';
 import getIndex from '../utils/get-index';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
-
-const { get, isEmpty } = Ember;
 
 export function next(currentValue, array, useDeepEqual = false) {
   let currentIndex = getIndex(array, currentValue, useDeepEqual);
