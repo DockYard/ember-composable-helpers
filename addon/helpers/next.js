@@ -1,6 +1,6 @@
 import { get } from '@ember/object';
 import { isEmpty } from '@ember/utils';
-import { A as emberArray } from 'ember-array/utils';
+import { A as emberArray } from '@ember/array';
 import getIndex from '../utils/get-index';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
 

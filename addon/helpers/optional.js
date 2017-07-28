@@ -1,4 +1,4 @@
-import { helper } from 'ember-helper';
+import { helper } from '@ember/component/helper';
 
 export function optional([action]) {
   if (typeof action === 'function') {

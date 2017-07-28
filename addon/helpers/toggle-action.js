@@ -1,4 +1,4 @@
-import { helper } from 'ember-helper';
+import { helper } from '@ember/component/helper';
 import { toggle } from './toggle';
 import ACTION from '../-private/closure-action';
 

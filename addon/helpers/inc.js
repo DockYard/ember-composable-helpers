@@ -1,5 +1,5 @@
-import { helper } from 'ember-helper';
-import { isEmpty } from 'ember-utils';
+import { helper } from '@ember/component/helper';
+import { isEmpty } from '@ember/utils';
 
 export function inc([step, val]) {
   if (isEmpty(val)) {

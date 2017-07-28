@@ -1,10 +1,10 @@
 import { defineProperty } from '@ember/object';
-import { map } from 'ember-computed';
-import Helper from 'ember-helper';
-import get from 'ember-metal/get';
-import observer from 'ember-metal/observer';
-import set from 'ember-metal/set';
-import { isEmpty } from 'ember-utils';
+import { map } from '@ember/object/computed';
+import Helper from '@ember/component/helper';
+import { get } from '@ember/object';
+import { observer } from '@ember/object';
+import { set } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 
 export default Helper.extend({
   compute([callback, array]) {

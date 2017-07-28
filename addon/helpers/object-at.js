@@ -1,9 +1,9 @@
-import Helper from 'ember-helper';
-import { A as emberArray, isEmberArray } from 'ember-array/utils';
-import computed from 'ember-computed';
-import observer from 'ember-metal/observer';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import Helper from '@ember/component/helper';
+import { A as emberArray, isArray as isEmberArray } from '@ember/array';
+import { computed } from '@ember/object';
+import { observer } from '@ember/object';
+import { get } from '@ember/object';
+import { set } from '@ember/object';
 
 export function objectAt(index, array) {
   if (!isEmberArray(array)) {

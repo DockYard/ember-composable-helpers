@@ -1,4 +1,4 @@
-import { A as emberArray } from 'ember-array/utils';
+import { A as emberArray } from '@ember/array';
 import isEqual from '../utils/is-equal';
 
 export default function getIndex(array, currentValue, useDeepEqual) {

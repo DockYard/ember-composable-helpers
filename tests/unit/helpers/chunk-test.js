@@ -1,6 +1,6 @@
 import emberArrayProxy from '@ember/array/proxy';
-import { A as emberArray } from 'ember-array/utils';
-import computed from 'ember-computed';
+import { A as emberArray } from '@ember/array';
+import { computed } from '@ember/object';
 import { chunk } from 'dummy/helpers/chunk';
 import { module, test } from 'qunit';
 

@@ -1,6 +1,6 @@
-import Helper from 'ember-helper';
-import observer from 'ember-metal/observer';
-import set from 'ember-metal/set';
+import Helper from '@ember/component/helper';
+import { observer } from '@ember/object';
+import { set } from '@ember/object';
 
 export default Helper.extend({
   compute([takeAmount, array]) {

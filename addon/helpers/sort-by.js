@@ -1,11 +1,11 @@
 import { defineProperty } from '@ember/object';
-import { isEmberArray } from 'ember-array/utils';
-import { sort } from 'ember-computed';
-import Helper from 'ember-helper';
-import get from 'ember-metal/get';
-import observer from 'ember-metal/observer';
-import set from 'ember-metal/set';
-import { isEmpty, typeOf } from 'ember-utils';
+import { isArray as isEmberArray } from '@ember/array';
+import { sort } from '@ember/object/computed';
+import Helper from '@ember/component/helper';
+import { get } from '@ember/object';
+import { observer } from '@ember/object';
+import { set } from '@ember/object';
+import { isEmpty, typeOf } from '@ember/utils';
 
 export default Helper.extend({
   compute(params) {

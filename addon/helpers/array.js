@@ -1,5 +1,5 @@
-import { helper } from 'ember-helper';
-import { A as emberArray } from 'ember-array/utils';
+import { helper } from '@ember/component/helper';
+import { A as emberArray } from '@ember/array';
 
 export function array(params = []) {
   // slice params to avoid mutating the provided params
