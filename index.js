@@ -18,9 +18,9 @@ module.exports = {
     }
 
     this.app = app;
-    this.app.options = this.app.options || {};
 
-    var config = this.app.options[this.name] || {};
+    var addonOptions = (this.parent && this.parent.options) || (this.app && this.app.options) || {};
+    var config = addonOptions[this.name] || {};
     this.whitelist = this.generateWhitelist(config);
     this.blacklist = this.generateBlacklist(config);
   },
