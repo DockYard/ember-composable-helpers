@@ -32,6 +32,11 @@ module.exports = {
     return this.filterHelpers(tree, new RegExp(moduleRegexp, 'i'));
   },
 
+  treeForApp: function() {
+    var tree = this._super.treeForApp.apply(this, arguments);
+    return this.filterHelpers(tree, /^helpers\//i);
+  },
+
   filterHelpers: function(tree, regex) {
     var whitelist = this.whitelist;
     var blacklist = this.blacklist;
