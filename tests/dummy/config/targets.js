@@ -13,6 +13,4 @@ if (isCI || isProduction) {
   browsers.push('ie 11');
 }
 
-module.exports = {
-  browsers
-};
+module.exports = { browsers };

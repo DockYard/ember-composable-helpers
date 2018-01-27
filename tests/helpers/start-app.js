@@ -1,16 +1,12 @@
-import {
-  merge as emberMerge,
-  assign as emberAssign
-} from '@ember/polyfills';
-import { run } from '@ember/runloop';
 import Application from '../../app';
 import config from '../../config/environment';
-
-const assign = emberAssign || emberMerge;
+import { merge } from '@ember/polyfills';
+import { run } from '@ember/runloop';
 
 export default function startApp(attrs) {
-  let attributes = assign({}, config.APP);
-  attributes = assign(attributes, attrs); // use defaults, but you can override;
+  let attributes = merge({}, config.APP);
+  attributes.autoboot = true;
+  attributes = merge(attributes, attrs); // use defaults, but you can override;
 
   return run(() => {
     let application = Application.create(attributes);
@@ -18,5 +14,4 @@ export default function startApp(attrs) {
     application.injectTestHelpers();
     return application;
   });
-
 }
