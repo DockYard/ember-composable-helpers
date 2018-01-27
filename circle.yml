@@ -12,4 +12,5 @@ dependencies:
 
 test:
   override:
+    - yarn run lint:js
     - yarn test

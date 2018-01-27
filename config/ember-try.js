@@ -1,64 +1,18 @@
-/* eslint-env node */
-var command = [ 'ember', 'exam', '--split', '3', '--random' ];
-
 module.exports = {
-  command: command.join(' '),
   scenarios: [
     {
-      name: 'ember-pre-2',
-      bower: {
-        dependencies: {
-          'ember': '~1.13.0'
-        }
-      },
+      name: 'ember-lts-2.12',
       npm: {
         devDependencies: {
-          'ember-source': null
+          'ember-source': '~2.12.0'
         }
       }
     },
     {
-      name: 'ember-2',
-      bower: {
-        dependencies: {
-          'ember': '~2.0.0'
-        }
-      },
+      name: 'ember-lts-2.16',
       npm: {
         devDependencies: {
-          'ember-source': null
-        }
-      }
-    },
-    {
-      name: 'ember-lts-2.4',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#lts-2-4'
-        },
-        resolutions: {
-          'ember': 'lts-2-4'
-        }
-      },
-      npm: {
-        devDependencies: {
-          'ember-source': null
-        }
-      }
-    },
-    {
-      name: 'ember-lts-2.8',
-      bower: {
-        dependencies: {
-          'ember': 'components/ember#lts-2-8'
-        },
-        resolutions: {
-          'ember': 'lts-2-8'
-        }
-      },
-      npm: {
-        devDependencies: {
-          'ember-source': null
+          'ember-source': '~2.16.0'
         }
       }
     },
@@ -80,7 +34,6 @@ module.exports = {
     },
     {
       name: 'ember-beta',
-      allowedToFail: true,
       bower: {
         dependencies: {
           'ember': 'components/ember#beta'
@@ -97,7 +50,6 @@ module.exports = {
     },
     {
       name: 'ember-canary',
-      allowedToFail: true,
       bower: {
         dependencies: {
           'ember': 'components/ember#canary'

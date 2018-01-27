@@ -37,6 +37,6 @@ test('it handles promises', function(assert) {
   `);
 
   assert.equal(find('p').textContent.trim(), '3', 'precond - should render 3');
-  run(async () => await click('button'));
+  run(async() => await click('button'));
   assert.equal(find('p').textContent.trim(), '9', 'should render 9');
 });
