@@ -46,3 +46,25 @@ test('it generates a negative inclusive range', function(assert) {
   assert.equal(find('*').textContent.trim(), '54321', 'should generate a negative inclusive range');
 });
 
+test('it generates an inclusive range with equal arguments', function(assert) {
+  this.render(hbs`
+    {{~#each (range 1 1 true) as |number|~}}
+      {{~number~}}
+    {{~/each~}}
+  `);
+
+  assert.equal(find('*').textContent.trim(), '1', 'should generate an inclusive range');
+});
+
+test('it generates an empty range', function(assert) {
+  this.render(hbs`
+    {{~#each (range 1 1) as |number|~}}
+      {{~number~}}
+    {{~else~}}
+      empty
+    {{~/each~}}
+  `);
+
+  assert.equal(find('*').textContent.trim(), 'empty', 'should generate an empty range');
+});
+
