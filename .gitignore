@@ -15,3 +15,7 @@
 /libpeerconnection.log
 npm-debug.log*
 testem.log
+
+# lockfiles
+package-lock.json
+yarn.lock
