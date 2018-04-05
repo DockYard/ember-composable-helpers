@@ -124,12 +124,21 @@ For help upgrading between major versions, check out the [upgrading documentatio
 Pipes the return values of actions in a sequence of actions. This is useful to compose a pipeline of actions, so each action can do only one thing.
 
 ```hbs
-<button {{action (pipe (action 'addToCart') (action 'purchase') (action 'redirectToThankYouPage')) item}}>
+<button {{action (pipe
+  (action 'addToCart')
+  (action 'purchase')
+  (action 'redirectToThankYouPage')
+  catch=(action 'handleError')
+  finally=(action 'cleanup')
+) item}}>
   1-Click Buy
 </button>
 ```
 
-The `pipe` helper is Promise-aware, meaning that if any action in the pipeline returns a Promise, its return value will be piped into the next action. If the Promise rejects, the rest of the pipeline will be aborted.
+The `pipe` helper is Promise-aware, meaning that if any action in the pipeline returns a Promise, its return value will
+be piped into the next action. If the Promise rejects, the rest of the pipeline will be aborted and no further actions
+will be invoked. To specify exception-handling logic to the pipe, the `catch` &amp; `finally` [named args][named-args]
+can be used to apply any logic that must be dealt with when exceptions occur.
 
 The `pipe` helper can also be used directly as a closure action (using `pipe-action`) when being passed into a Component, which provides an elegant syntax for composing actions:
 
@@ -203,14 +212,14 @@ Allows for the passed in action to not exist.
 
 #### `queue`
 
-Like `pipe`, this helper runs actions in a sequence (from left-to-right). The
+Like [`pipe`](#pipe), this helper runs actions in a sequence (from left-to-right). The
 difference is that this helper passes the original arguments to each action, not
 the result of the previous action in the sequence.
 
 If one of the actions in the sequence returns a promise, then it will wait for
 that promise to resolve before calling the next action in the sequence. If a
 promise is rejected it will stop the sequence and no further actions will be
-called.
+called. It also supports the `catch`/`finally` [named arguments][named-args].
 
 ```hbs
 <button {{action (queue (action "backupData") (action "unsafeOperation") (action "restoreBackup"))}} />
@@ -709,3 +718,6 @@ String helpers were extracted to the [ember-cli-string-helpers](https://github.c
 [@dockyard](http://twitter.com/dockyard)
 
 [Licensed under the MIT license](http://www.opensource.org/licenses/mit-license.php)
+
+
+[named-args]: https://guides.emberjs.com/v2.18.0/templates/writing-helpers/#toc_named-arguments
