@@ -1,4 +1,4 @@
-import { resolve } from 'rsvp';
+import { resolve, reject } from 'rsvp';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
@@ -45,4 +45,36 @@ module('Integration | Helper | {{queue}}', function(hooks) {
     run(async () => await click('button'));
     assert.equal(find('p').textContent.trim(), '9', 'should render 9');
   });
+});
+
+test('it allows the consumer to provide promise-like exception handlers', async function(assert) {
+  this.set('value', 3);
+
+  this.on('doAThingImmediately', (original) => original + 10);
+  this.on('doAThingThatTakesTime', resolve);
+  this.on('doAnotherThingThatTakesTime', resolve);
+  this.on('doAThingThatThrows', reject.bind(null, new Error('thrown')));
+  this.on('process', (x) => this.set('value', x * x));
+
+  this.on('caught', (x) => this.set('error', x));
+  this.on('finally', (x) => this.set('final', x));
+
+  this.render(hbs`
+    <p>{{value}}</p>
+    <button onclick={{action (queue
+      (action "doAThingImmediately")
+      (action "doAThingThatTakesTime")
+      (action "doAnotherThingThatTakesTime")
+      (action "doAThingThatThrows")
+      (action "process")
+      catch=(action "caught")
+      finally=(action "finally")
+    ) value}}>
+      Calculate
+    </button>
+  `);
+
+  assert.equal(find('p').textContent.trim(), '3', 'precond - should render 3');
+  run(async() => await click('button'));
+  assert.equal(find('p').textContent.trim(), '3', 'should still be rendering 3, exception prevented set');
 });

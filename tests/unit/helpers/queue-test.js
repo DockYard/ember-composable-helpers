@@ -23,15 +23,9 @@ module('Unit | Helper | queue', function(hooks) {
 
   hooks.afterEach(function() {
     sandbox.restore();
-  });
-
-  test('it queues functions', function(assert) {
-    let queued = queue([step1, step2, step3]);
-    queued(2, 4);
-
-    assert.ok(step1.calledOnce, 'step1 called once');
-    assert.ok(step2.calledOnce, 'step2 called once');
-    assert.ok(step3.calledOnce, 'step3 called once');
+    step1.reset();
+    step2.reset();
+    step3.reset();
   });
 
   test('it passes all functions the same arguments', function(assert) {

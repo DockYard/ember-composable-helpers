@@ -1,23 +1,14 @@
 import { helper } from '@ember/component/helper';
-import isPromise from '../utils/is-promise';
+import { resolve, reject } from 'rsvp';
 
-export function invokeFunction(acc, curr) {
-  if (isPromise(acc)) {
-    return acc.then(curr);
-  }
-
-  return curr(acc);
+export function invokeFunction(acc, curr, idx) {
+  return acc.then((things) => idx === 0 ? curr(...things) : curr(things));
 }
 
-export function pipe(actions = []) {
+export function pipe(actions = [], { catch: c, finally: f } = { }) {
   return function(...args) {
-    return actions.reduce((acc, curr, idx) => {
-      if (idx === 0) {
-        return curr(...args);
-      }
-
-      return invokeFunction(acc, curr);
-    }, undefined);
+    return actions.reduce((acc, curr, idx) => invokeFunction(acc, curr, idx), resolve(args))
+      .catch(c ? c : reject).finally(f ? f.bind(null, ...args) : (v) => v);
   };
 }
 
