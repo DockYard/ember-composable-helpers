@@ -109,6 +109,7 @@ For help upgrading between major versions, check out the [upgrading documentatio
   + [`has-next`](#has-next)
   + [`previous`](#previous)
   + [`has-previous`](#has-previous)
+  + [`query-by`](#query-by)
 * [Object](#object-helpers)
   + [`group-by`](#group-by)
 * [Math](#math-helpers)
@@ -642,6 +643,17 @@ parameter, `useDeepEqual`, to flag whether a deep equal comparison should be per
 {{#if (has-previous page useDeepEqual pages)}}
   <button>Previous</button>
 {{/if}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `query-by`
+Checks if the array has an element that matches the regex pattern. **Note:** The Regex is a simple `Regex(query, 'i')` which will be a match or not.
+
+```hbs
+{{#each (query-by 'query' array) as |item|}}
+  {{item.prop}}
+{{/each}}
 ```
 
 **[⬆️ back to top](#available-helpers)**
