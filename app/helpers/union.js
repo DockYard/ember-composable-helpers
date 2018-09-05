@@ -1,1 +1,1 @@
-export { default, union } from 'ember-composable-helpers/helpers/union';
+export { default } from 'ember-composable-helpers/helpers/union';
