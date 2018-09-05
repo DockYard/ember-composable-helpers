@@ -1,1 +1,1 @@
-export { default, take } from 'ember-composable-helpers/helpers/take';
+export { default } from 'ember-composable-helpers/helpers/take';
