@@ -1,39 +1,40 @@
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('union', 'Integration | Helper | {{union}}', {
-  integration: true
-});
+module('Integration | Helper | {{union}}', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('It takes the union of the given arrays', function(assert) {
-  this.set('array1', ['foo', 'bar']);
-  this.set('array2', ['foo', 'baz']);
-  this.set('array3', ['qux', 'bar']);
+  test('It takes the union of the given arrays', async function(assert) {
+    this.set('array1', ['foo', 'bar']);
+    this.set('array2', ['foo', 'baz']);
+    this.set('array3', ['qux', 'bar']);
 
-  this.render(hbs`
-    {{~#each (union array1 array2 array3) as |word|~}}
-      {{~word~}}
-    {{~/each~}}
-  `);
+    await render(hbs`
+      {{~#each (union array1 array2 array3) as |word|~}}
+        {{~word~}}
+      {{~/each~}}
+    `);
 
-  assert.equal(find('*').textContent.trim(), 'foobarbazqux', 'union leaves no repeated words');
-});
+    assert.equal(find('*').textContent.trim(), 'foobarbazqux', 'union leaves no repeated words');
+  });
 
-test('It watches for changes', function(assert) {
-  this.set('array1', emberArray(['foo', 'bar']));
-  this.set('array2', emberArray(['foo', 'baz']));
-  this.set('array3', emberArray(['qux', 'bar']));
+  test('It watches for changes', async function(assert) {
+    this.set('array1', emberArray(['foo', 'bar']));
+    this.set('array2', emberArray(['foo', 'baz']));
+    this.set('array3', emberArray(['qux', 'bar']));
 
-  this.render(hbs`
-    {{~#each (union array1 array2 array3) as |word|~}}
-      {{~word~}}
-    {{~/each~}}
-  `);
+    await render(hbs`
+      {{~#each (union array1 array2 array3) as |word|~}}
+        {{~word~}}
+      {{~/each~}}
+    `);
 
-  run(() => this.get('array1').pushObject('leet'));
+    run(() => this.get('array1').pushObject('leet'));
 
-  assert.equal(find('*').textContent.trim(), 'foobarleetbazqux', 'leet is added');
+    assert.equal(find('*').textContent.trim(), 'foobarleetbazqux', 'leet is added');
+  });
 });

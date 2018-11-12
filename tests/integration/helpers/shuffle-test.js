@@ -1,102 +1,108 @@
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('shuffle', 'Integration | Helper | {{shuffle}}', {
-  integration: true
-});
+module('Integration | Helper | {{shuffle}}', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('It shuffles array', function(assert) {
-  this.set('array', emberArray([1, 2]));
-  this.render(hbs`
-    {{~#each (shuffle array) as |value|~}}
-      {{value}}
-    {{~/each~}}
-  `);
+  hooks.beforeEach(function() {
+    this.actions = {};
+    this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
+  });
 
-  let shuffled = find('*').textContent.trim();
-  assert.ok(shuffled === '12' || shuffled === '21', 'array is shuffled');
-});
+  test('It shuffles array', async function(assert) {
+    this.set('array', emberArray([1, 2]));
+    await render(hbs`
+      {{~#each (shuffle array) as |value|~}}
+        {{value}}
+      {{~/each~}}
+    `);
 
-test('It shuffles array using passed in randomizer', function(assert) {
-  this.set('array', emberArray([1, 2, 3, 4]));
-  this.on('fake', () => 0);
-  this.render(hbs`
-    {{~#each (shuffle (action "fake") array) as |value|~}}
-      {{value}}
-    {{~/each~}}
-  `);
+    let shuffled = find('*').textContent.trim();
+    assert.ok(shuffled === '12' || shuffled === '21', 'array is shuffled');
+  });
 
-  assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
-});
+  test('It shuffles array using passed in randomizer', async function(assert) {
+    this.set('array', emberArray([1, 2, 3, 4]));
+    this.actions.fake = () => 0;
+    await render(hbs`
+      {{~#each (shuffle (action "fake") array) as |value|~}}
+        {{value}}
+      {{~/each~}}
+    `);
 
-test('It handles a non-ember array', function(assert) {
-  this.set('array', [1, 2, 3, 4]);
-  this.on('fake', () => 0);
-  this.render(hbs`
-    {{~#each (shuffle (action "fake") array) as |value|~}}
-      {{value}}
-    {{~/each~}}
-  `);
+    assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
+  });
 
-  assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
-});
+  test('It handles a non-ember array', async function(assert) {
+    this.set('array', [1, 2, 3, 4]);
+    this.actions.fake = () => 0;
+    await render(hbs`
+      {{~#each (shuffle (action "fake") array) as |value|~}}
+        {{value}}
+      {{~/each~}}
+    `);
 
-test('It does not mutate the original array', function(assert) {
-  this.set('array', emberArray([1, 2, 3, 4]));
-  this.on('fake', () => 0);
-  this.render(hbs`
-    {{~#each (shuffle (action "fake") array) as |value|~}}
-      {{value}}
-    {{~/each~}}
-  `);
+    assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
+  });
 
-  assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
-  assert.deepEqual(this.get('array'), [1, 2, 3, 4], 'the original array is not shuffled');
-});
+  test('It does not mutate the original array', async function(assert) {
+    this.set('array', emberArray([1, 2, 3, 4]));
+    this.actions.fake = () => 0;
+    await render(hbs`
+      {{~#each (shuffle (action "fake") array) as |value|~}}
+        {{value}}
+      {{~/each~}}
+    `);
 
-test('It gracefully handles non-array values', function(assert) {
-  this.set('notArray', 1);
-  this.render(hbs`
-    {{~#each (shuffle notArray) as |value|~}}
-      {{value}}
-    {{~/each~}}
-  `);
+    assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
+    assert.deepEqual(this.get('array'), [1, 2, 3, 4], 'the original array is not shuffled');
+  });
 
-  assert.equal(find('*').textContent.trim(), '1', 'the non array value is rendered');
-});
+  test('It gracefully handles non-array values', async function(assert) {
+    this.set('notArray', 1);
+    await render(hbs`
+      {{~#each (shuffle notArray) as |value|~}}
+        {{value}}
+      {{~/each~}}
+    `);
 
-test('It recomputes the shuffle if the array changes', function(assert) {
-  this.set('array', emberArray([1, 2, 3, 4]));
-  this.on('fake', () => 0);
-  this.render(hbs`
-    {{~#each (shuffle (action "fake") array) as |value|~}}
-      {{value}}
-    {{~/each~}}
-  `);
+    assert.equal(find('*').textContent.trim(), '1', 'the non array value is rendered');
+  });
 
-  assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
+  test('It recomputes the shuffle if the array changes', async function(assert) {
+    this.set('array', emberArray([1, 2, 3, 4]));
+    this.actions.fake = () => 0;
+    await render(hbs`
+      {{~#each (shuffle (action "fake") array) as |value|~}}
+        {{value}}
+      {{~/each~}}
+    `);
 
-  this.set('array', emberArray(['a', 2, 3, 4]));
+    assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
 
-  assert.equal(find('*').textContent.trim(), '234a', 'array is shuffled');
-});
+    this.set('array', emberArray(['a', 2, 3, 4]));
 
-test('It recomputes the shuffle if an item in the array changes', function(assert) {
-  let array = emberArray([1, 2, 3, 4]);
-  this.set('array', array);
-  this.on('fake', () => 0);
-  this.render(hbs`
-    {{~#each (shuffle (action "fake") array) as |value|~}}
-      {{value}}
-    {{~/each~}}
-  `);
+    assert.equal(find('*').textContent.trim(), '234a', 'array is shuffled');
+  });
 
-  assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
+  test('It recomputes the shuffle if an item in the array changes', async function(assert) {
+    let array = emberArray([1, 2, 3, 4]);
+    this.set('array', array);
+    this.actions.fake = () => 0;
+    await render(hbs`
+      {{~#each (shuffle (action "fake") array) as |value|~}}
+        {{value}}
+      {{~/each~}}
+    `);
 
-  run(() => array.replace(2, 1, [5]));
+    assert.equal(find('*').textContent.trim(), '2341', 'array is shuffled');
 
-  assert.equal(find('*').textContent.trim(), '2541', 'array is shuffled');
+    run(() => array.replace(2, 1, [5]));
+
+    assert.equal(find('*').textContent.trim(), '2541', 'array is shuffled');
+  });
 });

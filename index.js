@@ -1,4 +1,3 @@
-/* eslint-env node */
 'use strict';
 
 var Funnel = require('broccoli-funnel');
@@ -7,7 +6,7 @@ var intersection = require('./lib/intersection');
 var difference = require('./lib/difference');
 
 module.exports = {
-  name: 'ember-composable-helpers',
+  name: require('./package').name,
 
   included: function(app) {
     this._super.included.apply(this, arguments);

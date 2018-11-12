@@ -1,14 +1,20 @@
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('compute', 'Integration | Helper | {{compute}}', {
-  integration: true
-});
+module('Integration | Helper | {{compute}}', function(hooks) {
+  setupRenderingTest(hooks);
 
-test("It calls an action and returns it's value", function(assert) {
-  this.on('square', (x) => x * x);
-  this.render(hbs`{{compute (action "square") 4}}`);
+  hooks.beforeEach(function() {
+    this.actions = {};
+    this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
+  });
 
-  assert.equal(find('*').textContent.trim(), '16', '4 squared is 16');
+  test("It calls an action and returns it's value", async function(assert) {
+    this.actions.square = (x) => x * x;
+    await render(hbs`{{compute (action "square") 4}}`);
+
+    assert.equal(find('*').textContent.trim(), '16', '4 squared is 16');
+  });
 });

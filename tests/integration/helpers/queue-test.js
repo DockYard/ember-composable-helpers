@@ -1,42 +1,48 @@
 import { resolve } from 'rsvp';
 import { run } from '@ember/runloop';
-import { click, find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, click, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('queue', 'Integration | Helper | {{queue}}', {
-  integration: true
-});
+module('Integration | Helper | {{queue}}', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it queues actions', async function(assert) {
-  this.on('doAThing', () => null);
-  this.on('process', (x) => this.set('value', x * x));
-  this.on('undoAThing', () => null);
-  this.set('value', 2);
-  this.render(hbs`
-    <p>{{value}}</p>
-    <button {{action (queue (action "doAThing") (action "process") (action "undoAThing")) value}}>
-      Calculate
-    </button>
-  `);
+  hooks.beforeEach(function() {
+    this.actions = {};
+    this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
+  });
 
-  assert.equal(find('p').textContent.trim(), '2', 'precond - should render 2');
-  await click('button');
-  assert.equal(find('p').textContent.trim(), '4', 'should render 4');
-});
+  test('it queues actions', async function(assert) {
+    this.actions.doAThing = () => null;
+    this.actions.process = (x) => this.set('value', x * x);
+    this.actions.undoAThing = () => null;
+    this.set('value', 2);
+    await render(hbs`
+      <p>{{value}}</p>
+      <button {{action (queue (action "doAThing") (action "process") (action "undoAThing")) value}}>
+        Calculate
+      </button>
+    `);
 
-test('it handles promises', function(assert) {
-  this.set('value', 3);
-  this.on('doAThingThatTakesTime', resolve);
-  this.on('process', (x) => this.set('value', x * x));
-  this.render(hbs`
-    <p>{{value}}</p>
-    <button {{action (queue (action "doAThingThatTakesTime") (action "process")) value}}>
-      Calculate
-    </button>
-  `);
+    assert.equal(find('p').textContent.trim(), '2', 'precond - should render 2');
+    await click('button');
+    assert.equal(find('p').textContent.trim(), '4', 'should render 4');
+  });
 
-  assert.equal(find('p').textContent.trim(), '3', 'precond - should render 3');
-  run(async () => await click('button'));
-  assert.equal(find('p').textContent.trim(), '9', 'should render 9');
+  test('it handles promises', async function(assert) {
+    this.set('value', 3);
+    this.actions.doAThingThatTakesTime = resolve;
+    this.actions.process = (x) => this.set('value', x * x);
+    await render(hbs`
+      <p>{{value}}</p>
+      <button {{action (queue (action "doAThingThatTakesTime") (action "process")) value}}>
+        Calculate
+      </button>
+    `);
+
+    assert.equal(find('p').textContent.trim(), '3', 'precond - should render 3');
+    run(async () => await click('button'));
+    assert.equal(find('p').textContent.trim(), '9', 'should render 9');
+  });
 });
