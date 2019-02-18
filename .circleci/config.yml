@@ -6,13 +6,16 @@ jobs:
       - image: circleci/node:6-browsers
     steps:
       - checkout
+      - run:
+          name: Update npm
+          command: 'sudo npm install -g npm@latest'
       - restore_cache:
-          key: node-modules-cache-{{ checksum "package-lock.json" }}
+          key: node-modules-cache-{{ checksum "package.json" }}
       - run:
           name: Install packages
-          command: 'sudo npm install -g npm@latest'
+          command: npm install
       - save_cache:
-          key: node-modules-cache-{{ checksum "package-lock.json" }}
+          key: node-modules-cache-{{ checksum "package.json" }}
           paths:
            - node_modules
       - run:
