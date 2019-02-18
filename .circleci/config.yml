@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/DockYard/ember-composable-helpers
     docker:
-      - image: circleci/node:6-browsers
+      - image: circleci/node:6.16.0-browsers
     steps:
       - checkout
       - run:
@@ -21,5 +21,3 @@ jobs:
       - run:
           name: Run tests
           command: npm run test
-      - store_test_results:
-          path: test-results
