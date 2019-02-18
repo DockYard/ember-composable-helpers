@@ -20,6 +20,10 @@ export function range([min, max, isInclusive]) {
     }
   }
 
+  if (min === max && isInclusive) {
+    numbers.push(max);
+  }
+
   return numbers;
 }
 

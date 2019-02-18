@@ -2,61 +2,58 @@
   "name": "ember-composable-helpers",
   "version": "2.1.0",
   "description": "Composable helpers for Ember",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "scripts": {
     "build": "ember build",
-    "start": "ember server",
+    "lint:hbs": "ember-template-lint .",
+    "lint:js": "eslint .",
+    "start": "ember serve",
+    "test": "ember test",
     "node-test": "mocha test --recursive --reporter spec",
-    "test": "ember try:each"
+    "test:all": "ember try:each"
   },
-  "repository": "https://github.com/DockYard/ember-composable-helpers",
   "bugs": "https://github.com/DockYard/ember-composable-helpers/issues",
   "homepage": "https://github.com/DockYard/ember-composable-helpers",
   "engines": {
-    "node": ">= 4"
+    "node": "6.* || 8.* || >= 10.*"
   },
-  "author": "Dockyard <oss@dockyard.com>",
   "contributors": [
     "Lauren Tan <arr@sugarpirate.com>",
     "Marten Schilstra <mail@martenschilstra.nl>"
   ],
-  "license": "MIT",
   "devDependencies": {
-    "broccoli-asset-rev": "^2.4.5",
+    "@ember/optional-features": "^0.7.0",
+    "broccoli-asset-rev": "^3.0.0",
     "chai": "^3.5.0",
-    "ember-ajax": "^3.0.0",
-    "ember-cli": "2.13.2",
-    "ember-cli-dependency-checker": "^1.3.0",
-    "ember-cli-eslint": "^3.0.0",
-    "ember-cli-htmlbars": "^1.1.1",
-    "ember-cli-htmlbars-inline-precompile": "^0.4.0",
-    "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-qunit": "^4.0.0",
+    "ember-cli": "~3.5.0",
+    "ember-cli-dependency-checker": "^3.0.0",
+    "ember-cli-eslint": "^5.0.0",
+    "ember-cli-htmlbars": "^3.0.1",
+    "ember-cli-htmlbars-inline-precompile": "^2.0.0",
+    "ember-cli-inject-live-reload": "^1.8.2",
     "ember-cli-release": "^0.2.9",
-    "ember-cli-shims": "^1.1.0",
-    "ember-cli-sri": "^2.1.0",
-    "ember-cli-uglify": "^1.2.0",
-    "ember-data": "2.11.0",
-    "ember-disable-prototype-extensions": "^1.1.0",
+    "ember-cli-sri": "^2.1.1",
+    "ember-cli-template-lint": "^1.0.0-beta.1",
+    "ember-cli-uglify": "^2.1.0",
+    "ember-data": "^3.5.0",
+    "ember-disable-prototype-extensions": "^1.1.3",
     "ember-disable-proxy-controllers": "^1.0.1",
-    "ember-each-in-polyfill": "^0.1.4",
-    "ember-exam": "^0.7.0",
+    "ember-exam": "^1.0.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-inflector": "1.9.6",
-    "ember-load-initializers": "^1.0.0",
+    "ember-inflector": "^3.0.0",
+    "ember-load-initializers": "^2.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-native-dom-event-dispatcher": "^0.6.1",
-    "ember-native-dom-helpers": "^0.4.1",
-    "ember-resolver": "^4.0.0",
-    "ember-sinon": "0.5.0",
-    "ember-source": "~2.13.0",
-    "eslint-plugin-ember": "^4.0.0",
+    "ember-qunit": "^4.1.2",
+    "ember-resolver": "^5.0.1",
+    "ember-sinon": "^3.0.0",
+    "ember-source": "~3.5.0",
+    "ember-source-channel-url": "^1.1.0",
+    "ember-try": "^1.0.0",
+    "eslint-plugin-ember": "^5.2.0",
     "eslint-plugin-ember-suave": "1.0.0",
-    "loader.js": "^4.2.3",
-    "mocha": "^2.4.5"
+    "eslint-plugin-node": "^7.0.1",
+    "loader.js": "^4.7.0",
+    "mocha": "^2.4.5",
+    "qunit-dom": "^0.8.0"
   },
   "keywords": [
     "ember-addon",
@@ -70,9 +67,16 @@
     "drop",
     "compute"
   ],
+  "repository": "https://github.com/DockYard/ember-composable-helpers",
+  "license": "MIT",
+  "author": "Dockyard <oss@dockyard.com>",
+  "directories": {
+    "doc": "doc",
+    "test": "tests"
+  },
   "dependencies": {
     "broccoli-funnel": "^1.0.1",
-    "ember-cli-babel": "^6.6.0"
+    "ember-cli-babel": "^7.1.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

@@ -1,1 +1,1 @@
-export { default, filter } from 'ember-composable-helpers/helpers/filter';
+export { default } from 'ember-composable-helpers/helpers/filter';

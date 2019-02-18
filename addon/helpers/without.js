@@ -1,6 +1,5 @@
 import { A as emberArray, isArray as isEmberArray } from '@ember/array';
 import { get } from '@ember/object';
-import { typeOf } from '@ember/utils';
 import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
 import includes from '../utils/includes';
 
@@ -13,8 +12,10 @@ export function without(needle, haystack) {
     return false;
   }
 
-  if (typeOf(needle) === 'array' && get(needle, 'length')) {
-    return haystack.reduce((acc, val) => contains(val, needle) ? acc : acc.concat(val), []);
+  if (isEmberArray(needle) && get(needle, 'length')) {
+    return haystack.reduce((acc, val) => {
+      return contains(val, needle) ? acc : acc.concat(val);
+    }, []);
   }
 
   return emberArray(haystack).without(needle);

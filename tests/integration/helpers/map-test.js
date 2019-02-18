@@ -1,55 +1,61 @@
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('map', 'Integration | Helper | {{map}}', {
-  integration: true
-});
+module('Integration | Helper | {{map}}', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('It maps by value', function(assert) {
-  this.set('array', emberArray([
-    { name: 'a' },
-    { name: 'b' },
-    { name: 'c' }
-  ]));
-
-  this.on('getName', function({ name }) {
-    return name;
+  hooks.beforeEach(function() {
+    this.actions = {};
+    this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
   });
 
-  this.render(hbs`
-    {{~#each (map (action "getName") array) as |name|~}}
-      {{~name~}}
-    {{~/each~}}
-  `);
+  test('It maps by value', async function(assert) {
+    this.set('array', emberArray([
+      { name: 'a' },
+      { name: 'b' },
+      { name: 'c' }
+    ]));
 
-  assert.equal(find('*').textContent.trim(), 'abc', 'name property is mapped');
-});
+    this.actions.getName = function({ name }) {
+      return name;
+    };
 
-test('It watches for changes', function(assert) {
-  let array = emberArray([
-    { name: 'a' },
-    { name: 'b' },
-    { name: 'c' }
-  ]);
+    await render(hbs`
+      {{~#each (map (action "getName") array) as |name|~}}
+        {{~name~}}
+      {{~/each~}}
+    `);
 
-  this.set('array', array);
-
-  this.on('getName', function({ name }) {
-    return name;
+    assert.equal(find('*').textContent.trim(), 'abc', 'name property is mapped');
   });
 
-  this.render(hbs`
-    {{~#each (map (action "getName") array) as |name|~}}
-      {{~name~}}
-    {{~/each~}}
-  `);
+  test('It watches for changes', async function(assert) {
+    let array = emberArray([
+      { name: 'a' },
+      { name: 'b' },
+      { name: 'c' }
+    ]);
 
-  assert.equal(find('*').textContent.trim(), 'abc', 'precondition');
+    this.set('array', array);
 
-  run(() => array.pushObject({ name: 'd' }));
+    this.actions.getName = function({ name }) {
+      return name;
+    };
 
-  assert.equal(find('*').textContent.trim(), 'abcd', 'd is added');
+    await render(hbs`
+      {{~#each (map (action "getName") array) as |name|~}}
+        {{~name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'abc', 'precondition');
+
+    run(() => array.pushObject({ name: 'd' }));
+
+    assert.equal(find('*').textContent.trim(), 'abcd', 'd is added');
+  });
 });

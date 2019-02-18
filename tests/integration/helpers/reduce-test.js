@@ -1,50 +1,56 @@
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('filter', 'Integration | Helper | {{reduce}}', {
-  integration: true
-});
+module('Integration | Helper | {{reduce}}', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('It accepts a callback', function(assert) {
-  this.set('array', emberArray([1, 2, 3]));
+  hooks.beforeEach(function() {
+    this.actions = {};
+    this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
+  });
 
-  this.on('sum', (previousValue, currentValue) => previousValue + currentValue);
+  test('It accepts a callback', async function(assert) {
+    this.set('array', emberArray([1, 2, 3]));
 
-  this.render(hbs`{{reduce (action "sum") 0 array}}`);
+    this.actions.sum = (previousValue, currentValue) => previousValue + currentValue;
 
-  assert.equal(find('*').textContent, 6);
-});
+    await render(hbs`{{reduce (action "sum") 0 array}}`);
 
-test('It re-evaluates when array content changes', function(assert) {
-  let array = emberArray([1, 2, 3]);
+    assert.equal(find('*').textContent, 6);
+  });
 
-  this.set('array', array);
+  test('It re-evaluates when array content changes', async function(assert) {
+    let array = emberArray([1, 2, 3]);
 
-  this.on('sum', (previousValue, currentValue) => previousValue + currentValue);
+    this.set('array', array);
 
-  this.render(hbs`{{reduce (action "sum") 0 array}}`);
+    this.actions.sum = (previousValue, currentValue) => previousValue + currentValue;
 
-  assert.equal(find('*').textContent, 6);
+    await render(hbs`{{reduce (action "sum") 0 array}}`);
 
-  run(() => array.pushObject(4));
+    assert.equal(find('*').textContent, 6);
 
-  assert.equal(find('*').textContent, 10);
-});
+    run(() => array.pushObject(4));
 
-test('It re-evaluates when initial value changes', function(assert) {
-  this.set('array', emberArray([1, 2, 3]));
-  this.set('initialValue', 0);
+    assert.equal(find('*').textContent, 10);
+  });
 
-  this.on('sum', (previousValue, currentValue) => previousValue + currentValue);
+  test('It re-evaluates when initial value changes', async function(assert) {
+    this.set('array', emberArray([1, 2, 3]));
+    this.set('initialValue', 0);
 
-  this.render(hbs`{{reduce (action "sum") initialValue array}}`);
+    this.actions.sum = (previousValue, currentValue) => previousValue + currentValue;
 
-  assert.equal(find('*').textContent, 6);
+    await render(hbs`{{reduce (action "sum") initialValue array}}`);
 
-  this.set('initialValue', 4);
+    assert.equal(find('*').textContent, 6);
 
-  assert.equal(find('*').textContent, 10);
+    this.set('initialValue', 4);
+
+    assert.equal(find('*').textContent, 10);
+  });
 });
