@@ -10,6 +10,9 @@ jobs:
           name: Update npm
           command: 'sudo npm install -g npm@latest'
       - run:
+          name: Clean
+          command: rm -rf node_modules && npm cache clean
+      - run:
           name: Install packages
           command: npm install
       - run:
