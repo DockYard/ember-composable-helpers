@@ -21,6 +21,5 @@ jobs:
       - run:
           name: Run tests
           command: npm run test
-            esac
       - store_test_results:
           path: test-results
