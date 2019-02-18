@@ -72,32 +72,33 @@ module('Integration | Helper | {{without}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'barbaz', 'should render remaining values');
   });
-});
 
-test('it accepts an ember data array', function(assert) {
-  this.inject.service('store');
+  test('it accepts an ember data array', async function(assert) {
+    let store = this.owner.lookup('service:store');
 
-  run(() => {
-    let person = this.get('store').createRecord('person', {
-      name: 'Adam'
+    run(() => {
+      let person = store.createRecord('person', {
+        name: 'Adam'
+      });
+
+      person.get('pets').pushObjects([
+        store.createRecord('pet', { name: 'Kirby' }),
+        store.createRecord('pet', { name: 'Jake' })
+      ]);
+
+      store.createRecord('pet', { name: 'Eva' });
+
+      this.set('person', person);
+      this.set('allPets', store.peekAll('pet'));
     });
 
-    person.get('pets').pushObjects([
-      this.get('store').createRecord('pet', { name: 'Kirby' }),
-      this.get('store').createRecord('pet', { name: 'Jake' })
-    ]);
+    await this.render(hbs`
+      {{~#each (without person.pets allPets) as |pet|~}}
+        {{~pet.name~}}
+      {{~/each~}}
+    `);
 
-    this.get('store').createRecord('pet', { name: 'Eva' });
-
-    this.set('person', person);
-    this.set('allPets', this.get('store').peekAll('pet'));
+    assert.equal(this.element.textContent.trim(), 'Eva', 'the remaining pet name is shown');
   });
-
-  this.render(hbs`
-    {{~#each (without person.pets allPets) as |pet|~}}
-      {{~pet.name~}}
-    {{~/each~}}
-  `);
-
-  assert.equal(find('*').textContent.trim(), 'Eva', 'the remaining pet name is shown');
 });
+
