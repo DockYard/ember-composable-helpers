@@ -10,7 +10,7 @@ jobs:
           key: node-modules-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install packages
-          command: npm
+          command: 'sudo npm install -g npm@latest'
       - save_cache:
           key: node-modules-cache-{{ checksum "package-lock.json" }}
           paths:
