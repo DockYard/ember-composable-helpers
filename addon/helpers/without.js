@@ -13,7 +13,9 @@ export function without(needle, haystack) {
   }
 
   if (isEmberArray(needle) && get(needle, 'length')) {
-    return haystack.reduce((acc, val) => contains(val, needle) ? acc : acc.concat(val), []);
+    return haystack.reduce((acc, val) => {
+      return contains(val, needle) ? acc : acc.concat(val);
+    }, []);
   }
 
   return emberArray(haystack).without(needle);
