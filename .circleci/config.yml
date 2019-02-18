@@ -7,17 +7,17 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: node-modules-cache-{{ checksum "yarn.lock" }}
+          key: node-modules-cache-{{ checksum "package-lock.json" }}
       - run:
           name: Install packages
-          command: yarn
+          command: npm
       - save_cache:
-          key: node-modules-cache-{{ checksum "yarn.lock" }}
+          key: node-modules-cache-{{ checksum "package-lock.json" }}
           paths:
            - node_modules
       - run:
           name: Run tests
-          command: yarn test
+          command: npm run test
             esac
       - store_test_results:
           path: test-results
