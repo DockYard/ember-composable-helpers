@@ -31,6 +31,16 @@ module.exports = {
     return this.filterHelpers(tree, new RegExp(moduleRegexp, 'i'));
   },
 
+  preprocessTree(type, tree) {
+    this._super(...arguments);
+    if (type === 'js') {
+      this.blacklist.forEach((blacklist) => {
+        tree = require('broccoli-stew').rm(tree, `app/helpers/${blacklist}.js`);
+      });
+    }
+    return tree;
+  },
+
   filterHelpers: function(tree, regex) {
     var whitelist = this.whitelist;
     var blacklist = this.blacklist;
