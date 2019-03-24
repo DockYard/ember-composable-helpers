@@ -81,6 +81,8 @@ For help upgrading between major versions, check out the [upgrading documentatio
   + [`array`](#array)
   + [`map`](#map)
   + [`map-by`](#map-by)
+  + [`sort`](#sort)
+  + [`reverse-sort`](#reverse-sort)
   + [`sort-by`](#sort-by)
   + [`filter`](#filter)
   + [`filter-by`](#filter-by)
@@ -231,6 +233,8 @@ Similar to the `hash` helper, this lets you compose arrays directly in the templ
 {{/each}}
 ```
 
+**[⬆️ back to top](#available-helpers)**
+
 #### `map`
 Maps a callback on an array.
 
@@ -240,14 +244,32 @@ Maps a callback on an array.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
-
 #### `map-by`
 Maps an array on a property.
 
 ```hbs
 {{#each (map-by "fullName" users) as |fullName|}}
   {{fullName}}
+{{/each}}
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `sort`
+Sort an array by its values.
+
+```hbs
+{{#each (sort numbers) as |number|}}
+  {{number}}
+{{/each}}
+```
+
+#### `reverse-sort`
+Sort an array by its values in reverse order.
+
+```hbs
+{{#each (reverse-sort strings) as |string|}}
+  {{string}}
 {{/each}}
 ```
 
@@ -277,7 +299,6 @@ You can also pass a method as the first argument:
 ```
 
 **[⬆️ back to top](#available-helpers)**
-
 
 #### `filter`
 Filters an array by a callback.
