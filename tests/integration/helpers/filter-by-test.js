@@ -174,4 +174,20 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'a', 'b and c are filtered out');
   });
+
+  test('It filters without dependant keys', async function(assert) {
+    this.set('array', emberArray([
+      { foo: { bar: true, }, name: 'a' },
+      { foo: { bar: false, }, name: 'b' },
+      { foo: { bar: true, }, name: 'c' }
+    ]));
+
+    await render(hbs`
+      {{~#each (filter-by 'foo.bar' true array) as |item|~}}
+        {{~item.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
+  });
 });
