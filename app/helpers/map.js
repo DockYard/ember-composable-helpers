@@ -1,1 +1,1 @@
-export { default, map } from 'ember-composable-helpers/helpers/map';
+export { default } from 'ember-composable-helpers/helpers/map';

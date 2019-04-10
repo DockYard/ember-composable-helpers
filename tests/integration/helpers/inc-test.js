@@ -1,31 +1,32 @@
-import { find } from 'ember-native-dom-helpers';
-import { moduleForComponent, test } from 'ember-qunit';
+import { module, test } from 'qunit';
+import { setupRenderingTest } from 'ember-qunit';
+import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('inc', 'Integration | Helper | {{inc}}', {
-  integration: true
-});
+module('Integration | Helper | {{inc}}', function(hooks) {
+  setupRenderingTest(hooks);
 
-test('it increments a value', function(assert) {
-  this.render(hbs`{{inc 1}}`);
+  test('it increments a value', async function(assert) {
+    await render(hbs`{{inc 1}}`);
 
-  assert.equal(find('*').textContent.trim(), '2', 'should increment by 1');
-});
+    assert.equal(find('*').textContent.trim(), '2', 'should increment by 1');
+  });
 
-test('it increments a value', function(assert) {
-  this.render(hbs`{{inc 2 1}}`);
+  test('it increments a value', async function(assert) {
+    await render(hbs`{{inc 2 1}}`);
 
-  assert.equal(find('*').textContent.trim(), '3', 'should increment by 2');
-});
+    assert.equal(find('*').textContent.trim(), '3', 'should increment by 2');
+  });
 
-test('It can increment a string', function(assert) {
-  this.render(hbs`{{inc "1"}}`);
+  test('It can increment a string', async function(assert) {
+    await render(hbs`{{inc "1"}}`);
 
-  assert.equal(find('*').textContent.trim(), '2', 'should increment by 1');
-});
+    assert.equal(find('*').textContent.trim(), '2', 'should increment by 1');
+  });
 
-test('It handles when undefined is passed', function(assert) {
-  this.render(hbs`{{inc}}`);
+  test('It handles when undefined is passed', async function(assert) {
+    await render(hbs`{{inc}}`);
 
-  assert.equal(find('*').textContent.trim(), '', 'should not return a value');
+    assert.equal(find('*').textContent.trim(), '', 'should not return a value');
+  });
 });
