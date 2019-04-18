@@ -75,8 +75,10 @@
     "test": "tests"
   },
   "dependencies": {
-    "broccoli-funnel": "^1.0.1",
-    "ember-cli-babel": "^7.1.0"
+    "@babel/core": "^7.0.0",
+    "broccoli-funnel": "2.0.1",
+    "ember-cli-babel": "^7.1.0",
+    "resolve": "^1.10.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
