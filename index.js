@@ -4,6 +4,7 @@ var Funnel = require('broccoli-funnel');
 var path = require('path');
 var intersection = require('./lib/intersection');
 var difference = require('./lib/difference');
+var StripBadReexports = require('./lib/strip-bad-reexports');
 
 module.exports = {
   name: require('./package').name,
@@ -24,11 +25,15 @@ module.exports = {
     this.blacklist = this.generateBlacklist(config);
   },
 
-  treeForAddon: function() {
-    // see: https://github.com/ember-cli/ember-cli/issues/4463
-    var tree = this._super.treeForAddon.apply(this, arguments);
-    var moduleRegexp = '(^modules\/)?' + this.name + '\/helpers\/';
-    return this.filterHelpers(tree, new RegExp(moduleRegexp, 'i'));
+  treeForAddon: function(tree) {
+    tree = this.filterHelpers(tree, new RegExp(/^helpers\//, 'i'));
+    tree = new StripBadReexports(tree, [`index.js`]);
+    return this._super.treeForAddon.call(this, tree);
+  },
+
+  treeForApp: function(tree) {
+    tree = this.filterHelpers(tree, new RegExp(/^helpers\//, 'i'));
+    return this._super.treeForApp.call(this, tree);
   },
 
   filterHelpers: function(tree, regex) {
@@ -38,7 +43,7 @@ module.exports = {
 
     // exit early if no opts defined
     if ((!whitelist || whitelist.length === 0) && (!blacklist || blacklist.length === 0)) {
-      return new Funnel(tree);
+      return tree;
     }
 
     return new Funnel(tree, {
