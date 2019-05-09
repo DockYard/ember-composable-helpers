@@ -7,6 +7,7 @@ import { observer } from '@ember/object';
 import { set } from '@ember/object';
 import { isEmpty, isPresent } from '@ember/utils';
 import isEqual from '../utils/is-equal';
+import syncObserver from '../utils/sync-observer';
 
 export default Helper.extend({
   compute([byPath, value, array]) {
@@ -22,7 +23,7 @@ export default Helper.extend({
     return get(this, 'content');
   },
 
-  byPathDidChange: observer('byPath', 'value', function() {
+  byPathDidChange: syncObserver('byPath', 'value', function() {
     let byPath = get(this, 'byPath');
     let value = get(this, 'value');
 
@@ -35,15 +36,15 @@ export default Helper.extend({
 
     if (isPresent(value)) {
       if (typeof value === 'function') {
-        filterFn = (item) => value(get(item, byPath));
+        filterFn = item => value(get(item, byPath));
       } else {
-        filterFn = (item) => isEqual(get(item, byPath), value);
+        filterFn = item => isEqual(get(item, byPath), value);
       }
     } else {
-      filterFn = (item) => !!get(item, byPath);
+      filterFn = item => !!get(item, byPath);
     }
 
-    let [minimumByPath]  = byPath.split('.');
+    let [minimumByPath] = byPath.split('.');
     let cp = filter(`array.@each.${minimumByPath}`, filterFn);
 
     defineProperty(this, 'content', cp);

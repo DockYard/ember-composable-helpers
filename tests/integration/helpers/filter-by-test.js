@@ -3,7 +3,7 @@ import { run } from '@ember/runloop';
 import { set } from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render, find, settled } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Helper | {{filter-by}}', function(hooks) {
@@ -89,6 +89,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     `);
 
     run(() => set(array.objectAt(1), 'foo', true));
+    await settled();
 
     assert.equal(find('*').textContent.trim(), 'abc', 'b is shown');
   });
@@ -109,6 +110,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     `);
 
     run(() => set(array.objectAt(0), 'foo', false));
+    await settled();
 
     assert.equal(find('*').textContent.trim(), 'ab', 'a and b are shown');
   });
@@ -131,6 +133,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'ac', 'ac is shown');
 
     run(() => set(array.objectAt(1), 'foo', true));
+    await settled();
 
     assert.equal(find('*').textContent.trim(), 'abc', 'b is added');
   });
