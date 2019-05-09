@@ -89,7 +89,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     `);
 
     run(() => set(array.objectAt(1), 'foo', true));
-    await settled();
+    run(() => { });
 
     assert.equal(find('*').textContent.trim(), 'abc', 'b is shown');
   });
@@ -110,7 +110,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     `);
 
     run(() => set(array.objectAt(0), 'foo', false));
-    await settled();
+    run(() => { });
 
     assert.equal(find('*').textContent.trim(), 'ab', 'a and b are shown');
   });
@@ -133,7 +133,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'ac', 'ac is shown');
 
     run(() => set(array.objectAt(1), 'foo', true));
-    await settled();
+    run(() => { });
 
     assert.equal(find('*').textContent.trim(), 'abc', 'b is added');
   });
