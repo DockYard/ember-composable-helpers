@@ -7,8 +7,6 @@ const { EMBER_METAL_TRACKED_PROPERTIES = false } = FEATURES;
 const setClassicDecorator =
   Ember._setClassicDecorator || Ember._setComputedDecorator;
 
-const VALUES = new WeakMap();
-
 export default (!EMBER_METAL_TRACKED_PROPERTIES
   ? observer
   : function syncObserver(...args) {
@@ -16,10 +14,7 @@ export default (!EMBER_METAL_TRACKED_PROPERTIES
       const [callback] = args.slice(-1);
 
       function decorator(obj) {
-        if (!VALUES.has(obj)) {
-          VALUES.set(obj, Object.create(null));
-        }
-        const values = VALUES.get(obj);
+        const values = Object.create(null);
         for (const dependentKey of dependentKeys) {
           Object.defineProperty(obj, dependentKey, {
             enumerable: true,
