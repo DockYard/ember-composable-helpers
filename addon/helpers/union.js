@@ -1,4 +1,9 @@
-import { union } from '@ember/object/computed';
-import createMultiArrayHelper from '../-private/create-multi-array-helper';
+import { helper } from '@ember/component/helper';
 
-export default createMultiArrayHelper(union);
+export function union([...arrays]) {
+  let items = [].concat(...arrays);
+
+  return items.filter((value, index, array) => array.indexOf(value) === index);
+}
+
+export default helper(union);

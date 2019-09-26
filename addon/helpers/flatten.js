@@ -1,7 +1,5 @@
-import Helper from '@ember/component/helper';
+import { helper } from '@ember/component/helper';
 import { isArray as isEmberArray } from '@ember/array';
-import { observer } from '@ember/object';
-import { set } from '@ember/object';
 
 export function flatten(array) {
   if (!isEmberArray(array)) {
@@ -13,14 +11,6 @@ export function flatten(array) {
   }, []);
 }
 
-export default Helper.extend({
-  compute([array]) {
-    set(this, 'array', array);
-
-    return flatten(array);
-  },
-
-  arrayContentDidChange: observer('array.[]', function() {
-    this.recompute();
-  })
+export default helper(function([array]) {
+  return flatten(array);
 });

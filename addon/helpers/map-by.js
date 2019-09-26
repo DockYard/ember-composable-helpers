@@ -1,31 +1,12 @@
-import { defineProperty } from '@ember/object';
-import { mapBy } from '@ember/object/computed';
-import Helper from '@ember/component/helper';
-import { get } from '@ember/object';
-import { observer } from '@ember/object';
-import { set } from '@ember/object';
+import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
 
-export default Helper.extend({
-  compute([byPath, array]) {
-    set(this, 'array', array);
-    set(this, 'byPath', byPath);
+function mapBy([byPath, array]) {
+  if (isEmpty(byPath)) {
+    return [];
+  }
 
-    return get(this, 'content');
-  },
+  return array.map(item => item[byPath]);
+}
 
-  byPathDidChange: observer('byPath', function() {
-    let byPath = get(this, 'byPath');
-
-    if (isEmpty(byPath)) {
-      defineProperty(this, 'content', []);
-      return;
-    }
-
-    defineProperty(this, 'content', mapBy('array', byPath));
-  }),
-
-  contentDidChange: observer('content', function() {
-    this.recompute();
-  })
-});
+export default helper(mapBy);

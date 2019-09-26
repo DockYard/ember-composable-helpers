@@ -190,4 +190,17 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
   });
+
+  test('It handles null arrays', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this will be empty:
+      {{~#each (filter-by 'foo.bar' true array) as |item|~}}
+        {{~item.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this will be empty:');
+  });
 });

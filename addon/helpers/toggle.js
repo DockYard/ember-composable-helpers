@@ -17,7 +17,7 @@ export function toggle([prop, obj, ...values]) {
 
     if (isPresent(values)) {
       let currentIdx = values.indexOf(currentValue);
-      let nextIdx = nextIndex(get(values, 'length'), currentIdx);
+      let nextIdx = nextIndex(values.length, currentIdx);
 
       return set(obj, prop, values[nextIdx]);
     }

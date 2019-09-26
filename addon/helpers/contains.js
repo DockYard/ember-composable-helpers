@@ -1,7 +1,6 @@
 import { A as emberArray } from '@ember/array';
-import { get } from '@ember/object';
 import { isArray as isEmberArray } from '@ember/array';
-import createNeedleHaystackHelper from '../-private/create-needle-haystack-helper';
+import { helper } from '@ember/component/helper';
 import includes from '../utils/includes';
 
 function _contains(needle, haystack) {
@@ -13,11 +12,13 @@ export function contains(needle, haystack) {
     return false;
   }
 
-  if (isEmberArray(needle) && get(needle, 'length')) {
+  if (isEmberArray(needle)) {
     return needle.reduce((acc, val) => acc && _contains(val, haystack), true);
   }
 
   return _contains(needle, haystack);
 }
 
-export default createNeedleHaystackHelper(contains);
+export default helper(function([needle, haystack]) {
+  return contains(needle, haystack);
+});
