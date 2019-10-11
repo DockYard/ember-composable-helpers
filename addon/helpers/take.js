@@ -4,6 +4,9 @@ import { set } from '@ember/object';
 
 export default Helper.extend({
   compute([takeAmount, array]) {
+    if (!array) {
+      array = [];
+    }
     set(this, 'array', array);
     return array.slice(0, takeAmount);
   },
