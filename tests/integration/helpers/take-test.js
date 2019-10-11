@@ -34,4 +34,17 @@ module('Integration | Helper | {{take}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '01', '0 and 1 are kept');
   });
+
+  test('It allows null arrays', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{~#each (take 2 array) as |n|~}}
+        {{n}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render');
+  });
 });
