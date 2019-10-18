@@ -75,6 +75,7 @@ For help upgrading between major versions, check out the [upgrading documentatio
   + [`pipe`](#pipe)
   + [`compute`](#compute)
   + [`toggle`](#toggle)
+  + [`no-op`](#no-op)
   + [`optional`](#optional)
   + [`queue`](#queue)
 * [Array](#array-helpers)
@@ -187,6 +188,16 @@ Toggles a boolean value.
 <button {{action (toggle "currentName" this "foo" "bar" "baz")}}>
   {{currentName}}
 </button>
+```
+
+**[⬆️ back to top](#available-helpers)**
+
+#### `no-op`
+
+Returns an empty function.
+
+```hbs
+<button {{action (if isDisabled (no-op) handleClick)}}>Click Me</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
