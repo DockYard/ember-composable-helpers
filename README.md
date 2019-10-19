@@ -75,7 +75,7 @@ For help upgrading between major versions, check out the [upgrading documentatio
   + [`pipe`](#pipe)
   + [`compute`](#compute)
   + [`toggle`](#toggle)
-  + [`no-op`](#no-op)
+  + [`noop`](#noop)
   + [`optional`](#optional)
   + [`queue`](#queue)
 * [Array](#array-helpers)
@@ -192,12 +192,12 @@ Toggles a boolean value.
 
 **[⬆️ back to top](#available-helpers)**
 
-#### `no-op`
+#### `noop`
 
 Returns an empty function.
 
 ```hbs
-<button {{action (if isDisabled (no-op) handleClick)}}>Click Me</button>
+<button {{action (if isDisabled (noop) handleClick)}}>Click Me</button>
 ```
 
 **[⬆️ back to top](#available-helpers)**
