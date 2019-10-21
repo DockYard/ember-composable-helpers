@@ -197,7 +197,7 @@ Toggles a boolean value.
 Returns an empty function.
 
 ```hbs
-<button {{action (if isDisabled (noop) handleClick)}}>Click Me</button>
+<div {{on "mouseenter" (if @isLoading (noop) @sendTrackingEvent))}}>Some content</div>
 ```
 
 **[⬆️ back to top](#available-helpers)**
