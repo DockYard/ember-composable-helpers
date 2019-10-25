@@ -1,38 +1,13 @@
-import { defineProperty } from '@ember/object';
-import { computed } from '@ember/object';
-import Helper from '@ember/component/helper';
-import { get } from '@ember/object';
-import { observer } from '@ember/object';
-import { set } from '@ember/object';
-import { A as emberArray } from '@ember/array';
+import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
+import { A as emberArray } from '@ember/array';
 
-export default Helper.extend({
-  compute([byPath, value, array]) {
-    set(this, 'array', array);
-    set(this, 'byPath', byPath);
-    set(this, 'value', value);
+function findBy([byPath, value, array]) {
+  if (isEmpty(byPath)) {
+    return [];
+  }
 
-    return get(this, 'content');
-  },
+  return emberArray(array).findBy(byPath, value);
+}
 
-  byPathDidChange: observer('byPath', function() {
-    let byPath = get(this, 'byPath');
-
-    if (isEmpty(byPath)) {
-      defineProperty(this, 'content', []);
-      return;
-    }
-
-    defineProperty(this, 'content', computed(`array.@each.${byPath}`, 'value', function() {
-      let array = get(this, 'array');
-      let value = get(this, 'value');
-
-      return emberArray(array).findBy(byPath, value);
-    }));
-  }),
-
-  contentDidChange: observer('content', function() {
-    this.recompute();
-  })
-});
+export default helper(findBy);

@@ -1,13 +1,10 @@
-import { A as emberArray, isArray as isEmberArray } from '@ember/array';
-import Helper from '@ember/component/helper';
-import { observer } from '@ember/object';
-import { get } from '@ember/object';
-import { set } from '@ember/object';
+import { helper } from '@ember/component/helper';
+import { isArray as isEmberArray } from '@ember/array';
 import { typeOf } from '@ember/utils';
 
-export function shuffle(array, randomizer) {
+function shuffle(array, randomizer) {
   array = array.slice(0);
-  let count = get(array, 'length');
+  let count = array.length;
   let rand, temp;
   randomizer = (typeOf(randomizer) === 'function' && randomizer) || Math.random;
 
@@ -21,22 +18,15 @@ export function shuffle(array, randomizer) {
   return array;
 }
 
-export default Helper.extend({
-  compute([random, array]) {
-    if (array === undefined) {
-      array = random;
-      random = undefined;
-    }
+export default helper(function([randomizer, array]) {
+  if (array === undefined) {
+    array = randomizer;
+    randomizer = undefined;
+  }
 
-    if (!isEmberArray(array)) {
-      return emberArray([array]);
-    }
+  if (!isEmberArray(array)) {
+    return [array];
+  }
 
-    set(this, 'array', array);
-    return shuffle(array, random);
-  },
-
-  arrayContentDidChange: observer('array.[]', function() {
-    this.recompute();
-  })
+  return shuffle(array, randomizer)
 });

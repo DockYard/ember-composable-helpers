@@ -16,8 +16,16 @@ Composable helpers for Ember that enables more declarative templating. These hel
 
 To install:
 
+**Ember 3.13+:**
+
 ```no-highlight
 ember install ember-composable-helpers
+```
+
+**Ember 3.12 and below:**
+
+```no-highlight
+ember ember-composable-helpers@^2.4.0
 ```
 
 Watch a free video overview presented by EmberMap:
@@ -79,7 +87,6 @@ For help upgrading between major versions, check out the [upgrading documentatio
   + [`optional`](#optional)
   + [`queue`](#queue)
 * [Array](#array-helpers)
-  + [`array`](#array)
   + [`map`](#map)
   + [`map-by`](#map-by)
   + [`sort-by`](#sort-by)
@@ -232,15 +239,6 @@ called.
 ---
 
 ### Array helpers
-
-#### `array`
-Similar to the `hash` helper, this lets you compose arrays directly in the template:
-
-```hbs
-{{#each (array 1 2 3) as |numbers|}}
-  {{numbers}}
-{{/each}}
-```
 
 #### `map`
 Maps a callback on an array.

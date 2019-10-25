@@ -1,14 +1,7 @@
-import Helper from '@ember/component/helper';
-import { observer } from '@ember/object';
-import { set } from '@ember/object';
+import { helper } from '@ember/component/helper';
 
-export default Helper.extend({
-  compute([start, end, array]) {
-    set(this, 'array', array);
-    return array.slice(start, end);
-  },
+function slice([start, end, array]) {
+  return array.slice(start, end);
+}
 
-  arrayContentDidChange: observer('array.[]', function() {
-    this.recompute();
-  })
-});
+export default helper(slice);
