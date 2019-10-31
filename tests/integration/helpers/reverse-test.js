@@ -69,4 +69,17 @@ module('Integration | Helper | {{reverse}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'bazfoo', 'array is reversed');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (reverse array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

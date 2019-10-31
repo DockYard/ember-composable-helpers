@@ -60,4 +60,17 @@ module('Integration | Helper | {{compact}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '1253', 'null is removed');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (compact array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

@@ -47,4 +47,15 @@ module('Integration | Helper | {{object-at}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '', 'nothing is displayed');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{object-at 1 array}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

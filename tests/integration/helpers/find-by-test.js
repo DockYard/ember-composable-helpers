@@ -107,4 +107,17 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'b', 'b is shown');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#with (find-by 'name' 'd' array) as |value|}}
+        {{value}}
+      {{/with}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

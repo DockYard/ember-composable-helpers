@@ -121,4 +121,17 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '12 34 somenew items', 'updated chunked arrays are displayed');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (chunk array 1) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

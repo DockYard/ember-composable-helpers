@@ -9,6 +9,9 @@ function rejectBy([byPath, value, array]) {
     array = value;
     value = undefined;
   }
+  if (!array) {
+    array = [];
+  }
 
   let filterFn;
 

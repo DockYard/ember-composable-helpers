@@ -100,5 +100,17 @@ module('Integration | Helper | {{without}}', function(hooks) {
 
     assert.equal(this.element.textContent.trim(), 'Eva', 'the remaining pet name is shown');
   });
-});
 
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (without 1 array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
+});

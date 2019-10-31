@@ -134,4 +134,17 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'bc', 'a is filtered out');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (reject-by 'name' array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

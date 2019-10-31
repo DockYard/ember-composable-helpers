@@ -58,4 +58,20 @@ module('Integration | Helper | {{map}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'abcd', 'd is added');
   });
+
+  test('it allows null array', async function (assert) {
+    this.actions.getName = function({ name }) {
+      return name;
+    };
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (action "getName") as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

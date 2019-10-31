@@ -59,4 +59,17 @@ module('Integration | Helper | {{contains}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'true', 'should render true');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{~#each (contains 1 array) as |val|~}}
+        {{val}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });
