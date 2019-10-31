@@ -64,4 +64,16 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '123', '123 is displayed');
   });
+
+  test('It allows null arrays', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      {{~#each (map-by 'name' array) as |name|~}}
+        {{~name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '', 'this is all that will render, but there is no error');
+  });
 });
