@@ -5,6 +5,9 @@ import isEqual from '../utils/is-equal';
 import getValueArrayAndUseDeepEqualFromParams from '../-private/get-value-array-and-use-deep-equal-from-params';
 
 function hasPrevious(currentValue, array, useDeepEqual = false) {
+  if (!array) {
+    array = [];
+  }
   let previousValue = previous(currentValue, array, useDeepEqual);
   let isNotSameValue = !isEqual(previousValue, currentValue, useDeepEqual);
 

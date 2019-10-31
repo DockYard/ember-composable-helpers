@@ -5,6 +5,9 @@ import { A as emberArray } from '@ember/array';
 import getValueArrayAndUseDeepEqualFromParams from '../-private/get-value-array-and-use-deep-equal-from-params';
 
 export function next(currentValue, array, useDeepEqual = false) {
+  if (!array) {
+    array = [];
+  }
   let currentIndex = getIndex(array, currentValue, useDeepEqual);
   let lastIndex = array.length - 1;
 

@@ -34,4 +34,15 @@ module('Integration | Helper | {{join}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'foo, bar, baz, quux', 'quux was added');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{join ', ' array}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

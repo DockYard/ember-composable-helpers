@@ -35,4 +35,12 @@ module('Integration | Helper | {{has-next}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'false', 'false is shown');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`{{has-next 1 array}}`);
+
+    assert.equal(find('*').textContent.trim(), 'false', 'no error is thrown');
+  });
 });

@@ -34,4 +34,17 @@ module('Integration | Helper | {{drop}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '2345', '0 and 1 are dropped');
   });
+
+  test('It allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (drop 2 array) as |n|}}
+        {{n}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

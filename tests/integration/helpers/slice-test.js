@@ -32,4 +32,17 @@ module('Integration | Helper | {{slice}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '4,5', 'sliced values');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (slice 1 2 array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

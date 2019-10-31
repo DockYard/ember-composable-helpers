@@ -82,4 +82,15 @@ module('Integration | Helper | {{next}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'Jake', 'the next pet name is shown');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      this is all that will render
+      {{next 1 array}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

@@ -52,4 +52,16 @@ module('Integration | Helper | {{append}}', function(hooks) {
     run(() => this.get('odds').pushObject(7));
     assert.equal(find('*').textContent.trim(), '13572', 'new value is added');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`
+      {{~#each (append 1 array) as |value|~}}
+        {{~value~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '1', 'no error is thrown');
+  });
 });

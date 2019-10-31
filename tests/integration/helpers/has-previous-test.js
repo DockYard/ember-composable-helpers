@@ -35,4 +35,12 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'true', 'false is shown');
   });
+
+  test('it allows null array', async function(assert) {
+    this.set('array', null);
+
+    await render(hbs`{{has-previous 1 array}}`);
+
+    assert.equal(find('*').textContent.trim(), 'false', 'no error is thrown');
+  });
 });
