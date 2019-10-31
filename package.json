@@ -78,6 +78,7 @@
     "@babel/core": "^7.0.0",
     "broccoli-funnel": "2.0.1",
     "ember-cli-babel": "^7.1.0",
+    "growl": "^1.10.0",
     "lodash.template": "^4.5.0",
     "resolve": "^1.10.0",
     "set-value": "^2.0.1"
