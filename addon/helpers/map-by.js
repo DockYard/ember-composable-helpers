@@ -5,6 +5,9 @@ function mapBy([byPath, array]) {
   if (isEmpty(byPath)) {
     return [];
   }
+  if (!array) {
+    array = [];
+  }
 
   return array.map(item => item[byPath]);
 }
