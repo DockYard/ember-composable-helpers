@@ -1,6 +1,6 @@
 {
   "name": "ember-composable-helpers",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Composable helpers for Ember",
   "scripts": {
     "build": "ember build",
