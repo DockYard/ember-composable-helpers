@@ -25,7 +25,7 @@ ember install ember-composable-helpers
 **Ember 3.12 and below:**
 
 ```no-highlight
-ember ember-composable-helpers@^2.4.0
+ember install ember-composable-helpers@^2.4.0
 ```
 
 Watch a free video overview presented by EmberMap:
