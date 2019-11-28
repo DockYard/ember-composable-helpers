@@ -9,7 +9,8 @@
     "start": "ember serve",
     "test": "ember test",
     "node-test": "mocha test --recursive --reporter spec",
-    "test:all": "ember try:each"
+    "test:all": "ember try:each",
+    "contributors": "npx contributor-faces -e \"(*-bot|*\\[bot\\]|*-tomster|homu|bors)\""
   },
   "bugs": "https://github.com/DockYard/ember-composable-helpers/issues",
   "homepage": "https://github.com/DockYard/ember-composable-helpers",
