@@ -718,3 +718,39 @@ String helpers were extracted to the [ember-cli-string-helpers](https://github.c
 [@dockyard](http://twitter.com/dockyard)
 
 [Licensed under the MIT license](http://www.opensource.org/licenses/mit-license.php)
+
+## Contributors
+
+We're grateful to these wonderful contributors who've contributed to `ember-composable-helpers`:
+
+[//]: contributor-faces
+<a href="https://github.com/poteto"><img src="https://avatars0.githubusercontent.com/u/1390709?v=4" title="poteto" width="80" height="80"></a>
+<a href="https://github.com/martndemus"><img src="https://avatars2.githubusercontent.com/u/903637?v=4" title="martndemus" width="80" height="80"></a>
+<a href="https://github.com/snewcomer"><img src="https://avatars0.githubusercontent.com/u/7374640?v=4" title="snewcomer" width="80" height="80"></a>
+<a href="https://github.com/marten-dockyard"><img src="https://avatars0.githubusercontent.com/u/40497337?v=4" title="marten-dockyard" width="80" height="80"></a>
+<a href="https://github.com/romulomachado"><img src="https://avatars0.githubusercontent.com/u/266400?v=4" title="romulomachado" width="80" height="80"></a>
+<a href="https://github.com/cibernox"><img src="https://avatars2.githubusercontent.com/u/265339?v=4" title="cibernox" width="80" height="80"></a>
+<a href="https://github.com/vikram7"><img src="https://avatars0.githubusercontent.com/u/7072744?v=4" title="vikram7" width="80" height="80"></a>
+<a href="https://github.com/Asherlc"><img src="https://avatars3.githubusercontent.com/u/1294552?v=4" title="Asherlc" width="80" height="80"></a>
+<a href="https://github.com/ef4"><img src="https://avatars0.githubusercontent.com/u/319282?v=4" title="ef4" width="80" height="80"></a>
+<a href="https://github.com/gmurphey"><img src="https://avatars3.githubusercontent.com/u/373721?v=4" title="gmurphey" width="80" height="80"></a>
+<a href="https://github.com/GavinJoyce"><img src="https://avatars0.githubusercontent.com/u/2526?v=4" title="GavinJoyce" width="80" height="80"></a>
+<a href="https://github.com/jrjohnson"><img src="https://avatars2.githubusercontent.com/u/349624?v=4" title="jrjohnson" width="80" height="80"></a>
+<a href="https://github.com/thomascchen"><img src="https://avatars0.githubusercontent.com/u/11340361?v=4" title="thomascchen" width="80" height="80"></a>
+<a href="https://github.com/xomaczar"><img src="https://avatars2.githubusercontent.com/u/2079865?v=4" title="xomaczar" width="80" height="80"></a>
+<a href="https://github.com/bcardarella"><img src="https://avatars0.githubusercontent.com/u/18524?v=4" title="bcardarella" width="80" height="80"></a>
+<a href="https://github.com/leizhao4"><img src="https://avatars2.githubusercontent.com/u/763847?v=4" title="leizhao4" width="80" height="80"></a>
+<a href="https://github.com/maabernethy"><img src="https://avatars2.githubusercontent.com/u/4601777?v=4" title="maabernethy" width="80" height="80"></a>
+<a href="https://github.com/robbiespeed"><img src="https://avatars0.githubusercontent.com/u/1743161?v=4" title="robbiespeed" width="80" height="80"></a>
+<a href="https://github.com/spencer516"><img src="https://avatars2.githubusercontent.com/u/2889608?v=4" title="spencer516" width="80" height="80"></a>
+<a href="https://github.com/taras"><img src="https://avatars2.githubusercontent.com/u/74687?v=4" title="taras" width="80" height="80"></a>
+<a href="https://github.com/blimmer"><img src="https://avatars1.githubusercontent.com/u/630449?v=4" title="blimmer" width="80" height="80"></a>
+<a href="https://github.com/bwittenbrook3"><img src="https://avatars3.githubusercontent.com/u/5309252?v=4" title="bwittenbrook3" width="80" height="80"></a>
+<a href="https://github.com/chrislopresto"><img src="https://avatars0.githubusercontent.com/u/93691?v=4" title="chrislopresto" width="80" height="80"></a>
+<a href="https://github.com/makepanic"><img src="https://avatars3.githubusercontent.com/u/1205444?v=4" title="makepanic" width="80" height="80"></a>
+<a href="https://github.com/ConorLinehan"><img src="https://avatars2.githubusercontent.com/u/5772795?v=4" title="ConorLinehan" width="80" height="80"></a>
+<a href="https://github.com/Daniel-Xu"><img src="https://avatars0.githubusercontent.com/u/548144?v=4" title="Daniel-Xu" width="80" height="80"></a>
+<a href="https://github.com/HeroicEric"><img src="https://avatars0.githubusercontent.com/u/602204?v=4" title="HeroicEric" width="80" height="80"></a>
+<a href="https://github.com/brzpegasus"><img src="https://avatars1.githubusercontent.com/u/1691398?v=4" title="brzpegasus" width="80" height="80"></a>
+
+[//]: contributor-faces
