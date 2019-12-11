@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { A as emberArray, isArray as isEmberArray } from '@ember/array';
 
-function reverse([array]) {
+export function reverse([array]) {
   if (!isEmberArray(array)) {
     return [array];
   }

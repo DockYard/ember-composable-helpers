@@ -4,7 +4,7 @@ import { next } from './next';
 import isEqual from '../utils/is-equal';
 import getValueArrayAndUseDeepEqualFromParams from '../-private/get-value-array-and-use-deep-equal-from-params';
 
-function hasNext(currentValue, array, useDeepEqual = false) {
+export function hasNext(currentValue, array, useDeepEqual = false) {
   if (!array) {
     array = [];
   }

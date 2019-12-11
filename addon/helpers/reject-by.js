@@ -4,7 +4,7 @@ import { isPresent } from '@ember/utils';
 import { get } from '@ember/object';
 import isEqual from '../utils/is-equal';
 
-function rejectBy([byPath, value, array]) {
+export function rejectBy([byPath, value, array]) {
   if (!isEmberArray(array) && isEmberArray(value)) {
     array = value;
     value = undefined;

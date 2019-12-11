@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { A as emberArray, isArray as isEmberArray } from '@ember/array';
 
-function objectAt(index, array) {
+export function objectAt(index, array) {
   if (!isEmberArray(array)) {
     return undefined;
   }

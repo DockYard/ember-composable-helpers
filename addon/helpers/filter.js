@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
 
-function filter([callback, array]) {
+export function filter([callback, array]) {
   if (isEmpty(callback) || !array) {
     return [];
   }

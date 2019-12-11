@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-function drop([dropAmount, array]) {
+export function drop([dropAmount, array]) {
   if (!array) {
     array = [];
   }
