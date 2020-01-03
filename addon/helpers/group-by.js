@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { get } from '@ember/object';
 
-function groupBy([byPath, array]) {
+export function groupBy([byPath, array]) {
   let groups = {};
 
   array.forEach((item) => {

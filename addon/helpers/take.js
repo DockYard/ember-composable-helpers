@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 
-function take([takeAmount, array]) {
+export function take([takeAmount, array]) {
   if (!array) {
     array = [];
   }

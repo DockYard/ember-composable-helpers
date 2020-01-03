@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
 
-function map([callback, array]) {
+export function map([callback, array]) {
   if (isEmpty(callback)) {
     return [];
   }

@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
 
-function mapBy([byPath, array]) {
+export function mapBy([byPath, array]) {
   if (isEmpty(byPath)) {
     return [];
   }

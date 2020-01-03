@@ -2,7 +2,7 @@ import { helper } from '@ember/component/helper';
 import { isArray as isEmberArray } from '@ember/array';
 import { typeOf } from '@ember/utils';
 
-function shuffle(array, randomizer) {
+export function shuffle(array, randomizer) {
   array = array.slice(0);
   let count = array.length;
   let rand, temp;

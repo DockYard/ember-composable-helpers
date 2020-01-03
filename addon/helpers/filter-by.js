@@ -4,7 +4,7 @@ import { isEmpty, isPresent } from '@ember/utils';
 import { get } from '@ember/object';
 import isEqual from '../utils/is-equal';
 
-function filterBy([byPath, value, array]) {
+export function filterBy([byPath, value, array]) {
   if (!isEmberArray(array) && isEmberArray(value)) {
     array = value;
     value = undefined;
