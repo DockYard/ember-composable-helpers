@@ -18,6 +18,16 @@ module('Integration | Helper | {{slice}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), '4,6', 'sliced values');
   });
 
+  test('It slices when only 2 params are passed', async function(assert) {
+    this.set('array', emberArray([2, 4, 6]));
+
+    await render(hbs`
+      {{slice 1 array}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '4,6', 'sliced values');
+  });
+
   test('It recomputes the slice if an item in the array changes', async function(assert) {
     let array = emberArray([2, 4, 6]);
     this.set('array', array);

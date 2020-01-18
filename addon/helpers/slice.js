@@ -1,10 +1,12 @@
 import { helper } from '@ember/component/helper';
 
-export function slice([start, end, array]) {
+export function slice([...args]) {
+  let array = args.pop();
+
   if (!array) {
     array = [];
   }
-  return array.slice(start, end);
+  return array.slice(...args);
 }
 
 export default helper(slice);
