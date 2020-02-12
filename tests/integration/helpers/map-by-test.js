@@ -24,6 +24,22 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'abc', 'name property is mapped');
   });
 
+  test('It works with ember-data model', async function(assert) {
+    let store = this.owner.lookup('service:store');
+    let person = store.createRecord('person', {
+      name: 'Adam'
+    });
+    this.set('array', [person]);
+
+    await render(hbs`
+      {{~#each (map-by 'name' array) as |name|~}}
+        {{~name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'Adam', 'name property is mapped');
+  });
+
   test('It watches for changes', async function(assert) {
     let array = emberArray([
       { name: 'a' },
