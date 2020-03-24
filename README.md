@@ -79,50 +79,61 @@ For help upgrading between major versions, check out the [upgrading documentatio
 
 ## Available helpers
 
-* [Action](#action-helpers)
-  + [`pipe`](#pipe)
-  + [`compute`](#compute)
-  + [`toggle`](#toggle)
-  + [`noop`](#noop)
-  + [`optional`](#optional)
-  + [`queue`](#queue)
-* [Array](#array-helpers)
-  + [`map`](#map)
-  + [`map-by`](#map-by)
-  + [`sort-by`](#sort-by)
-  + [`filter`](#filter)
-  + [`filter-by`](#filter-by)
-  + [`reject-by`](#reject-by)
-  + [`find-by`](#find-by)
-  + [`intersect`](#intersect)
-  + [`invoke`](#invoke)
-  + [`union`](#union)
-  + [`take`](#take)
-  + [`drop`](#drop)
-  + [`reduce`](#reduce)
-  + [`repeat`](#repeat)
-  + [`reverse`](#reverse)
-  + [`range`](#range)
-  + [`join`](#join)
-  + [`compact`](#compact)
-  + [`contains`](#contains)
-  + [`append`](#append)
-  + [`chunk`](#chunk)
-  + [`without`](#without)
-  + [`shuffle`](#shuffle)
-  + [`flatten`](#flatten)
-  + [`object-at`](#object-at)
-  + [`slice`](#slice)
-  + [`next`](#next)
-  + [`has-next`](#has-next)
-  + [`previous`](#previous)
-  + [`has-previous`](#has-previous)
-* [Object](#object-helpers)
-  + [`group-by`](#group-by)
-* [Math](#math-helpers)
-  + [`inc`](#inc)
-  + [`dec`](#dec)
-* [String](#string-helpers)
+- [ember-composable-helpers](#ember-composable-helpers)
+  - [Configuration](#configuration)
+  - [Argument ordering](#argument-ordering)
+  - [Upgrade Guide](#upgrade-guide)
+  - [Available helpers](#available-helpers)
+  - [Usage](#usage)
+    - [Action helpers](#action-helpers)
+      - [`pipe`](#pipe)
+      - [`compute`](#compute)
+      - [`toggle`](#toggle)
+      - [`noop`](#noop)
+      - [`optional`](#optional)
+      - [`queue`](#queue)
+    - [Array helpers](#array-helpers)
+      - [`map`](#map)
+      - [`map-by`](#map-by)
+      - [`sort-by`](#sort-by)
+      - [`filter`](#filter)
+      - [`filter-by`](#filter-by)
+      - [`reject-by`](#reject-by)
+      - [`find-by`](#find-by)
+      - [`intersect`](#intersect)
+      - [`invoke`](#invoke)
+      - [`union`](#union)
+      - [`take`](#take)
+      - [`drop`](#drop)
+      - [`reduce`](#reduce)
+      - [`repeat`](#repeat)
+      - [`reverse`](#reverse)
+      - [`range`](#range)
+      - [`join`](#join)
+      - [`compact`](#compact)
+      - [`contains`](#contains)
+      - [`append`](#append)
+      - [`chunk`](#chunk)
+      - [`without`](#without)
+      - [`shuffle`](#shuffle)
+      - [`flatten`](#flatten)
+      - [`object-at`](#object-at)
+      - [`slice`](#slice)
+      - [`next`](#next)
+      - [`has-next`](#has-next)
+      - [`previous`](#previous)
+      - [`has-previous`](#has-previous)
+    - [Object helpers](#object-helpers)
+      - [`group-by`](#group-by)
+      - [`keys`](#keys)
+      - [`entries`](#entries)
+    - [Math helpers](#math-helpers)
+      - [`inc`](#inc)
+      - [`dec`](#dec)
+    - [String helpers](#string-helpers)
+    - [See also:](#see-also)
+  - [Legal](#legal)
+  - [Contributors](#contributors)
 
 ## Usage
 
@@ -671,6 +682,37 @@ Returns an object where the keys are the unique values of the given property, an
     {{/each}}
   </ul>
 {{/each-in}}
+```
+
+#### `keys`
+Returns an array of keys of given object.
+
+```hbs
+{{#with (keys fields) as |labels|}}
+  <h3>This article contain {{labels.length}} fields</h3>
+  <ul>
+    {{#each labels as |label|}}
+      <li>{{label}}</li>
+    {{/each}}
+  </ul>
+{{/with}}
+```
+
+#### `entries`
+Returns an array of a given object's own enumerable string-keyed property `[key, value]` pairs
+
+```hbs
+  {{#each (entries object) as |entry|}}
+    {{get entry 0}}:{{get entry 1}}
+  {{/each}}
+```
+
+You can pair it with other array helpers too. For example
+
+```hbs
+  {{#each (sort-by myOwnSortByFunction (entries myObject)) as |entry|}}
+    {{get entry 0}}
+  {{/each}}`);
 ```
 
 **[⬆️ back to top](#available-helpers)**
