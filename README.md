@@ -34,57 +34,11 @@ Watch a free video overview presented by EmberMap:
   <img height="20" src="https://frontend.embermap.com/assets/images/logo-7333e9d5f48c9cd4a0ee6476a5af1083.png">
 </a>
 
-## Configuration
-If you don't need all the helpers, you can specify which to whitelist or blacklist using `only` or `except` within your `ember-cli-build.js`:
-
-```js
-module.exports = function(defaults) {
-  var app = new EmberApp(defaults, {
-    'ember-composable-helpers': {
-      only: ['inc', 'dec', 'pipe'],
-      except: ['pipe', 'filter-by']
-    }
-  });
-```
-
-Both `only` and `except` can be safely used together (the addon computes the diff), although it's best if you only use one for your own sanity.
-
-```js
-except: ['pipe'] // imports all helpers except `pipe`
-only: ['pipe'] // imports only `pipe`
-```
-
-## Argument ordering
-
-This addon is built with _composability_ in mind, and in order to faciliate that,
-the ordering of arguments is somewhat different then you might be used to.
-
-For all non-unary helpers, the subject of the helper function will always be the last argument.
-This way the arguments are better readable if you compose together multiple helpers:
-
-```hbs
-{{take 5 (sort-by "lastName" "firstName" (filter-by "active" array))}}
-```
-
-For action helpers, this will mean better currying semantics:
-
-```hbs
-<button {{action (pipe (action "closePopover") (toggle "isExpanded")) this}}>
-  {{if isExpanded "I am expanded" "I am not"}}
-</button>
-```
-
-## Upgrade Guide
-For help upgrading between major versions, check out the [upgrading documentation](https://github.com/DockYard/ember-composable-helpers/blob/master/UPGRADING.md).
-
-## Available helpers
-
-- [ember-composable-helpers](#ember-composable-helpers)
+## Table of Contents
   - [Configuration](#configuration)
   - [Argument ordering](#argument-ordering)
   - [Upgrade Guide](#upgrade-guide)
   - [Available helpers](#available-helpers)
-  - [Usage](#usage)
     - [Action helpers](#action-helpers)
       - [`pipe`](#pipe)
       - [`compute`](#compute)
@@ -135,7 +89,50 @@ For help upgrading between major versions, check out the [upgrading documentatio
   - [Legal](#legal)
   - [Contributors](#contributors)
 
-## Usage
+## Configuration
+If you don't need all the helpers, you can specify which to whitelist or blacklist using `only` or `except` within your `ember-cli-build.js`:
+
+```js
+module.exports = function(defaults) {
+  var app = new EmberApp(defaults, {
+    'ember-composable-helpers': {
+      only: ['inc', 'dec', 'pipe'],
+      except: ['pipe', 'filter-by']
+    }
+  });
+```
+
+Both `only` and `except` can be safely used together (the addon computes the diff), although it's best if you only use one for your own sanity.
+
+```js
+except: ['pipe'] // imports all helpers except `pipe`
+only: ['pipe'] // imports only `pipe`
+```
+
+## Argument ordering
+
+This addon is built with _composability_ in mind, and in order to faciliate that,
+the ordering of arguments is somewhat different then you might be used to.
+
+For all non-unary helpers, the subject of the helper function will always be the last argument.
+This way the arguments are better readable if you compose together multiple helpers:
+
+```hbs
+{{take 5 (sort-by "lastName" "firstName" (filter-by "active" array))}}
+```
+
+For action helpers, this will mean better currying semantics:
+
+```hbs
+<button {{action (pipe (action "closePopover") (toggle "isExpanded")) this}}>
+  {{if isExpanded "I am expanded" "I am not"}}
+</button>
+```
+
+## Upgrade Guide
+For help upgrading between major versions, check out the [upgrading documentation](https://github.com/DockYard/ember-composable-helpers/blob/master/UPGRADING.md).
+
+## Available helpers
 
 ### Action helpers
 
@@ -165,7 +162,7 @@ The `pipe` helper can also be used directly as a closure action (using `pipe-act
 <button {{action multiplyAndSquare 2 4}}>Multiply and Square</button>
 ```
 
-**[⬆️️ back to top](#available-helpers)**
+**[⬆️️ back to top](#table-of-contents)**
 
 #### `compute`
 Calls an action as a template helper.
@@ -174,7 +171,7 @@ Calls an action as a template helper.
 The square of 4 is {{compute (action "square") 4}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `toggle`
 Toggles a boolean value.
@@ -208,7 +205,7 @@ Toggles a boolean value.
 </button>
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `noop`
 
@@ -218,7 +215,7 @@ Returns an empty function.
 <div {{on "mouseenter" (if @isLoading (noop) @sendTrackingEvent))}}>Some content</div>
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `optional`
 
@@ -228,7 +225,7 @@ Allows for the passed in action to not exist.
 <button {{action (optional handleClick)}}>Click Me</button>
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `queue`
 
@@ -245,7 +242,7 @@ called.
 <button {{action (queue (action "backupData") (action "unsafeOperation") (action "restoreBackup"))}} />
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 ---
 
@@ -260,7 +257,7 @@ Maps a callback on an array.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `map-by`
 Maps an array on a property.
@@ -296,7 +293,7 @@ You can also pass a method as the first argument:
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 
 #### `filter`
@@ -333,7 +330,7 @@ You can also pass an action as second argument:
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `reject-by`
 The inverse of filter by.
@@ -360,7 +357,7 @@ You can also pass an action as third argument:
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `find-by`
 Returns the first entry matching the given value.
@@ -375,7 +372,7 @@ Returns the first entry matching the given value.
 {{/with}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `intersect`
 Creates an array of unique values that are included in all given arrays.
@@ -387,7 +384,7 @@ Creates an array of unique values that are included in all given arrays.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `invoke`
 Invokes a method on an object, or on each object of an array.
@@ -403,7 +400,7 @@ Invokes a method on an object, or on each object of an array.
 </div>
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `union`
 
@@ -415,7 +412,7 @@ Joins arrays to create an array of unique values. When applied to a single array
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `take`
 Returns the first `n` entries of a given array.
@@ -427,7 +424,7 @@ Returns the first `n` entries of a given array.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `drop`
 Returns an array with the first `n` entries omitted.
@@ -439,7 +436,7 @@ Returns an array with the first `n` entries omitted.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `reduce`
 Reduce an array to a value.
@@ -467,7 +464,7 @@ You can also give it a value to repeat:
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `reverse`
 Reverses the order of the array.
@@ -478,7 +475,7 @@ Reverses the order of the array.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `range`
 Generates a range of numbers between a `min` and `max` value.
@@ -505,7 +502,7 @@ And works with a negative range:
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `join`
 Joins the given array with an optional separator into a string.
@@ -514,7 +511,7 @@ Joins the given array with an optional separator into a string.
 {{join ', ' categories}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `compact`
 Removes blank items from an array.
@@ -525,7 +522,7 @@ Removes blank items from an array.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `contains`
 Checks if a given value or sub-array is contained within an array.
@@ -537,7 +534,7 @@ Checks if a given value or sub-array is contained within an array.
 {{contains (w "First Second") (w "First Second Third")}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `append`
 Appends the given arrays and/or values into a single flat array.
@@ -548,7 +545,7 @@ Appends the given arrays and/or values into a single flat array.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `chunk`
 Returns the given array split into sub-arrays the length of the given value.
@@ -561,7 +558,7 @@ Returns the given array split into sub-arrays the length of the given value.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `without`
 Returns the given array without the given item(s).
@@ -572,7 +569,7 @@ Returns the given array without the given item(s).
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `shuffle`
 Shuffles an array with a randomizer function, or with `Math.random` as a default. Your randomizer function should return a number between 0 and 1.
@@ -589,7 +586,7 @@ Shuffles an array with a randomizer function, or with `Math.random` as a default
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `flatten`
 Flattens an array to a single dimension.
@@ -600,7 +597,7 @@ Flattens an array to a single dimension.
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `object-at`
 Returns the object at the given index of an array.
@@ -609,7 +606,7 @@ Returns the object at the given index of an array.
 {{object-at index array}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `slice`
 Slices an array
@@ -620,7 +617,7 @@ Slices an array
 {{/each}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `next`
 Returns the next element in the array given the current element. **Note:** Accepts an optional boolean
@@ -630,7 +627,7 @@ parameter, `useDeepEqual`, to flag whether a deep equal comparison should be per
 <button onclick={{action (mut selectedItem) (next selectedItem useDeepEqual items)}}>Next</button>
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `has-next`
 Checks if the array has an element after the given element. **Note:** Accepts an optional boolean
@@ -642,7 +639,7 @@ parameter, `useDeepEqual`, to flag whether a deep equal comparison should be per
 {{/if}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `previous`
 Returns the previous element in the array given the current element. **Note:** Accepts an optional boolean
@@ -652,7 +649,7 @@ parameter, `useDeepEqual`, to flag whether a deep equal comparison should be per
 <button onclick={{action (mut selectedItem) (previous selectedItem useDeepEqual items)}}>Previous</button>
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `has-previous`
 Checks if the array has an element before the given element. **Note:** Accepts an optional boolean
@@ -664,7 +661,7 @@ parameter, `useDeepEqual`, to flag whether a deep equal comparison should be per
 {{/if}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 ---
 
@@ -715,7 +712,7 @@ You can pair it with other array helpers too. For example
   {{/each}}`);
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 ---
 
@@ -729,7 +726,7 @@ Increments by `1` or `step`.
 {{inc 2 numberOfPeople}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 #### `dec`
 Decrements by `1` or `step`.
@@ -739,7 +736,7 @@ Decrements by `1` or `step`.
 {{dec 2 numberOfPeople}}
 ```
 
-**[⬆️ back to top](#available-helpers)**
+**[⬆️ back to top](#table-of-contents)**
 
 ---
 
