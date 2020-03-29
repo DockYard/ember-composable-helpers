@@ -7,7 +7,7 @@ let sandbox;
 
 module('Unit | Helper | pipe', function(hooks) {
   hooks.beforeEach(function() {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
   });
 
   hooks.afterEach(function() {

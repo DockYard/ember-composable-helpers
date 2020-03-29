@@ -13,7 +13,7 @@ let fail;
 
 module('Unit | Helper | queue', function(hooks) {
   hooks.beforeEach(function() {
-    sandbox = sinon.sandbox.create();
+    sandbox = sinon.createSandbox();
     step0 = sinon.spy(() => resolve());
     step1 = sinon.spy((x) => x);
     step2 = sinon.spy((x, y) => y);
