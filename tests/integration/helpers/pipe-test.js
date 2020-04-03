@@ -47,4 +47,73 @@ module('Integration | Helper | {{pipe}}', function(hooks) {
     run(async () => await click('button'));
     assert.equal(find('p').textContent.trim(), '6', 'should render 6');
   });
+
+  test('it resolves the action in the given context', async function(assert) {
+    const Component = {
+      calculateService: this.owner.lookup('service:calculate'),
+      value: 0,
+      add(x, y) { return x + y; },
+      square(x) { return x * x; },
+      squareRoot(x) { this.set('value', Math.sqrt(x)); }
+    };
+
+    Object.assign(this, Component);
+
+    await render(hbs`
+      <p>{{value}}</p>
+      <button {{action (pipe add square squareRoot target=calculateService) 2 4}}>
+        Calculate
+      </button>
+    `);
+
+    assert.equal(find('p').textContent.trim(), '0', 'precond - should render 0');
+    await click('button');
+    assert.equal(this.calculateService.get('value'), '6', 'value in calculateService should equal 6');
+  });
+
+  test('it resolves the action in the current context', async function(assert) {
+    const Component = {
+      value: 0,
+      add(x, y) { return x + y; },
+      square(x) { return x * x; },
+      squareRoot(x) { this.set('value', Math.sqrt(x)); }
+    };
+
+    Object.assign(this, Component);
+
+    await render(hbs`
+      <p>{{value}}</p>
+      <button {{action (pipe add square squareRoot) 2 4}}>
+        Calculate
+      </button>
+    `);
+
+    assert.equal(find('p').textContent.trim(), '0', 'precond - should render 0');
+    await click('button');
+    assert.equal(this.get('value'), '6', 'value in current component should equal 6');
+  });
+
+  test('it handles mixed contexts', async function(assert) {
+    const Component = {
+      calculateService: this.owner.lookup('service:calculate'),
+      value: 0,
+      square(x) { return x * x; },
+      squareRoot(x) { this.set('value', Math.sqrt(x)); }
+    };
+
+    Object.assign(this, Component);
+
+    this.calculateService.actions = { add(x, y) { return x + y; } }
+
+    await render(hbs`
+      <p>{{value}}</p>
+      <button {{action (pipe (action "add" target=calculateService) square squareRoot) 2 4}}>
+        Calculate
+      </button>
+    `);
+
+    assert.equal(find('p').textContent.trim(), '0', 'precond - should render 0');
+    await click('button');
+    assert.equal(this.get('value'), '6', 'value in current component should equal 6');
+  });
 });
