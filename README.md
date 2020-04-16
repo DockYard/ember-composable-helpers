@@ -80,7 +80,9 @@ Watch a free video overview presented by EmberMap:
     - [Object helpers](#object-helpers)
       - [`group-by`](#group-by)
       - [`keys`](#keys)
+      - [`values`](#values)
       - [`entries`](#entries)
+      - [`from-entries`](#from-entries)
     - [Math helpers](#math-helpers)
       - [`inc`](#inc)
       - [`dec`](#dec)
@@ -695,6 +697,20 @@ Returns an array of keys of given object.
 {{/with}}
 ```
 
+#### `values`
+Returns an array of values from the given object.
+
+```hbs
+{{#with (values fields) as |data|}}
+  <h3>This article contain {{data.length}} fields</h3>
+  <ul>
+    {{#each data as |datum|}}
+      <li>{{datum}}</li>
+    {{/each}}
+  </ul>
+{{/with}}
+```
+
 #### `entries`
 Returns an array of a given object's own enumerable string-keyed property `[key, value]` pairs
 
@@ -710,6 +726,24 @@ You can pair it with other array helpers too. For example
   {{#each (sort-by myOwnSortByFunction (entries myObject)) as |entry|}}
     {{get entry 0}}
   {{/each}}`);
+```
+
+#### `from-entries`
+Converts a two-dimensional array of `[key, value]` pairs into an Object
+
+```hbs
+  {{#each-in (from-entries entries) as |key value|}}
+    {{key}}:{{value}}
+  {{/each}}
+```
+
+You can pair it with other array helpers too. For example, to copy only
+properties with non-falsey values:
+
+```hbs
+  {{#each-in (from-entries (filter-by "1" (entries myObject))) as |k v|}}
+    {{k}}: {{v}}
+  {{/each-in}}`);
 ```
 
 **[⬆️ back to top](#table-of-contents)**
