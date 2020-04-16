@@ -683,6 +683,8 @@ Returns an object where the keys are the unique values of the given property, an
 {{/each-in}}
 ```
 
+**[⬆️ back to top](#table-of-contents)**
+
 #### `keys`
 Returns an array of keys of given object.
 
@@ -697,6 +699,8 @@ Returns an array of keys of given object.
 {{/with}}
 ```
 
+**[⬆️ back to top](#table-of-contents)**
+
 #### `values`
 Returns an array of values from the given object.
 
@@ -710,6 +714,8 @@ Returns an array of values from the given object.
   </ul>
 {{/with}}
 ```
+
+**[⬆️ back to top](#table-of-contents)**
 
 #### `entries`
 Returns an array of a given object's own enumerable string-keyed property `[key, value]` pairs
@@ -727,6 +733,8 @@ You can pair it with other array helpers too. For example
     {{get entry 0}}
   {{/each}}`);
 ```
+
+**[⬆️ back to top](#table-of-contents)**
 
 #### `from-entries`
 Converts a two-dimensional array of `[key, value]` pairs into an Object
