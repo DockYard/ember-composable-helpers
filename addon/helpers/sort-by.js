@@ -41,7 +41,7 @@ class SortBy {
       func = sortDesc;
     }
 
-    return (a, b) => func(sortKey.replace(/:(desc|asc)/, ''), a, b);
+    return (a, b) => func(sortKey.replace(/:desc|:asc/, ''), a, b);
   }
 
   addCallback(callback) {
