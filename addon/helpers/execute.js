@@ -1,8 +1,8 @@
 import { helper } from '@ember/component/helper';
 import isPromise from '../utils/is-promise';
 
-export function mutThen(actions = []) {
-  return function(...args) {
+export function execute(actions = []) {
+  return function() {
     let invoke = function(acc, curr) {
       if (isPromise(acc)) {
         return acc.then(curr);
@@ -13,7 +13,7 @@ export function mutThen(actions = []) {
 
     return actions.reduce((acc, curr, idx) => {
       if (idx === 0) {
-        return curr(...args);
+        return curr();
       }
 
       return invoke(acc, curr);
@@ -21,4 +21,6 @@ export function mutThen(actions = []) {
   };
 }
 
-export default helper(mutThen);
+export default helper(execute);
+
+
