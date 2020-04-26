@@ -29,9 +29,9 @@ module('Integration | Helper | entries', function(hooks) {
 
     this.set('object', object);
     this.set('myOwnSortBy', function(a, b) {
-      if (a[0] > b[0]) {
+      if (a[1] > b[1]) {
         return 1;
-      } else if (a[0] < b[0]) {
+      } else if (a[1] < b[1]) {
         return -1;
       }
       return 0;

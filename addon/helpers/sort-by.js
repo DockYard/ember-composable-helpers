@@ -1,35 +1,110 @@
-import { defineProperty } from '@ember/object';
-import { isArray as isEmberArray } from '@ember/array';
-import { sort } from '@ember/object/computed';
-import Helper from '@ember/component/helper';
-import { set } from '@ember/object';
-import { isEmpty, typeOf } from '@ember/utils';
+import { get } from '@ember/object';
+import { helper } from '@ember/component/helper';
 
-export default Helper.extend({
-  compute(params) {
-    // slice params to avoid mutating the provided params
-    let sortProps = params.slice();
-    let array = sortProps.pop();
-    let [firstSortProp] = sortProps;
+function normalizeToBoolean(val) {
+  if (typeof val === 'boolean') {
+    return val;
+  }
 
-    if (typeOf(firstSortProp) === 'function' || isEmberArray(firstSortProp)) {
-      sortProps = firstSortProp;
+  if (typeof val === 'number') {
+    return val > 0 ? false : true;
+  }
+
+  return val;
+}
+
+function sortDesc(key, a, b) {
+  return get(a, key) > get(b, key);
+}
+
+function sortAsc(key, a, b) {
+  return get(a, key) < get(b, key);
+}
+
+class SortBy {
+  constructor(...args) {
+    let [array] = args;
+
+    this.array = [...array];
+    this.callbacks = null;
+  }
+
+  comparator(key) {
+    return this.callback ? this.callback : this.defaultSort(key);
+  }
+
+  defaultSort(sortKey) {
+    let func = sortAsc;
+    if (sortKey.match(':desc')) {
+      func = sortDesc;
     }
 
-    // TODO: can we / should we use variables instead of computed properties?
-    set(this, 'array', array);
-    set(this, 'sortProps', sortProps);
+    return (a, b) => func(sortKey.replace(/:desc|:asc/, ''), a, b);
+  }
 
-    if (isEmpty(sortProps)) {
-      defineProperty(this, 'content', []);
+  addCallback(callback) {
+    this.callback = callback;
+  }
+}
+
+/**
+ * best O(n); worst O(n^2)
+ * If we feel like swapping with something more performant like QuickSort or MergeSort
+ * then it should be easy
+ *
+ * @class BubbleSort
+ * @extends SortBy
+ */
+class BubbleSort extends SortBy {
+  perform(key) {
+    let swapped = false;
+
+    let compFunc = this.comparator(key);
+    for (let i = 1; i < this.array.length; i += 1) {
+      for (let j = 0; j < this.array.length - i; j += 1) {
+        let shouldSwap = normalizeToBoolean(compFunc(this.array[j+1], this.array[j]));
+        if (shouldSwap) {
+          [this.array[j], this.array[j+1]] = [this.array[j+1], this.array[j]];
+
+          swapped = true;
+        }
+      }
+
+      // no need to continue sort if not swapped in any inner iteration
+      if (!swapped) {
+        return this.array;
+      }
     }
+  }
+}
 
-    if (typeof sortProps === 'function') {
-      defineProperty(this, 'content', sort('array', sortProps));
-    } else {
-      defineProperty(this, 'content', sort('array', 'sortProps'));
+export function sortBy(params) {
+  // slice params to avoid mutating the provided params
+  let sortParams = params.slice();
+  let array = sortParams.pop();
+  let sortKeys = sortParams;
+
+  if (!array || (!sortKeys || sortKeys.length === 0)) {
+    return [];
+  }
+
+  if (sortKeys.length === 1 && Array.isArray(sortKeys[0])) {
+    sortKeys = sortKeys[0];
+  }
+
+  const sortKlass = new BubbleSort(array);
+
+  if (typeof sortKeys[0] === 'function') { // || isEmberArray(firstSortProp)) {
+    sortKlass.addCallback(sortKeys[0]);
+    sortKlass.perform();
+  } else {
+    for (let key of sortKeys) {
+      sortKlass.perform(key);
     }
+  }
 
-    return this.content;
-  },
-});
+
+  return sortKlass.array;
+}
+
+export default helper(sortBy);

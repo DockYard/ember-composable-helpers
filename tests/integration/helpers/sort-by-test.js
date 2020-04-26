@@ -14,6 +14,22 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
   });
 
   test('It sorts by a value', async function(assert) {
+    this.set('array', [
+      { name: 'c' },
+      { name: 'a' },
+      { name: 'b' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+  });
+
+  test('It sorts by a value with EmberArray', async function(assert) {
     this.set('array', emberArray([
       { name: 'c' },
       { name: 'a' },
@@ -27,6 +43,22 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     `);
 
     assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+  });
+
+  test('It sorts by a value desc', async function(assert) {
+    this.set('array', emberArray([
+      { name: 'c' },
+      { name: 'a' },
+      { name: 'b' }
+    ]));
+
+    await render(hbs`
+      {{~#each (sort-by 'name:desc' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'cba', 'cab is sorted to cba');
   });
 
   test('It watches for changes', async function(assert) {
