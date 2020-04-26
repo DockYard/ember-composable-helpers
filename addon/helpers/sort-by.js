@@ -1,5 +1,4 @@
 import { get } from '@ember/object';
-// import { isArray as isEmberArray } from '@ember/array';
 import { helper } from '@ember/component/helper';
 
 function normalizeToBoolean(val) {
@@ -28,7 +27,6 @@ class SortBy {
 
     this.array = [...array];
     this.callbacks = null;
-    this.keys = [];
   }
 
   comparator(key) {
@@ -46,10 +44,6 @@ class SortBy {
 
   addCallback(callback) {
     this.callback = callback;
-  }
-
-  addKeys(...keys) {
-    this.keys.push(...keys);
   }
 }
 
@@ -104,9 +98,7 @@ export function sortBy(params) {
     sortKlass.addCallback(sortKeys[0]);
     sortKlass.perform();
   } else {
-    sortKlass.addKeys(...sortKeys);
-
-    for (let key of sortKlass.keys) {
+    for (let key of sortKeys) {
       sortKlass.perform(key);
     }
   }
