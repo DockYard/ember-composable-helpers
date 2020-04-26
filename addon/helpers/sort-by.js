@@ -2,7 +2,7 @@ import { get } from '@ember/object';
 // import { isArray as isEmberArray } from '@ember/array';
 import { helper } from '@ember/component/helper';
 
-function normalize(val) {
+function normalizeToBoolean(val) {
   if (typeof val === 'boolean') {
     return val;
   }
@@ -68,7 +68,7 @@ class BubbleSort extends SortBy {
     let compFunc = this.comparator(key);
     for (let i = 1; i < this.array.length; i += 1) {
       for (let j = 0; j < this.array.length - i; j += 1) {
-        let shouldSwap = normalize(compFunc(this.array[j+1], this.array[j]));
+        let shouldSwap = normalizeToBoolean(compFunc(this.array[j+1], this.array[j]));
         if (shouldSwap) {
           [this.array[j], this.array[j+1]] = [this.array[j+1], this.array[j]];
 
@@ -98,21 +98,21 @@ export function sortBy(params) {
     sortKeys = sortKeys[0];
   }
 
-  const sort = new BubbleSort(array);
+  const sortKlass = new BubbleSort(array);
 
   if (typeof sortKeys[0] === 'function') { // || isEmberArray(firstSortProp)) {
-    sort.addCallback(sortKeys[0]);
-    sort.perform();
+    sortKlass.addCallback(sortKeys[0]);
+    sortKlass.perform();
   } else {
-    sort.addKeys(...sortKeys);
+    sortKlass.addKeys(...sortKeys);
 
-    for (let key of sort.keys) {
-      sort.perform(key);
+    for (let key of sortKlass.keys) {
+      sortKlass.perform(key);
     }
   }
 
 
-  return sort.array;
+  return sortKlass.array;
 }
 
 export default helper(sortBy);
