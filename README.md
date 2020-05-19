@@ -83,6 +83,7 @@ Watch a free video overview presented by EmberMap:
       - [`values`](#values)
       - [`entries`](#entries)
       - [`from-entries`](#from-entries)
+      - [`pick`](#pick)
     - [Math helpers](#math-helpers)
       - [`inc`](#inc)
       - [`dec`](#dec)
@@ -755,6 +756,27 @@ properties with non-falsey values:
 ```
 
 **[⬆️ back to top](#table-of-contents)**
+
+#### `pick`
+Receives an object and picks a specified path off of it to pass on. Intended for use with `{{on}}` modifiers placed on form elements.
+
+```hbs
+  <input
+    ...
+    {{on 'input' (pipe (pick 'target.value') this.onInput)}}
+  />
+```
+
+It also supports an optional second argument to make common usage more ergonomic.
+
+```hbs
+  <input
+    ...
+    {{on 'input' (pick 'target.value' this.onInput)}}
+  />
+```
+
+**[⬆️ back to top](#table-of-contents)*
 
 ---
 
