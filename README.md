@@ -78,12 +78,12 @@ Watch a free video overview presented by EmberMap:
       - [`previous`](#previous)
       - [`has-previous`](#has-previous)
     - [Object helpers](#object-helpers)
-      - [`group-by`](#group-by)
-      - [`keys`](#keys)
-      - [`values`](#values)
       - [`entries`](#entries)
       - [`from-entries`](#from-entries)
+      - [`group-by`](#group-by)
+      - [`keys`](#keys)
       - [`pick`](#pick)
+      - [`values`](#values)
     - [Math helpers](#math-helpers)
       - [`inc`](#inc)
       - [`dec`](#dec)
@@ -670,54 +670,6 @@ parameter, `useDeepEqual`, to flag whether a deep equal comparison should be per
 
 ### Object helpers
 
-#### `group-by`
-Returns an object where the keys are the unique values of the given property, and the values are an array with all items of the array that have the same value of that property.
-
-```hbs
-{{#each-in (group-by "category" artists) as |category artists|}}
-  <h3>{{category}}</h3>
-  <ul>
-    {{#each artists as |artist|}}
-      <li>{{artist.name}}</li>
-    {{/each}}
-  </ul>
-{{/each-in}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
-#### `keys`
-Returns an array of keys of given object.
-
-```hbs
-{{#with (keys fields) as |labels|}}
-  <h3>This article contain {{labels.length}} fields</h3>
-  <ul>
-    {{#each labels as |label|}}
-      <li>{{label}}</li>
-    {{/each}}
-  </ul>
-{{/with}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
-#### `values`
-Returns an array of values from the given object.
-
-```hbs
-{{#with (values fields) as |data|}}
-  <h3>This article contain {{data.length}} fields</h3>
-  <ul>
-    {{#each data as |datum|}}
-      <li>{{datum}}</li>
-    {{/each}}
-  </ul>
-{{/with}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
 #### `entries`
 Returns an array of a given object's own enumerable string-keyed property `[key, value]` pairs
 
@@ -757,6 +709,38 @@ properties with non-falsey values:
 
 **[⬆️ back to top](#table-of-contents)**
 
+#### `group-by`
+Returns an object where the keys are the unique values of the given property, and the values are an array with all items of the array that have the same value of that property.
+
+```hbs
+{{#each-in (group-by "category" artists) as |category artists|}}
+  <h3>{{category}}</h3>
+  <ul>
+    {{#each artists as |artist|}}
+      <li>{{artist.name}}</li>
+    {{/each}}
+  </ul>
+{{/each-in}}
+```
+
+**[⬆️ back to top](#table-of-contents)**
+
+#### `keys`
+Returns an array of keys of given object.
+
+```hbs
+{{#with (keys fields) as |labels|}}
+  <h3>This article contain {{labels.length}} fields</h3>
+  <ul>
+    {{#each labels as |label|}}
+      <li>{{label}}</li>
+    {{/each}}
+  </ul>
+{{/with}}
+```
+
+**[⬆️ back to top](#table-of-contents)**
+
 #### `pick`
 Receives an object and picks a specified path off of it to pass on. Intended for use with `{{on}}` modifiers placed on form elements.
 
@@ -774,6 +758,22 @@ It also supports an optional second argument to make common usage more ergonomic
     ...
     {{on 'input' (pick 'target.value' this.onInput)}}
   />
+```
+
+**[⬆️ back to top](#table-of-contents)*
+
+#### `values`
+Returns an array of values from the given object.
+
+```hbs
+{{#with (values fields) as |data|}}
+  <h3>This article contain {{data.length}} fields</h3>
+  <ul>
+    {{#each data as |datum|}}
+      <li>{{datum}}</li>
+    {{/each}}
+  </ul>
+{{/with}}
 ```
 
 **[⬆️ back to top](#table-of-contents)*
