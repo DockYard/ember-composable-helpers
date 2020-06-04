@@ -89,4 +89,29 @@ module('Integration | Helper | {{filter}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
   });
+
+  test('it accepts a fulfilled ember data promise as a value', async function (assert) {
+    let store = this.owner.lookup('service:store');
+    let person = store.createRecord('person');
+
+    person.get('pets').pushObjects([
+      store.createRecord('pet', { name: 'aa' }),
+      store.createRecord('pet', { name: 'ab' }),
+      store.createRecord('pet', { name: 'bc' }),
+    ]);
+    let pets = await person.pets;
+    this.set('pets', pets);
+
+    this.actions.startsWithA = function({ name }) {
+      return name.startsWith('a');
+    };
+
+    await render(hbs`
+      {{~#each (filter (action "startsWithA") pets) as |item|~}}
+        {{~item.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'aaab', 'bc is filtered out');
+  });
 });

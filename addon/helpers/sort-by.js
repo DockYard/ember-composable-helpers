@@ -24,6 +24,9 @@ function sortAsc(key, a, b) {
 class SortBy {
   constructor(...args) {
     let [array] = args;
+    if (typeof array.toArray === "function") {
+      array = array.toArray();
+    }
 
     this.array = [...array];
     this.callbacks = null;

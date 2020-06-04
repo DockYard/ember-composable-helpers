@@ -137,4 +137,26 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
   });
+
+  test('it accepts a fulfilled ember data promise as a value', async function (assert) {
+    let store = this.owner.lookup('service:store');
+    let person = store.createRecord('person');
+
+    person.get('pets').pushObjects([
+      store.createRecord('pet', { name: 'c' }),
+      store.createRecord('pet', { name: 'b' }),
+      store.createRecord('pet', { name: 'a' }),
+    ]);
+    let pets = await person.pets;
+
+    this.set('pets', pets);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' pets) as |pet|~}}
+        {{~pet.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+  });
 });
