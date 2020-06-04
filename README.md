@@ -93,14 +93,14 @@ Watch a free video overview presented by EmberMap:
   - [Contributors](#contributors)
 
 ## Configuration
-If you don't need all the helpers, you can specify which to whitelist or blacklist using `only` or `except` within your `ember-cli-build.js`:
+If you don't need all the helpers, you can specify which to include or remove from your build using `only` or `except` within your `ember-cli-build.js`:
 
 ```js
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     'ember-composable-helpers': {
       only: ['inc', 'dec', 'pipe'],
-      except: ['pipe', 'filter-by']
+      except: ['filter-by']
     }
   });
 ```
