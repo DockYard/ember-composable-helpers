@@ -30,6 +30,40 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'abcc', 'cabc is sorted to abcc');
   });
 
+  test('It sorts by a value Numbers strings', async function(assert) {
+    this.set('array', [
+      { value: '1' },
+      { value: '0' },
+      { value: '1' },
+      { value: '2' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'value' array) as |user|~}}
+        {{~user.value~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '0112', 'numbes are sorted');
+  });
+
+  test('It sorts by a value Number', async function(assert) {
+    this.set('array', [
+      { value: 1 },
+      { value: 0 },
+      { value: 1 },
+      { value: 2 }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'value' array) as |user|~}}
+        {{~user.value~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '0112', 'numbes are sorted');
+  });
+
   test('It sorts by a value based on Alphabetical (vs ASCII-betical)', async function(assert) {
     this.set('array', [
       { name: 'c' },

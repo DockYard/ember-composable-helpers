@@ -21,10 +21,9 @@ function sortDesc(key, a, b) {
     return bValue.localeCompare(aValue, undefined, { sensitivity: 'base' });
   }
 
-  // if false, b comes before a
   if (aValue < bValue) {
     return 1
-  } else if (a > bValue) {
+  } else if (aValue > bValue) {
     return -1;
   }
 
@@ -39,11 +38,9 @@ function sortAsc(key, a, b) {
     return aValue.localeCompare(bValue, undefined, { sensitivity: 'base' });
   }
 
-  // if true, a comes before b
-  // if false, b comes before a
   if (aValue < bValue) {
     return -1
-  } else if (a > bValue) {
+  } else if (aValue > bValue) {
     return 1;
   }
 
