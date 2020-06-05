@@ -47,10 +47,10 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
 
   test('It sorts by a value based on Alphanumeric', async function(assert) {
     this.set('array', [
-      { name: '1' },
-      { name: '11' },
-      { name: '2' },
-      { name: '100' }
+      { name: 'c1' },
+      { name: 'c11' },
+      { name: 'c2' },
+      { name: 'c100' }
     ]);
 
     await render(hbs`
