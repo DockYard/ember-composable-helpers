@@ -24,9 +24,11 @@ function sortDesc(key, a, b) {
   // if false, b comes before a
   if (aValue < bValue) {
     return 1
-  } else {
+  } else if (a > bValue) {
     return -1;
   }
+
+  return 0;
 }
 
 function sortAsc(key, a, b) {
@@ -38,11 +40,14 @@ function sortAsc(key, a, b) {
   }
 
   // if true, a comes before b
+  // if false, b comes before a
   if (aValue < bValue) {
     return -1
-  } else {
+  } else if (a > bValue) {
     return 1;
   }
+
+  return 0;
 }
 
 class SortBy {
