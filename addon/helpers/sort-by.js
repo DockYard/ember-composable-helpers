@@ -14,11 +14,35 @@ function normalizeToBoolean(val) {
 }
 
 function sortDesc(key, a, b) {
-  return get(a, key) > get(b, key);
+  const aValue = get(a, key);
+  const bValue = get(b, key);
+
+  if (aValue.toLowerCase && bValue.toLowerCase) {
+    return bValue.localeCompare(aValue, undefined, { sensitivity: 'base' });
+  }
+
+  // if false, b comes before a
+  if (aValue < bValue) {
+    return 1
+  } else {
+    return -1;
+  }
 }
 
 function sortAsc(key, a, b) {
-  return get(a, key) < get(b, key);
+  const aValue = get(a, key);
+  const bValue = get(b, key);
+
+  if (aValue.toLowerCase && bValue.toLowerCase) {
+    return aValue.localeCompare(bValue, undefined, { sensitivity: 'base' });
+  }
+
+  // if true, a comes before b
+  if (aValue < bValue) {
+    return -1
+  } else {
+    return 1;
+  }
 }
 
 class SortBy {

@@ -13,7 +13,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
   });
 
-  test('It sorts by a value', async function(assert) {
+  test('It sorts by a value ascending', async function(assert) {
     this.set('array', [
       { name: 'c' },
       { name: 'a' },
@@ -29,7 +29,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
   });
 
-  test('It sorts by a value based on casing', async function(assert) {
+  test('It sorts by a value based on Alphabetical (vs ASCII-betical)', async function(assert) {
     this.set('array', [
       { name: 'c' },
       { name: 'C' },
@@ -42,7 +42,24 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'bcC', 'cab is sorted to abc');
+    assert.equal(find('*').textContent.trim(), 'bCc', 'outputs alphabeticl ordering with b before c');
+  });
+
+  test('It sorts by a value based on Alphanumeric', async function(assert) {
+    this.set('array', [
+      { name: '1' },
+      { name: '11' },
+      { name: '2' },
+      { name: '100' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'c1c2c11c100', 'cab is sorted to Cbc');
   });
 
   test('It sorts by a value with EmberArray', async function(assert) {
