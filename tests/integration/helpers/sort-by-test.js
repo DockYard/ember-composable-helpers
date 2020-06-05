@@ -29,6 +29,22 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
   });
 
+  test('It sorts by a value based on casing', async function(assert) {
+    this.set('array', [
+      { name: 'c' },
+      { name: 'C' },
+      { name: 'b' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'bcC', 'cab is sorted to abc');
+  });
+
   test('It sorts by a value with EmberArray', async function(assert) {
     this.set('array', emberArray([
       { name: 'c' },
