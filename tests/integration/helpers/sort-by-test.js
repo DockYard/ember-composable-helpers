@@ -30,6 +30,40 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'abcc', 'cabc is sorted to abcc');
   });
 
+  test('It sorts by multiletter words ascending', async function(assert) {
+    this.set('array', [
+      { name: 'Aa' },
+      { name: 'aA' },
+      { name: 'bc' },
+      { name: 'cb' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'aAAabccb', 'sorts multiletter words');
+  });
+
+  test('It sorts by multiletter words descending', async function(assert) {
+    this.set('array', [
+      { name: 'Aa' },
+      { name: 'aA' },
+      { name: 'bc' },
+      { name: 'cb' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name:desc' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'cbbcaAAa', 'sorts multiletter words');
+  });
+
   test('It sorts by a value Numbers strings', async function(assert) {
     this.set('array', [
       { value: '1' },
