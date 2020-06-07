@@ -128,7 +128,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'c1c2c11c100', 'cab is sorted to Cbc');
+    assert.equal(find('*').textContent.trim(), 'c1c2c11c100', 'alpha numeric is sorted properly');
   });
 
   test('It sorts by a value with EmberArray', async function(assert) {
@@ -161,7 +161,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'cbaa', 'cab is sorted to cbaa');
+    assert.equal(find('*').textContent.trim(), 'cbaa', 'caba is sorted to cbaa');
   });
 
   test('It watches for changes', async function(assert) {
