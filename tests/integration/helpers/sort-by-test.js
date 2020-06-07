@@ -1,6 +1,6 @@
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
-import { module, test } from 'qunit';
+import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, find } from '@ember/test-helpers';
 import hbs from 'htmlbars-inline-precompile';
@@ -13,10 +13,95 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.send = (actionName, ...args) => this.actions[actionName].apply(this, args);
   });
 
-  test('It sorts by a value', async function(assert) {
+  test('It sorts by a value ascending', async function(assert) {
     this.set('array', [
       { name: 'c' },
       { name: 'a' },
+      { name: 'b' },
+      { name: 'c' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'abcc', 'cabc is sorted to abcc');
+  });
+
+  test('It sorts by multiletter words ascending', async function(assert) {
+    this.set('array', [
+      { name: 'Aa' },
+      { name: 'aA' },
+      { name: 'bc' },
+      { name: 'cb' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'aAAabccb', 'sorts multiletter words');
+  });
+
+  test('It sorts by multiletter words descending', async function(assert) {
+    this.set('array', [
+      { name: 'Aa' },
+      { name: 'aA' },
+      { name: 'bc' },
+      { name: 'cb' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name:desc' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'cbbcaAAa', 'sorts multiletter words');
+  });
+
+  test('It sorts by a value Numbers strings', async function(assert) {
+    this.set('array', [
+      { value: '1' },
+      { value: '0' },
+      { value: '1' },
+      { value: '2' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'value' array) as |user|~}}
+        {{~user.value~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '0112', 'numbes are sorted');
+  });
+
+  test('It sorts by a value Number', async function(assert) {
+    this.set('array', [
+      { value: 1 },
+      { value: 0 },
+      { value: 1 },
+      { value: 2 }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'value' array) as |user|~}}
+        {{~user.value~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '0112', 'numbes are sorted');
+  });
+
+  test('It sorts by a value based on Alphabetical (vs ASCII-betical)', async function(assert) {
+    this.set('array', [
+      { name: 'c' },
+      { name: 'C' },
       { name: 'b' }
     ]);
 
@@ -26,7 +111,24 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+    assert.equal(find('*').textContent.trim(), 'bCc', 'outputs alphabeticl ordering with b before c');
+  });
+
+  skip('It sorts by a value based on Alphanumeric', async function(assert) {
+    this.set('array', [
+      { name: 'c1' },
+      { name: 'c11' },
+      { name: 'c2' },
+      { name: 'c100' }
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'c1c2c11c100', 'alpha numeric is sorted properly');
   });
 
   test('It sorts by a value with EmberArray', async function(assert) {
@@ -49,7 +151,8 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('array', emberArray([
       { name: 'c' },
       { name: 'a' },
-      { name: 'b' }
+      { name: 'b' },
+      { name: 'a' }
     ]));
 
     await render(hbs`
@@ -58,7 +161,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'cba', 'cab is sorted to cba');
+    assert.equal(find('*').textContent.trim(), 'cbaa', 'caba is sorted to cbaa');
   });
 
   test('It watches for changes', async function(assert) {
