@@ -17,7 +17,7 @@ function sortDesc(key, a, b) {
   const aValue = get(a, key);
   const bValue = get(b, key);
 
-  if (aValue.toLowerCase && bValue.toLowerCase) {
+  if (aValue && bValue && aValue.toLowerCase && bValue.toLowerCase) {
     return bValue.localeCompare(aValue, undefined, { sensitivity: 'base' });
   }
 
@@ -34,7 +34,7 @@ function sortAsc(key, a, b) {
   const aValue = get(a, key);
   const bValue = get(b, key);
 
-  if (aValue.toLowerCase && bValue.toLowerCase) {
+  if (aValue && bValue && aValue.toLowerCase && bValue.toLowerCase) {
     return aValue.localeCompare(bValue, undefined, { sensitivity: 'base' });
   }
 
