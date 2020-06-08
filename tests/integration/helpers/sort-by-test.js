@@ -262,4 +262,21 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
   });
+
+  test('ignores undefined values sorting', async function (assert) {
+    this.set('array', [
+      { name: 'c' },
+      { name: 'a' },
+      { name: undefined },
+      { name: 'b' },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |pet|~}}
+        {{~pet.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'abc');
+  });
 });
