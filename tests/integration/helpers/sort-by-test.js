@@ -317,4 +317,20 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'abc');
   });
+
+  test('It maintains order when values are the same', async function(assert) {
+    this.set('array', [
+      { id: 1, name: 'a' },
+      { id: 2, name: 'a' },
+      { id: 3, name: 'a' },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.id~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '123');
+  });
 });
