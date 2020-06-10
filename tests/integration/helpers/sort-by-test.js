@@ -184,7 +184,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'abcd', 'list is still sorted after addition');
   });
 
-  test('It also accepts an array of sort properties', async function(assert) {
+  test('It accepts an array of sort properties (one prop)', async function(assert) {
     this.set('array', emberArray([
       { name: 'c' },
       { name: 'a' },
@@ -200,6 +200,44 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     `);
 
     assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+  });
+
+  test('It accepts an array of sort properties (more than one prop)', async function(assert) {
+    this.set('array', emberArray([
+      { firstName: 'Adam', lastName: 'Coda' },
+      { firstName: 'Billy', lastName: 'Jones' },
+      { firstName: 'William', lastName: 'Abrams' },
+      { firstName: 'Sam', lastName: 'Jones' },
+      { firstName: 'Donnie', lastName: 'Brady' }
+    ]));
+
+    this.set('sortBy', ['lastName', 'firstName']);
+
+    await render(hbs`
+      {{~#each (sort-by sortBy array) as |user|~}}
+        {{~user.lastName~}},{{~user.firstName~}};
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'Abrams,William;Brady,Donnie;Coda,Adam;Jones,Billy;Jones,Sam;', 'Names are sorted alphabetically by last name then first name');
+  });
+
+  test('It accepts multiple sort properties as helper params', async function(assert) {
+    this.set('array', emberArray([
+      { firstName: 'Adam', lastName: 'Coda' },
+      { firstName: 'Billy', lastName: 'Jones' },
+      { firstName: 'William', lastName: 'Abrams' },
+      { firstName: 'Sam', lastName: 'Jones' },
+      { firstName: 'Donnie', lastName: 'Brady' }
+    ]));
+
+    await render(hbs`
+      {{~#each (sort-by "lastName" "firstName" array) as |user|~}}
+        {{~user.lastName~}},{{~user.firstName~}};
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'Abrams,William;Brady,Donnie;Coda,Adam;Jones,Billy;Jones,Sam;', 'Names are sorted alphabetically by last name then first name');
   });
 
   test('It accepts a function sort property', async function(assert) {
