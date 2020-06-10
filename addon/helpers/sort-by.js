@@ -55,11 +55,10 @@ class SortBy {
     }
 
     this.array = [...array];
-    this.callbacks = null;
   }
 
   comparator(key) {
-    return this.callback ? this.callback : this.defaultSort(key);
+    return (typeof key === 'function') ? key : this.defaultSort(key);
   }
 
   defaultSort(sortKey) {
@@ -69,10 +68,6 @@ class SortBy {
     }
 
     return (a, b) => func(sortKey.replace(/:desc|:asc/, ''), a, b);
-  }
-
-  addCallback(callback) {
-    this.callback = callback;
   }
 }
 
@@ -85,10 +80,20 @@ class SortBy {
  * @extends SortBy
  */
 class BubbleSort extends SortBy {
-  perform(key) {
+  perform(keys = []) {
     let swapped = false;
 
-    let compFunc = this.comparator(key);
+    let compFuncs = keys.map(key => this.comparator(key));
+    let compFunc = (a, b) => {
+      for (let i = 0; i < compFuncs.length; i += 1) {
+        let result = compFuncs[i](a,b);
+        if (result === 0) {
+          continue;
+        }
+        return result;
+      }
+      return 0;
+    };
     for (let i = 1; i < this.array.length; i += 1) {
       for (let j = 0; j < this.array.length - i; j += 1) {
         let shouldSwap = normalizeToBoolean(compFunc(this.array[j+1], this.array[j]));
@@ -122,17 +127,7 @@ export function sortBy(params) {
   }
 
   const sortKlass = new BubbleSort(array);
-
-  if (typeof sortKeys[0] === 'function') { // || isEmberArray(firstSortProp)) {
-    sortKlass.addCallback(sortKeys[0]);
-    sortKlass.perform();
-  } else {
-    for (let key of sortKeys) {
-      sortKlass.perform(key);
-    }
-  }
-
-
+  sortKlass.perform(sortKeys);
   return sortKlass.array;
 }
 
