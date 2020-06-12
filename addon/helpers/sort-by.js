@@ -30,7 +30,7 @@ function sortDesc(key, a, b) {
     return 1;
   }
 
-  if (aValue && bValue && aValue.toLowerCase && bValue.toLowerCase) {
+  if (aValue.toLowerCase && bValue.toLowerCase) {
     return bValue.localeCompare(aValue, undefined, { sensitivity: 'base' });
   }
 
@@ -56,7 +56,7 @@ function sortAsc(key, a, b) {
     return 1;
   }
 
-  if (aValue && bValue && aValue.toLowerCase && bValue.toLowerCase) {
+  if (aValue.toLowerCase && bValue.toLowerCase) {
     return aValue.localeCompare(bValue, undefined, { sensitivity: 'base' });
   }
 
