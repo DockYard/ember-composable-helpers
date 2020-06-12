@@ -34,8 +34,8 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('array', [
       { name: 'Aa' },
       { name: 'aA' },
-      { name: 'bc' },
-      { name: 'cb' }
+      { name: 'cB' },
+      { name: 'bc' }
     ]);
 
     await render(hbs`
@@ -44,7 +44,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'AaaAbccb', 'sorts multiletter words');
+    assert.equal(find('*').textContent.trim(), 'AaaAbccB', 'sorts multiletter words');
   });
 
   test('It sorts by multiletter words descending', async function(assert) {
