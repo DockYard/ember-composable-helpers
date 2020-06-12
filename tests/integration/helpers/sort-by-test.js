@@ -44,7 +44,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'aAAabccb', 'sorts multiletter words');
+    assert.equal(find('*').textContent.trim(), 'AaaAbccb', 'sorts multiletter words');
   });
 
   test('It sorts by multiletter words descending', async function(assert) {
@@ -61,7 +61,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'cbbcaAAa', 'sorts multiletter words');
+    assert.equal(find('*').textContent.trim(), 'cbbcAaaA', 'sorts multiletter words');
   });
 
   test('It sorts by a value Numbers strings', async function(assert) {
@@ -111,7 +111,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'bCc', 'outputs alphabeticl ordering with b before c');
+    assert.equal(find('*').textContent.trim(), 'bcC', 'outputs alphabetical ordering with b before c');
   });
 
   skip('It sorts by a value based on Alphanumeric', async function(assert) {
