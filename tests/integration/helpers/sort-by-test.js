@@ -34,8 +34,8 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('array', [
       { name: 'Aa' },
       { name: 'aA' },
-      { name: 'bc' },
-      { name: 'cb' }
+      { name: 'cB' },
+      { name: 'bc' }
     ]);
 
     await render(hbs`
@@ -44,7 +44,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'aAAabccb', 'sorts multiletter words');
+    assert.equal(find('*').textContent.trim(), 'AaaAbccB', 'sorts multiletter words');
   });
 
   test('It sorts by multiletter words descending', async function(assert) {
@@ -61,7 +61,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'cbbcaAAa', 'sorts multiletter words');
+    assert.equal(find('*').textContent.trim(), 'cbbcAaaA', 'sorts multiletter words');
   });
 
   test('It sorts by a value Numbers strings', async function(assert) {
@@ -111,7 +111,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'bCc', 'outputs alphabeticl ordering with b before c');
+    assert.equal(find('*').textContent.trim(), 'bcC', 'outputs alphabetical ordering with b before c');
   });
 
   skip('It sorts by a value based on Alphanumeric', async function(assert) {
@@ -316,5 +316,21 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     `);
 
     assert.equal(find('*').textContent.trim(), 'abc');
+  });
+
+  test('It maintains order when values are the same', async function(assert) {
+    this.set('array', [
+      { id: 1, name: 'a' },
+      { id: 2, name: 'a' },
+      { id: 3, name: 'a' },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.id~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '123');
   });
 });

@@ -7,7 +7,11 @@ function normalizeToBoolean(val) {
   }
 
   if (typeof val === 'number') {
-    return val > 0 ? false : true;
+    if (val > 0) {
+      return false;
+    } else if (val < 0) {
+      return true;
+    }
   }
 
   return val;
@@ -17,7 +21,16 @@ function sortDesc(key, a, b) {
   const aValue = get(a, key);
   const bValue = get(b, key);
 
-  if (aValue && bValue && aValue.toLowerCase && bValue.toLowerCase) {
+  if (typeof bValue == 'undefined') {
+    // keep bValue last
+    return -1;
+  }
+  if (typeof aValue == 'undefined') {
+    // put aValue last
+    return 1;
+  }
+
+  if (aValue.toLowerCase && bValue.toLowerCase) {
     return bValue.localeCompare(aValue, undefined, { sensitivity: 'base' });
   }
 
@@ -34,7 +47,16 @@ function sortAsc(key, a, b) {
   const aValue = get(a, key);
   const bValue = get(b, key);
 
-  if (aValue && bValue && aValue.toLowerCase && bValue.toLowerCase) {
+  if (typeof bValue == 'undefined') {
+    // keep bValue last
+    return -1;
+  }
+  if (typeof aValue == 'undefined') {
+    // put aValue last
+    return 1;
+  }
+
+  if (aValue.toLowerCase && bValue.toLowerCase) {
     return aValue.localeCompare(bValue, undefined, { sensitivity: 'base' });
   }
 
