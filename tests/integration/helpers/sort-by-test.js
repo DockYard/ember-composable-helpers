@@ -318,6 +318,23 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'abc');
   });
 
+  test('it sorts null values last', async function(assert) {
+    this.set('array', [
+      { id: 1, name: 'c' },
+      { id: 2, name: 'a' },
+      { id: 3, name: null },
+      { id: 4, name: 'b' },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.id~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '2413');
+  });
+
   test('It maintains order when values are the same', async function(assert) {
     this.set('array', [
       { id: 1, name: 'a' },
