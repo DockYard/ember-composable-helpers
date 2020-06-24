@@ -301,21 +301,21 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
   });
 
-  test('ignores undefined values sorting', async function (assert) {
+  test('it sorts undefined values last', async function(assert) {
     this.set('array', [
-      { name: 'c' },
-      { name: 'a' },
-      { name: undefined },
-      { name: 'b' },
+      { id: 1, name: 'c' },
+      { id: 2, name: 'a' },
+      { id: 3, name: undefined },
+      { id: 4, name: 'b' },
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |pet|~}}
-        {{~pet.name~}}
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.id~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abc');
+    assert.equal(find('*').textContent.trim(), '2413');
   });
 
   test('it sorts null values last', async function(assert) {
