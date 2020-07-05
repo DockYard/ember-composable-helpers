@@ -21,11 +21,11 @@ function sortDesc(key, a, b) {
   const aValue = get(a, key);
   const bValue = get(b, key);
 
-  if (typeof bValue == 'undefined') {
+  if (typeof bValue == 'undefined' || bValue === null) {
     // keep bValue last
     return -1;
   }
-  if (typeof aValue == 'undefined') {
+  if (typeof aValue == 'undefined' || aValue === null) {
     // put aValue last
     return 1;
   }
@@ -47,11 +47,11 @@ function sortAsc(key, a, b) {
   const aValue = get(a, key);
   const bValue = get(b, key);
 
-  if (typeof bValue == 'undefined') {
+  if (typeof bValue == 'undefined' || bValue === null) {
     // keep bValue last
     return -1;
   }
-  if (typeof aValue == 'undefined') {
+  if (typeof aValue == 'undefined' || aValue === null) {
     // put aValue last
     return 1;
   }
