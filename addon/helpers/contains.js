@@ -2,20 +2,17 @@ import { A as emberArray } from '@ember/array';
 import { isArray as isEmberArray } from '@ember/array';
 import { helper } from '@ember/component/helper';
 
-function _contains(needle, haystack) {
-  return emberArray(haystack).includes(needle);
-}
-
-export function contains(needle, haystack) {
+export function contains(needleOrNeedles, haystack) {
   if (!isEmberArray(haystack)) {
     return false;
   }
 
-  if (isEmberArray(needle)) {
-    return needle.reduce((acc, val) => acc && _contains(val, haystack), true);
-  }
+  let needles = isEmberArray(needleOrNeedles) ? needleOrNeedles : [needleOrNeedles];
+  let haystackAsEmberArray = emberArray(haystack);
 
-  return _contains(needle, haystack);
+  return needles.every((needle) => {
+    return haystackAsEmberArray.includes(needle);
+  });
 }
 
 export default helper(function([needle, haystack]) {
