@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
-import { isArray as isEmberArray } from '@ember/array';
+import { isArray as isEmberArray, A as emberArray } from '@ember/array';
 
 export function intersect([...arrays]) {
   let confirmedArrays = arrays.map(array => {
@@ -9,9 +9,9 @@ export function intersect([...arrays]) {
   let results = confirmedArrays.pop().filter(candidate => {
     for (let i = 0; i < arrays.length; i++) {
       let found = false;
-      let array = arrays[i];
+      let array = emberArray(arrays[i]);
       for (let j = 0; j < array.length; j++) {
-        if (array[j] === candidate) {
+        if (array.objectAt(j) === candidate) {
           found = true;
           break;
         }

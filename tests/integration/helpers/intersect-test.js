@@ -51,4 +51,29 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
   });
+
+  test('it accepts an ember data array', async function(assert) {
+    let store = this.owner.lookup('service:store');
+    let person = store.createRecord('person', {
+      name: 'Adam'
+    });
+
+    person.get('pets').pushObjects([
+      store.createRecord('pet', { name: 'Kirby' }),
+      store.createRecord('pet', { name: 'Jake' })
+    ]);
+
+    store.createRecord('pet', { name: 'Eva' });
+
+    this.set('person', person);
+    this.set('allPets', store.peekAll('pet'));
+
+    await this.render(hbs`
+      {{~#each (intersect person.pets allPets) as |pet|~}}
+        {{~pet.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(this.element.textContent.trim(), 'KirbyJake', 'the pets belonging to the person are shown');
+  });
 });
