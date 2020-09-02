@@ -67,6 +67,7 @@ Watch a free video overview presented by EmberMap:
       - [`compact`](#compact)
       - [`contains`](#contains)
       - [`append`](#append)
+      - [`call`](#call)
       - [`chunk`](#chunk)
       - [`without`](#without)
       - [`shuffle`](#shuffle)
@@ -545,6 +546,19 @@ Appends the given arrays and/or values into a single flat array.
 ```hbs
 {{#each (append catNames dogName) as |petName|}}
   {{petName}}
+{{/each}}
+```
+
+**[⬆️ back to top](#table-of-contents)**
+
+#### `call`
+Calls the given function with arguments
+
+```hbs
+{{#each (call (fn this.callMeWith @daysInMonth) as |week|}}
+  {{#each week as |day|}}
+    {{day}}
+  {{/each}}
 {{/each}}
 ```
 
