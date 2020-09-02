@@ -40,6 +40,7 @@ Watch a free video overview presented by EmberMap:
   - [Upgrade Guide](#upgrade-guide)
   - [Available helpers](#available-helpers)
     - [Action helpers](#action-helpers)
+      - [`call`](#call)
       - [`pipe`](#pipe)
       - [`compute`](#compute)
       - [`toggle`](#toggle)
@@ -67,7 +68,6 @@ Watch a free video overview presented by EmberMap:
       - [`compact`](#compact)
       - [`contains`](#contains)
       - [`append`](#append)
-      - [`call`](#call)
       - [`chunk`](#chunk)
       - [`without`](#without)
       - [`shuffle`](#shuffle)
@@ -167,6 +167,20 @@ The `pipe` helper can also be used directly as a closure action (using `pipe-act
 ```
 
 **[⬆️️ back to top](#table-of-contents)**
+
+#### `call`
+Calls the given function with arguments
+
+```hbs
+{{#each (call (fn this.callMeWith @daysInMonth) as |week|}}
+  {{#each week as |day|}}
+    {{day}}
+  {{/each}}
+{{/each}}
+```
+
+**[⬆️ back to top](#table-of-contents)**
+
 
 #### `compute`
 Calls an action as a template helper.
@@ -546,19 +560,6 @@ Appends the given arrays and/or values into a single flat array.
 ```hbs
 {{#each (append catNames dogName) as |petName|}}
   {{petName}}
-{{/each}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
-#### `call`
-Calls the given function with arguments
-
-```hbs
-{{#each (call (fn this.callMeWith @daysInMonth) as |week|}}
-  {{#each week as |day|}}
-    {{day}}
-  {{/each}}
 {{/each}}
 ```
 
