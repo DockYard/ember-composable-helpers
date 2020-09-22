@@ -51,4 +51,18 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
   });
+
+  test('it allows a first parameter null array', async function(assert) {
+    this.set('array1', null);
+    this.set('array2', ['foo', 'baz']);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (intersect array1 array2) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });
