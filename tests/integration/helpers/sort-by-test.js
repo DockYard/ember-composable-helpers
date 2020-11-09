@@ -164,6 +164,22 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'cbaa', 'caba is sorted to cbaa');
   });
 
+  test('It does not sort the array when the key is an empty string', async function(assert) {
+    this.set('array', emberArray([
+      { name: 'c' },
+      { name: 'a' },
+      { name: 'b' }
+    ]));
+
+    await render(hbs`
+      {{~#each (sort-by "" array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'cab', 'cab is unsorted');
+  });
+
   test('It watches for changes', async function(assert) {
     let array = emberArray([
       { name: 'b' },
