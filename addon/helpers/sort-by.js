@@ -1,4 +1,5 @@
 import { get } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 import { helper } from '@ember/component/helper';
 
 function normalizeToBoolean(val) {
@@ -18,6 +19,10 @@ function normalizeToBoolean(val) {
 }
 
 function sortDesc(key, a, b) {
+  if (isEmpty(key)) {
+    return 0;
+  }
+
   const aValue = get(a, key);
   const bValue = get(b, key);
 
@@ -44,6 +49,10 @@ function sortDesc(key, a, b) {
 }
 
 function sortAsc(key, a, b) {
+  if (isEmpty(key)) {
+    return 0;
+  }
+
   const aValue = get(a, key);
   const bValue = get(b, key);
 
