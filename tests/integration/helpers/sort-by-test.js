@@ -366,4 +366,38 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '123');
   });
+
+  test('it support undefined array values', async function(assert) {
+    this.set('array', [
+      { id: 1, name: 'c' },
+      { id: 2, name: 'a' },
+      undefined,
+      { id: 4, name: 'b' },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.id~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '241');
+  });
+
+  test('it support null array values', async function(assert) {
+    this.set('array', [
+      { id: 1, name: 'c' },
+      { id: 2, name: 'a' },
+      null,
+      { id: 4, name: 'b' },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.id~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '241');
+  });
 });
