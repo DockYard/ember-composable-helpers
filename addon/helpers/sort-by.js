@@ -18,13 +18,20 @@ function normalizeToBoolean(val) {
   return val;
 }
 
+function safeValueForKey(ctx, key) {
+  if (ctx === null || ctx === undefined) {
+    return ctx;
+  }
+  return get(ctx, key);
+}
+
 function sortDesc(key, a, b) {
   if (isEmpty(key)) {
     return 0;
   }
 
-  const aValue = get(a, key);
-  const bValue = get(b, key);
+  const aValue = safeValueForKey(a, key);
+  const bValue = safeValueForKey(b, key);
 
   if (typeof bValue == 'undefined' || bValue === null) {
     // keep bValue last
@@ -53,8 +60,8 @@ function sortAsc(key, a, b) {
     return 0;
   }
 
-  const aValue = get(a, key);
-  const bValue = get(b, key);
+  const aValue = safeValueForKey(a, key);
+  const bValue = safeValueForKey(b, key);
 
   if (typeof bValue == 'undefined' || bValue === null) {
     // keep bValue last
