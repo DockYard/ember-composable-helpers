@@ -4,7 +4,19 @@ function isIterable (value) {
   return Symbol.iterator in Object(value);
 }
 
+function toExtendable(array) {
+  if (!Object.isExtensible(array)) {
+    return Array.from(array);
+  } else {
+    return array;
+  }
+}
+
 export default function asArray(maybeArray) {
+  return toExtendable(_asArray(maybeArray));
+}
+
+function _asArray(maybeArray) {
   if (typeof maybeArray === 'number') {
     throw new Error('Numbers not supported as arrays [ember-composable-helpers]');
   }
