@@ -52,6 +52,19 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
   });
 
+  test('it allows undefined array', async function(assert) {
+    this.set('array', undefined);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (intersect array array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
+
   test('it allows a first parameter null array', async function(assert) {
     this.set('array1', null);
     this.set('array2', ['foo', 'baz']);
