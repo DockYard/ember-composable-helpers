@@ -3,15 +3,14 @@ import { isArray as isEmberArray } from '@ember/array';
 import { isPresent } from '@ember/utils';
 import { get } from '@ember/object';
 import isEqual from '../utils/is-equal';
+import asArray from '../utils/as-array';
 
 export function rejectBy([byPath, value, array]) {
   if (!isEmberArray(array) && isEmberArray(value)) {
     array = value;
     value = undefined;
   }
-  if (!array) {
-    array = [];
-  }
+  array = asArray(array);
 
   let filterFn;
 

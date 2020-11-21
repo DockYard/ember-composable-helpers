@@ -1,6 +1,7 @@
 import { get } from '@ember/object';
 import { isEmpty } from '@ember/utils';
 import { helper } from '@ember/component/helper';
+import asArray from '../utils/as-array';
 
 function normalizeToBoolean(val) {
   if (typeof val === 'boolean') {
@@ -153,7 +154,7 @@ class BubbleSort extends SortBy {
 export function sortBy(params) {
   // slice params to avoid mutating the provided params
   let sortParams = params.slice();
-  let array = sortParams.pop();
+  let array = asArray(sortParams.pop());
   let sortKeys = sortParams;
 
   if (!array || (!sortKeys || sortKeys.length === 0)) {

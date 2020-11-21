@@ -67,7 +67,7 @@ module('Integration | Helper | {{map}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (action "getName") as |value|}}
+      {{#each (map (action "getName") array) as |value|}}
         {{value}}
       {{/each}}
     `);
