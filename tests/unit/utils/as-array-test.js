@@ -32,12 +32,24 @@ module('Unit | Utility | as-array', function() {
     assert.equal(result.length, 3);
   });
 
+  test('it works for [Strings]', function(assert) {
+    let result = asArray('abc');
+    assert.equal(result.length, 3);
+  });
+
   test('it not works for number', function(assert) {
     try {
-      let result = asArray(1);
-      assert.equal(result, 1);
+      asArray(1);
     } catch (e) {
       assert.ok(e.toString().includes('not supported'));
+    }
+  });
+
+  test('it not works for non-iterable items', function(assert) {
+    try {
+      asArray(Symbol('a'));
+    } catch (e) {
+      assert.ok(e.toString().includes('not iterable'));
     }
   });
 });

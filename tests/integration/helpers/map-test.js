@@ -74,4 +74,20 @@ module('Integration | Helper | {{map}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
   });
+
+  test('it allows undefined array', async function (assert) {
+    this.actions.getName = function({ name }) {
+      return name;
+    };
+    this.set('array', undefined);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (map (action "getName") array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });
