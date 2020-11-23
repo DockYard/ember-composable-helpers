@@ -4,6 +4,7 @@
 'use strict';
 
 var intersection = require('../../lib/intersection');
+/* eslint-disable node/no-unpublished-require */
 var expect = require('chai').expect;
 
 describe('intersection', function() {

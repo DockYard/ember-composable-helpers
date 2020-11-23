@@ -4,6 +4,7 @@
 'use strict';
 
 var difference = require('../../lib/difference');
+/* eslint-disable node/no-unpublished-require */
 var expect = require('chai').expect;
 
 describe('difference', function() {
