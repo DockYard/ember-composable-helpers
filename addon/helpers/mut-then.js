@@ -5,7 +5,7 @@ export function mutThen(actions = []) {
   return function(...args) {
     let invoke = function(acc, curr) {
       if (isPromise(acc)) {
-        return acc.then(curr);
+        return acc.then(() => curr());
       }
 
       return curr();
