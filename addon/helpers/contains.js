@@ -1,22 +1,18 @@
-import { A as emberArray } from '@ember/array';
-import { isArray as isEmberArray } from '@ember/array';
 import { helper } from '@ember/component/helper';
-import includes from '../utils/includes';
+import { includes } from './includes';
+import { deprecate } from '@ember/debug';
 
-function _contains(needle, haystack) {
-  return includes(emberArray(haystack), needle);
-}
+export function contains(needleOrNeedles, haystack) {
+  deprecate(
+    '{{contains}} helper provided by ember-composable-helpers has been renamed to {{includes}}.',
+    false,
+    {
+      id: 'ember-composable-helpers.contains-helper',
+      until: '5.0.0'
+    }
+  );
 
-export function contains(needle, haystack) {
-  if (!isEmberArray(haystack)) {
-    return false;
-  }
-
-  if (isEmberArray(needle)) {
-    return needle.reduce((acc, val) => acc && _contains(val, haystack), true);
-  }
-
-  return _contains(needle, haystack);
+  return includes(needleOrNeedles, haystack);
 }
 
 export default helper(function([needle, haystack]) {

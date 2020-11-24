@@ -40,6 +40,7 @@ Watch a free video overview presented by EmberMap:
   - [Upgrade Guide](#upgrade-guide)
   - [Available helpers](#available-helpers)
     - [Action helpers](#action-helpers)
+      - [`call`](#call)
       - [`pipe`](#pipe)
       - [`compute`](#compute)
       - [`toggle`](#toggle)
@@ -78,11 +79,12 @@ Watch a free video overview presented by EmberMap:
       - [`previous`](#previous)
       - [`has-previous`](#has-previous)
     - [Object helpers](#object-helpers)
-      - [`group-by`](#group-by)
-      - [`keys`](#keys)
-      - [`values`](#values)
       - [`entries`](#entries)
       - [`from-entries`](#from-entries)
+      - [`group-by`](#group-by)
+      - [`keys`](#keys)
+      - [`pick`](#pick)
+      - [`values`](#values)
     - [Math helpers](#math-helpers)
       - [`inc`](#inc)
       - [`dec`](#dec)
@@ -92,14 +94,14 @@ Watch a free video overview presented by EmberMap:
   - [Contributors](#contributors)
 
 ## Configuration
-If you don't need all the helpers, you can specify which to whitelist or blacklist using `only` or `except` within your `ember-cli-build.js`:
+If you don't need all the helpers, you can specify which to include or remove from your build using `only` or `except` within your `ember-cli-build.js`:
 
 ```js
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     'ember-composable-helpers': {
       only: ['inc', 'dec', 'pipe'],
-      except: ['pipe', 'filter-by']
+      except: ['filter-by']
     }
   });
 ```
@@ -165,6 +167,20 @@ The `pipe` helper can also be used directly as a closure action (using `pipe-act
 ```
 
 **[⬆️️ back to top](#table-of-contents)**
+
+#### `call`
+Calls the given function with arguments
+
+```hbs
+{{#each (call (fn this.callMeWith @daysInMonth) as |week|}}
+  {{#each week as |day|}}
+    {{day}}
+  {{/each}}
+{{/each}}
+```
+
+**[⬆️ back to top](#table-of-contents)**
+
 
 #### `compute`
 Calls an action as a template helper.
@@ -669,54 +685,6 @@ parameter, `useDeepEqual`, to flag whether a deep equal comparison should be per
 
 ### Object helpers
 
-#### `group-by`
-Returns an object where the keys are the unique values of the given property, and the values are an array with all items of the array that have the same value of that property.
-
-```hbs
-{{#each-in (group-by "category" artists) as |category artists|}}
-  <h3>{{category}}</h3>
-  <ul>
-    {{#each artists as |artist|}}
-      <li>{{artist.name}}</li>
-    {{/each}}
-  </ul>
-{{/each-in}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
-#### `keys`
-Returns an array of keys of given object.
-
-```hbs
-{{#with (keys fields) as |labels|}}
-  <h3>This article contain {{labels.length}} fields</h3>
-  <ul>
-    {{#each labels as |label|}}
-      <li>{{label}}</li>
-    {{/each}}
-  </ul>
-{{/with}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
-#### `values`
-Returns an array of values from the given object.
-
-```hbs
-{{#with (values fields) as |data|}}
-  <h3>This article contain {{data.length}} fields</h3>
-  <ul>
-    {{#each data as |datum|}}
-      <li>{{datum}}</li>
-    {{/each}}
-  </ul>
-{{/with}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
 #### `entries`
 Returns an array of a given object's own enumerable string-keyed property `[key, value]` pairs
 
@@ -755,6 +723,75 @@ properties with non-falsey values:
 ```
 
 **[⬆️ back to top](#table-of-contents)**
+
+#### `group-by`
+Returns an object where the keys are the unique values of the given property, and the values are an array with all items of the array that have the same value of that property.
+
+```hbs
+{{#each-in (group-by "category" artists) as |category artists|}}
+  <h3>{{category}}</h3>
+  <ul>
+    {{#each artists as |artist|}}
+      <li>{{artist.name}}</li>
+    {{/each}}
+  </ul>
+{{/each-in}}
+```
+
+**[⬆️ back to top](#table-of-contents)**
+
+#### `keys`
+Returns an array of keys of given object.
+
+```hbs
+{{#with (keys fields) as |labels|}}
+  <h3>This article contain {{labels.length}} fields</h3>
+  <ul>
+    {{#each labels as |label|}}
+      <li>{{label}}</li>
+    {{/each}}
+  </ul>
+{{/with}}
+```
+
+**[⬆️ back to top](#table-of-contents)**
+
+#### `pick`
+Receives an object and picks a specified path off of it to pass on. Intended for use with `{{on}}` modifiers placed on form elements.
+
+```hbs
+  <input
+    ...
+    {{on 'input' (pipe (pick 'target.value') this.onInput)}}
+  />
+```
+
+It also supports an optional second argument to make common usage more ergonomic.
+
+```hbs
+  <input
+    ...
+    {{on 'input' (pick 'target.value' this.onInput)}}
+  />
+```
+
+**[⬆️ back to top](#table-of-contents)*
+
+#### `values`
+Returns an array of values from the given object.
+
+```hbs
+{{#with (values fields) as |data|}}
+  <h3>This article contain {{data.length}} fields</h3>
+  <ul>
+    {{#each data as |datum|}}
+      <li>{{datum}}</li>
+    {{/each}}
+  </ul>
+{{/with}}
+```
+
+**[⬆️ back to top](#table-of-contents)*
 
 ---
 

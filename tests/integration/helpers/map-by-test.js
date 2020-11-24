@@ -92,4 +92,26 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '', 'this is all that will render, but there is no error');
   });
+
+  test('it accepts a fulfilled ember data promise as a value', async function (assert) {
+    let store = this.owner.lookup('service:store');
+    let person = store.createRecord('person');
+
+    person.get('pets').pushObjects([
+      store.createRecord('pet', { name: 'a' }),
+      store.createRecord('pet', { name: 'b' }),
+      store.createRecord('pet', { name: 'c' }),
+    ]);
+    let pets = await person.pets;
+
+    this.set('pets', pets);
+
+    await render(hbs`
+      {{~#each (map-by 'name' pets) as |name|~}}
+        {{~name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'abc', 'name property is mapped');
+  });
 });
