@@ -9,7 +9,7 @@ export function includes(needleOrNeedles, haystack) {
   }
 
   let needles = isEmberArray(needleOrNeedles) ? needleOrNeedles : [needleOrNeedles];
-  let haystackAsEmberArray = emberArray(haystack);
+  let haystackAsEmberArray = emberArray(asArray(haystack));
 
   return asArray(needles).every((needle) => {
     return haystackAsEmberArray.includes(needle);
