@@ -47,4 +47,17 @@ module('Integration | Helper | {{take}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'this is all that will render');
   });
+
+  test('It allows undefined arrays', async function(assert) {
+    this.set('array', undefined);
+
+    await render(hbs`
+      this is all that will render
+      {{~#each (take 2 array) as |n|~}}
+        {{n}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render');
+  });
 });

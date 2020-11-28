@@ -21,4 +21,12 @@ module('Integration | Helper | from-entries', function(hooks) {
 
     assert.equal(this.element.textContent.trim(), '');
   });
+
+  test('it handles null input', async function(assert) {
+    await render(hbs`
+      {{#each-in (from-entries null) as |k v|}}{{k v}}{{/each-in}}
+    `);
+
+    assert.equal(this.element.textContent.trim(), '');
+  });
 });

@@ -127,7 +127,20 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (chunk array 1) as |value|}}
+      {{#each (chunk 1 array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
+
+  test('it allows undefined array', async function(assert) {
+    this.set('array', undefined);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (chunk 1 array) as |value|}}
         {{value}}
       {{/each}}
     `);

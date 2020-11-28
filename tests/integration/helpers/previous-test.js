@@ -95,4 +95,17 @@ module('Integration | Helper | {{previous}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
   });
+
+  test('it allows undefined array', async function(assert) {
+    this.set('array', undefined);
+
+    await render(hbs`
+      this is all that will render
+      {{#with (previous 1 array) as |value|}}
+        {{value}}
+      {{/with}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

@@ -43,4 +43,12 @@ module('Integration | Helper | {{has-next}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'false', 'no error is thrown');
   });
+
+  test('it allows undefined array', async function(assert) {
+    this.set('array', undefined);
+
+    await render(hbs`{{has-next 1 array}}`);
+
+    assert.equal(find('*').textContent.trim(), 'false', 'no error is thrown');
+  });
 });

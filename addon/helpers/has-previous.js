@@ -3,11 +3,10 @@ import { isPresent } from '@ember/utils';
 import { previous } from './previous';
 import isEqual from '../utils/is-equal';
 import getValueArrayAndUseDeepEqualFromParams from '../-private/get-value-array-and-use-deep-equal-from-params';
+import asArray from '../utils/as-array';
 
-export function hasPrevious(currentValue, array, useDeepEqual = false) {
-  if (!array) {
-    array = [];
-  }
+export function hasPrevious(currentValue, maybeArray, useDeepEqual = false) {
+  let array = asArray(maybeArray);
   let previousValue = previous(currentValue, array, useDeepEqual);
   let isNotSameValue = !isEqual(previousValue, currentValue, useDeepEqual);
 

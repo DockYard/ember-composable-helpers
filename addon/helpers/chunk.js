@@ -1,6 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { isArray as isEmberArray } from '@ember/array';
 const { max, ceil } = Math;
+import asArray from '../utils/as-array';
 
 export function chunk(num, array) {
   let integer = parseInt(num, 10);
@@ -10,6 +11,8 @@ export function chunk(num, array) {
   if (isEmberArray(array)) {
     length = array.length;
   }
+
+  array = asArray(array)
 
   if (!length || size < 1) {
     return [];

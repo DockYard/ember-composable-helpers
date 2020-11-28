@@ -1,11 +1,9 @@
 import { helper } from '@ember/component/helper';
+import asArray from '../utils/as-array';
 
 export function slice([...args]) {
   let array = args.pop();
-
-  if (!array) {
-    array = [];
-  }
+  array = asArray(array);
   return array.slice(...args);
 }
 
