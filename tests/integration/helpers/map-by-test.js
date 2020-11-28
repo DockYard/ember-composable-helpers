@@ -93,6 +93,19 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), '', 'this is all that will render, but there is no error');
   });
 
+  test('It allows undefined arrays', async function(assert) {
+    this.set('array', undefined);
+
+    await render(hbs`
+      {{~#each (map-by 'name' array) as |name|~}}
+        {{~name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '', 'this is all that will render, but there is no error');
+  });
+
+
   test('it accepts a fulfilled ember data promise as a value', async function (assert) {
     let store = this.owner.lookup('service:store');
     let person = store.createRecord('person');

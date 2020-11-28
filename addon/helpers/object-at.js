@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
-import { A as emberArray, isArray as isEmberArray } from '@ember/array';
+import { A, isArray as isEmberArray } from '@ember/array';
 
 export function objectAt(index, array) {
   if (!isEmberArray(array)) {
@@ -8,7 +8,7 @@ export function objectAt(index, array) {
 
   index = parseInt(index, 10);
 
-  return emberArray(array).objectAt(index);
+  return A(array).objectAt(index);
 }
 
 export default helper(function([index, array]) {

@@ -118,4 +118,17 @@ module('Integration | Helper | {{shuffle}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
   });
+
+  test('it allows undefined array', async function(assert) {
+    this.set('array', undefined);
+
+    await render(hbs`
+      this is all that will render
+      {{#each (shuffle array) as |value|}}
+        {{value}}
+      {{/each}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+  });
 });

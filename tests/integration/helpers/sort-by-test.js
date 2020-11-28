@@ -164,6 +164,22 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     assert.equal(find('*').textContent.trim(), 'cbaa', 'caba is sorted to cbaa');
   });
 
+  test('It does not sort the array when the key is an empty string', async function(assert) {
+    this.set('array', emberArray([
+      { name: 'c' },
+      { name: 'a' },
+      { name: 'b' }
+    ]));
+
+    await render(hbs`
+      {{~#each (sort-by "" array) as |user|~}}
+        {{~user.name~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), 'cab', 'cab is unsorted');
+  });
+
   test('It watches for changes', async function(assert) {
     let array = emberArray([
       { name: 'b' },
@@ -349,5 +365,39 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     `);
 
     assert.equal(find('*').textContent.trim(), '123');
+  });
+
+  test('it support undefined array values', async function(assert) {
+    this.set('array', [
+      { id: 1, name: 'c' },
+      { id: 2, name: 'a' },
+      undefined,
+      { id: 4, name: 'b' },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.id~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '241');
+  });
+
+  test('it support null array values', async function(assert) {
+    this.set('array', [
+      { id: 1, name: 'c' },
+      { id: 2, name: 'a' },
+      null,
+      { id: 4, name: 'b' },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'name' array) as |user|~}}
+        {{~user.id~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '241');
   });
 });

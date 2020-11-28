@@ -43,4 +43,12 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), 'false', 'no error is thrown');
   });
+
+  test('it allows undefined array', async function(assert) {
+    this.set('array', undefined);
+
+    await render(hbs`{{has-previous 1 array}}`);
+
+    assert.equal(find('*').textContent.trim(), 'false', 'no error is thrown');
+  });
 });

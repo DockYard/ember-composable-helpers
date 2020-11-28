@@ -48,4 +48,12 @@ module('Integration | Helper | entries', function(hooks) {
 
     assert.equal(this.element.textContent.trim(), '');
   });
+
+  test('it handles null input', async function(assert) {
+    await render(hbs`
+      {{#each (entries null) as |key|}}{{key}}{{/each}}
+    `);
+
+    assert.equal(this.element.textContent.trim(), '');
+  });
 });

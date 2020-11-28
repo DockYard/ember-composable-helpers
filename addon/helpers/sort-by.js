@@ -1,5 +1,7 @@
 import { get } from '@ember/object';
+import { isEmpty } from '@ember/utils';
 import { helper } from '@ember/component/helper';
+import asArray from '../utils/as-array';
 
 function normalizeToBoolean(val) {
   if (typeof val === 'boolean') {
@@ -17,9 +19,20 @@ function normalizeToBoolean(val) {
   return val;
 }
 
+function safeValueForKey(ctx, key) {
+  if (ctx === null || ctx === undefined) {
+    return ctx;
+  }
+  return get(ctx, key);
+}
+
 function sortDesc(key, a, b) {
-  const aValue = get(a, key);
-  const bValue = get(b, key);
+  if (isEmpty(key)) {
+    return 0;
+  }
+
+  const aValue = safeValueForKey(a, key);
+  const bValue = safeValueForKey(b, key);
 
   if (typeof bValue == 'undefined' || bValue === null) {
     // keep bValue last
@@ -44,8 +57,12 @@ function sortDesc(key, a, b) {
 }
 
 function sortAsc(key, a, b) {
-  const aValue = get(a, key);
-  const bValue = get(b, key);
+  if (isEmpty(key)) {
+    return 0;
+  }
+
+  const aValue = safeValueForKey(a, key);
+  const bValue = safeValueForKey(b, key);
 
   if (typeof bValue == 'undefined' || bValue === null) {
     // keep bValue last
@@ -137,7 +154,7 @@ class BubbleSort extends SortBy {
 export function sortBy(params) {
   // slice params to avoid mutating the provided params
   let sortParams = params.slice();
-  let array = sortParams.pop();
+  let array = asArray(sortParams.pop());
   let sortKeys = sortParams;
 
   if (!array || (!sortKeys || sortKeys.length === 0)) {
