@@ -34,11 +34,19 @@ function sortDesc(key, a, b) {
   const aValue = safeValueForKey(a, key);
   const bValue = safeValueForKey(b, key);
 
-  if (typeof bValue == 'undefined' || bValue === null) {
+  const isANullable = typeof aValue == 'undefined' || aValue === null;
+  const isBNullable = typeof bValue == 'undefined' || bValue === null;
+
+  if (isANullable && isBNullable) {
+    //both values are nullable
+    return 0;
+  }
+
+  if (isBNullable) {
     // keep bValue last
     return -1;
   }
-  if (typeof aValue == 'undefined' || aValue === null) {
+  if (isANullable) {
     // put aValue last
     return 1;
   }
@@ -64,11 +72,19 @@ function sortAsc(key, a, b) {
   const aValue = safeValueForKey(a, key);
   const bValue = safeValueForKey(b, key);
 
-  if (typeof bValue == 'undefined' || bValue === null) {
+  const isANullable = typeof aValue == 'undefined' || aValue === null;
+  const isBNullable = typeof bValue == 'undefined' || bValue === null;
+
+  if (isANullable && isBNullable) {
+    //both values are nullable
+    return 0;
+  }
+
+  if (isBNullable) {
     // keep bValue last
     return -1;
   }
-  if (typeof aValue == 'undefined' || aValue === null) {
+  if (isANullable) {
     // put aValue last
     return 1;
   }
