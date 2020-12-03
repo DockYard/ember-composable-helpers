@@ -400,4 +400,34 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
 
     assert.equal(find('*').textContent.trim(), '241');
   });
+
+  test('it sorts asc by a few params some of those are all null', async function(assert) {
+    this.set('array', [
+      { creationDate: null, attrs: { trialNumber: '00-01'}, localOrder: 1 },
+      { creationDate: null, attrs: { trialNumber: '00-02'}, localOrder: 2 },      
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'creationDate:asc' 'attrs.trialNumber:asc' 'localOrder' array) as |trial|~}}
+        {{~trial.attrs.trialNumber~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '00-0100-02');
+  })
+
+  test('it sorts desc by a few params some of those are all null', async function(assert) {
+    this.set('array', [      
+      { creationDate: null, attrs: { trialNumber: '00-02'}, localOrder: 1 },
+      { creationDate: null, attrs: { trialNumber: '00-01'}, localOrder: 2 },
+    ]);
+
+    await render(hbs`
+      {{~#each (sort-by 'creationDate:desc' 'attrs.trialNumber:desc' 'localOrder' array) as |trial|~}}
+        {{~trial.attrs.trialNumber~}}
+      {{~/each~}}
+    `);
+
+    assert.equal(find('*').textContent.trim(), '00-0200-01');
+  })
 });
