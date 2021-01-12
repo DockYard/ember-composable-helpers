@@ -55,6 +55,7 @@ Watch a free video overview presented by EmberMap:
       - [`filter-by`](#filter-by)
       - [`reject-by`](#reject-by)
       - [`find-by`](#find-by)
+      - [`includes`](#includes)
       - [`intersect`](#intersect)
       - [`invoke`](#invoke)
       - [`union`](#union)
@@ -66,7 +67,6 @@ Watch a free video overview presented by EmberMap:
       - [`range`](#range)
       - [`join`](#join)
       - [`compact`](#compact)
-      - [`includes`](#includes)
       - [`append`](#append)
       - [`chunk`](#chunk)
       - [`without`](#without)
@@ -392,6 +392,18 @@ Returns the first entry matching the given value.
 
 **[⬆️ back to top](#table-of-contents)**
 
+#### `includes`
+Checks if a given value or sub-array is included within an array.
+
+```hbs
+{{includes selectedItem items}}
+{{includes 1234 items}}
+{{includes "First" (w "First Second Third") }}
+{{includes (w "First Second") (w "First Second Third")}}
+```
+
+**[⬆️ back to top](#table-of-contents)**
+
 #### `intersect`
 Creates an array of unique values that are included in all given arrays.
 
@@ -538,18 +550,6 @@ Removes blank items from an array.
 {{#each (compact arrayWithBlanks) as |notBlank|}}
   {{notBlank}} is most definitely not blank!
 {{/each}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
-#### `includes`
-Checks if a given value or sub-array is included within an array.
-
-```hbs
-{{includes selectedItem items}}
-{{includes 1234 items}}
-{{includes "First" (w "First Second Third") }}
-{{includes (w "First Second") (w "First Second Third")}}
 ```
 
 **[⬆️ back to top](#table-of-contents)**
