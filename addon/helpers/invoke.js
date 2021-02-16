@@ -1,6 +1,5 @@
 import { isArray as isEmberArray } from '@ember/array';
 import { helper } from '@ember/component/helper';
-import { tryInvoke } from '@ember/utils';
 import RSVP from 'rsvp';
 
 const { all } = RSVP;
@@ -10,14 +9,14 @@ export function invoke([methodName, ...args]) {
 
   if (isEmberArray(obj)) {
     return function() {
-      let promises = obj.map((item) => tryInvoke(item, methodName, args));
+      let promises = obj.map((item) => item[methodName]?.(args));
 
       return all(promises);
     };
   }
 
   return function() {
-    return tryInvoke(obj, methodName, args);
+    return obj[methodName]?.(args);
   };
 }
 
