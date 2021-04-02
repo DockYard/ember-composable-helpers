@@ -1,1 +1,4 @@
-export { default, entries } from 'ember-composable-helpers/helpers/entries';
+export {
+  default,
+  keys as entries,
+} from 'ember-composable-helpers/helpers/entries';
