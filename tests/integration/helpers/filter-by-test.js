@@ -4,7 +4,7 @@ import { run } from '@ember/runloop';
 import { set } from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{filter-by}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -27,7 +27,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
+    assert.dom().hasText('ac', 'b is filtered out');
   });
 
   test('It filters by truthiness', async function(assert) {
@@ -50,7 +50,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'acej', 'b, d, f, g, h and i are filtered out');
+    assert.dom().hasText('acej', 'b, d, f, g, h and i are filtered out');
   });
 
   test('It recomputes the filter if array changes', async function(assert) {
@@ -70,7 +70,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
 
     run(() => array.pushObject({ foo: true, name: 'd' }));
 
-    assert.equal(find('*').textContent.trim(), 'acd', 'd is added');
+    assert.dom().hasText('acd', 'd is added');
   });
 
   test('It recomputes the filter if a value under given path changes', async function(assert) {
@@ -90,7 +90,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
 
     run(() => set(array.objectAt(1), 'foo', true));
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'b is shown');
+    assert.dom().hasText('abc', 'b is shown');
   });
 
   test('It recomputes the filter with a falsy value', async function(assert) {
@@ -110,7 +110,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
 
     run(() => set(array.objectAt(0), 'foo', false));
 
-    assert.equal(find('*').textContent.trim(), 'ab', 'a and b are shown');
+    assert.dom().hasText('ab', 'a and b are shown');
   });
 
   test('It recomputes the filter with no value', async function(assert) {
@@ -128,11 +128,11 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ac', 'ac is shown');
+    assert.dom().hasText('ac', 'ac is shown');
 
     run(() => set(array.objectAt(1), 'foo', true));
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'b is added');
+    assert.dom().hasText('abc', 'b is added');
   });
 
   test('It can be passed an action', async function(assert) {
@@ -150,7 +150,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
+    assert.dom().hasText('ac', 'b is filtered out');
   });
 
   test('It respects objects that implement isEqual interface', async function(assert) {
@@ -172,7 +172,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'a', 'b and c are filtered out');
+    assert.dom().hasText('a', 'b and c are filtered out');
   });
 
   test('It filters without dependant keys', async function(assert) {
@@ -188,7 +188,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
+    assert.dom().hasText('ac', 'b is filtered out');
   });
 
   test('It handles null arrays', async function(assert) {
@@ -201,7 +201,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this will be empty:');
+    assert.dom().hasText('this will be empty:');
   });
 
   test('It handles undefined arrays', async function(assert) {
@@ -214,6 +214,6 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this will be empty:');
+    assert.dom().hasText('this will be empty:');
   });
 });

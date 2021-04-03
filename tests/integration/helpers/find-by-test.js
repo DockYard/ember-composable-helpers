@@ -4,7 +4,7 @@ import { run } from '@ember/runloop';
 import { set } from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{find-by}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -22,7 +22,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'b', 'b is shown');
+    assert.dom().hasText('b', 'b is shown');
   });
 
   test('It finds a value by a property in arrays without prototype extensions', async function(assert) {
@@ -38,7 +38,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'b', 'b is shown');
+    assert.dom().hasText('b', 'b is shown');
   });
 
   test('It recomputes the filter if array changes', async function(assert) {
@@ -56,11 +56,11 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '', 'd is not found');
+    assert.dom().hasText('', 'd is not found');
 
     run(() => array.pushObject({ foo: true, name: 'd' }));
 
-    assert.equal(find('*').textContent.trim(), 'd', 'd is added and shown');
+    assert.dom().hasText('d', 'd is added and shown');
   });
 
   test('It recomputes the filter if a value under given path changes', async function(assert) {
@@ -78,11 +78,11 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '', 'd is not found');
+    assert.dom().hasText('', 'd is not found');
 
     run(() => set(array.objectAt(1), 'name', 'd'));
 
-    assert.equal(find('*').textContent.trim(), 'd', 'd is shown');
+    assert.dom().hasText('d', 'd is shown');
   });
 
   test('It recomputes the value changes', async function(assert) {
@@ -101,11 +101,11 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '', 'd is not found');
+    assert.dom().hasText('', 'd is not found');
 
     run(() => set(this, 'value', 'b'));
 
-    assert.equal(find('*').textContent.trim(), 'b', 'b is shown');
+    assert.dom().hasText('b', 'b is shown');
   });
 
   test('it allows null array', async function(assert) {
@@ -118,7 +118,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
       {{/with}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -131,7 +131,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
       {{/with}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows freezed array', async function(assert) {
@@ -143,6 +143,6 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
       {{/with}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'a', 'no error is thrown');
+    assert.dom().hasText('a', 'no error is thrown');
   });
 });

@@ -3,7 +3,7 @@ import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{has-previous}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -20,7 +20,7 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
 
     await render(hbs`{{has-previous value useDeepEqual array}}`);
 
-    assert.equal(find('*').textContent.trim(), 'true', 'should render true');
+    assert.dom().hasText('true', 'should render true');
   });
 
   test('It recomputes if array changes', async function(assert) {
@@ -29,11 +29,11 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
 
     await render(hbs`{{has-previous value array}}`);
 
-    assert.equal(find('*').textContent.trim(), 'false', 'true is shown');
+    assert.dom().hasText('false', 'true is shown');
 
     run(() => this.set('array', [3, 2, 1]));
 
-    assert.equal(find('*').textContent.trim(), 'true', 'false is shown');
+    assert.dom().hasText('true', 'false is shown');
   });
 
   test('it allows null array', async function(assert) {
@@ -41,7 +41,7 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
 
     await render(hbs`{{has-previous 1 array}}`);
 
-    assert.equal(find('*').textContent.trim(), 'false', 'no error is thrown');
+    assert.dom().hasText('false', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -49,6 +49,6 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
 
     await render(hbs`{{has-previous 1 array}}`);
 
-    assert.equal(find('*').textContent.trim(), 'false', 'no error is thrown');
+    assert.dom().hasText('false', 'no error is thrown');
   });
 });

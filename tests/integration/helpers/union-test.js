@@ -3,7 +3,7 @@ import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{union}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -19,7 +19,7 @@ module('Integration | Helper | {{union}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'foobarbazqux', 'union leaves no repeated words');
+    assert.dom().hasText('foobarbazqux', 'union leaves no repeated words');
   });
 
   test('It watches for changes', async function(assert) {
@@ -35,7 +35,7 @@ module('Integration | Helper | {{union}}', function(hooks) {
 
     run(() => this.get('array1').pushObject('leet'));
 
-    assert.equal(find('*').textContent.trim(), 'foobarleetbazqux', 'leet is added');
+    assert.dom().hasText('foobarleetbazqux', 'leet is added');
   });
 
   test('it allows null array', async function(assert) {
@@ -48,7 +48,7 @@ module('Integration | Helper | {{union}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -61,6 +61,6 @@ module('Integration | Helper | {{union}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

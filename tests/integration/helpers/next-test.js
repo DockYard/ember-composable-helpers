@@ -3,7 +3,7 @@ import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{next}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -24,7 +24,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'c', 'c is shown');
+    assert.dom().hasText('c', 'c is shown');
   });
 
   test('It returns the next value in an array of primitive values', async function(assert) {
@@ -38,7 +38,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'kiwi', 'kiwi is shown');
+    assert.dom().hasText('kiwi', 'kiwi is shown');
   });
 
   test('It recomputes if array changes', async function(assert) {
@@ -50,11 +50,11 @@ module('Integration | Helper | {{next}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 2, '2 is shown');
+    assert.dom().hasText('2', '2 is shown');
 
     run(() => this.set('array', [2, 1, 3]));
 
-    assert.equal(find('*').textContent.trim(), 3, '3 is added and shown');
+    assert.dom().hasText('3', '3 is added and shown');
   });
 
   test('It return the next value in an array of related models', async function(assert) {
@@ -80,7 +80,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'Jake', 'the next pet name is shown');
+    assert.dom().hasText('Jake', 'the next pet name is shown');
   });
 
   test('it allows null array', async function(assert) {
@@ -91,7 +91,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
       {{next 1 array}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -102,6 +102,6 @@ module('Integration | Helper | {{next}}', function(hooks) {
       {{next 1 array}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

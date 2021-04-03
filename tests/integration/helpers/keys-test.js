@@ -1,7 +1,7 @@
 import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { find, render } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | keys', function(hooks) {
   setupRenderingTest(hooks);
@@ -16,7 +16,7 @@ module('Integration | Helper | keys', function(hooks) {
 
     await render(hbs`{{#each (keys object) as |key|}}{{key}}{{/each}}`);
 
-    assert.equal(find('*').textContent.trim(), 'ab');
+    assert.dom().hasText('ab');
   });
 
   test('it handles undefined input', async function(assert) {
@@ -24,7 +24,7 @@ module('Integration | Helper | keys', function(hooks) {
       {{#each (keys undefined) as |key|}}{{key}}{{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '');
+    assert.dom().hasText('');
   });
 
   test('it works with let helper', async function(assert) {
@@ -41,6 +41,6 @@ module('Integration | Helper | keys', function(hooks) {
       {{/let}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '2');
+    assert.dom().hasText('2');
   });
 });

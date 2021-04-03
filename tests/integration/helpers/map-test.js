@@ -3,7 +3,7 @@ import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{map}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -30,7 +30,7 @@ module('Integration | Helper | {{map}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'name property is mapped');
+    assert.dom().hasText('abc', 'name property is mapped');
   });
 
   test('It watches for changes', async function(assert) {
@@ -52,11 +52,11 @@ module('Integration | Helper | {{map}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'precondition');
+    assert.dom().hasText('abc', 'precondition');
 
     run(() => array.pushObject({ name: 'd' }));
 
-    assert.equal(find('*').textContent.trim(), 'abcd', 'd is added');
+    assert.dom().hasText('abcd', 'd is added');
   });
 
   test('it allows null array', async function (assert) {
@@ -72,7 +72,7 @@ module('Integration | Helper | {{map}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function (assert) {
@@ -88,6 +88,6 @@ module('Integration | Helper | {{map}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

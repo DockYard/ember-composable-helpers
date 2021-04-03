@@ -3,7 +3,7 @@ import { resolve } from 'rsvp';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, find } from '@ember/test-helpers';
+import { render, click } from '@ember/test-helpers';
 
 module('Integration | Helper | {{queue}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -25,9 +25,9 @@ module('Integration | Helper | {{queue}}', function(hooks) {
       </button>
     `);
 
-    assert.equal(find('p').textContent.trim(), '2', 'precond - should render 2');
+    assert.dom('p').hasText('2', 'precond - should render 2');
     await click('button');
-    assert.equal(find('p').textContent.trim(), '4', 'should render 4');
+    assert.dom('p').hasText('4', 'should render 4');
   });
 
   test('it handles promises', async function(assert) {
@@ -41,8 +41,8 @@ module('Integration | Helper | {{queue}}', function(hooks) {
       </button>
     `);
 
-    assert.equal(find('p').textContent.trim(), '3', 'precond - should render 3');
+    assert.dom('p').hasText('3', 'precond - should render 3');
     run(async () => await click('button'));
-    assert.equal(find('p').textContent.trim(), '9', 'should render 9');
+    assert.dom('p').hasText('9', 'should render 9');
   });
 });

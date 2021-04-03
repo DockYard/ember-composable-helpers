@@ -1,7 +1,7 @@
 import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{repeat}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -13,7 +13,7 @@ module('Integration | Helper | {{repeat}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '111', 'should repeat 3 times');
+    assert.dom().hasText('111', 'should repeat 3 times');
   });
 
   test('it repeats `n` times with a value', async function(assert) {
@@ -24,6 +24,6 @@ module('Integration | Helper | {{repeat}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'AdamAdamAdam', 'should repeat 3 times with a value');
+    assert.dom().hasText('AdamAdamAdam', 'should repeat 3 times with a value');
   });
 });

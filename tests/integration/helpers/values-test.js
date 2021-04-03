@@ -11,7 +11,7 @@ module('Integration | Helper | values', function(hooks) {
 
     await render(hbs`{{#each (values inputValue) as |v|}}{{v}}{{/each}}`);
 
-    assert.equal(this.element.textContent.trim(), '12');
+    assert.dom(this.element).hasText('12');
   });
 
   test('it handles undefined input', async function(assert) {
@@ -19,7 +19,7 @@ module('Integration | Helper | values', function(hooks) {
       {{#each (values undefined) as |v|}}{{v}}{{/each}}
     `);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 
   test('it handles null input', async function(assert) {
@@ -27,6 +27,6 @@ module('Integration | Helper | values', function(hooks) {
       {{#each (values null) as |v|}}{{v}}{{/each}}
     `);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });

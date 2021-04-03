@@ -3,7 +3,7 @@ import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{take}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -17,7 +17,7 @@ module('Integration | Helper | {{take}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '12', 'first two values are kept');
+    assert.dom().hasText('12', 'first two values are kept');
   });
 
   test('It watches for changes', async function(assert) {
@@ -32,7 +32,7 @@ module('Integration | Helper | {{take}}', function(hooks) {
 
     run(() => array.unshiftObject(0));
 
-    assert.equal(find('*').textContent.trim(), '01', '0 and 1 are kept');
+    assert.dom().hasText('01', '0 and 1 are kept');
   });
 
   test('It allows null arrays', async function(assert) {
@@ -45,7 +45,7 @@ module('Integration | Helper | {{take}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render');
+    assert.dom().hasText('this is all that will render');
   });
 
   test('It allows undefined arrays', async function(assert) {
@@ -58,6 +58,6 @@ module('Integration | Helper | {{take}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render');
+    assert.dom().hasText('this is all that will render');
   });
 });

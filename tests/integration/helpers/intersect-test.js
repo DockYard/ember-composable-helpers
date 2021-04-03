@@ -3,7 +3,7 @@ import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{intersect}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -19,7 +19,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'foo', 'intersect shows words common to all arrays');
+    assert.dom().hasText('foo', 'intersect shows words common to all arrays');
   });
 
   test('It watches for changes', async function(assert) {
@@ -36,7 +36,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
     run(() => this.get('array2').pushObject('bar'));
     run(() => this.get('array3').pushObject('bar'));
 
-    assert.equal(find('*').textContent.trim(), 'foobar', 'bar is added');
+    assert.dom().hasText('foobar', 'bar is added');
   });
 
   test('it allows null array', async function(assert) {
@@ -49,7 +49,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -62,7 +62,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows a first parameter null array', async function(assert) {
@@ -76,6 +76,6 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

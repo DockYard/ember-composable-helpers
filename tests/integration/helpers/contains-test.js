@@ -2,7 +2,7 @@ import { hbs } from 'ember-cli-htmlbars';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{contains}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -12,7 +12,7 @@ module('Integration | Helper | {{contains}}', function(hooks) {
 
     await render(hbs`{{contains 'foo' items}}`);
 
-    assert.equal(find('*').textContent.trim(), 'true', 'should render true');
+    assert.dom().hasText('true', 'should render true');
   });
 
   test('it checks if an array contains a non-primitive value', async function(assert) {
@@ -26,7 +26,7 @@ module('Integration | Helper | {{contains}}', function(hooks) {
 
     await render(hbs`{{contains selectedGame wishlist}}`);
 
-    assert.equal(find('*').textContent.trim(), 'true', 'should render true');
+    assert.dom().hasText('true', 'should render true');
   });
 
   test('it checks if an array contains an array of primitive values', async function(assert) {
@@ -35,7 +35,7 @@ module('Integration | Helper | {{contains}}', function(hooks) {
 
     await render(hbs`{{contains selectedItems items}}`);
 
-    assert.equal(find('*').textContent.trim(), 'true', 'should render true');
+    assert.dom().hasText('true', 'should render true');
   });
 
   test('it watches for changes', async function(assert) {
@@ -49,15 +49,15 @@ module('Integration | Helper | {{contains}}', function(hooks) {
 
     await render(hbs`{{contains selectedGame wishlist}}`);
 
-    assert.equal(find('*').textContent.trim(), 'true', 'should render true');
+    assert.dom().hasText('true', 'should render true');
 
     run(() => this.get('wishlist').removeObject(games[0]));
 
-    assert.equal(find('*').textContent.trim(), 'false', 'should render false');
+    assert.dom().hasText('false', 'should render false');
 
     run(() => this.set('selectedGame', games[1]));
 
-    assert.equal(find('*').textContent.trim(), 'true', 'should render true');
+    assert.dom().hasText('true', 'should render true');
   });
 
   test('it allows null array', async function(assert) {
@@ -70,7 +70,7 @@ module('Integration | Helper | {{contains}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -83,6 +83,6 @@ module('Integration | Helper | {{contains}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

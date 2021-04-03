@@ -3,7 +3,7 @@ import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{drop}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -17,7 +17,7 @@ module('Integration | Helper | {{drop}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '345', 'first two values are dropped');
+    assert.dom().hasText('345', 'first two values are dropped');
   });
 
   test('It watches for changes', async function(assert) {
@@ -32,7 +32,7 @@ module('Integration | Helper | {{drop}}', function(hooks) {
 
     run(() => array.unshiftObject(0));
 
-    assert.equal(find('*').textContent.trim(), '2345', '0 and 1 are dropped');
+    assert.dom().hasText('2345', '0 and 1 are dropped');
   });
 
   test('It allows null array', async function(assert) {
@@ -45,6 +45,6 @@ module('Integration | Helper | {{drop}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

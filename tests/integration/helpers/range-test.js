@@ -1,7 +1,7 @@
 import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{range}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -13,7 +13,7 @@ module('Integration | Helper | {{range}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '1234', 'should generate a range');
+    assert.dom().hasText('1234', 'should generate a range');
   });
 
   test('it generates a negative range', async function(assert) {
@@ -23,7 +23,7 @@ module('Integration | Helper | {{range}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '5432', 'should generate a negative range');
+    assert.dom().hasText('5432', 'should generate a negative range');
   });
 
   test('it generates an inclusive range', async function(assert) {
@@ -33,7 +33,7 @@ module('Integration | Helper | {{range}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '12345', 'should generate an inclusive range');
+    assert.dom().hasText('12345', 'should generate an inclusive range');
   });
 
   test('it generates a negative inclusive range', async function(assert) {
@@ -43,7 +43,7 @@ module('Integration | Helper | {{range}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '54321', 'should generate a negative inclusive range');
+    assert.dom().hasText('54321', 'should generate a negative inclusive range');
   });
 
   test('it generates an inclusive range with equal arguments', async function(assert) {
@@ -53,7 +53,7 @@ module('Integration | Helper | {{range}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '1', 'should generate an inclusive range');
+    assert.dom().hasText('1', 'should generate an inclusive range');
   });
 
   test('it generates an empty range', async function(assert) {
@@ -65,7 +65,7 @@ module('Integration | Helper | {{range}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'empty', 'should generate an empty range');
+    assert.dom().hasText('empty', 'should generate an empty range');
   });
 });
 
