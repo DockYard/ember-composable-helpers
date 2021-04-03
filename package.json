@@ -87,6 +87,9 @@
     "mocha/growl": "^1.10.0",
     "ember-cli/**/clean-css": "^4.1.11"
   },
+  "ember": {
+    "edition": "octane"
+  },
   "ember-addon": {
     "configPath": "tests/dummy/config"
   }

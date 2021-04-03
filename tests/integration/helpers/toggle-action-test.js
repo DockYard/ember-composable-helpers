@@ -8,9 +8,12 @@ module('Integration | Helper | {{toggle-action}}', function(hooks) {
 
   test('it can be used as a closure action', async function(assert) {
     this.set('isExpanded', false);
+
     await render(hbs`
       <p>{{if isExpanded "I am expanded" "I am not"}}</p>
-      {{toggle-button toggleAction=(toggle "isExpanded" this)}}
+      <button {{on "click" (toggle "isExpanded" this)}}>
+        Toggle
+      </button>
     `);
 
     await click('button');
