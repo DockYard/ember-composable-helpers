@@ -18,7 +18,7 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
     this.set('value', { name: 'Rachel' });
     this.set('useDeepEqual', true);
 
-    await render(hbs`{{has-previous value useDeepEqual array}}`);
+    await render(hbs`{{has-previous this.value this.useDeepEqual this.array}}`);
 
     assert.dom().hasText('true', 'should render true');
   });
@@ -27,7 +27,7 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
     this.set('array', emberArray([1, 2, 3]));
     this.set('value', 1);
 
-    await render(hbs`{{has-previous value array}}`);
+    await render(hbs`{{has-previous this.value this.array}}`);
 
     assert.dom().hasText('false', 'true is shown');
 
@@ -39,7 +39,7 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
   test('it allows null array', async function(assert) {
     this.set('array', null);
 
-    await render(hbs`{{has-previous 1 array}}`);
+    await render(hbs`{{has-previous 1 this.array}}`);
 
     assert.dom().hasText('false', 'no error is thrown');
   });
@@ -47,7 +47,7 @@ module('Integration | Helper | {{has-previous}}', function(hooks) {
   test('it allows undefined array', async function(assert) {
     this.set('array', undefined);
 
-    await render(hbs`{{has-previous 1 array}}`);
+    await render(hbs`{{has-previous 1 this.array}}`);
 
     assert.dom().hasText('false', 'no error is thrown');
   });

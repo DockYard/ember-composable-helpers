@@ -16,7 +16,7 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (map-by 'name' array) as |name|~}}
+      {{~#each (map-by 'name' this.array) as |name|~}}
         {{~name~}}
       {{~/each~}}
     `);
@@ -32,7 +32,7 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     this.set('array', [person]);
 
     await render(hbs`
-      {{~#each (map-by 'name' array) as |name|~}}
+      {{~#each (map-by 'name' this.array) as |name|~}}
         {{~name~}}
       {{~/each~}}
     `);
@@ -50,7 +50,7 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (map-by 'name' array) as |name|~}}
+      {{~#each (map-by 'name' this.array) as |name|~}}
         {{~name~}}
       {{~/each~}}
     `);
@@ -71,7 +71,7 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     this.set('property', 'name');
 
     await render(hbs`
-      {{~#each (map-by property array) as |name|~}}
+      {{~#each (map-by this.property this.array) as |name|~}}
         {{~name~}}
       {{~/each~}}
     `);
@@ -85,7 +85,7 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     this.set('array', null);
 
     await render(hbs`
-      {{~#each (map-by 'name' array) as |name|~}}
+      {{~#each (map-by 'name' this.array) as |name|~}}
         {{~name~}}
       {{~/each~}}
     `);
@@ -97,7 +97,7 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     this.set('array', undefined);
 
     await render(hbs`
-      {{~#each (map-by 'name' array) as |name|~}}
+      {{~#each (map-by 'name' this.array) as |name|~}}
         {{~name~}}
       {{~/each~}}
     `);

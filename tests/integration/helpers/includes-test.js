@@ -10,7 +10,7 @@ module('Integration | Helper | {{includes}}', function(hooks) {
   test('it checks if an array includes a primitive value', async function(assert) {
     this.set('items', ['foo', 'bar', 'baz']);
 
-    await render(hbs`{{includes 'foo' items}}`);
+    await render(hbs`{{includes 'foo' this.items}}`);
 
     assert.dom().hasText('true', 'should render true');
   });
@@ -24,7 +24,7 @@ module('Integration | Helper | {{includes}}', function(hooks) {
     this.set('selectedGame', games[0]);
     this.set('wishlist', games);
 
-    await render(hbs`{{includes selectedGame wishlist}}`);
+    await render(hbs`{{includes this.selectedGame this.wishlist}}`);
 
     assert.dom().hasText('true', 'should render true');
   });
@@ -33,7 +33,7 @@ module('Integration | Helper | {{includes}}', function(hooks) {
     this.set('items', ['foo', 'bar', 'baz', undefined, null]);
     this.set('selectedItems', ['foo', 'bar', undefined, null]);
 
-    await render(hbs`{{includes selectedItems items}}`);
+    await render(hbs`{{includes this.selectedItems this.items}}`);
 
     assert.dom().hasText('true', 'should render true');
   });
@@ -47,7 +47,7 @@ module('Integration | Helper | {{includes}}', function(hooks) {
     this.set('selectedGame', games[0]);
     this.set('wishlist', games);
 
-    await render(hbs`{{includes selectedGame wishlist}}`);
+    await render(hbs`{{includes this.selectedGame this.wishlist}}`);
 
     assert.dom().hasText('true', 'should render true');
 
@@ -65,7 +65,7 @@ module('Integration | Helper | {{includes}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{~#each (includes 1 array) as |val|~}}
+      {{~#each (includes 1 this.array) as |val|~}}
         {{val}}
       {{~/each~}}
     `);
@@ -78,7 +78,7 @@ module('Integration | Helper | {{includes}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{~#each (includes 1 array) as |val|~}}
+      {{~#each (includes 1 this.array) as |val|~}}
         {{val}}
       {{~/each~}}
     `);

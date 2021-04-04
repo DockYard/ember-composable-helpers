@@ -9,7 +9,7 @@ module('Integration | Helper | from-entries', function(hooks) {
   test('it returns an object', async function(assert) {
     this.set('inputValue', [['a', 1], ['b', 2]]);
 
-    await render(hbs`{{#each-in (from-entries inputValue) as |k v|}}{{k}}{{v}}{{/each-in}}`);
+    await render(hbs`{{#each-in (from-entries this.inputValue) as |k v|}}{{k}}{{v}}{{/each-in}}`);
 
     assert.dom(this.element).hasText('a1b2');
   });

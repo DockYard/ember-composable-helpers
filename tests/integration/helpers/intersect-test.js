@@ -14,7 +14,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
     this.set('array3', ['qux', 'foo']);
 
     await render(hbs`
-      {{~#each (intersect array1 array2 array3) as |word|~}}
+      {{~#each (intersect this.array1 this.array2 this.array3) as |word|~}}
         {{~word~}}
       {{~/each~}}
     `);
@@ -28,7 +28,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
     this.set('array3', emberArray(['qux', 'foo']));
 
     await render(hbs`
-      {{~#each (intersect array1 array2 array3) as |word|~}}
+      {{~#each (intersect this.array1 this.array2 this.array3) as |word|~}}
         {{~word~}}
       {{~/each~}}
     `);
@@ -44,7 +44,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (intersect array array) as |value|}}
+      {{#each (intersect this.array this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -57,7 +57,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (intersect array array) as |value|}}
+      {{#each (intersect this.array this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -71,7 +71,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (intersect array1 array2) as |value|}}
+      {{#each (intersect this.array1 this.array2) as |value|}}
         {{value}}
       {{/each}}
     `);

@@ -19,7 +19,7 @@ module('Integration | Helper | {{repeat}}', function(hooks) {
   test('it repeats `n` times with a value', async function(assert) {
     this.set('person', { name: 'Adam' });
     await render(hbs`
-      {{~#each (repeat 3 person) as |person|~}}
+      {{~#each (repeat 3 this.person) as |person|~}}
         {{~person.name~}}
       {{~/each~}}
     `);

@@ -12,7 +12,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('array', []);
     this.set('size', 2);
 
-    await render(hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{/each}}`);
+    await render(hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{/each}}`);
 
     assert.dom().hasText('', 'nothing is displayed');
   });
@@ -21,7 +21,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('array', [1, 2, 3]);
     this.set('size', 0);
 
-    await render(hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{/each}}`);
+    await render(hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{/each}}`);
 
     assert.dom().hasText('', 'nothing is displayed');
   });
@@ -30,7 +30,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('array', [1, 2, 3]);
     this.set('size', -1);
 
-    await render(hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{/each}}`);
+    await render(hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{/each}}`);
 
     assert.dom().hasText('', 'nothing is displayed');
   });
@@ -39,7 +39,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('array', [1, 2, 3]);
     this.set('size', 1);
 
-    await render(hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}} {{/each}}`);
+    await render(hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}} {{/each}}`);
 
     assert.dom().hasText('1 2 3', 'chunked arrays are displayed');
   });
@@ -49,7 +49,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('size', 3);
 
     await render(
-      hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}}{{chunkedArray.[2]}}{{/each}}`
+      hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}}{{chunkedArray.[2]}}{{/each}}`
     );
 
     assert.dom().hasText('123', 'chunked arrays are displayed');
@@ -60,7 +60,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('size', 5);
 
     await render(
-      hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}}{{chunkedArray.[2]}}{{/each}}`
+      hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}}{{chunkedArray.[2]}}{{/each}}`
     );
 
     assert.dom().hasText('123', 'chunked arrays are displayed');
@@ -71,7 +71,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('size', 2);
 
     await render(
-      hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`
+      hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`
     );
 
     assert.dom().hasText('1020 3040 5060 70', 'chunked arrays are displayed');
@@ -82,7 +82,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('size', 1);
 
     await render(
-      hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`
+      hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`
     );
 
     assert.dom().hasText('1 2 3 4', 'chunked arrays are displayed');
@@ -97,7 +97,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('size', 2);
 
     await render(
-      hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`
+      hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`
     );
 
     assert.dom().hasText('12 34', 'chunked arrays are displayed');
@@ -112,7 +112,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
     this.set('size', 2);
 
     await render(
-      hbs`{{#each (chunk size array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`
+      hbs`{{#each (chunk this.size this.array) as |chunkedArray|}}{{chunkedArray.[0]}}{{chunkedArray.[1]}} {{/each}}`
     );
 
     assert.dom().hasText('12 34', 'chunked arrays are displayed');
@@ -127,7 +127,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (chunk 1 array) as |value|}}
+      {{#each (chunk 1 this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -140,7 +140,7 @@ module('Integration | Helper | {{chunk}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (chunk 1 array) as |value|}}
+      {{#each (chunk 1 this.array) as |value|}}
         {{value}}
       {{/each}}
     `);

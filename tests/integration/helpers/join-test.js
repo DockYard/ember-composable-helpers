@@ -11,7 +11,7 @@ module('Integration | Helper | {{join}}', function(hooks) {
   test('It joins the words with given separator', async function(assert) {
     this.set('array', emberArray(['foo', 'bar', 'baz']));
 
-    await render(hbs`{{join ', ' array}}`);
+    await render(hbs`{{join ', ' this.array}}`);
 
     assert.dom().hasText('foo, bar, baz', 'words are joined with a comma and a space');
   });
@@ -19,7 +19,7 @@ module('Integration | Helper | {{join}}', function(hooks) {
   test('The default separator is a comma', async function(assert) {
     this.set('array', emberArray(['foo', 'bar', 'baz']));
 
-    await render(hbs`{{join array}}`);
+    await render(hbs`{{join this.array}}`);
 
     assert.dom().hasText('foo,bar,baz', 'words are joined with a comma');
   });
@@ -28,7 +28,7 @@ module('Integration | Helper | {{join}}', function(hooks) {
     let array = emberArray(['foo', 'bar', 'baz']);
     this.set('array', array);
 
-    await render(hbs`{{join ', ' array}}`);
+    await render(hbs`{{join ', ' this.array}}`);
 
     run(() => array.pushObject('quux'));
 
@@ -40,7 +40,7 @@ module('Integration | Helper | {{join}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{join ', ' array}}
+      {{join ', ' this.array}}
     `);
 
     assert.dom().hasText('this is all that will render', 'no error is thrown');
@@ -51,7 +51,7 @@ module('Integration | Helper | {{join}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{join ', ' array}}
+      {{join ', ' this.array}}
     `);
 
     assert.dom().hasText('this is all that will render', 'no error is thrown');

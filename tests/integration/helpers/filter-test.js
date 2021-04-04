@@ -27,7 +27,7 @@ module('Integration | Helper | {{filter}}', function(hooks) {
     };
 
     await render(hbs`
-      {{~#each (filter (action "truthyFoo") array) as |item|~}}
+      {{~#each (filter (action "truthyFoo") this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -49,7 +49,7 @@ module('Integration | Helper | {{filter}}', function(hooks) {
     };
 
     await render(hbs`
-      {{~#each (filter (action "getFoo") array) as |item|~}}
+      {{~#each (filter (action "getFoo") this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -69,7 +69,7 @@ module('Integration | Helper | {{filter}}', function(hooks) {
     this.actions.isOdd = ({ foo }) => foo % 2 !== 0;
 
     await render(hbs`
-      {{~#each (filter (action "isOdd") array) as |item|~}}
+      {{~#each (filter (action "isOdd") this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -82,7 +82,7 @@ module('Integration | Helper | {{filter}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (filter 'name' array) as |value|}}
+      {{#each (filter 'name' this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -95,7 +95,7 @@ module('Integration | Helper | {{filter}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (filter 'name' array) as |value|}}
+      {{#each (filter 'name' this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -121,7 +121,7 @@ module('Integration | Helper | {{filter}}', function(hooks) {
     };
 
     await render(hbs`
-      {{~#each (filter (action "startsWithA") pets) as |item|~}}
+      {{~#each (filter (action "startsWithA") this.pets) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);

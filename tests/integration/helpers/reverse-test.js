@@ -11,7 +11,7 @@ module('Integration | Helper | {{reverse}}', function(hooks) {
   test('it reverses an array', async function(assert) {
     this.set('array', emberArray(['foo', 'bar', 'baz']));
     await render(hbs`
-      {{~#each (reverse array) as |item|~}}
+      {{~#each (reverse this.array) as |item|~}}
         {{~item~}}
       {{~/each~}}
     `);
@@ -22,7 +22,7 @@ module('Integration | Helper | {{reverse}}', function(hooks) {
   test('It handles a non-ember array', async function(assert) {
     this.set('array', ['foo', 'bar', 'baz']);
     await render(hbs`
-      {{~#each (reverse array) as |item|~}}
+      {{~#each (reverse this.array) as |item|~}}
         {{~item~}}
       {{~/each~}}
     `);
@@ -34,7 +34,7 @@ module('Integration | Helper | {{reverse}}', function(hooks) {
     let array = ['foo', 'bar', 'baz'];
     this.set('array', array);
     await render(hbs`
-      {{~#each (reverse array) as |item|~}}
+      {{~#each (reverse this.array) as |item|~}}
         {{~item~}}
       {{~/each~}}
     `);
@@ -46,7 +46,7 @@ module('Integration | Helper | {{reverse}}', function(hooks) {
   test('It safely handles non-array values', async function(assert) {
     this.set('array', 'foo');
     await render(hbs`
-      {{~#each (reverse array) as |item|~}}
+      {{~#each (reverse this.array) as |item|~}}
         {{~item~}}
       {{~/each~}}
     `);
@@ -58,7 +58,7 @@ module('Integration | Helper | {{reverse}}', function(hooks) {
     let array = emberArray(['foo', 'bar', 'baz']);
     this.set('array', array);
     await render(hbs`
-      {{~#each (reverse array) as |item|~}}
+      {{~#each (reverse this.array) as |item|~}}
         {{~item~}}
       {{~/each~}}
     `);
@@ -75,7 +75,7 @@ module('Integration | Helper | {{reverse}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (reverse array) as |value|}}
+      {{#each (reverse this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -88,7 +88,7 @@ module('Integration | Helper | {{reverse}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (reverse array) as |value|}}
+      {{#each (reverse this.array) as |value|}}
         {{value}}
       {{/each}}
     `);

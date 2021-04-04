@@ -12,7 +12,7 @@ module('Integration | Helper | {{slice}}', function(hooks) {
     this.set('array', emberArray([2, 4, 6]));
 
     await render(hbs`
-      {{slice 1 3 array}}
+      {{slice 1 3 this.array}}
     `);
 
     assert.dom().hasText('4,6', 'sliced values');
@@ -22,7 +22,7 @@ module('Integration | Helper | {{slice}}', function(hooks) {
     this.set('array', emberArray([2, 4, 6]));
 
     await render(hbs`
-      {{slice 1 array}}
+      {{slice 1 this.array}}
     `);
 
     assert.dom().hasText('4,6', 'sliced values');
@@ -33,7 +33,7 @@ module('Integration | Helper | {{slice}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{slice 1 3 array}}
+      {{slice 1 3 this.array}}
     `);
 
     assert.dom().hasText('4,6', 'sliced values');
@@ -48,7 +48,7 @@ module('Integration | Helper | {{slice}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (slice 1 2 array) as |value|}}
+      {{#each (slice 1 2 this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -61,7 +61,7 @@ module('Integration | Helper | {{slice}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (slice 1 2 array) as |value|}}
+      {{#each (slice 1 2 this.array) as |value|}}
         {{value}}
       {{/each}}
     `);

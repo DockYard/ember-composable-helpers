@@ -15,7 +15,7 @@ module('Integration | Helper | entries', function(hooks) {
     this.set('object', object);
 
     await render(hbs`
-    {{#each (entries object) as |entry|}}{{get entry 0}}{{get entry 1}}{{/each}}`);
+    {{#each (entries this.object) as |entry|}}{{get entry 0}}{{get entry 1}}{{/each}}`);
     assert.dom(this.element).hasText('a1b2');
   });
 
@@ -37,7 +37,7 @@ module('Integration | Helper | entries', function(hooks) {
       return 0;
     });
     await render(hbs`
-    {{#each (sort-by myOwnSortBy (entries object)) as |entry|}}{{get entry 0}}{{/each}}`);
+    {{#each (sort-by this.myOwnSortBy (entries this.object)) as |entry|}}{{get entry 0}}{{/each}}`);
     assert.dom(this.element).hasText('abcd');
   });
 

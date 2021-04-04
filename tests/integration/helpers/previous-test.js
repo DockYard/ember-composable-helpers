@@ -19,7 +19,7 @@ module('Integration | Helper | {{previous}}', function(hooks) {
     this.set('useDeepEqual', true);
 
     await render(hbs`
-      {{~#with (previous value useDeepEqual array) as |item|~}}
+      {{~#with (previous this.value this.useDeepEqual this.array) as |item|~}}
         {{~item.name~}}
       {{~/with~}}
     `);
@@ -33,7 +33,7 @@ module('Integration | Helper | {{previous}}', function(hooks) {
     this.set('value', 'peach');
 
     await render(hbs`
-      {{~#with (previous value array) as |item|~}}
+      {{~#with (previous this.value this.array) as |item|~}}
         {{~item~}}
       {{~/with~}}
     `);
@@ -88,7 +88,7 @@ module('Integration | Helper | {{previous}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#with (previous 1 array) as |value|}}
+      {{#with (previous 1 this.array) as |value|}}
         {{value}}
       {{/with}}
     `);
@@ -101,7 +101,7 @@ module('Integration | Helper | {{previous}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#with (previous 1 array) as |value|}}
+      {{#with (previous 1 this.array) as |value|}}
         {{value}}
       {{/with}}
     `);

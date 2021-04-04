@@ -14,7 +14,7 @@ module('Integration | Helper | {{union}}', function(hooks) {
     this.set('array3', ['qux', 'bar']);
 
     await render(hbs`
-      {{~#each (union array1 array2 array3) as |word|~}}
+      {{~#each (union this.array1 this.array2 this.array3) as |word|~}}
         {{~word~}}
       {{~/each~}}
     `);
@@ -28,7 +28,7 @@ module('Integration | Helper | {{union}}', function(hooks) {
     this.set('array3', emberArray(['qux', 'bar']));
 
     await render(hbs`
-      {{~#each (union array1 array2 array3) as |word|~}}
+      {{~#each (union this.array1 this.array2 this.array3) as |word|~}}
         {{~word~}}
       {{~/each~}}
     `);
@@ -43,7 +43,7 @@ module('Integration | Helper | {{union}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (union array array) as |value|}}
+      {{#each (union this.array this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -56,7 +56,7 @@ module('Integration | Helper | {{union}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (union array array) as |value|}}
+      {{#each (union this.array this.array) as |value|}}
         {{value}}
       {{/each}}
     `);

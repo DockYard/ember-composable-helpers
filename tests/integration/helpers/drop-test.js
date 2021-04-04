@@ -12,7 +12,7 @@ module('Integration | Helper | {{drop}}', function(hooks) {
     this.set('array', emberArray([1, 2, 3, 4, 5]));
 
     await render(hbs`
-      {{~#each (drop 2 array) as |n|~}}
+      {{~#each (drop 2 this.array) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
@@ -25,7 +25,7 @@ module('Integration | Helper | {{drop}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (drop 2 array) as |n|~}}
+      {{~#each (drop 2 this.array) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
@@ -40,7 +40,7 @@ module('Integration | Helper | {{drop}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (drop 2 array) as |n|}}
+      {{#each (drop 2 this.array) as |n|}}
         {{n}}
       {{/each}}
     `);

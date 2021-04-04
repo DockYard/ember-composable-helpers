@@ -13,7 +13,7 @@ module('Integration | Helper | {{without}}', function(hooks) {
     this.set('items', ['foo', 'bar', 'baz']);
 
     await render(hbs`
-      {{~#each (without "foo" items) as |remaining|~}}
+      {{~#each (without "foo" this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
@@ -26,7 +26,7 @@ module('Integration | Helper | {{without}}', function(hooks) {
     this.set('selectedItems', ['foo', 'bar']);
 
     await render(hbs`
-      {{~#each (without selectedItems items) as |remaining|~}}
+      {{~#each (without this.selectedItems this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
@@ -38,7 +38,7 @@ module('Integration | Helper | {{without}}', function(hooks) {
     this.set('items', ['foo', 'bar', 'baz']);
 
     await render(hbs`
-      {{~#each (without "missing" items) as |remaining|~}}
+      {{~#each (without "missing" this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
@@ -50,7 +50,7 @@ module('Integration | Helper | {{without}}', function(hooks) {
     this.set('items', emberArray(['foo', 'bar', 'baz']));
 
     await render(hbs`
-      {{~#each (without "quux" items) as |remaining|~}}
+      {{~#each (without "quux" this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
@@ -65,7 +65,7 @@ module('Integration | Helper | {{without}}', function(hooks) {
     this.set('items', ArrayProxy.create({ content: emberArray(['foo', 'bar', 'baz']) }));
 
     await render(hbs`
-      {{~#each (without "foo" items) as |remaining|~}}
+      {{~#each (without "foo" this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
@@ -93,7 +93,7 @@ module('Integration | Helper | {{without}}', function(hooks) {
     });
 
     await this.render(hbs`
-      {{~#each (without person.pets allPets) as |pet|~}}
+      {{~#each (without this.person.pets this.allPets) as |pet|~}}
         {{~pet.name~}}
       {{~/each~}}
     `);
@@ -106,7 +106,7 @@ module('Integration | Helper | {{without}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (without 1 array) as |value|}}
+      {{#each (without 1 this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -119,7 +119,7 @@ module('Integration | Helper | {{without}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (without 1 array) as |value|}}
+      {{#each (without 1 this.array) as |value|}}
         {{value}}
       {{/each}}
     `);

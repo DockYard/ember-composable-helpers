@@ -17,7 +17,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#with (find-by 'name' 'b' array) as |item|~}}
+      {{~#with (find-by 'name' 'b' this.array) as |item|~}}
         {{~item.name~}}
       {{~/with~}}
     `);
@@ -33,7 +33,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#with (find-by 'name' 'b' array) as |item|~}}
+      {{~#with (find-by 'name' 'b' this.array) as |item|~}}
         {{~item.name~}}
       {{~/with~}}
     `);
@@ -51,7 +51,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#with (find-by 'name' 'd' array) as |item|~}}
+      {{~#with (find-by 'name' 'd' this.array) as |item|~}}
         {{~item.name~}}
       {{~/with~}}
     `);
@@ -73,7 +73,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#with (find-by 'name' 'd' array) as |item|~}}
+      {{~#with (find-by 'name' 'd' this.array) as |item|~}}
         {{~item.name~}}
       {{~/with~}}
     `);
@@ -96,7 +96,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
     this.set('value', 'd');
 
     await render(hbs`
-      {{~#with (find-by 'name' value array) as |item|~}}
+      {{~#with (find-by 'name' this.value this.array) as |item|~}}
         {{~item.name~}}
       {{~/with~}}
     `);
@@ -113,7 +113,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#with (find-by 'name' 'd' array) as |value|}}
+      {{#with (find-by 'name' 'd' this.array) as |value|}}
         {{value}}
       {{/with}}
     `);
@@ -126,7 +126,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#with (find-by 'name' 'd' array) as |value|}}
+      {{#with (find-by 'name' 'd' this.array) as |value|}}
         {{value}}
       {{/with}}
     `);
@@ -138,7 +138,7 @@ module('Integration | Helper | {{find-by}}', function(hooks) {
     this.set('array', Object.freeze([{name:'a'},{name:'b'}]));
 
     await render(hbs`
-      {{#with (find-by 'name' 'a' array) as |value|}}
+      {{#with (find-by 'name' 'a' this.array) as |value|}}
         {{value.name}}
       {{/with}}
     `);

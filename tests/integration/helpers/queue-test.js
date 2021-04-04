@@ -18,8 +18,8 @@ module('Integration | Helper | {{queue}}', function(hooks) {
     this.actions.undoAThing = () => null;
     this.set('value', 2);
     await render(hbs`
-      <p>{{value}}</p>
-      <button {{action (queue (action "doAThing") (action "process") (action "undoAThing")) value}}>
+      <p>{{this.value}}</p>
+      <button {{action (queue (action "doAThing") (action "process") (action "undoAThing")) this.value}}>
         Calculate
       </button>
     `);
@@ -34,8 +34,8 @@ module('Integration | Helper | {{queue}}', function(hooks) {
     this.actions.doAThingThatTakesTime = resolve;
     this.actions.process = (x) => this.set('value', x * x);
     await render(hbs`
-      <p>{{value}}</p>
-      <button {{action (queue (action "doAThingThatTakesTime") (action "process")) value}}>
+      <p>{{this.value}}</p>
+      <button {{action (queue (action "doAThingThatTakesTime") (action "process")) this.value}}>
         Calculate
       </button>
     `);

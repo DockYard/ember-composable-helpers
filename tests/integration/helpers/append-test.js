@@ -13,7 +13,7 @@ module('Integration | Helper | {{append}}', function(hooks) {
     this.set('odds', emberArray([1, 3, 5]));
 
     await render(hbs`
-      {{~#each (append evens odds) as |n|~}}
+      {{~#each (append this.evens this.odds) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
@@ -29,7 +29,7 @@ module('Integration | Helper | {{append}}', function(hooks) {
     this.set('prime', 2);
 
     await render(hbs`
-      {{~#each (append evens odds prime) as |n|~}}
+      {{~#each (append this.evens this.odds this.prime) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
@@ -44,7 +44,7 @@ module('Integration | Helper | {{append}}', function(hooks) {
     this.set('prime', 2);
 
     await render(hbs`
-      {{~#each (append odds prime) as |n|~}}
+      {{~#each (append this.odds this.prime) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
@@ -57,7 +57,7 @@ module('Integration | Helper | {{append}}', function(hooks) {
     this.set('array', null);
 
     await render(hbs`
-      {{~#each (append 1 array) as |value|~}}
+      {{~#each (append 1 this.array) as |value|~}}
         {{~value~}}
       {{~/each~}}
     `);

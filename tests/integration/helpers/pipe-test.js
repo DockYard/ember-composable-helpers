@@ -18,7 +18,7 @@ module('Integration | Helper | {{pipe}}', function(hooks) {
     this.actions.square = (x) => x * x;
     this.actions.squareRoot = (x) => this.set('value', Math.sqrt(x));
     await render(hbs`
-      <p>{{value}}</p>
+      <p>{{this.value}}</p>
       <button {{action (pipe (action "add") (action "square") (action "squareRoot")) 2 4}}>
         Calculate
       </button>
@@ -36,7 +36,7 @@ module('Integration | Helper | {{pipe}}', function(hooks) {
     this.actions.squareRoot = (x) => this.set('value', Math.sqrt(x));
     this.actions.resolvify = resolve;
     await render(hbs`
-      <p>{{value}}</p>
+      <p>{{this.value}}</p>
       <button {{action (pipe (action "add") (action "square") (action "resolvify") (action "squareRoot")) 2 4}}>
         Calculate
       </button>

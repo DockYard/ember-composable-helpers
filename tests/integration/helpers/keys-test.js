@@ -14,7 +14,7 @@ module('Integration | Helper | keys', function(hooks) {
 
     this.set('object', object);
 
-    await render(hbs`{{#each (keys object) as |key|}}{{key}}{{/each}}`);
+    await render(hbs`{{#each (keys this.object) as |key|}}{{key}}{{/each}}`);
 
     assert.dom().hasText('ab');
   });
@@ -36,7 +36,7 @@ module('Integration | Helper | keys', function(hooks) {
     this.set('object', object);
 
     await render(hbs`
-      {{#let (keys object) as |objectKeys|}}
+      {{#let (keys this.object) as |objectKeys|}}
         {{objectKeys.length}}
       {{/let}}
     `);

@@ -22,7 +22,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (filter-by 'foo' true array) as |item|~}}
+      {{~#each (filter-by 'foo' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -45,7 +45,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (filter-by 'foo' array) as |item|~}}
+      {{~#each (filter-by 'foo' this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -63,7 +63,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (filter-by 'foo' true array) as |item|~}}
+      {{~#each (filter-by 'foo' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -83,7 +83,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (filter-by 'foo' true array) as |item|~}}
+      {{~#each (filter-by 'foo' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -103,7 +103,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (filter-by 'foo' false array) as |item|~}}
+      {{~#each (filter-by 'foo' false this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -123,7 +123,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (filter-by 'foo' array) as |item|~}}
+      {{~#each (filter-by 'foo' this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -145,7 +145,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     this.actions.isOdd = (value) => value % 2 === 1;
 
     await render(hbs`
-      {{~#each (filter-by 'foo' (action 'isOdd') array) as |item|~}}
+      {{~#each (filter-by 'foo' (action 'isOdd') this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -167,7 +167,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (filter-by 'foo' firstTarget array) as |item|~}}
+      {{~#each (filter-by 'foo' this.firstTarget this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -183,7 +183,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (filter-by 'foo.bar' true array) as |item|~}}
+      {{~#each (filter-by 'foo.bar' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -196,7 +196,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
 
     await render(hbs`
       this will be empty:
-      {{~#each (filter-by 'foo.bar' true array) as |item|~}}
+      {{~#each (filter-by 'foo.bar' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -209,7 +209,7 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
 
     await render(hbs`
       this will be empty:
-      {{~#each (filter-by 'foo.bar' true array) as |item|~}}
+      {{~#each (filter-by 'foo.bar' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);

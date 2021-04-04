@@ -10,7 +10,7 @@ module('Integration | Helper | {{toggle}}', function(hooks) {
     this.set('isExpanded', false);
     await render(hbs`
       <button {{action (toggle "isExpanded" this)}}>
-        {{if isExpanded "I am expanded" "I am not"}}
+        {{if this.isExpanded "I am expanded" "I am not"}}
       </button>
     `);
     await click('button');
@@ -22,7 +22,7 @@ module('Integration | Helper | {{toggle}}', function(hooks) {
     this.set('currentName', 'foo');
     await render(hbs`
       <button {{action (toggle "currentName" this "foo" "bar" "baz")}}>
-        {{currentName}}
+        {{this.currentName}}
       </button>
     `);
 
@@ -39,7 +39,7 @@ module('Integration | Helper | {{toggle}}', function(hooks) {
     this.set('currentName', 'meow');
     await render(hbs`
       <button {{action (toggle "currentName" this "foo" "bar")}}>
-        {{currentName}}
+        {{this.currentName}}
       </button>
     `);
 

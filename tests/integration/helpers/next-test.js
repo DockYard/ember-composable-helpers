@@ -19,7 +19,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
     this.set('useDeepEqual', true);
 
     await render(hbs`
-      {{~#with (next value useDeepEqual array) as |item|~}}
+      {{~#with (next this.value this.useDeepEqual this.array) as |item|~}}
         {{~item.name~}}
       {{~/with~}}
     `);
@@ -33,7 +33,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
     this.set('value', 'lemon');
 
     await render(hbs`
-      {{~#with (next value array) as |item|~}}
+      {{~#with (next this.value this.array) as |item|~}}
         {{~item~}}
       {{~/with~}}
     `);
@@ -45,7 +45,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
     this.set('array', emberArray([1, 2, 3]));
 
     await render(hbs`
-      {{~#with (next 1 array) as |item|~}}
+      {{~#with (next 1 this.array) as |item|~}}
         {{~item~}}
       {{~/with~}}
     `);
@@ -75,7 +75,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
     });
 
     await render(hbs`
-      {{~#with (next currentPet model.pets) as |pet|~}}
+      {{~#with (next this.currentPet this.model.pets) as |pet|~}}
         {{~pet.name~}}
       {{~/with~}}
     `);
@@ -88,7 +88,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{next 1 array}}
+      {{next 1 this.array}}
     `);
 
     assert.dom().hasText('this is all that will render', 'no error is thrown');
@@ -99,7 +99,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{next 1 array}}
+      {{next 1 this.array}}
     `);
 
     assert.dom().hasText('this is all that will render', 'no error is thrown');

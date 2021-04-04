@@ -18,7 +18,7 @@ module('Integration | Helper | {{group-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each-in (group-by 'category' array) as |category entries|~}}
+      {{~#each-in (group-by 'category' this.array) as |category entries|~}}
         {{~category~}}
         {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
       {{~/each-in~}}
@@ -38,7 +38,7 @@ module('Integration | Helper | {{group-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each-in (group-by 'category' array) as |category entries|~}}
+      {{~#each-in (group-by 'category' this.array) as |category entries|~}}
         {{~category~}}
         {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
       {{~/each-in~}}

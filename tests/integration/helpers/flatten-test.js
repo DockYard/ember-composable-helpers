@@ -17,7 +17,7 @@ module('Integration | Helper | {{flatten}}', function(hooks) {
   test('it flattens an array of arrays', async function(assert) {
     this.set('array', [1, [2, 3], [4, [5, 6]]]);
     await render(hbs`
-      {{#each (flatten array) as |number|}}{{number}}{{/each}}
+      {{#each (flatten this.array) as |number|}}{{number}}{{/each}}
     `);
 
     assert.dom().hasText('123456', 'should handle multi level depth array');
@@ -26,7 +26,7 @@ module('Integration | Helper | {{flatten}}', function(hooks) {
   test('it handles empty array', async function(assert) {
     this.set('array', []);
     await render(hbs`
-      {{#each (flatten array) as |number|}}{{number}}{{/each}}
+      {{#each (flatten this.array) as |number|}}{{number}}{{/each}}
     `);
 
     assert.dom().hasText('', 'should handle an empty array');

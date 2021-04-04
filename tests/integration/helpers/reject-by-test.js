@@ -22,7 +22,7 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (reject-by 'foo' true array) as |item|~}}
+      {{~#each (reject-by 'foo' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -45,7 +45,7 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (reject-by 'foo' array) as |item|~}}
+      {{~#each (reject-by 'foo' this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -63,7 +63,7 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (reject-by 'foo' true array) as |item|~}}
+      {{~#each (reject-by 'foo' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -83,7 +83,7 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (reject-by 'foo' array) as |item|~}}
+      {{~#each (reject-by 'foo' this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -105,7 +105,7 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     this.actions.isEven = (value) => value % 2 === 0;
 
     await render(hbs`
-      {{~#each (reject-by 'foo' (action 'isEven') array) as |item|~}}
+      {{~#each (reject-by 'foo' (action 'isEven') this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -127,7 +127,7 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (reject-by 'foo' firstTarget array) as |item|~}}
+      {{~#each (reject-by 'foo' this.firstTarget this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
@@ -140,7 +140,7 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (reject-by 'name' array) as |value|}}
+      {{#each (reject-by 'name' this.array) as |value|}}
         {{value}}
       {{/each}}
     `);

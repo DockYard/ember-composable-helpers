@@ -22,7 +22,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -39,7 +39,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -56,7 +56,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name:desc' array) as |user|~}}
+      {{~#each (sort-by 'name:desc' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -73,7 +73,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'value' array) as |user|~}}
+      {{~#each (sort-by 'value' this.array) as |user|~}}
         {{~user.value~}}
       {{~/each~}}
     `);
@@ -90,7 +90,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'value' array) as |user|~}}
+      {{~#each (sort-by 'value' this.array) as |user|~}}
         {{~user.value~}}
       {{~/each~}}
     `);
@@ -106,7 +106,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -123,7 +123,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -139,7 +139,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -156,7 +156,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (sort-by 'name:desc' array) as |user|~}}
+      {{~#each (sort-by 'name:desc' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -172,7 +172,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (sort-by "" array) as |user|~}}
+      {{~#each (sort-by "" this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -190,7 +190,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -210,7 +210,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('sortBy', ['name']);
 
     await render(hbs`
-      {{~#each (sort-by sortBy array) as |user|~}}
+      {{~#each (sort-by this.sortBy this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -230,7 +230,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('sortBy', ['lastName', 'firstName']);
 
     await render(hbs`
-      {{~#each (sort-by sortBy array) as |user|~}}
+      {{~#each (sort-by this.sortBy this.array) as |user|~}}
         {{~user.lastName~}},{{~user.firstName~}};
       {{~/each~}}
     `);
@@ -251,7 +251,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (sort-by "lastName" "firstName" array) as |user|~}}
+      {{~#each (sort-by "lastName" "firstName" this.array) as |user|~}}
         {{~user.lastName~}},{{~user.firstName~}};
       {{~/each~}}
     `);
@@ -280,7 +280,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     };
 
     await render(hbs`
-      {{~#each (sort-by (action "sortBy") array) as |user|~}}
+      {{~#each (sort-by (action "sortBy") this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
@@ -293,7 +293,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (sort-by 'name' array) as |value|}}
+      {{#each (sort-by 'name' this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -315,7 +315,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('pets', pets);
 
     await render(hbs`
-      {{~#each (sort-by 'name' pets) as |pet|~}}
+      {{~#each (sort-by 'name' this.pets) as |pet|~}}
         {{~pet.name~}}
       {{~/each~}}
     `);
@@ -332,7 +332,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
@@ -349,7 +349,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
@@ -365,7 +365,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
@@ -382,7 +382,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
@@ -399,7 +399,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
@@ -414,7 +414,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'creationDate:asc' 'attrs.trialNumber:asc' 'localOrder' array) as |trial|~}}
+      {{~#each (sort-by 'creationDate:asc' 'attrs.trialNumber:asc' 'localOrder' this.array) as |trial|~}}
         {{~trial.attrs.trialNumber~}}
       {{~/each~}}
     `);
@@ -429,7 +429,7 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'creationDate:desc' 'attrs.trialNumber:desc' 'localOrder' array) as |trial|~}}
+      {{~#each (sort-by 'creationDate:desc' 'attrs.trialNumber:desc' 'localOrder' this.array) as |trial|~}}
         {{~trial.attrs.trialNumber~}}
       {{~/each~}}
     `);
