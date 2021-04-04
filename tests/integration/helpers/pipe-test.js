@@ -1,6 +1,5 @@
 import { hbs } from 'ember-cli-htmlbars';
 import { resolve } from 'rsvp';
-import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render, click } from '@ember/test-helpers';
@@ -44,7 +43,7 @@ module('Integration | Helper | {{pipe}}', function(hooks) {
     `);
 
     assert.dom('p').hasText('0', 'precond - should render 0');
-    run(async () => await click('button'));
+    await click('button')
     assert.dom('p').hasText('6', 'should render 6');
   });
 });

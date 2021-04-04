@@ -45,7 +45,7 @@
     "ember-load-initializers": "^2.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^5.1.4",
-    "ember-resolver": "^5.0.1",
+    "ember-resolver": "^8.0.2",
     "ember-sinon": "^3.0.0",
     "ember-source": "~3.20.0",
     "ember-source-channel-url": "^2.0.1",
