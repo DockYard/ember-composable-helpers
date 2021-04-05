@@ -52,7 +52,6 @@
     "ember-try": "^1.2.1",
     "eslint": "^5.16.0",
     "eslint-plugin-ember": "^7.1.0",
-    "eslint-plugin-ember-suave": "1.0.0",
     "eslint-plugin-node": "^10.0.0",
     "loader.js": "^4.7.0",
     "mocha": "^2.4.5",
