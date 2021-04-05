@@ -87,3 +87,4 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install
       - run: yarn ember try:one ${{ matrix.try-scenario }}
+        timeout-minutes: 10
