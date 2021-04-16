@@ -1,8 +1,10 @@
 import { helper } from '@ember/component/helper';
 
-export default helper(function values([object]) {
+export function values([object]) {
   if (!object) {
     return object;
   }
   return Object.values(object);
-});
+}
+
+export default helper(values);
