@@ -1,9 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{take}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -12,12 +12,12 @@ module('Integration | Helper | {{take}}', function(hooks) {
     this.set('array', emberArray([1, 2, 3, 4, 5]));
 
     await render(hbs`
-      {{~#each (take 2 array) as |n|~}}
+      {{~#each (take 2 this.array) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '12', 'first two values are kept');
+    assert.dom().hasText('12', 'first two values are kept');
   });
 
   test('It watches for changes', async function(assert) {
@@ -25,14 +25,14 @@ module('Integration | Helper | {{take}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (take 2 array) as |n|~}}
+      {{~#each (take 2 this.array) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
 
     run(() => array.unshiftObject(0));
 
-    assert.equal(find('*').textContent.trim(), '01', '0 and 1 are kept');
+    assert.dom().hasText('01', '0 and 1 are kept');
   });
 
   test('It allows null arrays', async function(assert) {
@@ -40,12 +40,12 @@ module('Integration | Helper | {{take}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{~#each (take 2 array) as |n|~}}
+      {{~#each (take 2 this.array) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render');
+    assert.dom().hasText('this is all that will render');
   });
 
   test('It allows undefined arrays', async function(assert) {
@@ -53,11 +53,11 @@ module('Integration | Helper | {{take}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{~#each (take 2 array) as |n|~}}
+      {{~#each (take 2 this.array) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render');
+    assert.dom().hasText('this is all that will render');
   });
 });

@@ -1,7 +1,7 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Helper | values', function(hooks) {
   setupRenderingTest(hooks);
@@ -9,9 +9,9 @@ module('Integration | Helper | values', function(hooks) {
   test('it returns object values', async function(assert) {
     this.set('inputValue', {a: 1, b: 2});
 
-    await render(hbs`{{#each (values inputValue) as |v|}}{{v}}{{/each}}`);
+    await render(hbs`{{#each (values this.inputValue) as |v|}}{{v}}{{/each}}`);
 
-    assert.equal(this.element.textContent.trim(), '12');
+    assert.dom(this.element).hasText('12');
   });
 
   test('it handles undefined input', async function(assert) {
@@ -19,7 +19,7 @@ module('Integration | Helper | values', function(hooks) {
       {{#each (values undefined) as |v|}}{{v}}{{/each}}
     `);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 
   test('it handles null input', async function(assert) {
@@ -27,6 +27,6 @@ module('Integration | Helper | values', function(hooks) {
       {{#each (values null) as |v|}}{{v}}{{/each}}
     `);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });

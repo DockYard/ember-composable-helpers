@@ -1,7 +1,7 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{compute}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -15,6 +15,6 @@ module('Integration | Helper | {{compute}}', function(hooks) {
     this.actions.square = (x) => x * x;
     await render(hbs`{{compute (action "square") 4}}`);
 
-    assert.equal(find('*').textContent.trim(), '16', '4 squared is 16');
+    assert.dom().hasText('16', '4 squared is 16');
   });
 });

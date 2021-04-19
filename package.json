@@ -23,29 +23,27 @@
   ],
   "devDependencies": {
     "@ember/optional-features": "^1.0.0",
+    "@ember/test-helpers": "^2.2.5",
     "babel-eslint": "^10.0.3",
     "broccoli-asset-rev": "^3.0.0",
     "chai": "^3.5.0",
-    "ember-auto-import": "^1.5.2",
-    "ember-cli": "~3.20.0",
+    "ember-auto-import": "^1.11.2",
+    "ember-cli": "~3.25.3",
     "ember-cli-dependency-checker": "^3.0.0",
-    "ember-cli-htmlbars": "^3.0.1",
-    "ember-cli-htmlbars-inline-precompile": "^2.0.0",
+    "ember-cli-htmlbars": "^5.7.1",
     "ember-cli-inject-live-reload": "^1.8.2",
     "ember-cli-release": "^0.2.9",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-template-lint": "^1.0.0-beta.1",
     "ember-cli-uglify": "^3.0.0",
-    "ember-data": "^3.17.0",
+    "ember-data": "^3.26.0",
     "ember-disable-prototype-extensions": "^1.1.3",
     "ember-disable-proxy-controllers": "^1.0.1",
-    "ember-exam": "^1.0.0",
     "ember-export-application-global": "^2.0.0",
-    "ember-inflector": "^3.0.0",
     "ember-load-initializers": "^2.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
-    "ember-qunit": "^4.1.2",
-    "ember-resolver": "^5.0.1",
+    "ember-qunit": "^5.1.4",
+    "ember-resolver": "^8.0.2",
     "ember-sinon": "^3.0.0",
     "ember-source": "~3.20.0",
     "ember-source-channel-url": "^2.0.1",
@@ -55,7 +53,8 @@
     "eslint-plugin-node": "^10.0.0",
     "loader.js": "^4.7.0",
     "mocha": "^2.4.5",
-    "qunit-dom": "^0.9.0"
+    "qunit": "^2.14.1",
+    "qunit-dom": "^1.6.0"
   },
   "keywords": [
     "ember-addon",
@@ -79,7 +78,7 @@
   "dependencies": {
     "@babel/core": "^7.0.0",
     "broccoli-funnel": "2.0.1",
-    "ember-cli-babel": "^7.11.1",
+    "ember-cli-babel": "^7.26.3",
     "resolve": "^1.10.0"
   },
   "resolutions": {
@@ -87,6 +86,9 @@
     "ember-cli/lodash.template": "^4.5.0",
     "mocha/growl": "^1.10.0",
     "ember-cli/**/clean-css": "^4.1.11"
+  },
+  "ember": {
+    "edition": "octane"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

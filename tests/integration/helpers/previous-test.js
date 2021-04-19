@@ -1,9 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{previous}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -19,12 +19,12 @@ module('Integration | Helper | {{previous}}', function(hooks) {
     this.set('useDeepEqual', true);
 
     await render(hbs`
-      {{~#with (previous value useDeepEqual array) as |item|~}}
+      {{~#with (previous this.value this.useDeepEqual this.array) as |item|~}}
         {{~item.name~}}
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'a', 'a is shown');
+    assert.dom().hasText('a', 'a is shown');
   });
 
   test('It returns the previous value in an array of primitive values', async function(assert) {
@@ -33,12 +33,12 @@ module('Integration | Helper | {{previous}}', function(hooks) {
     this.set('value', 'peach');
 
     await render(hbs`
-      {{~#with (previous value array) as |item|~}}
+      {{~#with (previous this.value this.array) as |item|~}}
         {{~item~}}
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'kiwi', 'kiwi is shown');
+    assert.dom().hasText('kiwi', 'kiwi is shown');
   });
 
   test('It recomputes if array changes', async function(assert) {
@@ -50,11 +50,11 @@ module('Integration | Helper | {{previous}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 2, '2 is shown');
+    assert.dom().hasText('2', '2 is shown');
 
     run(() => this.set('array', [2, 1, 3]));
 
-    assert.equal(find('*').textContent.trim(), 1, '1 is added and shown');
+    assert.dom().hasText('1', '1 is added and shown');
   });
 
   test('It returns the previous value in an array of related models', async function(assert) {
@@ -80,7 +80,7 @@ module('Integration | Helper | {{previous}}', function(hooks) {
       {{~/with~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'Kirby', 'the previous pet name is shown');
+    assert.dom().hasText('Kirby', 'the previous pet name is shown');
   });
 
   test('it allows null array', async function(assert) {
@@ -88,12 +88,12 @@ module('Integration | Helper | {{previous}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#with (previous 1 array) as |value|}}
+      {{#with (previous 1 this.array) as |value|}}
         {{value}}
       {{/with}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -101,11 +101,11 @@ module('Integration | Helper | {{previous}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#with (previous 1 array) as |value|}}
+      {{#with (previous 1 this.array) as |value|}}
         {{value}}
       {{/with}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

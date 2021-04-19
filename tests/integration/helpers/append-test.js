@@ -1,9 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{append}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -13,14 +13,14 @@ module('Integration | Helper | {{append}}', function(hooks) {
     this.set('odds', emberArray([1, 3, 5]));
 
     await render(hbs`
-      {{~#each (append evens odds) as |n|~}}
+      {{~#each (append this.evens this.odds) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
 
     let expected = '246135';
 
-    assert.equal(find('*').textContent.trim(), expected, 'appends values');
+    assert.dom().hasText(expected, 'appends values');
   });
 
   test('It concats two arrays and a value', async function(assert) {
@@ -29,14 +29,14 @@ module('Integration | Helper | {{append}}', function(hooks) {
     this.set('prime', 2);
 
     await render(hbs`
-      {{~#each (append evens odds prime) as |n|~}}
+      {{~#each (append this.evens this.odds this.prime) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
 
     let expected = '461352';
 
-    assert.equal(find('*').textContent.trim(), expected, 'appends values');
+    assert.dom().hasText(expected, 'appends values');
   });
 
   test('It watches for changes', async function(assert) {
@@ -44,24 +44,24 @@ module('Integration | Helper | {{append}}', function(hooks) {
     this.set('prime', 2);
 
     await render(hbs`
-      {{~#each (append odds prime) as |n|~}}
+      {{~#each (append this.odds this.prime) as |n|~}}
         {{n}}
       {{~/each~}}
     `);
 
     run(() => this.get('odds').pushObject(7));
-    assert.equal(find('*').textContent.trim(), '13572', 'new value is added');
+    assert.dom().hasText('13572', 'new value is added');
   });
 
   test('it allows null array', async function(assert) {
     this.set('array', null);
 
     await render(hbs`
-      {{~#each (append 1 array) as |value|~}}
+      {{~#each (append 1 this.array) as |value|~}}
         {{~value~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '1', 'no error is thrown');
+    assert.dom().hasText('1', 'no error is thrown');
   });
 });

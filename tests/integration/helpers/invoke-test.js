@@ -1,8 +1,8 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { resolve } from 'rsvp';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, click, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render, click } from '@ember/test-helpers';
 
 module('Integration | Helper | {{invoke}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -20,15 +20,15 @@ module('Integration | Helper | {{invoke}}', function(hooks) {
     this.actions.setValue = (x) => this.set('value', x);
 
     await render(hbs`
-      <p>{{value}}</p>
+      <p>{{this.value}}</p>
       <button {{action (pipe (invoke "serverSideComputation" 2 this) (action "setValue"))}}>
         Calculate
       </button>
     `);
 
-    assert.equal(find('p').textContent.trim(), '2', 'precond - should render 2');
+    assert.dom('p').hasText('2', 'precond - should render 2');
     await click('button');
-    assert.equal(find('p').textContent.trim(), '4', 'should render 4');
+    assert.dom('p').hasText('4', 'should render 4');
   });
 
   test('it invokes methods and handles promise arrays', async function(assert) {
@@ -47,13 +47,13 @@ module('Integration | Helper | {{invoke}}', function(hooks) {
     };
 
     await render(hbs`
-      <p>{{value}}</p>
+      <p>{{this.value}}</p>
       <button {{action (pipe (invoke "calcArea" this.model) (action "sumAreas"))}}>
         Calculate
       </button>
     `);
 
     await click('button');
-    assert.equal(find('p').textContent.trim(), '14', 'should render 14');
+    assert.dom('p').hasText('14', 'should render 14');
   });
 });

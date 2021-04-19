@@ -1,9 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test, skip } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{sort-by}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -22,12 +22,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abcc', 'cabc is sorted to abcc');
+    assert.dom().hasText('abcc', 'cabc is sorted to abcc');
   });
 
   test('It sorts by multiletter words ascending', async function(assert) {
@@ -39,12 +39,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'AaaAbccB', 'sorts multiletter words');
+    assert.dom().hasText('AaaAbccB', 'sorts multiletter words');
   });
 
   test('It sorts by multiletter words descending', async function(assert) {
@@ -56,12 +56,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name:desc' array) as |user|~}}
+      {{~#each (sort-by 'name:desc' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'cbbcAaaA', 'sorts multiletter words');
+    assert.dom().hasText('cbbcAaaA', 'sorts multiletter words');
   });
 
   test('It sorts by a value Numbers strings', async function(assert) {
@@ -73,12 +73,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'value' array) as |user|~}}
+      {{~#each (sort-by 'value' this.array) as |user|~}}
         {{~user.value~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '0112', 'numbes are sorted');
+    assert.dom().hasText('0112', 'numbes are sorted');
   });
 
   test('It sorts by a value Number', async function(assert) {
@@ -90,12 +90,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'value' array) as |user|~}}
+      {{~#each (sort-by 'value' this.array) as |user|~}}
         {{~user.value~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '0112', 'numbes are sorted');
+    assert.dom().hasText('0112', 'numbes are sorted');
   });
 
   test('It sorts by a value based on Alphabetical (vs ASCII-betical)', async function(assert) {
@@ -106,12 +106,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'bcC', 'outputs alphabetical ordering with b before c');
+    assert.dom().hasText('bcC', 'outputs alphabetical ordering with b before c');
   });
 
   skip('It sorts by a value based on Alphanumeric', async function(assert) {
@@ -123,12 +123,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'c1c2c11c100', 'alpha numeric is sorted properly');
+    assert.dom().hasText('c1c2c11c100', 'alpha numeric is sorted properly');
   });
 
   test('It sorts by a value with EmberArray', async function(assert) {
@@ -139,12 +139,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+    assert.dom().hasText('abc', 'cab is sorted to abc');
   });
 
   test('It sorts by a value desc', async function(assert) {
@@ -156,12 +156,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (sort-by 'name:desc' array) as |user|~}}
+      {{~#each (sort-by 'name:desc' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'cbaa', 'caba is sorted to cbaa');
+    assert.dom().hasText('cbaa', 'caba is sorted to cbaa');
   });
 
   test('It does not sort the array when the key is an empty string', async function(assert) {
@@ -172,12 +172,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (sort-by "" array) as |user|~}}
+      {{~#each (sort-by "" this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'cab', 'cab is unsorted');
+    assert.dom().hasText('cab', 'cab is unsorted');
   });
 
   test('It watches for changes', async function(assert) {
@@ -190,14 +190,14 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
     run(() => array.pushObject({ name: 'c' }));
 
-    assert.equal(find('*').textContent.trim(), 'abcd', 'list is still sorted after addition');
+    assert.dom().hasText('abcd', 'list is still sorted after addition');
   });
 
   test('It accepts an array of sort properties (one prop)', async function(assert) {
@@ -210,12 +210,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('sortBy', ['name']);
 
     await render(hbs`
-      {{~#each (sort-by sortBy array) as |user|~}}
+      {{~#each (sort-by this.sortBy this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+    assert.dom().hasText('abc', 'cab is sorted to abc');
   });
 
   test('It accepts an array of sort properties (more than one prop)', async function(assert) {
@@ -230,12 +230,15 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('sortBy', ['lastName', 'firstName']);
 
     await render(hbs`
-      {{~#each (sort-by sortBy array) as |user|~}}
+      {{~#each (sort-by this.sortBy this.array) as |user|~}}
         {{~user.lastName~}},{{~user.firstName~}};
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'Abrams,William;Brady,Donnie;Coda,Adam;Jones,Billy;Jones,Sam;', 'Names are sorted alphabetically by last name then first name');
+    assert.dom().hasText(
+      'Abrams,William;Brady,Donnie;Coda,Adam;Jones,Billy;Jones,Sam;',
+      'Names are sorted alphabetically by last name then first name'
+    );
   });
 
   test('It accepts multiple sort properties as helper params', async function(assert) {
@@ -248,12 +251,15 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (sort-by "lastName" "firstName" array) as |user|~}}
+      {{~#each (sort-by "lastName" "firstName" this.array) as |user|~}}
         {{~user.lastName~}},{{~user.firstName~}};
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'Abrams,William;Brady,Donnie;Coda,Adam;Jones,Billy;Jones,Sam;', 'Names are sorted alphabetically by last name then first name');
+    assert.dom().hasText(
+      'Abrams,William;Brady,Donnie;Coda,Adam;Jones,Billy;Jones,Sam;',
+      'Names are sorted alphabetically by last name then first name'
+    );
   });
 
   test('It accepts a function sort property', async function(assert) {
@@ -274,12 +280,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     };
 
     await render(hbs`
-      {{~#each (sort-by (action "sortBy") array) as |user|~}}
+      {{~#each (sort-by (action "sortBy") this.array) as |user|~}}
         {{~user.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+    assert.dom().hasText('abc', 'cab is sorted to abc');
   });
 
   test('it allows null array', async function(assert) {
@@ -287,12 +293,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (sort-by 'name' array) as |value|}}
+      {{#each (sort-by 'name' this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it accepts a fulfilled ember data promise as a value', async function (assert) {
@@ -309,12 +315,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     this.set('pets', pets);
 
     await render(hbs`
-      {{~#each (sort-by 'name' pets) as |pet|~}}
+      {{~#each (sort-by 'name' this.pets) as |pet|~}}
         {{~pet.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'cab is sorted to abc');
+    assert.dom().hasText('abc', 'cab is sorted to abc');
   });
 
   test('it sorts undefined values last', async function(assert) {
@@ -326,12 +332,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '2413');
+    assert.dom().hasText('2413');
   });
 
   test('it sorts null values last', async function(assert) {
@@ -343,12 +349,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '2413');
+    assert.dom().hasText('2413');
   });
 
   test('It maintains order when values are the same', async function(assert) {
@@ -359,12 +365,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '123');
+    assert.dom().hasText('123');
   });
 
   test('it support undefined array values', async function(assert) {
@@ -376,12 +382,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '241');
+    assert.dom().hasText('241');
   });
 
   test('it support null array values', async function(assert) {
@@ -393,12 +399,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'name' array) as |user|~}}
+      {{~#each (sort-by 'name' this.array) as |user|~}}
         {{~user.id~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '241');
+    assert.dom().hasText('241');
   });
 
   test('it sorts asc by a few params some of those are all null', async function(assert) {
@@ -408,12 +414,12 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'creationDate:asc' 'attrs.trialNumber:asc' 'localOrder' array) as |trial|~}}
+      {{~#each (sort-by 'creationDate:asc' 'attrs.trialNumber:asc' 'localOrder' this.array) as |trial|~}}
         {{~trial.attrs.trialNumber~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '00-0100-02');
+    assert.dom().hasText('00-0100-02');
   })
 
   test('it sorts desc by a few params some of those are all null', async function(assert) {
@@ -423,11 +429,11 @@ module('Integration | Helper | {{sort-by}}', function(hooks) {
     ]);
 
     await render(hbs`
-      {{~#each (sort-by 'creationDate:desc' 'attrs.trialNumber:desc' 'localOrder' array) as |trial|~}}
+      {{~#each (sort-by 'creationDate:desc' 'attrs.trialNumber:desc' 'localOrder' this.array) as |trial|~}}
         {{~trial.attrs.trialNumber~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '00-0200-01');
+    assert.dom().hasText('00-0200-01');
   })
 });

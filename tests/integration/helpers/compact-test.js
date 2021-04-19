@@ -1,9 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{compact}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -16,7 +16,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '123false', 'null is removed');
+    assert.dom().hasText('123false', 'null is removed');
   });
 
   test('It gracefully handles non-array values', async function(assert) {
@@ -27,7 +27,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '1', 'the non array value is rendered');
+    assert.dom().hasText('1', 'the non array value is rendered');
   });
 
   test('It recomputes the filter if the array changes', async function(assert) {
@@ -38,11 +38,11 @@ module('Integration | Helper | {{compact}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '123', 'null is removed');
+    assert.dom().hasText('123', 'null is removed');
 
     this.set('array', emberArray([1, null, null, 3]));
 
-    assert.equal(find('*').textContent.trim(), '13', 'null is removed');
+    assert.dom().hasText('13', 'null is removed');
   });
 
   test('It recomputes the filter if an item in the array changes', async function(assert) {
@@ -54,11 +54,11 @@ module('Integration | Helper | {{compact}}', function(hooks) {
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '123', 'null is removed');
+    assert.dom().hasText('123', 'null is removed');
 
     run(() => array.replace(2, 1, [5]));
 
-    assert.equal(find('*').textContent.trim(), '1253', 'null is removed');
+    assert.dom().hasText('1253', 'null is removed');
   });
 
   test('it allows null array', async function(assert) {
@@ -71,7 +71,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -84,6 +84,6 @@ module('Integration | Helper | {{compact}}', function(hooks) {
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

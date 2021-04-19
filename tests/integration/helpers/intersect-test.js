@@ -1,9 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{intersect}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -14,12 +14,12 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
     this.set('array3', ['qux', 'foo']);
 
     await render(hbs`
-      {{~#each (intersect array1 array2 array3) as |word|~}}
+      {{~#each (intersect this.array1 this.array2 this.array3) as |word|~}}
         {{~word~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'foo', 'intersect shows words common to all arrays');
+    assert.dom().hasText('foo', 'intersect shows words common to all arrays');
   });
 
   test('It watches for changes', async function(assert) {
@@ -28,7 +28,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
     this.set('array3', emberArray(['qux', 'foo']));
 
     await render(hbs`
-      {{~#each (intersect array1 array2 array3) as |word|~}}
+      {{~#each (intersect this.array1 this.array2 this.array3) as |word|~}}
         {{~word~}}
       {{~/each~}}
     `);
@@ -36,7 +36,7 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
     run(() => this.get('array2').pushObject('bar'));
     run(() => this.get('array3').pushObject('bar'));
 
-    assert.equal(find('*').textContent.trim(), 'foobar', 'bar is added');
+    assert.dom().hasText('foobar', 'bar is added');
   });
 
   test('it allows null array', async function(assert) {
@@ -44,12 +44,12 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (intersect array array) as |value|}}
+      {{#each (intersect this.array this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -57,12 +57,12 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (intersect array array) as |value|}}
+      {{#each (intersect this.array this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows a first parameter null array', async function(assert) {
@@ -71,11 +71,11 @@ module('Integration | Helper | {{intersect}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (intersect array1 array2) as |value|}}
+      {{#each (intersect this.array1 this.array2) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

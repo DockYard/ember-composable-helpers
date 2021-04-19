@@ -1,10 +1,10 @@
+import { hbs } from 'ember-cli-htmlbars';
 import ArrayProxy from '@ember/array/proxy';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{without}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -13,12 +13,12 @@ module('Integration | Helper | {{without}}', function(hooks) {
     this.set('items', ['foo', 'bar', 'baz']);
 
     await render(hbs`
-      {{~#each (without "foo" items) as |remaining|~}}
+      {{~#each (without "foo" this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'barbaz', 'should render remaining values');
+    assert.dom().hasText('barbaz', 'should render remaining values');
   });
 
   test('it returns a new array with given values ommitted', async function(assert) {
@@ -26,51 +26,51 @@ module('Integration | Helper | {{without}}', function(hooks) {
     this.set('selectedItems', ['foo', 'bar']);
 
     await render(hbs`
-      {{~#each (without selectedItems items) as |remaining|~}}
+      {{~#each (without this.selectedItems this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'baz', 'should render remaining values');
+    assert.dom().hasText('baz', 'should render remaining values');
   });
 
   test('it returns the same array when no values are ommitted', async function(assert) {
     this.set('items', ['foo', 'bar', 'baz']);
 
     await render(hbs`
-      {{~#each (without "missing" items) as |remaining|~}}
+      {{~#each (without "missing" this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'foobarbaz', 'should render remaining values');
+    assert.dom().hasText('foobarbaz', 'should render remaining values');
   });
 
   test('it responds to changes', async function(assert) {
     this.set('items', emberArray(['foo', 'bar', 'baz']));
 
     await render(hbs`
-      {{~#each (without "quux" items) as |remaining|~}}
+      {{~#each (without "quux" this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'foobarbaz', 'should render all values');
+    assert.dom().hasText('foobarbaz', 'should render all values');
 
     run(() => this.get('items').pushObject('quux'));
-    assert.equal(find('*').textContent.trim(), 'foobarbaz', 'should not render quux');
+    assert.dom().hasText('foobarbaz', 'should not render quux');
   });
 
   test('it accepts array-like arrays', async function(assert) {
     this.set('items', ArrayProxy.create({ content: emberArray(['foo', 'bar', 'baz']) }));
 
     await render(hbs`
-      {{~#each (without "foo" items) as |remaining|~}}
+      {{~#each (without "foo" this.items) as |remaining|~}}
         {{remaining}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'barbaz', 'should render remaining values');
+    assert.dom().hasText('barbaz', 'should render remaining values');
   });
 
   test('it accepts an ember data array', async function(assert) {
@@ -93,12 +93,12 @@ module('Integration | Helper | {{without}}', function(hooks) {
     });
 
     await this.render(hbs`
-      {{~#each (without person.pets allPets) as |pet|~}}
+      {{~#each (without this.person.pets this.allPets) as |pet|~}}
         {{~pet.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(this.element.textContent.trim(), 'Eva', 'the remaining pet name is shown');
+    assert.dom(this.element).hasText('Eva', 'the remaining pet name is shown');
   });
 
   test('it allows null array', async function(assert) {
@@ -106,12 +106,12 @@ module('Integration | Helper | {{without}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (without 1 array) as |value|}}
+      {{#each (without 1 this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -119,11 +119,11 @@ module('Integration | Helper | {{without}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (without 1 array) as |value|}}
+      {{#each (without 1 this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

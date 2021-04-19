@@ -1,10 +1,10 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { set } from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{group-by}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -18,13 +18,13 @@ module('Integration | Helper | {{group-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each-in (group-by 'category' array) as |category entries|~}}
+      {{~#each-in (group-by 'category' this.array) as |category entries|~}}
         {{~category~}}
         {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
       {{~/each-in~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'aabbcd', 'aabbcd is the right order');
+    assert.dom().hasText('aabbcd', 'aabbcd is the right order');
   });
 
   test('It watches for changes', async function(assert) {
@@ -38,7 +38,7 @@ module('Integration | Helper | {{group-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each-in (group-by 'category' array) as |category entries|~}}
+      {{~#each-in (group-by 'category' this.array) as |category entries|~}}
         {{~category~}}
         {{~#each entries as |entry|~}}{{~entry.name~}}{{~/each~}}
       {{~/each-in~}}
@@ -46,6 +46,6 @@ module('Integration | Helper | {{group-by}}', function(hooks) {
 
     run(() => set(array.objectAt(3), 'category', 'c'));
 
-    assert.equal(find('*').textContent.trim(), 'aabbccd', 'aabbccd is the right order');
+    assert.dom().hasText('aabbccd', 'aabbccd is the right order');
   });
 });

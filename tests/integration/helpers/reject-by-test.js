@@ -1,10 +1,10 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { set } from '@ember/object';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{reject-by}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -22,12 +22,12 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (reject-by 'foo' true array) as |item|~}}
+      {{~#each (reject-by 'foo' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
+    assert.dom().hasText('ac', 'b is filtered out');
   });
 
   test('It rejects by truthiness', async function(assert) {
@@ -45,12 +45,12 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (reject-by 'foo' array) as |item|~}}
+      {{~#each (reject-by 'foo' this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'bdfghi', 'a, c, e and j are filtered out');
+    assert.dom().hasText('bdfghi', 'a, c, e and j are filtered out');
   });
 
   test('It recomputes the filter if array changes', async function(assert) {
@@ -63,14 +63,14 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (reject-by 'foo' true array) as |item|~}}
+      {{~#each (reject-by 'foo' true this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
     run(() => array.pushObject({ foo: false, name: 'd' }));
 
-    assert.equal(find('*').textContent.trim(), 'acd', 'd is added');
+    assert.dom().hasText('acd', 'd is added');
   });
 
   test('It recomputes the filter if a value under given path changes', async function(assert) {
@@ -83,16 +83,16 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     this.set('array', array);
 
     await render(hbs`
-      {{~#each (reject-by 'foo' array) as |item|~}}
+      {{~#each (reject-by 'foo' this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ac', 'ac is shown');
+    assert.dom().hasText('ac', 'ac is shown');
 
     run(() => set(array.objectAt(1), 'foo', false));
 
-    assert.equal(find('*').textContent.trim(), 'abc', 'b is added');
+    assert.dom().hasText('abc', 'b is added');
   });
 
   test('It can be passed an action', async function(assert) {
@@ -105,12 +105,12 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     this.actions.isEven = (value) => value % 2 === 0;
 
     await render(hbs`
-      {{~#each (reject-by 'foo' (action 'isEven') array) as |item|~}}
+      {{~#each (reject-by 'foo' (action 'isEven') this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
+    assert.dom().hasText('ac', 'b is filtered out');
   });
 
   test('It respects objects that implement isEqual interface', async function(assert) {
@@ -127,12 +127,12 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
     ]));
 
     await render(hbs`
-      {{~#each (reject-by 'foo' firstTarget array) as |item|~}}
+      {{~#each (reject-by 'foo' this.firstTarget this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'bc', 'a is filtered out');
+    assert.dom().hasText('bc', 'a is filtered out');
   });
 
   test('it allows null array', async function(assert) {
@@ -140,11 +140,11 @@ module('Integration | Helper | {{reject-by}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (reject-by 'name' array) as |value|}}
+      {{#each (reject-by 'name' this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

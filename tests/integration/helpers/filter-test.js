@@ -1,9 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{filter}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -27,12 +27,12 @@ module('Integration | Helper | {{filter}}', function(hooks) {
     };
 
     await render(hbs`
-      {{~#each (filter (action "truthyFoo") array) as |item|~}}
+      {{~#each (filter (action "truthyFoo") this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ace', 'b and d are filtered out');
+    assert.dom().hasText('ace', 'b and d are filtered out');
   });
 
   test('It recomputes the filter if array changes', async function(assert) {
@@ -49,14 +49,14 @@ module('Integration | Helper | {{filter}}', function(hooks) {
     };
 
     await render(hbs`
-      {{~#each (filter (action "getFoo") array) as |item|~}}
+      {{~#each (filter (action "getFoo") this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
     run(() => array.pushObject({ foo: true, name: 'd' }));
 
-    assert.equal(find('*').textContent.trim(), 'acd', 'd is added');
+    assert.dom().hasText('acd', 'd is added');
   });
 
   test('It can be passed an action', async function(assert) {
@@ -69,12 +69,12 @@ module('Integration | Helper | {{filter}}', function(hooks) {
     this.actions.isOdd = ({ foo }) => foo % 2 !== 0;
 
     await render(hbs`
-      {{~#each (filter (action "isOdd") array) as |item|~}}
+      {{~#each (filter (action "isOdd") this.array) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'ac', 'b is filtered out');
+    assert.dom().hasText('ac', 'b is filtered out');
   });
 
   test('it allows null array', async function(assert) {
@@ -82,12 +82,12 @@ module('Integration | Helper | {{filter}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (filter 'name' array) as |value|}}
+      {{#each (filter 'name' this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -95,12 +95,12 @@ module('Integration | Helper | {{filter}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (filter 'name' array) as |value|}}
+      {{#each (filter 'name' this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
 
@@ -121,11 +121,11 @@ module('Integration | Helper | {{filter}}', function(hooks) {
     };
 
     await render(hbs`
-      {{~#each (filter (action "startsWithA") pets) as |item|~}}
+      {{~#each (filter (action "startsWithA") this.pets) as |item|~}}
         {{~item.name~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'aaab', 'bc is filtered out');
+    assert.dom().hasText('aaab', 'bc is filtered out');
   });
 });

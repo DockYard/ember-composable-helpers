@@ -1,7 +1,7 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
 
 module('Integration | Helper | entries', function(hooks) {
   setupRenderingTest(hooks);
@@ -15,8 +15,8 @@ module('Integration | Helper | entries', function(hooks) {
     this.set('object', object);
 
     await render(hbs`
-    {{#each (entries object) as |entry|}}{{get entry 0}}{{get entry 1}}{{/each}}`);
-    assert.equal(this.element.textContent.trim(), 'a1b2');
+    {{#each (entries this.object) as |entry|}}{{get entry 0}}{{get entry 1}}{{/each}}`);
+    assert.dom(this.element).hasText('a1b2');
   });
 
   test('it works with sort-by', async function(assert) {
@@ -37,8 +37,8 @@ module('Integration | Helper | entries', function(hooks) {
       return 0;
     });
     await render(hbs`
-    {{#each (sort-by myOwnSortBy (entries object)) as |entry|}}{{get entry 0}}{{/each}}`);
-    assert.equal(this.element.textContent.trim(), 'abcd');
+    {{#each (sort-by this.myOwnSortBy (entries this.object)) as |entry|}}{{get entry 0}}{{/each}}`);
+    assert.dom(this.element).hasText('abcd');
   });
 
   test('it handles undefined input', async function(assert) {
@@ -46,7 +46,7 @@ module('Integration | Helper | entries', function(hooks) {
       {{#each (entries undefined) as |key|}}{{key}}{{/each}}
     `);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 
   test('it handles null input', async function(assert) {
@@ -54,6 +54,6 @@ module('Integration | Helper | entries', function(hooks) {
       {{#each (entries null) as |key|}}{{key}}{{/each}}
     `);
 
-    assert.equal(this.element.textContent.trim(), '');
+    assert.dom(this.element).hasText('');
   });
 });

@@ -1,9 +1,9 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { A as emberArray } from '@ember/array';
 import { run } from '@ember/runloop';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, find } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | {{union}}', function(hooks) {
   setupRenderingTest(hooks);
@@ -14,12 +14,12 @@ module('Integration | Helper | {{union}}', function(hooks) {
     this.set('array3', ['qux', 'bar']);
 
     await render(hbs`
-      {{~#each (union array1 array2 array3) as |word|~}}
+      {{~#each (union this.array1 this.array2 this.array3) as |word|~}}
         {{~word~}}
       {{~/each~}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'foobarbazqux', 'union leaves no repeated words');
+    assert.dom().hasText('foobarbazqux', 'union leaves no repeated words');
   });
 
   test('It watches for changes', async function(assert) {
@@ -28,14 +28,14 @@ module('Integration | Helper | {{union}}', function(hooks) {
     this.set('array3', emberArray(['qux', 'bar']));
 
     await render(hbs`
-      {{~#each (union array1 array2 array3) as |word|~}}
+      {{~#each (union this.array1 this.array2 this.array3) as |word|~}}
         {{~word~}}
       {{~/each~}}
     `);
 
     run(() => this.get('array1').pushObject('leet'));
 
-    assert.equal(find('*').textContent.trim(), 'foobarleetbazqux', 'leet is added');
+    assert.dom().hasText('foobarleetbazqux', 'leet is added');
   });
 
   test('it allows null array', async function(assert) {
@@ -43,12 +43,12 @@ module('Integration | Helper | {{union}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (union array array) as |value|}}
+      {{#each (union this.array this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 
   test('it allows undefined array', async function(assert) {
@@ -56,11 +56,11 @@ module('Integration | Helper | {{union}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (union array array) as |value|}}
+      {{#each (union this.array this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), 'this is all that will render', 'no error is thrown');
+    assert.dom().hasText('this is all that will render', 'no error is thrown');
   });
 });

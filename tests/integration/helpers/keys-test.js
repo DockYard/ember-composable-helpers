@@ -1,7 +1,7 @@
+import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { find, render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { render } from '@ember/test-helpers';
 
 module('Integration | Helper | keys', function(hooks) {
   setupRenderingTest(hooks);
@@ -14,9 +14,9 @@ module('Integration | Helper | keys', function(hooks) {
 
     this.set('object', object);
 
-    await render(hbs`{{#each (keys object) as |key|}}{{key}}{{/each}}`);
+    await render(hbs`{{#each (keys this.object) as |key|}}{{key}}{{/each}}`);
 
-    assert.equal(find('*').textContent.trim(), 'ab');
+    assert.dom().hasText('ab');
   });
 
   test('it handles undefined input', async function(assert) {
@@ -24,7 +24,7 @@ module('Integration | Helper | keys', function(hooks) {
       {{#each (keys undefined) as |key|}}{{key}}{{/each}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '');
+    assert.dom().hasText('');
   });
 
   test('it works with let helper', async function(assert) {
@@ -36,11 +36,11 @@ module('Integration | Helper | keys', function(hooks) {
     this.set('object', object);
 
     await render(hbs`
-      {{#let (keys object) as |objectKeys|}}
+      {{#let (keys this.object) as |objectKeys|}}
         {{objectKeys.length}}
       {{/let}}
     `);
 
-    assert.equal(find('*').textContent.trim(), '2');
+    assert.dom().hasText('2');
   });
 });
