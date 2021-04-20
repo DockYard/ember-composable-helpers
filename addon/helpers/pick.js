@@ -1,7 +1,7 @@
 import { helper } from '@ember/component/helper';
 import { get } from '@ember/object';
 
-export default helper(function event([path, action]/*, hash*/) {
+export function pick([path, action]/*, hash*/) {
   return function(event) {
     let value = get(event, path);
 
@@ -11,4 +11,6 @@ export default helper(function event([path, action]/*, hash*/) {
 
     action(value);
   };
-});
+}
+
+export default helper(pick);

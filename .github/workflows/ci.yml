@@ -67,7 +67,8 @@ jobs:
             ember-beta,
             ember-canary,
             ember-default-with-jquery,
-            embroider-tests,
+            embroider-safe,
+            embroider-optimized,
           ]
     continue-on-error: ${{ matrix.try-scenario == 'ember-beta' || matrix.try-scenario == 'ember-canary' }}
     steps:
