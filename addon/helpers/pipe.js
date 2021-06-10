@@ -6,17 +6,17 @@ export function invokeFunction(acc, curr) {
     return acc.then(curr);
   }
 
-  return curr(acc);
+  return curr.call(this, acc);
 }
 
-export function pipe(actions = []) {
+export function pipe(actions = [], { target } = {}) {
   return function(...args) {
     return actions.reduce((acc, curr, idx) => {
       if (idx === 0) {
-        return curr(...args);
+        return curr.call(target || this, ...args);
       }
 
-      return invokeFunction(acc, curr);
+      return invokeFunction.call(target || this, acc, curr);
     }, undefined);
   };
 }
