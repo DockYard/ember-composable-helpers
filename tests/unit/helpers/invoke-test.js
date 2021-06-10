@@ -15,6 +15,17 @@ module('Unit | Helper | invoke', function() {
     assert.equal(action(), 'calling mom in 1,2,3', 'it calls functions');
   });
 
+  test('it cares about method arguments', function(assert) {
+    let object = {
+      callContact(name, number) {
+        return `calling ${name} with ${number}`;
+      }
+    };
+    let action = invoke(['callContact', 'mom', '1234567', object]);
+
+    assert.equal(action(), 'calling mom with 1234567', 'it cares about function args');
+  });
+
   test('it is promise aware', function(assert) {
     let done = assert.async();
     let object = {
