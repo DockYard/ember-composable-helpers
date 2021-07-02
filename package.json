@@ -84,7 +84,6 @@
   },
   "resolutions": {
     "ember-cli/sane/micromatch/snapdragon/base/cache-base/set-value": "^2.0.1",
-    "ember-cli/lodash.template": "^4.5.0",
     "mocha/growl": "^1.10.0",
     "ember-cli/**/clean-css": "^4.1.11"
   },
