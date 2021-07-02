@@ -36,7 +36,7 @@
     "ember-cli-release": "^0.2.9",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-template-lint": "^1.0.0-beta.1",
-    "ember-cli-uglify": "^3.0.0",
+    "ember-cli-terser": "^4.0.2",
     "ember-data": "^3.26.0",
     "ember-disable-prototype-extensions": "^1.1.3",
     "ember-disable-proxy-controllers": "^1.0.1",
@@ -78,13 +78,12 @@
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
-    "broccoli-funnel": "2.0.1",
+    "broccoli-funnel": "^3.0.8",
     "ember-cli-babel": "^7.26.3",
     "resolve": "^1.10.0"
   },
   "resolutions": {
     "ember-cli/sane/micromatch/snapdragon/base/cache-base/set-value": "^2.0.1",
-    "ember-cli/lodash.template": "^4.5.0",
     "mocha/growl": "^1.10.0",
     "ember-cli/**/clean-css": "^4.1.11"
   },
