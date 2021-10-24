@@ -6,6 +6,9 @@ on:
       - master
   pull_request: {}
 
+env:
+  NODE_VERSION: 12
+
 jobs:
   lint:
     name: Lint
@@ -16,7 +19,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           cache: yarn
-          node-version: 12.x
+          node-version: ${{ env.NODE_VERSION }}
       - run: yarn install
       - run: yarn lint:js
 
@@ -29,7 +32,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           cache: yarn
-          node-version: 12.x
+          node-version: ${{ env.NODE_VERSION }}
       - run: yarn install
       - run: yarn test
 
@@ -55,7 +58,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           cache: yarn
-          node-version: 12.x
+          node-version: ${{ env.NODE_VERSION }}
       - run: yarn install
       - run: yarn ember try:one ${{ matrix.try-scenario }}
         timeout-minutes: 10
