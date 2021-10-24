@@ -20,7 +20,7 @@ jobs:
         with:
           cache: yarn
           node-version: ${{ env.NODE_VERSION }}
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn lint:js
 
   test:
@@ -33,7 +33,7 @@ jobs:
         with:
           cache: yarn
           node-version: ${{ env.NODE_VERSION }}
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn test
 
   ember-try:
@@ -59,6 +59,6 @@ jobs:
         with:
           cache: yarn
           node-version: ${{ env.NODE_VERSION }}
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - run: yarn ember try:one ${{ matrix.try-scenario }}
         timeout-minutes: 10
