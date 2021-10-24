@@ -37,20 +37,18 @@ jobs:
       - run: yarn test
 
   ember-try:
-    name: "Ember Try"
+    name: Ember Try
     runs-on: ubuntu-latest
     strategy:
       matrix:
         try-scenario:
-          [
-            ember-lts-3.16,
-            ember-lts-3.20,
-            ember-beta,
-            ember-canary,
-            ember-default-with-jquery,
-            embroider-safe,
-            embroider-optimized,
-          ]
+          - ember-lts-3.16
+          - ember-lts-3.20
+          - ember-beta
+          - ember-canary
+          - ember-default-with-jquery
+          - embroider-safe
+          - embroider-optimized
     continue-on-error: ${{ matrix.try-scenario == 'ember-beta' || matrix.try-scenario == 'ember-canary' }}
     steps:
       - uses: actions/checkout@v2
