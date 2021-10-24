@@ -23,6 +23,19 @@ jobs:
       - run: yarn install --frozen-lockfile
       - run: yarn lint:js
 
+  floating:
+    name: Floating Dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install node
+        uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          node-version: ${{ env.NODE_VERSION }}
+      - run: yarn install --no-lockfile --non-interactive
+      - run: yarn test
+
   test:
     name: Test
     runs-on: ubuntu-latest
