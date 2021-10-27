@@ -10,8 +10,8 @@ env:
   NODE_VERSION: 12
 
 jobs:
-  lint:
-    name: Lint
+  lint_and_tests:
+    name: Lint and tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,6 +22,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       - run: yarn install --frozen-lockfile
       - run: yarn lint:js
+      - run: yarn test
 
   floating:
     name: Floating Dependencies
@@ -34,19 +35,6 @@ jobs:
           cache: yarn
           node-version: ${{ env.NODE_VERSION }}
       - run: yarn install --no-lockfile --non-interactive
-      - run: yarn test
-
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install node
-        uses: actions/setup-node@v2
-        with:
-          cache: yarn
-          node-version: ${{ env.NODE_VERSION }}
-      - run: yarn install --frozen-lockfile
       - run: yarn test
 
   ember-try:
