@@ -431,6 +431,15 @@ Joins arrays to create an array of unique values. When applied to a single array
 {{/each}}
 ```
 
+#### `uniq-by`
+Filters an array by a unique property.
+
+```hbs
+{{#each (uniq-by "id" users) as |user|}}
+  {{user.fullName}}
+{{/each}}
+```
+
 **[⬆️ back to top](#table-of-contents)**
 
 #### `take`
