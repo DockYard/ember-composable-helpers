@@ -3,6 +3,11 @@ import { isEmpty } from '@ember/utils';
 import { helper } from '@ember/component/helper';
 import asArray from '../utils/as-array';
 
+const collator = new Intl.Collator('en', {
+  numeric: true,
+  sensitivity: 'base'
+});
+
 function normalizeToBoolean(val) {
   if (typeof val === 'boolean') {
     return val;
@@ -52,7 +57,7 @@ function sortDesc(key, a, b) {
   }
 
   if (aValue.toLowerCase && bValue.toLowerCase) {
-    return bValue.localeCompare(aValue, undefined, { sensitivity: 'base' });
+    return collator.compare(bValue, aValue);
   }
 
   if (aValue < bValue) {
@@ -90,7 +95,7 @@ function sortAsc(key, a, b) {
   }
 
   if (aValue.toLowerCase && bValue.toLowerCase) {
-    return aValue.localeCompare(bValue, undefined, { sensitivity: 'base' });
+    return collator.compare(aValue, bValue);
   }
 
   if (aValue < bValue) {
