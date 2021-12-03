@@ -45,7 +45,7 @@ module('Integration | Helper | {{previous}}', function(hooks) {
     this.set('array', emberArray([1, 2, 3]));
 
     await render(hbs`
-      {{~#with (previous 3 array) as |item|~}}
+      {{~#with (previous 3 this.array) as |item|~}}
         {{~item~}}
       {{~/with~}}
     `);
@@ -75,7 +75,7 @@ module('Integration | Helper | {{previous}}', function(hooks) {
     });
 
     await render(hbs`
-      {{~#with (previous currentPet model.pets) as |pet|~}}
+      {{~#with (previous this.currentPet this.model.pets) as |pet|~}}
         {{~pet.name~}}
       {{~/with~}}
     `);

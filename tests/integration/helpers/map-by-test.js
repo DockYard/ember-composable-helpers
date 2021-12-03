@@ -120,7 +120,7 @@ module('Integration | Helper | {{map-by}}', function(hooks) {
     this.set('pets', pets);
 
     await render(hbs`
-      {{~#each (map-by 'name' pets) as |name|~}}
+      {{~#each (map-by 'name' this.pets) as |name|~}}
         {{~name~}}
       {{~/each~}}
     `);
