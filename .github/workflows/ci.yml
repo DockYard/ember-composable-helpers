@@ -70,9 +70,8 @@ jobs:
             ember-canary,
             ember-default-with-jquery,
             embroider-safe,
-            embroider-optimized,
+            # embroider-optimized, ember-data is currently failing
           ]
-    continue-on-error: ${{ matrix.try-scenario == 'ember-beta' || matrix.try-scenario == 'ember-canary' }}
     steps:
       - uses: actions/checkout@v2
       - name: Install node
