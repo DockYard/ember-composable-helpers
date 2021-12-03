@@ -57,25 +57,23 @@ module('Integration | Helper | {{next}}', function(hooks) {
     assert.dom().hasText('3', '3 is added and shown');
   });
 
-  test('It return the next value in an array of related models', async function(assert) {
-    this.store = this.owner.lookup('service:store');
+  test('It returns the next value in an array of related models', async function(assert) {
+    const store = this.owner.lookup('service:store');
 
-    run(() => {
-      let person = this.get('store').createRecord('person', {
-        name: 'Adam'
-      });
-
-      person.get('pets').pushObjects([
-        this.get('store').createRecord('pet', { name: 'Kirby' }),
-        this.get('store').createRecord('pet', { name: 'Jake' })
-      ]);
-
-      this.set('model', person);
-      this.set('currentPet', person.get('pets.firstObject'));
+    let person = store.createRecord('person', {
+      name: 'Adam'
     });
 
+    person.get('pets').pushObjects([
+      store.createRecord('pet', { name: 'Kirby' }),
+      store.createRecord('pet', { name: 'Jake' })
+    ]);
+
+    this.set('pets', person.pets.toArray());
+    this.set('currentPet', person.get('pets.firstObject'));
+
     await render(hbs`
-      {{~#with (next this.currentPet this.model.pets) as |pet|~}}
+      {{~#with (next this.currentPet this.pets) as |pet|~}}
         {{~pet.name~}}
       {{~/with~}}
     `);

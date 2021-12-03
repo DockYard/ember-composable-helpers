@@ -11,7 +11,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
   test('Removes empty values in standard arrays', async function(assert) {
     this.set('array', emberArray([1, 2, null, 3, false]));
     await render(hbs`
-      {{~#each (compact array) as |value|~}}
+      {{~#each (compact this.array) as |value|~}}
         {{value}}
       {{~/each~}}
     `);
@@ -22,7 +22,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
   test('It gracefully handles non-array values', async function(assert) {
     this.set('notArray', 1);
     await render(hbs`
-      {{~#each (compact notArray) as |value|~}}
+      {{~#each (compact this.notArray) as |value|~}}
         {{value}}
       {{~/each~}}
     `);
@@ -33,7 +33,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
   test('It recomputes the filter if the array changes', async function(assert) {
     this.set('array', emberArray([1, 2, null, 3]));
     await render(hbs`
-      {{~#each (compact array) as |value|~}}
+      {{~#each (compact this.array) as |value|~}}
         {{value}}
       {{~/each~}}
     `);
@@ -49,7 +49,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
     let array = emberArray([1, 2, null, 3]);
     this.set('array', array);
     await render(hbs`
-      {{~#each (compact array) as |value|~}}
+      {{~#each (compact this.array) as |value|~}}
         {{value}}
       {{~/each~}}
     `);
@@ -66,7 +66,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (compact array) as |value|}}
+      {{#each (compact this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
@@ -79,7 +79,7 @@ module('Integration | Helper | {{compact}}', function(hooks) {
 
     await render(hbs`
       this is all that will render
-      {{#each (compact array) as |value|}}
+      {{#each (compact this.array) as |value|}}
         {{value}}
       {{/each}}
     `);
