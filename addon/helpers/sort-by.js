@@ -3,8 +3,7 @@ import { isEmpty } from '@ember/utils';
 import { helper } from '@ember/component/helper';
 import asArray from '../utils/as-array';
 
-const collator = new Intl.Collator('en', {
-  numeric: true,
+const collator = new Intl.Collator(undefined, {
   sensitivity: 'base'
 });
 
