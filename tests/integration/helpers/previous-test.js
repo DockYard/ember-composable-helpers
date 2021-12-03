@@ -58,24 +58,22 @@ module('Integration | Helper | {{previous}}', function(hooks) {
   });
 
   test('It returns the previous value in an array of related models', async function(assert) {
-    this.store = this.owner.lookup('service:store');
+    const store = this.owner.lookup('service:store');
 
-    run(() => {
-      let person = this.get('store').createRecord('person', {
-        name: 'Adam'
-      });
-
-      person.get('pets').pushObjects([
-        this.get('store').createRecord('pet', { name: 'Kirby' }),
-        this.get('store').createRecord('pet', { name: 'Jake' })
-      ]);
-
-      this.set('model', person);
-      this.set('currentPet', person.get('pets.lastObject'));
+    let person = store.createRecord('person', {
+      name: 'Adam'
     });
 
+    person.get('pets').pushObjects([
+      store.createRecord('pet', { name: 'Kirby' }),
+      store.createRecord('pet', { name: 'Jake' })
+    ]);
+
+    this.set('pets', person.pets.toArray());
+    this.set('currentPet', person.get('pets.lastObject'));
+
     await render(hbs`
-      {{~#with (previous this.currentPet this.model.pets) as |pet|~}}
+      {{~#with (previous this.currentPet this.pets) as |pet|~}}
         {{~pet.name~}}
       {{~/with~}}
     `);

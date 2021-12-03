@@ -57,7 +57,7 @@ module('Integration | Helper | {{next}}', function(hooks) {
     assert.dom().hasText('3', '3 is added and shown');
   });
 
-  test('It return the next value in an array of related models', async function(assert) {
+  test('It returns the next value in an array of related models', async function(assert) {
     const store = this.owner.lookup('service:store');
 
     let person = store.createRecord('person', {
@@ -69,11 +69,11 @@ module('Integration | Helper | {{next}}', function(hooks) {
       store.createRecord('pet', { name: 'Jake' })
     ]);
 
-    this.set('model', person);
+    this.set('pets', person.pets.toArray());
     this.set('currentPet', person.get('pets.firstObject'));
 
     await render(hbs`
-      {{~#with (next this.currentPet this.model.pets) as |pet|~}}
+      {{~#with (next this.currentPet this.pets) as |pet|~}}
         {{~pet.name~}}
       {{~/with~}}
     `);
