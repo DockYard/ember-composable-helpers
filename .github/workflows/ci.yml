@@ -54,7 +54,7 @@ jobs:
             ember-canary,
             ember-default-with-jquery,
             embroider-safe,
-            # embroider-optimized, ember-data is currently failing
+            # embroider-optimized, ember-data is currently failing. https://github.com/embroider-build/embroider/issues/396#issuecomment-611885598
           ]
     steps:
       - uses: actions/checkout@v2
