@@ -18,9 +18,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-          cache: yarn
-      - run: yarn install
-      - run: yarn lint:js
+      - run: npm install
+      - run: npm run lint:js
 
   test:
     name: Test
@@ -33,9 +32,8 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-          cache: yarn
-      - run: yarn install
-      - run: yarn test
+      - run: npm install
+      - run: npm run test
 
   ember-try:
     name: "Ember Try"
@@ -62,7 +60,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-          cache: yarn
-      - run: yarn install
-      - run: yarn ember try:one ${{ matrix.try-scenario }}
+      - run: npm install
+      - run: ember try:one ${{ matrix.try-scenario }}
         timeout-minutes: 10

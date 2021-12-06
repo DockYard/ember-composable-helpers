@@ -5,7 +5,6 @@ const { embroiderSafe, embroiderOptimized } = require('@embroider/test-setup');
 
 module.exports = async function() {
   return {
-    useYarn: true,
     scenarios: [
       {
         name: 'ember-lts-3.20',
