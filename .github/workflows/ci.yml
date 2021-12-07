@@ -18,9 +18,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-          cache: yarn
-      - run: yarn install
-      - run: yarn lint:js
+          cache: npm
+      - run: npm install
+      - run: npm run lint:js
 
   test:
     name: Test
@@ -33,9 +33,9 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-          cache: yarn
-      - run: yarn install
-      - run: yarn test
+          cache: npm
+      - run: npm install
+      - run: npm run test
 
   ember-try:
     name: "Ember Try"
@@ -52,7 +52,6 @@ jobs:
             ember-release,
             ember-beta,
             ember-canary,
-            ember-default-with-jquery,
             embroider-safe,
             # embroider-optimized, ember-data is currently failing. https://github.com/embroider-build/embroider/issues/396#issuecomment-611885598
           ]
@@ -62,7 +61,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 12.x
-          cache: yarn
-      - run: yarn install
-      - run: yarn ember try:one ${{ matrix.try-scenario }}
+          cache: npm
+      - run: npm install
+      - run: node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
         timeout-minutes: 10
