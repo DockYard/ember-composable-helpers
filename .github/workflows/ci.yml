@@ -63,5 +63,5 @@ jobs:
           node-version: 12.x
           cache: npm
       - run: npm install
-      - run: ember try:one ${{ matrix.try-scenario }}
+      - run: node_modules/.bin/ember try:one ${{ matrix.try-scenario }} --skip-cleanup
         timeout-minutes: 10
