@@ -66,7 +66,6 @@ Watch a free video overview presented by EmberMap:
       - [`range`](#range)
       - [`join`](#join)
       - [`compact`](#compact)
-      - [`contains`](#contains)
       - [`includes`](#includes)
       - [`append`](#append)
       - [`chunk`](#chunk)
@@ -539,20 +538,6 @@ Removes blank items from an array.
 {{#each (compact arrayWithBlanks) as |notBlank|}}
   {{notBlank}} is most definitely not blank!
 {{/each}}
-```
-
-**[⬆️ back to top](#table-of-contents)**
-
-#### `contains`
-:warning: `contains` is deprecated. Use [`includes`](#includes) instead.
-
-Checks if a given value or sub-array is contained within an array.
-
-```hbs
-{{contains selectedItem items}}
-{{contains 1234 items}}
-{{contains "First" (w "First Second Third") }}
-{{contains (w "First Second") (w "First Second Third")}}
 ```
 
 **[⬆️ back to top](#table-of-contents)**
