@@ -710,7 +710,7 @@ Converts a two-dimensional array of `[key, value]` pairs into an Object
 ```hbs
   {{#each-in (from-entries entries) as |key value|}}
     {{key}}:{{value}}
-  {{/each}}
+  {{/each-in}}
 ```
 
 You can pair it with other array helpers too. For example, to copy only
