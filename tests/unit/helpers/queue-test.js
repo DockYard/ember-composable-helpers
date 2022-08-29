@@ -34,6 +34,14 @@ module('Unit | Helper | queue', function(hooks) {
     assert.ok(step3.calledOnce, 'step3 called once');
   });
 
+  test('it ignores null-like values', function(assert) {
+    let queued = queue([undefined, step1, null, step2, undefined]);
+    queued(2, 4);
+
+    assert.ok(step1.calledOnce, 'step1 called once');
+    assert.ok(step2.calledOnce, 'step2 called once');
+  });
+
   test('it passes all functions the same arguments', function(assert) {
     let queued = queue([step1, step2, step3]);
     queued(2, 4);
