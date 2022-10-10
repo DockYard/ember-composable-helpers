@@ -1,9 +1,5 @@
 import { helper } from '@ember/component/helper';
-import { A as emberArray, isArray as isEmberArray } from '@ember/array';
-
-function contains(needle, haystack) {
-  return emberArray(haystack).includes(needle);
-}
+import { isArray as isEmberArray } from '@ember/array';
 
 export function without(needle, haystack) {
   if (!isEmberArray(haystack)) {
@@ -12,11 +8,11 @@ export function without(needle, haystack) {
 
   if (isEmberArray(needle) && needle.length) {
     return haystack.reduce((acc, val) => {
-      return contains(val, needle) ? acc : acc.concat(val);
+      return needle.includes(val) ? acc : acc.concat(val);
     }, []);
   }
 
-  return emberArray(haystack).without(needle);
+  return haystack.filter(val => val !== needle);
 }
 
 export default helper(function([needle, haystack]) {

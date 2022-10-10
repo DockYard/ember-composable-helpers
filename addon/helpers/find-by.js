@@ -1,6 +1,6 @@
 import { helper } from '@ember/component/helper';
 import { isEmpty } from '@ember/utils';
-import { A as emberArray } from '@ember/array';
+import { get } from '@ember/object';
 import asArray from '../utils/as-array';
 
 export function findBy([byPath, value, array]) {
@@ -8,7 +8,9 @@ export function findBy([byPath, value, array]) {
     return [];
   }
 
-  return emberArray(asArray(array)).findBy(byPath, value);
+  return asArray(array).find((item) => {
+    return get(item, byPath) === value;
+  });
 }
 
 export default helper(findBy);
