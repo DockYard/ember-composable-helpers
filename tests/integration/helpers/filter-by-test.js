@@ -30,6 +30,24 @@ module('Integration | Helper | {{filter-by}}', function(hooks) {
     assert.dom().hasText('ac', 'b is filtered out');
   });
 
+  test('It filters by `undefined`', async function(assert) {
+    this.set('array', emberArray([
+      { foo: true, name: 'a' },
+      { foo: false, name: 'b' },
+      { foo: undefined, name: 'c' },
+      { foo: null, name: 'd' },
+      { foo: 'x', name: 'e' },
+    ]));
+
+    await render(hbs`
+      {{~#each (filter-by 'foo' undefined this.array) as |item|~}}
+        {{~item.name~}}
+      {{~/each~}}
+    `);
+
+    assert.dom().hasText('c', 'a, b, d and e are filtered out');
+  });
+
   test('It filters by truthiness', async function(assert) {
     this.set('array', emberArray([
       { foo: 'x', name: 'a' },

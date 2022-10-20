@@ -1,15 +1,17 @@
 import { helper } from '@ember/component/helper';
 import { isArray as isEmberArray } from '@ember/array';
-import { isEmpty, isPresent } from '@ember/utils';
+import { isEmpty } from '@ember/utils';
 import { get } from '@ember/object';
 import isEqual from '../utils/is-equal';
 import asArray from '../utils/as-array';
 
 export function filterBy([byPath, value, array]) {
 
+  let isPresent = true;
   if (!isEmberArray(array) && isEmberArray(value)) {
     array = value;
     value = undefined;
+    isPresent = false;
   }
 
   array = asArray(array);
@@ -20,7 +22,7 @@ export function filterBy([byPath, value, array]) {
 
   let filterFn;
 
-  if (isPresent(value)) {
+  if (isPresent) {
     if (typeof value === 'function') {
       filterFn = (item) => value(get(item, byPath));
     } else {
