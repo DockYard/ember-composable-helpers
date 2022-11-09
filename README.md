@@ -133,6 +133,14 @@ For action helpers, this will mean better currying semantics:
 </button>
 ```
 
+## Glint types
+To enable Glint template typechecking for the addon, add:  
+```js
+import 'ember-composable-helpers/glint';
+```
+anywhere you put your app's global types into, e.g. `types/global.d.ts`.
+See also [Glint documentation](https://typed-ember.gitbook.io/glint/using-glint/ember/using-addons)
+
 ## Upgrade Guide
 For help upgrading between major versions, check out the [upgrading documentation](https://github.com/DockYard/ember-composable-helpers/blob/master/UPGRADING.md).
 
