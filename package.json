@@ -79,7 +79,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
-    "broccoli-funnel": "2.0.1",
+    "broccoli-funnel": "^3.0.8",
     "ember-cli-babel": "^7.26.3",
     "resolve": "^1.10.0"
   },
